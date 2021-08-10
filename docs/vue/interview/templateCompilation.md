@@ -842,7 +842,7 @@ Vue 在解析模板字符串时，可分为两种情况：以 `<` 开头的字�
 
 ```javascript
 while (s.length) {
-    if (startsWith(s, '{{')) {
+    if (startsWith(s, '\{\{')) {
         // 如果以 '{{' 开头
         node = parseInterpolation(context, mode)
     } else if (s[0] === '<') {
