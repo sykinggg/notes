@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "study",
   "main": "index.js",
+  "homepage": "https://sykinggg.github.io/notes",
   "author": "sy",
   "license": "MIT",
   "devDependencies": {
