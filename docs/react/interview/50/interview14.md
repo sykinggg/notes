@@ -83,17 +83,18 @@
             return (
                 <AppContext.Provider value={{
                         name:this.state.name,
-                        changeName:()=>{
-                            this.setState({
-                                name: Math.random()
-                            })
-                        },
                     }}>
                     <A/>
                 </AppContext.Provider>
             )
         }
     }
+
+    // changeName:()=>{
+    //     this.setState({
+    //         name: Math.random()
+    //     })
+    // },
 
     ReactDOM.render(
         <App />,
