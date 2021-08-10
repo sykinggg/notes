@@ -1,4 +1,4 @@
-```
+```html
 <!DOCTYPE html><html>
 <head>
     <meta charset="utf-8" />
@@ -81,13 +81,13 @@
 
         render(){
             return (
-                <AppContext.Provider value={{name:this.state.name,changeName:()=>{
-                        this.setState({
-                            name:Math.random()
-                        })
-                    }}}>
-                    <A/>
-                </AppContext.Provider>
+                // <AppContext.Provider value={{name:this.state.name,changeName:()=>{
+                //         this.setState({
+                //             name: Math.random()
+                //         })
+                //     }}}>
+                //     <A/>
+                // </AppContext.Provider>
             )
         }
     }
