@@ -512,12 +512,12 @@ export default function index (){
         <View 
             className='drop1' 
             ref={dropRef}
-            style={{transform:`translate(${style1.x}px, ${style1.y}px)`}} 
+            style={transform:`translate(${style1.x}px, ${style1.y}px)`} 
         >drop1</View>
         <View 
             className='drop2'   
             ref={dropRef2}
-            style={{transform:`translate(${style2.x}px, ${style2.y}px)`}} 
+            style={transform:`translate(${style2.x}px, ${style2.y}px)`} 
         >drop2</View>
         <View 
             className='drop3'
