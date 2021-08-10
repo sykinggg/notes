@@ -81,13 +81,16 @@
 
         render(){
             return (
-                // <AppContext.Provider value={{name:this.state.name,changeName:()=>{
-                //         this.setState({
-                //             name: Math.random()
-                //         })
-                //     }}}>
-                //     <A/>
-                // </AppContext.Provider>
+                <AppContext.Provider value={{
+                        name:this.state.name,
+                        changeName:()=>{
+                            this.setState({
+                                name: Math.random()
+                            })
+                        },
+                    }}>
+                    <A/>
+                </AppContext.Provider>
             )
         }
     }
