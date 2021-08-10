@@ -134,7 +134,7 @@ export default function Index() {
     const { opacity, top, suctionTop } = scrollOptions
     return <View style={{ position: 'static', height: '2000px' }} ref={domRef} >
         <View className='white' />
-        <View  id='box' style={{opacity, transform:`translateY(${top}px)`}}>
+        <View  id='box' >
             <Swiper
               className='swiper'
             >
