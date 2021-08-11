@@ -16,5 +16,5 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ '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' }}
         BRANCH: gh-pages
-        FOLDER: build
+        FOLDER: dist
         BUILD_SCRIPT: npm install && npm run build
