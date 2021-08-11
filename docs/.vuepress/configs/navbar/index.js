@@ -388,7 +388,7 @@ module.exports = [
     ]
   },
   {
-    text: '算法',
+    text: '算法&设计',
     items: [
       {
         text: '第 1 期：基础面试题',
@@ -396,6 +396,10 @@ module.exports = [
         // items: [
         //     { text: '第一套综合基础面试题', link: '/algorithm/interview/baseInterview.md' }
         // ]
+      },
+      {
+        text: '设计模式',
+        link: '/design/overview.md'
       }
     ]
   }

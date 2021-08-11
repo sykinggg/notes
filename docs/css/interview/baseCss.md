@@ -224,3 +224,203 @@ CSS预处理器的原理: 是将类 CSS 语言通过 **Webpack 编译** 转成�
 **经验**
 
 通常，CSS 并不是重点的考察领域，但这其实是由于现在国内业界对 CSS 的专注不够导致的，真正精通并专注于 CSS 的团队和人才并不多。
+
+## 平滑滚动
+
+曾经有一段时间，我们不得不依靠JavaScript的`window.scrollY`来实现来执行此操作，如果想平滑滚动还要依赖定时器增加一个动画。 随着`scroll-behavior`属性的新增，我们可以使用一行CSS代码来处理网站上的平滑滚动！浏览器支持约为75％，兼容性还是挺不错的。
+
+```css
+html {
+  scroll-behavior: smooth;
+}
+```
+
+<a data-fancybox title="demo" href="/notes/assets/css/60ccc6bfb0764cfe953792eef68a79ab_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/css/60ccc6bfb0764cfe953792eef68a79ab_tplv-k3u1fbpfcp-watermark.image)</a>
+
+### demo
+
+> html
+
+```html
+<ul>
+  <a id="top" href="#bottom">点击平滑滚动到底部</a>
+  <li >1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+   <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+   <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+   <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+    <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+   <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li>1</li>
+  <li >1</li>
+  <a  id="bottom" href="#top">点平滑滚动到顶部</a>
+</ul>
+```
+
+> css
+
+```css
+html {
+  scroll-behavior: smooth;
+}
+ul{
+  list-style:none
+}
+body {
+  font-size : 50px;
+  font-family: system-ui;
+  background: #f06d06;
+  color: white;
+}
+```
+
+## 滚动抓捕
+
+幻灯片、图片库这些也是前端高频使用功能，上一代`CSS`能力有限，我们不得不依赖`JavaScript`来完成这功能。现在只要几行代码就可以实现此功能。
+从某种意义上说，它与`Flexbox`或`CSS Grid`的工作原理类似，即您需要一个容器元素，在该容器元素上设置`scrolln-snap-type`和多个为其设置了`scroll-snap-align`的子元素，如下所示：
+
+```html
+<main class=”parent”>
+  <section class=”child”></section>
+  <section class=”child”></section>
+  <section class=”child”></section>
+</main>
+```
+
+```css
+.parent {
+  scroll-snap-type: x mandatory;
+}
+
+.child {
+  scroll-snap-align: start;
+}
+```
+
+<a data-fancybox title="demo" href="/notes/assets/css/35cab35c6ad345e09cf9ea8c3cec8021_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/css/35cab35c6ad345e09cf9ea8c3cec8021_tplv-k3u1fbpfcp-watermark.image)</a>
+
+### demo
+
+> html
+
+```html
+<main class="slides">
+  <section class="section-1">
+    <h2>向右滑动 >>></h2>
+  </section>
+  <section class="section-2">
+    <h3>再滑 >>></h3>
+  </section>
+  <section class="section-3">
+    <h2>再滑 >>></h2>
+  </section>
+  <section class="section-4">
+    <h3>不用JavaScript啦</h3>
+  </section>
+</main>
+```
+
+> css
+
+```css
+body {
+  overflow-y: hidden;
+}
+
+.slides {
+  /* We set the scroll snapping */
+  scroll-snap-type: x mandatory;
+  /* Necessary for mobile scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* For layout purposes */
+  display: flex;
+  /* To allow horizontal scrolling */
+  overflow-x: scroll;
+}
+
+section {
+  /* For styling purposes */
+  height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* Set where the snapping should happen */
+  scroll-snap-align: start;
+}
+
+/* Styling for the sections */
+section h2 {
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  color: #1a1a1a;
+  font-weight: 100;
+}
+
+section h3 {
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: 100;
+}
+
+.section-1 {
+  background-image: url("https://images.unsplash.com/photo-1524260855046-f743b3cdad07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1401&q=80");
+}
+
+.section-2 {
+  background-image: url("https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80");
+}
+
+.section-3 {
+  background-image: url("https://images.unsplash.com/photo-1500964757637-c85e8a162699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1378&q=80");
+}
+
+.section-4 {
+  background-image: url("https://images.unsplash.com/photo-1501791330673-603715379ded?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+}
+```

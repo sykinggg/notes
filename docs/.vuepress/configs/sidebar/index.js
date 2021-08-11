@@ -4,6 +4,9 @@ module.exports = {
       title: '第 1 期：基础面试题',
       children: [
         '/jsInterview/baseInterview.md',
+        '/jsInterview/tsBaseInterview.md',
+        '/jsInterview/base.md',
+        '/jsInterview/weird.md',
         '/jsInterview/hybrid.md',
         '/jsInterview/baseWebpack.md',
         '/jsInterview/webpackLoader.md',
@@ -13,6 +16,7 @@ module.exports = {
         '/jsInterview/baseServer.md',
         '/jsInterview/spa.md',
         '/jsInterview/promise.md',
+        '/jsInterview/executionMechanism.md',
         '/jsInterview/interview50/interview1.md',
         '/jsInterview/interview50/interview2.md',
         '/jsInterview/interview50/interview3.md',
@@ -92,12 +96,22 @@ module.exports = {
     {
       title: '第 1 期：基本对象',
       children: [
+        '/mozillajs/baseObject/fileReader.md',
         '/mozillajs/baseObject/symbol.md',
         '/mozillajs/baseObject/promise.md',
         '/mozillajs/baseObject/xMLHttpRequest.md',
         '/mozillajs/baseObject/eventLoop.md',
         '/mozillajs/baseObject/arrayFlat.md',
+        '/mozillajs/baseObject/generator.md',
+        '/mozillajs/baseObject/functionGenerator.md',
+        '/mozillajs/baseObject/IterationProtocols.md',
+        '/mozillajs/baseObject/asyncHistory.md',
+        '/mozillajs/baseObject/formData.md',
+        '/mozillajs/baseObject/string.md',
+        '/mozillajs/baseObject/map.md',
+        '/mozillajs/baseObject/set.md',
         '/mozillajs/reference/strictMode.md',
+        '/mozillajs/reference/spreadSyntax.md',
       ]
     }
   ],
@@ -197,7 +211,7 @@ module.exports = {
         { title: 'js 兼容性', path: '/js/interview/jsCompatible.md' },
         { title: 'event loop', path: '/js/interview/eventLoop.md' },
         { title: 'Object.is', path: '/js/interview/interview1.md' },
-        { title: 'js 细节整理', path: '/js/interview/baseInterview.md' }
+        { title: 'js 细节整理', path: '/js/interview/baseInterview.md' },
       ]
     },
     {
@@ -213,6 +227,7 @@ module.exports = {
     {
       title: '零散记录',
       children: [
+        '/css/interview/knowledgePoints.md',
         { title: 'css基础面试', path: '/css/interview/baseCss.md' },
         { title: 'css单位', path: '/css/interview/units.md' },
         { title: 'css属性继承有哪些？css中可继承的属性和不可继承属性', path: '/css/interview/cssTutorial.md' },
@@ -312,7 +327,8 @@ module.exports = {
       children: [
         { title: '第一套浏览器综合基础面试题', path: '/browser/interview/baseInterview.md' },
         { title: 'Quirks模式是什么？它和Standards模式有什么区别?', path: '/browser/interview/quirksStandards.md' },
-        { title: '获取localStorage和sessionStorage当前已存储大小?', path: '/browser/interview/storageSpace.md' }
+        { title: '获取localStorage和sessionStorage当前已存储大小?', path: '/browser/interview/storageSpace.md' },
+        '/browser/interview/webUrl.md'
       ]
     }
   ],
@@ -430,6 +446,7 @@ module.exports = {
       children: [
         '/reactInterview/interview1.md',
         '/reactInterview/interview2.md',
+        '/reactInterview/interview3.md',
       ]
     }
   ],
@@ -736,6 +753,36 @@ module.exports = {
         { title: '第一套综合基础面试题', path: '/algorithm/interview/baseInterview.md' }
       ]
     }
+  ],
+  '/design/': [
+    '/design/overview.md',
+    '/design/constructor.md',
+    '/design/module.md',
+    '/design/exposed.md',
+    '/design/singleton.md',
+    '/design/observer.md',
+    '/design/intermediary.md',
+    '/design/prototype.md',
+    '/design/command.md',
+    '/design/exterior.md',
+    '/design/factory.md',
+    '/design/mixin.md',
+    '/design/decoration.md',
+    '/design/flyweight.md',
+    '/design/mvc.md',
+    '/design/mvp.md',
+    '/design/mvvm.md',
+    '/design/combination.md',
+    '/design/adapter.md',
+    '/design/outward.md',
+    '/design/censorJquery.md',
+    '/design/iterator.md',
+    '/design/lazyInitial.md',
+    '/design/proxy.md',
+    '/design/builder.md',
+    '/design/amd.md',
+    '/design/commonJS.md',
+    '/design/esHarmony.md',
   ],
   '/ts/project/': [
     {

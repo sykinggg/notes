@@ -129,12 +129,12 @@ import { View, Swiper, SwiperItem } from '@tarojs/components'
 import useScroll from '../../hooks/useScroll'
 import './index.less'
 export default function Index() { 
-    const [scrollOptions,domRef] = useScroll();
+    const [scrollOptions,domRef] = useScroll()
     /* scrollOptions 保存控制透明度 ，top值 ，吸顶开关等变量 */
-    const { opacity, top, suctionTop } = scrollOptions;
+    const { opacity, top, suctionTop } = scrollOptions
     return <View style={{ position: 'static', height: '2000px' }} ref={domRef} >
         <View className='white' />
-        <View  id='box' style={opacity, transform:`translateY(${top}px)`}>
+        <View  id='box' style={{ opacity, transform: `translateY(${top}px)` }} >
             <Swiper
               className='swiper'
             >
@@ -512,12 +512,12 @@ export default function index (){
         <View 
             className='drop1' 
             ref={dropRef}
-            style={transform:`translate(${style1.x}px, ${style1.y}px)`} 
+            style={{transform:`translate(${style1.x}px, ${style1.y}px)`}} 
         >drop1</View>
         <View 
             className='drop2'   
             ref={dropRef2}
-            style={transform:`translate(${style2.x}px, ${style2.y}px)`} 
+            style={{transform:`translate(${style2.x}px, ${style2.y}px)`}} 
         >drop2</View>
         <View 
             className='drop3'
