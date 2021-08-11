@@ -214,4 +214,3 @@ new SharedArrayBuffer(length)
 * `Atomics.isLockFree(size)`
 
 >可以用来检测当前系统是否支持硬件级的原子操作。对于指定大小的数组，如果当前系统支持硬件级的原子操作，则返回 `true`；否则就意味着对于该数组，`Atomics` 对象中的各原子操作都只能用锁来实现。此函数面向的是技术专家。
-
