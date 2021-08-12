@@ -97,8 +97,9 @@ function quickSort(arr) {
 
 * 口诀: 插冒归基稳定，快选堆希不稳定
 
-<a data-fancybox title="排序算法复杂度列表" href="https://user-gold-cdn.xitu.io/2019/2/14/168e9d8524a2b947?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">![排序算法复杂度列表](https://user-gold-cdn.xitu.io/2019/2/14/168e9d8524a2b947?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)</a>
-
+<center>
+<img src="https://user-gold-cdn.xitu.io/2019/2/14/168e9d8524a2b947?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" width="100%"/>
+</center>
 
 稳定性： 同大小情况下是否可能会被交换位置, 虚拟dom的diff，不稳定性会导致重新渲染；
 
@@ -134,7 +135,9 @@ function cStairs(n) {
 
     * 节点 n 的所有左子树值小于 n，所有右子树值大于 n
 
-<a data-fancybox title="二叉树示例图" href="https://user-gold-cdn.xitu.io/2019/2/14/168e9d89406fa6a8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">![二叉树示例图](https://user-gold-cdn.xitu.io/2019/2/14/168e9d89406fa6a8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)</a>
+<center>
+<img src="https://user-gold-cdn.xitu.io/2019/2/14/168e9d89406fa6a8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" width="40%"/>
+</center>
 
 * 遍历节点
 
