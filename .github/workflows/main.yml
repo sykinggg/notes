@@ -21,7 +21,7 @@ jobs:
         run: npm install && npm run build
         
         env:
-          NODE_OPTIONS: '--max_old_space_size=4096'
+          NODE_OPTIONS: '--max_old_space_size=5120'
 
       # 部署到 GitHub Pages
       - name: Deploy
