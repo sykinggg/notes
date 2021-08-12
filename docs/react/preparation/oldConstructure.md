@@ -59,7 +59,7 @@ details 乘法小Demo
 用红色标注了更新的步骤。
 <!-- <img :src="$withBase('/img/v15.png')" alt="更新流程"> -->
 
-<a data-fancybox title="更新流程" href="/notes/assets/react/v15.png">![更新流程](/notes/assets/react/v15.png)</a>
+![更新流程](/notes/assets/react/v15.png)
 
 可以看到，**Reconciler**和**Renderer**是交替工作的，当第一个`li`在页面上已经变化后，第二个`li`再进入**Reconciler**。
 
@@ -73,7 +73,7 @@ danger 注意
 
 <!-- <img :src="$withBase('/img/dist.png')" alt="中断更新流程"> -->
 
-<a data-fancybox title="中断更新流程" href="/notes/assets/react/dist.png">![中断更新流程](/notes/assets/react/dist.png)</a>
+![中断更新流程](/notes/assets/react/dist.png)
 
 当第一个`li`完成更新时中断更新，即步骤3完成后中断更新，此时后面的步骤都还未执行。
 

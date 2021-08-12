@@ -4,7 +4,7 @@ Virtual DOM 这个概念相信大部分人都不会陌生，它产生的前提�
 
 <img :src="$withBase('/notes/assets/dom.png')">
 
-<a data-fancybox title="dom" href="/notes/assets/vue/dom.png">![dom](/notes/assets/vue/dom.png)</a>
+![dom](/notes/assets/vue/dom.png)
 
 可以看到，真正的 DOM 元素是非常庞大的，因为浏览器的标准就把 DOM 设计的非常复杂。当频繁的去做 DOM 更新，会产生一定的性能问题。
 

@@ -30,7 +30,7 @@ export default connect(mapStateToProps,mapActionCreators)(injectIntl(App))
 
 通过第二步的注入，现在在在 组件的`props` 上会得到一个 intl 对象，它提供的方法和咱们上边介绍的组件基本相对应，这时候想要显示字符串，可以使用`formatMessage`方法：
 
-<a data-fancybox title="如图" href="https://upload-images.jianshu.io/upload_images/3360256-11c2399f9141d31b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">![如图](https://upload-images.jianshu.io/upload_images/3360256-11c2399f9141d31b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)</a>
+![如图](https://upload-images.jianshu.io/upload_images/3360256-11c2399f9141d31b.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp)
 
 ```js
 const {intl} = this.props;

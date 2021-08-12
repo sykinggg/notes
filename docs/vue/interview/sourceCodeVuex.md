@@ -8,7 +8,7 @@ Vuex是一个专门为Vue.js框架设计的、用于对Vue.js应用程序进行�
 
 先来看一下这张Vuex的数据流程图，熟悉Vuex使用的同学应该已经有所了解。
 
-<a data-fancybox title="" href="https://vuex.vuejs.org/vuex.png">![](https://vuex.vuejs.org/vuex.png)</a>
+![](https://vuex.vuejs.org/vuex.png)
 
 Vuex实现了一个单向数据流，在全局拥有一个State存放数据，所有修改State的操作必须通过Mutation进行，Mutation的同时提供了订阅者模式供外部插件调用获取State数据的更新。所有异步接口需要走Action，常见于调用后端接口异步获取更新数据，而Action也是无法直接修改State的，还是需要通过Mutation来修改State的数据。最后，根据State的变化，渲染到视图上。Vuex运行依赖Vue内部数据双向绑定机制，需要new一个Vue对象来实现“响应式化”，所以Vuex是一个专门为Vue.js设计的状态管理库。
 

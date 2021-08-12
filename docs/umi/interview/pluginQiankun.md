@@ -16,7 +16,7 @@ Umi 应用一键开启 `qiankun` 微前端模式
 
 导航是主应用，App1/App2 是子应用，App1/App2 也支持单独打开。主应用可以嵌套 APP1 和 APP2，App1 也可以嵌套 App2
 
-<a data-fancybox title="demo" href="https://gw.alipayobjects.com/mdn/rms_655822/afts/img/A*TroZSp_cH0MAAAAAAAAAAAAAARQnAQ">![demo](https://gw.alipayobjects.com/mdn/rms_655822/afts/img/A*TroZSp_cH0MAAAAAAAAAAAAAARQnAQ)</a>
+![demo](https://gw.alipayobjects.com/mdn/rms_655822/afts/img/A*TroZSp_cH0MAAAAAAAAAAAAAARQnAQ)
 
 ```shell
 $ yarn

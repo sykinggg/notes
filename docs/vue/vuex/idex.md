@@ -37,7 +37,7 @@ new Vue({
 
 <img :src="$withBase('/notes/assets/vuex.png')">
 
-<!-- <a data-fancybox title="" href="/notes/assets/vuex.png">![](/notes/assets/vuex.png)</a> -->
+<!-- ![](/notes/assets/vuex.png) -->
 
 但是，当的应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：
 

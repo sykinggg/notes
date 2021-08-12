@@ -58,7 +58,7 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 
 <!-- <img :src="$withBase('/img/rootfiber.png')" alt="rootFiber"> -->
 
-<a data-fancybox title="rootFiber" href="/notes/assets/react/rootfiber.png">![rootFiber](/notes/assets/react/rootfiber.png)</a>
+![rootFiber](/notes/assets/react/rootfiber.png)
 
 ```js
 fiberRootNode.current = rootFiber;
@@ -73,7 +73,7 @@ fiberRootNode.current = rootFiber;
 
 <!-- <img :src="$withBase('/img/workInProgressFiber.png')" alt="workInProgressFiber"> -->
 
-<a data-fancybox title="workInProgressFiber" href="/notes/assets/react/workInProgressFiber.png">![workInProgressFiber](/notes/assets/react/workInProgressFiber.png)</a>
+![workInProgressFiber](/notes/assets/react/workInProgressFiber.png)
 
 3. 图中右侧已构建完的`workInProgress Fiber树`在`commit阶段`渲染到页面。
 
@@ -81,7 +81,7 @@ fiberRootNode.current = rootFiber;
 
 <!-- <img :src="$withBase('/img/wipTreeFinish.png')" alt="workInProgressFiberFinish"> -->
 
-<a data-fancybox title="workInProgressFiberFinish" href="/notes/assets/react/wipTreeFinish.png">![workInProgressFiberFinish](/notes/assets/react/wipTreeFinish.png)</a>
+![workInProgressFiberFinish](/notes/assets/react/wipTreeFinish.png)
 
 ## update时
 
@@ -89,7 +89,7 @@ fiberRootNode.current = rootFiber;
 
 <!-- <img :src="$withBase('/img/wipTreeUpdate.png')" alt="wipTreeUpdate"> -->
 
-<a data-fancybox title="wipTreeUpdate" href="/notes/assets/react/wipTreeUpdate.png">![wipTreeUpdate](/notes/assets/react/wipTreeUpdate.png)</a>
+![wipTreeUpdate](/notes/assets/react/wipTreeUpdate.png)
 
 和`mount`时一样，`workInProgress fiber`的创建可以复用`current Fiber树`对应的节点数据。
 
@@ -99,7 +99,7 @@ fiberRootNode.current = rootFiber;
 
 <!-- <img :src="$withBase('/img/currentTreeUpdate.png')" alt="currentTreeUpdate"> -->
 
-<a data-fancybox title="currentTreeUpdate" href="/notes/assets/react/currentTreeUpdate.png">![currentTreeUpdate](/notes/assets/react/currentTreeUpdate.png)</a>
+![currentTreeUpdate](/notes/assets/react/currentTreeUpdate.png)
 
 ## 总结
 

@@ -66,7 +66,7 @@ a:active { color: red; }         /* 激活链接 */
 p:active { background: #eee; }   /* 激活段落 */
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617758373(1).jpg">![demo](/notes/assets/mozillaCss/1617758373(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617758373(1).jpg)
 
 **激活表单元素**
 
@@ -87,11 +87,11 @@ form button {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617758477(1).jpg">![demo](/notes/assets/mozillaCss/1617758477(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617758477(1).jpg)
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617758527(1).jpg">![demo](/notes/assets/mozillaCss/1617758527(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617758527(1).jpg)
 
 # /:checked
 
@@ -170,7 +170,7 @@ option:checked {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617758995(1).jpg">![demo](/notes/assets/mozillaCss/1617758995(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617758995(1).jpg)
 
 **借用隐藏的checkbox来切换元素的样式（显示/隐藏）**
 
@@ -226,11 +226,11 @@ option:checked {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617759350(1).jpg">![demo](/notes/assets/mozillaCss/1617759350(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617759350(1).jpg)
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617761077.jpg">![demo](/notes/assets/mozillaCss/1617761077.jpg)</a>
+![demo](/notes/assets/mozillaCss/1617761077.jpg)
 
 # /:default
 
@@ -283,7 +283,7 @@ input:default + label {
 
 ## 结果
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617763059(1).jpg">![demo](/notes/assets/mozillaCss/1617763059(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617763059(1).jpg)
 
 # /:defined
 
@@ -366,4 +366,4 @@ simple-custom:defined {
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617763540(1).jpg">![demo](/notes/assets/mozillaCss/1617763540(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617763540(1).jpg)

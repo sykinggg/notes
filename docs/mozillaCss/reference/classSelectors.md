@@ -33,4 +33,4 @@ span.classy {
 
 > 则会产生这样的效果:
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617673047(1).jpg">![demo](/notes/assets/mozillaCss/1617673047(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617673047(1).jpg)

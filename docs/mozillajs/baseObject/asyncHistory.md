@@ -1,6 +1,6 @@
 # js 异步历史
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaJs/1624843428(1).png">![demo](/notes/assets/mozillaJs/1624843428(1).png)</a>
+![demo](/notes/assets/mozillaJs/1624843428(1).png)
 
 如果一个函数无法立即返回 value，而是经过一段不可预测的行为时间之后（副作用），才能得到 value
 

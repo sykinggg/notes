@@ -14,7 +14,7 @@
 
 在亲自上阵之前，我们让粮草先行，先发个图，来看一下整个目录结构是什么样子的
 
-<a data-fancybox title="demo" href="/notes/assets/react/1699a54e3737e10c.png">![demo](/notes/assets/react/1699a54e3737e10c.png)</a>
+![demo](/notes/assets/react/1699a54e3737e10c.png)
 
 这个目录结构是用**create-react-app脚手架**直接生成的，也是为了方便编译调试
 
@@ -92,7 +92,7 @@ console.log(virtualDom);
 
 下面来看一下打印出来的`虚拟DOM`，如下图
 
-<a data-fancybox title="demo" href="/notes/assets/react/1698eae05b555be0.png">![demo](/notes/assets/react/1698eae05b555be0.png)</a>
+![demo](/notes/assets/react/1698eae05b555be0.png)
 
 到目前为止，已经轻而易举的实现了创建`虚拟DOM`。那么，接下来进行下一步，将其渲染为`真实的DOM`，别犹豫，继续回到`element.js`文件中
 
@@ -200,7 +200,7 @@ renderDom(el, document.getElementById('root'));
 
 下图为打印后的结果：
 
-<a data-fancybox title="demo" href="/notes/assets/react/16990900e15871dd.png">![demo](/notes/assets/react/16990900e15871dd.png)</a>
+![demo](/notes/assets/react/16990900e15871dd.png)
 
 截止目前，已经实现了`虚拟DOM`并进行了**渲染**`真实DOM`到页面中。
 
@@ -511,7 +511,7 @@ patch(el, patches);
 
 将修改后的代码保存，会在浏览器里看到`DOM`被更新了，如下图
 
-<a data-fancybox title="demo" href="/notes/assets/react/1699e25ae746c36d.png">![demo](/notes/assets/react/1699e25ae746c36d.png)</a>
+![demo](/notes/assets/react/1699e25ae746c36d.png)
 
 ## 总结
 

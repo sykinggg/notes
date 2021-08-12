@@ -109,7 +109,7 @@
 }
 ```
 
-<a data-fancybox title="结果" href="/notes/assets/css/1616572894(1).jpg">![结果](/notes/assets/css/1616572894(1).jpg)</a>
+![结果](/notes/assets/css/1616572894(1).jpg)
 
 > HTML
 
@@ -139,7 +139,7 @@
 }
 ```
 
-<a data-fancybox title="结果" href="/notes/assets/css/1616572977(1).jpg">![结果](/notes/assets/css/1616572977(1).jpg)</a>
+![结果](/notes/assets/css/1616572977(1).jpg)
 
 > HTML
 
@@ -167,7 +167,7 @@
 }
 ```
 
-<a data-fancybox title="结果" href="/notes/assets/css/1616573057(1).jpg">![结果](/notes/assets/css/1616573057(1).jpg)</a>
+![结果](/notes/assets/css/1616573057(1).jpg)
 
 ## 外边距塌陷
 

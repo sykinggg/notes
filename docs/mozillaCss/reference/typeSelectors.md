@@ -30,5 +30,5 @@ span {
 
 > 效果
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617672836(1).jpg">![demo](/notes/assets/mozillaCss/1617672836(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617672836(1).jpg)
 

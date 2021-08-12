@@ -19,7 +19,7 @@
 
 > 高阶组件（HOC）是 React 中用于复用组件逻辑的一种高级技巧。HOC 自身不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。
 
-<a data-fancybox title="demo" href="/notes/assets/react/7b05e1efc4e84808a0bb84c9cac4ab4b_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/7b05e1efc4e84808a0bb84c9cac4ab4b_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/7b05e1efc4e84808a0bb84c9cac4ab4b_tplv-k3u1fbpfcp-watermark.image)
 
 ## 1. 几种包装强化组件的方式
 
@@ -27,7 +27,7 @@
 
 **原型图**
 
-<a data-fancybox title="demo" href="/notes/assets/react/faee9aa3049e4eb388ed76db4a8b6e64_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/faee9aa3049e4eb388ed76db4a8b6e64_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/faee9aa3049e4eb388ed76db4a8b6e64_tplv-k3u1fbpfcp-watermark.image)
 
 **老版本的`react-mixins`**
 
@@ -103,7 +103,7 @@ componentClassMixins(Index,customMixin)
 
 **原型图**
 
-<a data-fancybox title="demo" href="/notes/assets/react/4e95476ddca44d2a88f21d97828030da_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/4e95476ddca44d2a88f21d97828030da_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/4e95476ddca44d2a88f21d97828030da_tplv-k3u1fbpfcp-watermark.image)
 
 在`class`组件盛行之后，可以通过继承的方式进一步的强化的组件。这种模式的好处在于，可以封装基础功能组件，然后根据需要去`extends`的基础组件，按需强化组件，但是值得注意的是，必须要对基础组件有足够的掌握，否则会造成一些列意想不到的情况发生。
 
@@ -137,7 +137,7 @@ export default Index
 
 **原型图**
 
-<a data-fancybox title="demo" href="/notes/assets/react/6b3c20e2a97e4a26814a70161edc96b1_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/6b3c20e2a97e4a26814a70161edc96b1_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/6b3c20e2a97e4a26814a70161edc96b1_tplv-k3u1fbpfcp-watermark.image)
 
 ```js
 function HOC(Component) {
@@ -168,7 +168,7 @@ class Index extends React.Component{
 
 **原型图**
 
-<a data-fancybox title="demo" href="/notes/assets/react/bcaaa5ce7b5445fdab823bf385caf5e6_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/bcaaa5ce7b5445fdab823bf385caf5e6_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/bcaaa5ce7b5445fdab823bf385caf5e6_tplv-k3u1fbpfcp-watermark.image)
 
 `hooks`的诞生，一大部分原因是解决**无状态组件没有`state`和逻辑难以复用**问题。`hooks`可以将一段逻辑封装起来，做到开箱即用。
 
@@ -302,7 +302,7 @@ console.log(newIndex.say)
 
 **打印结果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/7c907c7605494955b4d5b8170f847a68_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/7c907c7605494955b4d5b8170f847a68_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/7c907c7605494955b4d5b8170f847a68_tplv-k3u1fbpfcp-watermark.image)
 
 ### 反向继承
 
@@ -347,7 +347,7 @@ console.log(newIndex.say)
 
 **打印结果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/2619fd18f75d47e7b7991858aac0b10c_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/2619fd18f75d47e7b7991858aac0b10c_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/2619fd18f75d47e7b7991858aac0b10c_tplv-k3u1fbpfcp-watermark.image)
 
 **缺点**
 
@@ -410,7 +410,7 @@ function functionHoc(WrapComponent){
 
 **效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/a24c4018d41048adbe335c1f5c22f0e3_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/a24c4018d41048adbe335c1f5c22f0e3_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/a24c4018d41048adbe335c1f5c22f0e3_tplv-k3u1fbpfcp-watermark.image)
 
 ### ② 抽离state控制更新
 
@@ -448,7 +448,7 @@ export default classHOC(Index)
 
 **效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/2ca30a6dd90340f59352146876ed9a37_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/2ca30a6dd90340f59352146876ed9a37_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/2ca30a6dd90340f59352146876ed9a37_tplv-k3u1fbpfcp-watermark.image)
 
 ## 2 控制渲染
 ---
@@ -498,7 +498,7 @@ export default renderHOC(Index)
 
 **效果：**
 
-<a data-fancybox title="demo" href="/notes/assets/react/03c41d9ee9fa491cb3ae44d9cee1f2b3_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/03c41d9ee9fa491cb3ae44d9cee1f2b3_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/03c41d9ee9fa491cb3ae44d9cee1f2b3_tplv-k3u1fbpfcp-watermark.image)
 
 #### ② 进阶 ：分片渲染
 
@@ -559,7 +559,7 @@ export default () => {
 
 **效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/2d94687dda024392a37abec5e4756420_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/2d94687dda024392a37abec5e4756420_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/2d94687dda024392a37abec5e4756420_tplv-k3u1fbpfcp-watermark.image)
 
 大致流程，初始化的时候，`HOC`中将渲染真正组件的渲染函数，放入`renderQueue`队列中，然后初始化渲染一次，接下来，每一个项目组件，完成 `didMounted` 状态后，会从队列中取出下一个渲染函数，渲染下一个组件, 一直到所有的渲染任务全部执行完毕，渲染队列清空，有效的进行分片的渲染，这种方式对海量数据展示，很奏效。
 
@@ -657,7 +657,7 @@ export  default HOC(Index)
 
 **效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/8768ee8201e949d8a7c2f7c0ec72b1e4_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/8768ee8201e949d8a7c2f7c0ec72b1e4_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/8768ee8201e949d8a7c2f7c0ec72b1e4_tplv-k3u1fbpfcp-watermark.image)
 
 用劫持渲染的方式，来操纵`super.render()`后的`React.element`元素，然后配合 `createElement` , `cloneElement` , `React.Children` 等 `api`,可以灵活操纵，真正的渲染`react.element`，可以说是偷天换日，不亦乐乎。
 
@@ -700,7 +700,7 @@ export default ()=> {
 
 **效果：**
 
-<a data-fancybox title="demo" href="/notes/assets/react/4ed5c42a503645118da7fbdf1e0a9920_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/4ed5c42a503645118da7fbdf1e0a9920_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/4ed5c42a503645118da7fbdf1e0a9920_tplv-k3u1fbpfcp-watermark.image)
 
 如图所示,当只有点击 `num++`时候，才重新渲染子组件，点击其他按钮，只是负责传递了`props`,达到了期望的效果。
 
@@ -751,7 +751,7 @@ export default ()=> {
 
 **效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/957c16b333b547e3bf99b5f635c055b3_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/957c16b333b547e3bf99b5f635c055b3_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/957c16b333b547e3bf99b5f635c055b3_tplv-k3u1fbpfcp-watermark.image)
 
 完美实现了效果。这用高阶组件模式，可以灵活控制`React`组件层面上的，`props`**数据流**和**更新流**，优秀的高阶组件有 `mobx` `中observer` ,`inject` , `react-redux`中的`connect`
 
@@ -790,7 +790,7 @@ class Index extends React.Component{
 
 **效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/abe21724cf8141a491cc3fab2dea7b46_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/abe21724cf8141a491cc3fab2dea7b46_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/abe21724cf8141a491cc3fab2dea7b46_tplv-k3u1fbpfcp-watermark.image)
 
 #### ② 反向继承实现
 
@@ -864,7 +864,7 @@ export default ()=>{
 
 **效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/2e80fb646d654536af836b7d038fd62b_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/2e80fb646d654536af836b7d038fd62b_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/2e80fb646d654536af836b7d038fd62b_tplv-k3u1fbpfcp-watermark.image)
 
 ### 3 ref助力操控组件实例
 
@@ -1064,7 +1064,7 @@ export default index
 
 **效果：**
 
-<a data-fancybox title="demo" href="/notes/assets/react/c534d245d59b40518de8a035fa9b6c75_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/c534d245d59b40518de8a035fa9b6c75_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/c534d245d59b40518de8a035fa9b6c75_tplv-k3u1fbpfcp-watermark.image)
 
 **原理**
 
@@ -1195,7 +1195,7 @@ export default ()=>{
 
 **打印结果：**
 
-<a data-fancybox title="demo" href="/notes/assets/react/7fb292247ca1470bb1cb6498616284c2_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/7fb292247ca1470bb1cb6498616284c2_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/7fb292247ca1470bb1cb6498616284c2_tplv-k3u1fbpfcp-watermark.image)
 
 如上就解决了,`HOC`跨层级捕获`ref`的问题。
 

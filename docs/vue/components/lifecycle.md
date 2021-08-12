@@ -4,7 +4,7 @@
 
 <!-- <img :src="$withBase('/notes/assets/vue/lifecycle.png')"/> -->
 
-<a data-fancybox title="生命周期" href="/notes/assets/vue/lifecycle.png">![生命周期](/notes/assets/vue/lifecycle.png)</a>
+![生命周期](/notes/assets/vue/lifecycle.png)
 
 在实际项目开发过程中，会非常频繁地和 Vue 组件的生命周期打交道，接下来就从源码的角度来看一下这些生命周期的钩子函数是如何被执行的。
 

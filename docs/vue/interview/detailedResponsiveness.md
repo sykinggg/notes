@@ -5,7 +5,7 @@
 
 数据发生变化后，会重新对页面渲染，这就是Vue响应式
 
-<a data-fancybox title="流程图" href="https://user-gold-cdn.xitu.io/2020/7/12/17343bec8052a2ff?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">![流程图](https://user-gold-cdn.xitu.io/2020/7/12/17343bec8052a2ff?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)</a>
+![流程图](https://user-gold-cdn.xitu.io/2020/7/12/17343bec8052a2ff?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 **流程**
 ---
@@ -239,7 +239,7 @@ Vue 中定义一个 Watcher 类来表示`观察订阅依赖`。至于为啥引�
 
 **`「依赖收集的目的是:」`** 将观察者 Watcher 对象存放到当前闭包中的订阅者 `Dep` 的 `subs` 中。形成如下所示的这样一个关系（图参考《剖析 Vue.js 内部运行机制》）。
 
-<a data-fancybox title="剖析 Vue.js 内部运行机制" href="https://user-gold-cdn.xitu.io/2020/7/12/17343bec8082db69?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">![剖析 Vue.js 内部运行机制](https://user-gold-cdn.xitu.io/2020/7/12/17343bec8082db69?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)</a>
+![剖析 Vue.js 内部运行机制](https://user-gold-cdn.xitu.io/2020/7/12/17343bec8082db69?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 **Watcher的简单实现**
 
@@ -331,7 +331,7 @@ class Vue {
 
 **`「完整流程图：」`**
 
-<a data-fancybox title="「完整流程图：」" href="https://user-gold-cdn.xitu.io/2020/7/12/17343bec82aa9093?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">![「完整流程图：」](https://user-gold-cdn.xitu.io/2020/7/12/17343bec82aa9093?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)</a>
+![「完整流程图：」](https://user-gold-cdn.xitu.io/2020/7/12/17343bec82aa9093?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 * 在 new Vue() 后， Vue 会调用`_init` 函数进行初始化，也就是`init` 过程，在 这个过程`Data`通过`Observer`转换成了`getter/setter`的形式，来对数据追踪变化，当被设置的对象`被`读取的时候会执行`getter` 函数，而在当`被`赋值的时候会执行 `setter`函数。
 

@@ -19,7 +19,7 @@
 
 激活 accesskey 的操作取决于浏览器及其平台。
 
-<a data-fancybox title="" href="/notes/assets/html/1621998731(1).jpg">![](/notes/assets/html/1621998731(1).jpg)</a>
+![](/notes/assets/html/1621998731(1).jpg)
 
 ## 可访问性
 
@@ -37,7 +37,7 @@
 
 ## 浏览器兼容性
 
-<a data-fancybox title="" href="/notes/assets/html/1621998913(1).jpg">![](/notes/assets/html/1621998913(1).jpg)</a>
+![](/notes/assets/html/1621998913(1).jpg)
 
 在windows操作系统下，按下`Alt` + `1`，IE浏览器只是让`<a>`元素获得焦点，但是其他所有浏览器都是直接触发`click`行为。在我看来，IE浏览器的这种行为是不友好的，对于普通的控件元素而言，还可以获得焦点后回车访问，但是，对于类似`<div>`这类元素，`accesskey`属性几乎是没有任何意义的，因为根本无法通过键盘触发`<div>`点击行为。而Chrome等浏览器就没有这个问题，如下HTML：
 
@@ -47,7 +47,7 @@
 
 此时，我在windows操作系统下，按下`Alt` + `3`，结果“测试”二字变成了红色，如下截图：
 
-<a data-fancybox title="" href="/notes/assets/html/2017-05-14_203628.png">![](/notes/assets/html/2017-05-14_203628.png)</a>
+![](/notes/assets/html/2017-05-14_203628.png)
 
 
 ## 隐藏的元素能否可以触发accesskey快捷访问？
@@ -57,7 +57,7 @@
 根据我的测试，Chrome浏览器和Firefox浏览器是可以的，元素即使隐藏，只要设置了`accesskey`快捷访问，按下对应组合键的时候就能触发`click`行为。
 
 ```html
-<a href="" accesskey="1" hidden>链接</a>
+
 ```
 
 在windows操作系统Chrome浏览器下，按下`Alt` + `1`，页面会直接刷新。

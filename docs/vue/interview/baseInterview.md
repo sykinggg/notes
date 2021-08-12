@@ -183,7 +183,7 @@ Vue 实例有一个完整的生命周期，也就是从`开始创建、初始化
 
 ## （3）生命周期示意图
 
-<a data-fancybox title="demo" href="/notes/assets/vue/16ca74f183827f46.jpg">![demo](/notes/assets/vue/16ca74f183827f46.jpg)</a>
+![demo](/notes/assets/vue/16ca74f183827f46.jpg)
 
 # 8、Vue 的父组件和子组件生命周期钩子函数执行顺序？
 ---
@@ -220,7 +220,7 @@ Vue 的父组件和子组件生命周期钩子函数执行顺序可以归类为�
 
 在钩子函数 `mounted` 被调用前，`Vue` 已经将编译好的模板挂载到页面上，所以在 `mounted` 中可以访问操作 `DOM`。`vue` 具体的生命周期示意图可以参见如下，理解了整个生命周期各个阶段的操作，关于生命周期相关的面试题就难不倒你了。
 
-<a data-fancybox title="demo" href="/notes/assets/vue/16ca74f183827f46.jpg">![demo](/notes/assets/vue/16ca74f183827f46.jpg)</a>
+![demo](/notes/assets/vue/16ca74f183827f46.jpg)
 
 # 11、父组件可以监听到子组件的生命周期吗？
 ---
@@ -492,7 +492,7 @@ window.history.replaceState(null, null, path);
 
 MVVM 源自于经典的 `Model–View–Controller（MVC）`模式  ，MVVM 的出现促进了前端开发与后端业务逻辑的分离，极大地提高了前端开发效率，MVVM 的核心是 `ViewModel` 层，它就像是一个**中转站（value converter）**，负责转换 Model 中的数据对象来让数据变得更容易管理和使用，该层向上与视图层进行**双向数据绑定**，向下与 Model 层通过接口请求进行**数据交互**，起呈上启下作用。如下图所示：
 
-<a data-fancybox title="demo" href="/notes/assets/vue/16ca75871ec53fba.jpg">![demo](/notes/assets/vue/16ca75871ec53fba.jpg)</a>
+![demo](/notes/assets/vue/16ca75871ec53fba.jpg)
 
 ## （1）View 层
 
@@ -562,7 +562,7 @@ var app = new Vue({
 
 Vue 数据双向绑定主要是指：`数据变化更新视图`，`视图变化更新数据`，如下图所示：
 
-<a data-fancybox title="demo" href="/notes/assets/vue/16ca75871f2e5f80.jpg">![demo](/notes/assets/vue/16ca75871f2e5f80.jpg)</a>
+![demo](/notes/assets/vue/16ca75871f2e5f80.jpg)
 即：
 
 * 输入框内容变化时，`Data` 中的数据同步变化。即 `View => Data` 的变化。
@@ -581,7 +581,7 @@ Vue 数据双向绑定主要是指：`数据变化更新视图`，`视图变化�
 
 4. **实现一个订阅器 `Dep`**：订阅器采用 **发布-订阅** 设计模式，用来收集订阅者 `Watcher`，对监听器 `Observer` 和 订阅者 `Watcher` 进行统一管理。
 
-<a data-fancybox title="demo" href="/notes/assets/vue/16ca75871f729d89.jpg">![demo](/notes/assets/vue/16ca75871f729d89.jpg)</a>
+![demo](/notes/assets/vue/16ca75871f729d89.jpg)
 
 # 22、Vue 框架怎么实现对象和数组的监听？
 ---

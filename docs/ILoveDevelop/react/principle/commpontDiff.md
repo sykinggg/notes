@@ -62,7 +62,7 @@ while (nextUnitOfWork !== null && !shouldYield()) {
 
 以下动画是例子代码的工作循环过程的一个示例：
 
-<a data-fancybox title="示例" href="/notes/assets/reactIloveDeveplo/16c283e7e105479d.gif">![示例](/notes/assets/reactIloveDeveplo/16c283e7e105479d.gif)</a>
+![示例](/notes/assets/reactIloveDeveplo/16c283e7e105479d.gif)
 
 了解了工作循环流程以后，就来深入学习一下工作单元是如何工作的。为了精简流程，就直接认为当前的工作单元为 `Test` 组件实例。
 

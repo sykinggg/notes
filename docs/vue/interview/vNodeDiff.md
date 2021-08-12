@@ -72,9 +72,9 @@ patch将新老VNode节点进行比对，然后将根据两者的比较结果进�
 
 首先说一下patch的核心diff算法，diff算法是通过同层的树节点进行比较而非对树进行逐层搜索遍历的方式，所以时间复杂度只有O(n)，是一种相当高效的算法。
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/27/59a23cfca50f3.png">![img](https://i.loli.net/2017/08/27/59a23cfca50f3.png)</a>
+![img](https://i.loli.net/2017/08/27/59a23cfca50f3.png)
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/27/59a2419a3c617.png">![img](https://i.loli.net/2017/08/27/59a2419a3c617.png)</a>
+![img](https://i.loli.net/2017/08/27/59a2419a3c617.png)
 
 这两张图代表旧的VNode与新VNode进行patch的过程，他们只是在同层级的VNode之间进行比较得到变化（第二张图中相同颜色的方块代表互相进行比较的VNode节点），然后修改变化的视图，所以十分高效。
 
@@ -407,7 +407,7 @@ patchVnode的规则是这样的：
 
 直接看源码可能比较难以捋清其中的关系，通过图来看一下。
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/28/59a4015bb2765.png">![img](https://i.loli.net/2017/08/28/59a4015bb2765.png)</a>
+![img](https://i.loli.net/2017/08/28/59a4015bb2765.png)
 
 首先，在新老两个VNode节点的左右头尾两侧都有一个变量标记，在遍历过程中这几个变量都会向中间靠拢。当oldStartIdx > oldEndIdx或者newStartIdx > newEndIdx时结束循环。
 
@@ -423,37 +423,37 @@ newEndIdx => newEndVnode
 
 当新老VNode节点的start或者end满足sameVnode时，也就是sameVnode(oldStartVnode, newStartVnode)或者sameVnode(oldEndVnode, newEndVnode)，直接将该VNode节点进行patchVnode即可。
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/28/59a40c12c1655.png">![img](https://i.loli.net/2017/08/28/59a40c12c1655.png)</a>
+![img](https://i.loli.net/2017/08/28/59a40c12c1655.png)
 
 如果oldStartVnode与newEndVnode满足sameVnode，即sameVnode(oldStartVnode, newEndVnode)。
 
 这时候说明oldStartVnode已经跑到了oldEndVnode后面去了，进行patchVnode的同时还需要将真实DOM节点移动到oldEndVnode的后面。
 
-<a data-fancybox title="img" href="https://ooo.0o0.ooo/2017/08/28/59a4214784979.png">![img](https://ooo.0o0.ooo/2017/08/28/59a4214784979.png)</a>
+![img](https://ooo.0o0.ooo/2017/08/28/59a4214784979.png)
 
 如果oldEndVnode与newStartVnode满足sameVnode，即sameVnode(oldEndVnode, newStartVnode)。
 
 这说明oldEndVnode跑到了oldStartVnode的前面，进行patchVnode的同时真实的DOM节点移动到了oldStartVnode的前面。
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/29/59a4c70685d12.png">![img](https://i.loli.net/2017/08/29/59a4c70685d12.png)</a>
+![img](https://i.loli.net/2017/08/29/59a4c70685d12.png)
 
 如果以上情况均不符合，则通过createKeyToOldIdx会得到一个oldKeyToIdx，里面存放了一个key为旧的VNode，value为对应index序列的哈希表。从这个哈希表中可以找到是否有与newStartVnode一致key的旧的VNode节点，如果同时满足sameVnode，patchVnode的同时会将这个真实DOM（elmToMove）移动到oldStartVnode对应的真实DOM的前面。
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/29/59a4d7552d299.png">![img](https://i.loli.net/2017/08/29/59a4d7552d299.png)</a>
+![img](https://i.loli.net/2017/08/29/59a4d7552d299.png)
 
 当然也有可能newStartVnode在旧的VNode节点找不到一致的key，或者是即便key相同却不是sameVnode，这个时候会调用createElm创建一个新的DOM节点。
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/29/59a4de0fa4dba.png">![img](https://i.loli.net/2017/08/29/59a4de0fa4dba.png)</a>
+![img](https://i.loli.net/2017/08/29/59a4de0fa4dba.png)
 
 到这里循环已经结束了，那么剩下还需要处理多余或者不够的真实DOM节点。
 
 1.当结束时oldStartIdx > oldEndIdx，这个时候老的VNode节点已经遍历完了，但是新的节点还没有。说明了新的VNode节点实际上比老的VNode节点多，也就是比真实DOM多，需要将剩下的（也就是新增的）VNode节点插入到真实DOM节点中去，此时调用addVnodes（批量调用createElm的接口将这些节点加入到真实DOM中去）。
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/29/59a509f0d1788.png">![img](https://i.loli.net/2017/08/29/59a509f0d1788.png)</a>
+![img](https://i.loli.net/2017/08/29/59a509f0d1788.png)
 
 2。同理，当newStartIdx > newEndIdx时，新的VNode节点已经遍历完了，但是老的节点还有剩余，说明真实DOM节点多余了，需要从文档中删除，这时候调用removeVnodes将这些多余的真实DOM删除。
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/08/29/59a4f389b98cb.png">![img](https://i.loli.net/2017/08/29/59a4f389b98cb.png)</a>
+![img](https://i.loli.net/2017/08/29/59a4f389b98cb.png)
 
 ## DOM操作
 

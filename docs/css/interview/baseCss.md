@@ -89,7 +89,7 @@
         
         * z-index的优先级最高
 
-<a data-fancybox title="示例图" href="https://user-gold-cdn.xitu.io/2019/2/14/168e9d9f3a1d368b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">![示例图](https://user-gold-cdn.xitu.io/2019/2/14/168e9d9f3a1d368b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)</a>
+![示例图](https://user-gold-cdn.xitu.io/2019/2/14/168e9d9f3a1d368b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 **4. 居中布局**
 ---
@@ -235,7 +235,7 @@ html {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/css/60ccc6bfb0764cfe953792eef68a79ab_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/css/60ccc6bfb0764cfe953792eef68a79ab_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/css/60ccc6bfb0764cfe953792eef68a79ab_tplv-k3u1fbpfcp-watermark.image)
 
 ### demo
 
@@ -243,7 +243,7 @@ html {
 
 ```html
 <ul>
-  <a id="top" href="#bottom">点击平滑滚动到底部</a>
+  
   <li >1</li>
   <li>1</li>
   <li>1</li>
@@ -295,7 +295,7 @@ html {
   <li>1</li>
   <li>1</li>
   <li >1</li>
-  <a  id="bottom" href="#top">点平滑滚动到顶部</a>
+  
 </ul>
 ```
 
@@ -339,7 +339,7 @@ body {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/css/35cab35c6ad345e09cf9ea8c3cec8021_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/css/35cab35c6ad345e09cf9ea8c3cec8021_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/css/35cab35c6ad345e09cf9ea8c3cec8021_tplv-k3u1fbpfcp-watermark.image)
 
 ### demo
 

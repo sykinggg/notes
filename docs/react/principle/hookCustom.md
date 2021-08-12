@@ -5,7 +5,7 @@
 
 **逻辑+ 组件**
 
-<a data-fancybox title="demo" href="/notes/assets/react/78400dbc2d54425aa0d37c2bf6f119f9_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/78400dbc2d54425aa0d37c2bf6f119f9_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/78400dbc2d54425aa0d37c2bf6f119f9_tplv-k3u1fbpfcp-watermark.image)
 
 hooks 专注的就是**逻辑复用**， 是的项目，不仅仅停留在组件复用的层面上。hooks让可以将一段通用的逻辑存封起来。将需要它的时候，开箱即用即可。
 
@@ -15,13 +15,13 @@ hooks 专注的就是**逻辑复用**， 是的项目，不仅仅停留在组件
 
 那么`prop`的修改,`useState`,`useReducer`使用是无状态组件更新条件，那么就是驱动`hooks`执行的条件。 用一幅图来表示如上关系。
 
-<a data-fancybox title="demo" href="/notes/assets/react/d9c1ad37d4d348dab0fb3b988197e7da_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/d9c1ad37d4d348dab0fb3b988197e7da_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/d9c1ad37d4d348dab0fb3b988197e7da_tplv-k3u1fbpfcp-watermark.image)
 
 ## 自定义hooks-通用模式
 
 设计的自定义`react-hooks`应该是长的这样的
 
-<a data-fancybox title="demo" href="/notes/assets/react/c11c50afea3d4567af7fc8f424838d1c_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/c11c50afea3d4567af7fc8f424838d1c_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/c11c50afea3d4567af7fc8f424838d1c_tplv-k3u1fbpfcp-watermark.image)
 
 ```js
 const [ xxx , ... ] = useXXX(参数A,参数B...)
@@ -61,7 +61,7 @@ function index({ list }){
 export default index
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/react/e2cce99472ea416ab9aeb4ce32cea2ac_tplv-k3u1fbpfcp-zoom-1.image">![demo](/notes/assets/react/e2cce99472ea416ab9aeb4ce32cea2ac_tplv-k3u1fbpfcp-zoom-1.image)</a>
+![demo](/notes/assets/react/e2cce99472ea416ab9aeb4ce32cea2ac_tplv-k3u1fbpfcp-zoom-1.image)
 
 如上述问题，格式化父组件传递过来的`list`数组，并将小写变成大写，但是当点击`add`。 理想状态下数组不需要重新`format`，但是实际跟着执行`format`。无疑增加了性能开销。
 
@@ -76,7 +76,7 @@ function useFormatList(list) {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/react/5a04434ebf1147c898e0b8ae8106fad9_tplv-k3u1fbpfcp-zoom-1.image">![demo](/notes/assets/react/5a04434ebf1147c898e0b8ae8106fad9_tplv-k3u1fbpfcp-zoom-1.image)</a>
+![demo](/notes/assets/react/5a04434ebf1147c898e0b8ae8106fad9_tplv-k3u1fbpfcp-zoom-1.image)
 
 所以一个好用的自定义hooks,一定要配合`useMemo` ,`useCallback` 等`api`一起使用。
 
@@ -89,13 +89,13 @@ function useFormatList(list) {
 
 **项目结构**
 
-<a data-fancybox title="demo" href="/notes/assets/react/8903a5fbcf9c44b38666d19f36639747_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/8903a5fbcf9c44b38666d19f36639747_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/8903a5fbcf9c44b38666d19f36639747_tplv-k3u1fbpfcp-watermark.image)
 
 `page`文件夹里包括自定义hooks展示`demo`页面，`hooks`文件夹里面是自定义hooks内容。
 
 **展示效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/2c11072aa876433a99592776d06bc05d_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/2c11072aa876433a99592776d06bc05d_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/2c11072aa876433a99592776d06bc05d_tplv-k3u1fbpfcp-watermark.image)
 
 每个`listItem`记录每一个完成自定义hooks展示效果，陆续还有其他的`hooks`。接下来看看hooks具体实现。
 
@@ -105,7 +105,7 @@ function useFormatList(list) {
 
 **1实现效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/e8026e8ab20d402c9cdf778fe54f8023_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/e8026e8ab20d402c9cdf778fe54f8023_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/e8026e8ab20d402c9cdf778fe54f8023_tplv-k3u1fbpfcp-watermark.image)
 
 1. 首先红色色块有吸顶效果。粉色色块，是固定上边但是有少量偏移，加上逐渐变透明效果。
 
@@ -218,11 +218,11 @@ export default function useScroll() {
 
 **1 获取表单**
 
-<a data-fancybox title="demo" href="/notes/assets/react/b1ab5ca4df224e17ba276f9b244c2874_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/b1ab5ca4df224e17ba276f9b244c2874_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/b1ab5ca4df224e17ba276f9b244c2874_tplv-k3u1fbpfcp-watermark.image)
 
 **2 重置表单**
 
-<a data-fancybox title="demo" href="/notes/assets/react/2d577d2e98ac4211ad86628b72e09b6d_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/2d577d2e98ac4211ad86628b72e09b6d_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/2d577d2e98ac4211ad86628b72e09b6d_tplv-k3u1fbpfcp-watermark.image)
 
 **自定义`useFormChange`设计思路**
 
@@ -360,7 +360,7 @@ function index(){
 
 **1 实现效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/9ac645977fa14f70bd0694a30baf7b27_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/9ac645977fa14f70bd0694a30baf7b27_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/9ac645977fa14f70bd0694a30baf7b27_tplv-k3u1fbpfcp-watermark.image)
 
 1. 统一管理表格的数据，包括列表，页码，总页码数等信息 
 
@@ -490,7 +490,7 @@ export default function useTableRequset(query, api) {
 
 **1 实现效果**
 
-<a data-fancybox title="demo" href="/notes/assets/react/cb61492a9dff4e9f84579bfcf2454555_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/cb61492a9dff4e9f84579bfcf2454555_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/cb61492a9dff4e9f84579bfcf2454555_tplv-k3u1fbpfcp-watermark.image)
 
 独立`hooks`绑定独立的`dom`元素，使之能实现自由拖拽效果。
 

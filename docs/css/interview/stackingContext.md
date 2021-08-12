@@ -47,7 +47,7 @@
 
 ## 示例
 
-<a data-fancybox title="示例" href="/notes/assets/css/understanding_zindex_04.png">![示例](/notes/assets/css/understanding_zindex_04.png)</a>
+![示例](/notes/assets/css/understanding_zindex_04.png)
 
 在这个例子中，每个被定位的元素都创建了独自的层叠上下文，因为他们被指定了定位属性和 `z-index` 值。把层叠上下文的层级列在下面：
 

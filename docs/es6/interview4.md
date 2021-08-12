@@ -320,7 +320,7 @@ require.ensure([], (require) => {
 
 这是 `babel6` 的变更，在 `babel5` 的时候可不是这样的。
 
-<a data-fancybox title="demo" href="/notes/assets/es6/1604523294af87eb.png">![demo](/notes/assets/es6/1604523294af87eb.png)</a>
+![demo](/notes/assets/es6/1604523294af87eb.png)
 
 [babeljs.io/docs/plugin…](http://babeljs.io/docs/plugins/transform-es2015-modules-commonjs/#strict)
 
@@ -376,7 +376,7 @@ var foo = require('./a.js');
 
 所以 `element-ui` 的构建方式采用 `commonjs2` ，导出的组件的`js` 最后都会赋值给 `module.exports`，供其他模块引用。
 
-<a data-fancybox title="demo" href="/notes/assets/es6/16045232ed25900c.png">![demo](/notes/assets/es6/16045232ed25900c.png)</a>
+![demo](/notes/assets/es6/16045232ed25900c.png)
 
 **这里解释了问题4**
 

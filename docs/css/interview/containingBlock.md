@@ -64,7 +64,7 @@ p {
 }
 ```
 
-<a data-fancybox title="结果描述" href="/notes/assets/css/1616568208(1).jpg">![结果描述](/notes/assets/css/1616568208(1).jpg)</a>
+![结果描述](/notes/assets/css/1616568208(1).jpg)
 
 ## Example 2
 
@@ -87,7 +87,7 @@ p {
 }
 ```
 
-<a data-fancybox title="结果描述" href="/notes/assets/css/1616568332(1).jpg">![结果](/notes/assets/css/1616568332(1).jpg)</a>
+.jpg">
 
 ## Example 3
 
@@ -118,7 +118,7 @@ p {
 }
 ```
 
-<a data-fancybox title="结果描述" href="/notes/assets/css/1616568460(1).jpg">![结果](/notes/assets/css/1616568460(1).jpg)</a>
+.jpg">
 
 ## Example 4
 
@@ -147,7 +147,7 @@ p {
 }
 ```
 
-<a data-fancybox title="结果描述" href="/notes/assets/css/1616568574.jpg">![结果](/notes/assets/css/1616568574.jpg)</a>
+![结果](/notes/assets/css/1616568574.jpg)
 
 ## Example 5
 
@@ -177,4 +177,4 @@ p {
 }
 ```
 
-<a data-fancybox title="结果描述" href="/notes/assets/css/1616568667(1).jpg">![结果](/notes/assets/css/1616568667(1).jpg)</a>
+.jpg">

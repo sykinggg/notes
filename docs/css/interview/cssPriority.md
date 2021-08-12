@@ -136,7 +136,7 @@ HTML 时：
 </div>
 ```
 
-<a data-fancybox title="示例" href="/notes/notes/assets/css/1616564455(1).jpg">![示例](/notes/notes/assets/css/1616564455(1).jpg)</a>
+![示例](/notes/notes/assets/css/1616564455(1).jpg)
 
 # :where() 例外规则
 

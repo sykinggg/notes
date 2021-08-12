@@ -88,4 +88,4 @@ console.log(it.next());   // throws StopIteration (as the generator is now close
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaJs/1624582200(1).jpg">![demo](/notes/assets/mozillaJs/1624582200(1).jpg)</a>
+![demo](/notes/assets/mozillaJs/1624582200(1).jpg)

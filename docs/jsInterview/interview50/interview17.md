@@ -220,4 +220,4 @@ function type(obj, fullClass) {
 
 For checking non-existent variables that would otherwise throw a ReferenceError, use typeof nonExistentVar === 'undefined'.
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaJs/1622687364.jpg">![demo](/notes/assets/mozillaJs/1622687364.jpg)</a>
+![demo](/notes/assets/mozillaJs/1622687364.jpg)

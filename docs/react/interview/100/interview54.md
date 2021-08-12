@@ -3,7 +3,7 @@
 
 Immutable Data 就是一旦创建，就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 **Persistent Data Structure（持久化数据结构）**，也就是使用旧数据创建新数据时，要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 **Structural Sharing（结构共享）**，即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。
 
-<a data-fancybox title="demo" href="https://pic4.zhimg.com/80/2b4c801a7b40eefcd4ee6767fb984fdf_720w.jpg">![demo](https://pic4.zhimg.com/80/2b4c801a7b40eefcd4ee6767fb984fdf_720w.jpg)</a>
+![demo](https://pic4.zhimg.com/80/2b4c801a7b40eefcd4ee6767fb984fdf_720w.jpg)
 
 1. immutable.js
 
@@ -202,7 +202,7 @@ shouldComponentUpdate: (nextProps = {}, nextState = {}) => {
 
 使用 Immutable 后，如下图，当红色节点的 state 变化后，不会再渲染树中的所有节点，而是只渲染图中绿色的部分：
 
-<a data-fancybox title="示例" href="https://pic3.zhimg.com/80/005a24678dc39c202dbf3d1df96da13e_720w.jpg">![示例](https://pic3.zhimg.com/80/005a24678dc39c202dbf3d1df96da13e_720w.jpg)</a>
+![示例](https://pic3.zhimg.com/80/005a24678dc39c202dbf3d1df96da13e_720w.jpg)
 
 **setState 的一个技巧**
 

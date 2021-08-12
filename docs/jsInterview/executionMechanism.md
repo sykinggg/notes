@@ -55,7 +55,7 @@ javascript是一门**单线程**语言，在最新的HTML5中提出了Web-Worker
 
 当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：
 
-<a data-fancybox title="demo" href="/notes/assets/js/15fdd88994142347">![demo](/notes/assets/js/15fdd88994142347)</a>
+![demo](/notes/assets/js/15fdd88994142347)
 
 导图要表达的内容用文字来表述的话：
 
@@ -234,7 +234,7 @@ console.log('console');
 
 事件循环，宏任务，微任务的关系如图所示：
 
-<a data-fancybox title="demo" href="/notes/assets/js/15fdcea13361a1ec">![demo](/notes/assets/js/15fdcea13361a1ec)</a>
+![demo](/notes/assets/js/15fdcea13361a1ec)
 
 我们来分析一段较复杂的代码，看看你是否真的掌握了js的执行机制：
 

@@ -372,4 +372,4 @@ console.log(result) // [1, empty, 3, empty, 5]
 
 另外 `callbackfn` 中不可以使用 break 跳出循环，是因为 break 只能跳出循环，而 `callbackfn` 并不是循环体。如果有类似的需求可以使用`for..of`、`for..in`、 `some`、`every` 等。
 
-<a data-fancybox title="原始文档" href="https://camo.githubusercontent.com/b2efaccf89b1d5f74623b91097455250c9dba72d/687474703a2f2f7265736f757263652e6d757969792e636e2f696d6167652f32303139303930383139343635352e706e67">![原始文档](https://camo.githubusercontent.com/b2efaccf89b1d5f74623b91097455250c9dba72d/687474703a2f2f7265736f757263652e6d757969792e636e2f696d6167652f32303139303930383139343635352e706e67)</a>
+![原始文档](https://camo.githubusercontent.com/b2efaccf89b1d5f74623b91097455250c9dba72d/687474703a2f2f7265736f757263652e6d757969792e636e2f696d6167652f32303139303930383139343635352e706e67)

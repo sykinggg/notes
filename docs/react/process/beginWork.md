@@ -240,4 +240,4 @@ details 根Fiber节点 Demo
 
 <!-- <img :src="$withBase('/img/beginWork.png')" alt="beginWork流程图"> -->
 
-<a data-fancybox title="beginWork流程图" href="/notes/assets/react/beginWork.png">![beginWork流程图](/notes/assets/react/beginWork.png)</a>
+![beginWork流程图](/notes/assets/react/beginWork.png)

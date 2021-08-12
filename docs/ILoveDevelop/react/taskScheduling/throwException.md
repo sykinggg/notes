@@ -49,7 +49,7 @@ finishedWork.stateNode = { timedOutAt: currentTime }
 
 * 最后
 
-<a data-fancybox title="示例" href="https://i.postimg.cc/rwJ99f3L/placeholder.png">![示例](https://i.postimg.cc/rwJ99f3L/placeholder.png)</a>
+![示例](https://i.postimg.cc/rwJ99f3L/placeholder.png)
 
 **那么第二个循环再!didTimeout中的逻辑具体是什么呢**
 

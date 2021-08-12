@@ -356,7 +356,7 @@ o2 = Object.create({}, {
 });
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/js/91ffabe9cbaf4f9bbb34842a9232281e_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/91ffabe9cbaf4f9bbb34842a9232281e_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/91ffabe9cbaf4f9bbb34842a9232281e_tplv-k3u1fbpfcp-watermark.image)
 
 # vue准备工作
 
@@ -416,7 +416,7 @@ flow的工作方式：
 
 init流程图
 
-<a data-fancybox title="demo" href="/notes/assets/js/18d4b4b10a214dff9e7258e4e0167df7_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/18d4b4b10a214dff9e7258e4e0167df7_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/18d4b4b10a214dff9e7258e4e0167df7_tplv-k3u1fbpfcp-watermark.image)
 
 Vue的本质：其实就是一个用Function实现的Class，通过它的原型prototype以及它本身扩展的一系列的方法和属性。
 
@@ -439,7 +439,7 @@ var foo: string = null
 ['1','2','3'].map(parseInt)
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/js/c87cff028c4545759b2c288c11c1101f_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/c87cff028c4545759b2c288c11c1101f_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/c87cff028c4545759b2c288c11c1101f_tplv-k3u1fbpfcp-watermark.image)
 
 答案是`[1,NaN,NaN]`，为什么不是`[1,2,3]`呢？
 
@@ -459,7 +459,7 @@ parseInt(string, radix);
 
 `parseInt('2',1)`，基数为`1，（1进制）`，表示的数中，最大值小于2，所以无法解析，返回为NaN。
 
-<a data-fancybox title="demo" href="/notes/assets/js/38f843428dc04af48a22f05c1d0b2027_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/38f843428dc04af48a22f05c1d0b2027_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/38f843428dc04af48a22f05c1d0b2027_tplv-k3u1fbpfcp-watermark.image)
 
 # 什么是防抖和节流
 
@@ -741,7 +741,7 @@ var fun = new Toy('robot', 40);
 
 `apply()` 方法调用一个具有给定`this`值的函数，以及以一个数组（或类数组对象）的形式提供的参数。
 
-<a data-fancybox title="demo" href="/notes/assets/js/5623b879ea9049edbee5e7e435ba9568_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/5623b879ea9049edbee5e7e435ba9568_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/5623b879ea9049edbee5e7e435ba9568_tplv-k3u1fbpfcp-watermark.image)
 
 `语法`
 
@@ -807,7 +807,7 @@ function.bind(thisArg[, arg1[, arg2[, ...]]])
 
 返回一个原函数的拷贝，并拥有指定的 this 值和初始参数。
 
-<a data-fancybox title="demo" href="/notes/assets/js/3cadfa2db34c4bdda6597c04f4fcd01e_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/3cadfa2db34c4bdda6597c04f4fcd01e_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/3cadfa2db34c4bdda6597c04f4fcd01e_tplv-k3u1fbpfcp-watermark.image)
 
 **创建绑定函数**
 
@@ -929,7 +929,7 @@ JSON.stringify(obj) // => TypeError: Converting circular structure to JSON
 
 **先说说什么是深拷贝与浅拷贝**
 
-<a data-fancybox title="demo" href="/notes/assets/js/c8edc63f67144562b422554df2ed9537_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/c8edc63f67144562b422554df2ed9537_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/c8edc63f67144562b422554df2ed9537_tplv-k3u1fbpfcp-watermark.image)
 
 **浅拷贝**：也就是拷贝A对象里面的数据，但是不拷贝A对象里面的子对象
 
@@ -937,7 +937,7 @@ JSON.stringify(obj) // => TypeError: Converting circular structure to JSON
 
 **浅拷贝和深拷贝的区别**
 
-<a data-fancybox title="demo" href="/notes/assets/js/2a97e85b061b4df3b9567539f2ae326a_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/2a97e85b061b4df3b9567539f2ae326a_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/2a97e85b061b4df3b9567539f2ae326a_tplv-k3u1fbpfcp-watermark.image)
 
 [请分别用深度优先思想和广度优先思想实现一个拷贝函数？ 每日一题系列(六)](https://blog.csdn.net/qq_46299172/article/details/108545861)
 
@@ -961,7 +961,7 @@ keytool -genkey -alias testalias -keyalg RSA -keysize 2048 -validity 36500 -keys
 
 用签名生成工具生成签名
 
-<a data-fancybox title="demo" href="/notes/assets/js/f168728ee5a841ff87e72852dc6bccdb_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/f168728ee5a841ff87e72852dc6bccdb_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/f168728ee5a841ff87e72852dc6bccdb_tplv-k3u1fbpfcp-watermark.image)
 
 `uniapp`的`mainfest.json`文件配置中，`appid`必须是`'_UNI_'`开头，所以你的配置文件中得是`'_UNI_'`开头的。
 

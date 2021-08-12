@@ -248,4 +248,4 @@ obj[Object(sym)];    // still 1
 
 ## es6 中 Symbol 数组的遍历接口
 
-<a data-fancybox title="demo" href="/notes/assets/1616482376(1).png">![数组默认Symbol.iterator](/notes/assets/1616482376(1).png)</a>
+![数组默认Symbol.iterator](/notes/assets/1616482376(1).png)

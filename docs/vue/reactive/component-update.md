@@ -632,32 +632,32 @@ function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly
 第一步：
 <!-- <img :src="$withBase('/notes/assets/update-children-1.png')"> -->
 
-<a data-fancybox title="第一步" href="/notes/assets/vue/update-children-1.png">![第一步](/notes/assets/vue/update-children-1.png)</a>
+![第一步](/notes/assets/vue/update-children-1.png)
 
 第二步：
 <!-- <img :src="$withBase('/notes/assets/update-children-2.png')"> -->
 
-<a data-fancybox title="第二步" href="/notes/assets/vue/update-children-2.png">![第二步](/notes/assets/vue/update-children-2.png)</a>
+![第二步](/notes/assets/vue/update-children-2.png)
 
 第三步：
 <!-- <img :src="$withBase('/notes/assets/update-children-3.png')"> -->
 
-<a data-fancybox title="第三步" href="/notes/assets/vue/update-children-3.png">![第三步](/notes/assets/vue/update-children-3.png)</a>
+![第三步](/notes/assets/vue/update-children-3.png)
 
 第四步：
 <!-- <img :src="$withBase('/notes/assets/update-children-4.png')"> -->
 
-<a data-fancybox title="第四步" href="/notes/assets/vue/update-children-4.png">![第四步](/notes/assets/vue/update-children-4.png)</a>
+![第四步](/notes/assets/vue/update-children-4.png)
 
 第五步：
 <!-- <img :src="$withBase('/notes/assets/update-children-5.png')"> -->
 
-<a data-fancybox title="第五步" href="/notes/assets/vue/update-children-5.png">![第五步](/notes/assets/vue/update-children-5.png)</a>
+![第五步](/notes/assets/vue/update-children-5.png)
 
 第六步：
 <!-- <img :src="$withBase('/notes/assets/update-children-6.png')"> -->
 
-<a data-fancybox title="第六步" href="/notes/assets/vue/update-children-6.png">![第六步](/notes/assets/vue/update-children-6.png)</a>
+![第六步](/notes/assets/vue/update-children-6.png)
 
 ## 总结
 

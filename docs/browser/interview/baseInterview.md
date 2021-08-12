@@ -35,7 +35,9 @@ window.addEventListener("storage", function (e) {
 });
 ```
 
-<a data-fancybox title="结果示例" href="/notes/assets/browser/1616484269(1).jpg">![结果示例](/notes/assets/browser/1616484269(1).jpg)</a>
+<center>
+<img src="/notes/assets/browser/1616484269(1).jpg" width="100%"/>
+</center>
 
 ```js
 var orignalSetItem = localStorage.setItem;
@@ -50,11 +52,11 @@ window.addEventListener("setItemEvent", function (e) {
 });
 localStorage.setItem("name","wang");
 ```
+<center>
+<img src="/notes/assets/browser/1616484377(1).jpg" width="100%"/>
+</center>
 
-
-<a data-fancybox title="结果示例" href="/notes/assets/browser/1616484377(1).jpg">![结果示例](/notes/assets/browser/1616484377(1).jpg)</a>
-
-2. 在同一个页面中，对 `localStorage` 的 `setItem` 方法进行重写
+1. 在同一个页面中，对 `localStorage` 的 `setItem` 方法进行重写
 
 * 设置共享`cookie`与不断轮询脏检查(`setInterval`)
 

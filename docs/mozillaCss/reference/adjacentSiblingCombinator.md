@@ -37,8 +37,8 @@ li:first-of-type + li {
 
 # 结果
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617678864(1).jpg">![demo](/notes/assets/mozillaCss/1617678864(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617678864(1).jpg)
 
 # 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617678910(1).jpg">![demo](/notes/assets/mozillaCss/1617678910(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617678910(1).jpg)

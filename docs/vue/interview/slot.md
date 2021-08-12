@@ -252,7 +252,7 @@ export function resolveSlots (
 
 这个方法`children`是值组件标签包含的虚拟节点，也就是组件实例的`_renderChildren`属性值。这个方法循环`children`子节点，获取节点`data`属性的`slot`值作为返回结果对象的`key`，对应的值就是该子节点。所以这个方法就是构造`slot`名到虚拟节点映射对象，对于例子的结果是：
 
-<a data-fancybox title="结果示例图" href="https://camo.githubusercontent.com/3937b43738502c44f24b64278d929c2def21f0e0/687474703a2f2f626c6f672e696e6f6f622e78797a2f706f7374732f32616430333165632f312e6a7067">![结果示例图](https://camo.githubusercontent.com/3937b43738502c44f24b64278d929c2def21f0e0/687474703a2f2f626c6f672e696e6f6f622e78797a2f706f7374732f32616430333165632f312e6a7067)</a>
+![结果示例图](https://camo.githubusercontent.com/3937b43738502c44f24b64278d929c2def21f0e0/687474703a2f2f626c6f672e696e6f6f622e78797a2f706f7374732f32616430333165632f312e6a7067)
 
 接着子组件挂载并执行自身的`render`函数，对应`slot`节点在编译阶段知道它会用`_t`函数创建。这个函数是Vue虚拟节点的渲染辅助函数之一，它们的定义入口在`src/core/instance/render-helpers/index.js`:
 
@@ -368,7 +368,7 @@ if (element.slotScope) {
 
 `currentParent`表示当前ast节点的父节点。这段代码是在作用域插槽节点的父节点上增加一个`scopedSlots`对象，这个对象是以插槽名为`key`，插槽`ast`节点为值的映射对象。在例子中，会把`template`的`ast`节点添加到`Child`节点的`scopedSlots`对象上：
 
-<a data-fancybox title="solt 对象示例图" href="https://camo.githubusercontent.com/6686f11f0a27aab4110f46eaf0a885a87b946069/687474703a2f2f626c6f672e696e6f6f622e78797a2f706f7374732f32616430333165632f322e6a7067">![solt 对象示例图](https://camo.githubusercontent.com/6686f11f0a27aab4110f46eaf0a885a87b946069/687474703a2f2f626c6f672e696e6f6f622e78797a2f706f7374732f32616430333165632f322e6a7067)</a>
+![solt 对象示例图](https://camo.githubusercontent.com/6686f11f0a27aab4110f46eaf0a885a87b946069/687474703a2f2f626c6f672e696e6f6f622e78797a2f706f7374732f32616430333165632f322e6a7067)
 
 在代码生成阶段会对拥有`scopedSlots`属性的节点进行处理：
 

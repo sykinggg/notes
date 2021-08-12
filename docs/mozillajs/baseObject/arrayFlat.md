@@ -139,4 +139,4 @@ const arr5 = [1, 2, , 4, 5];
 arr5.flat();
 // [1, 2, 4, 5]
 ```
-<a data-fancybox title="demo" href="/notes/assets/mozillaJs/1622629430(1).jpg">![demo](/notes/assets/mozillaJs/1622629430(1).jpg)</a>
+![demo](/notes/assets/mozillaJs/1622629430(1).jpg)

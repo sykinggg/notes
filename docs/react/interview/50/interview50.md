@@ -38,12 +38,12 @@ react 组件是根据 state （或者 props）去渲染页面的，类似于一�
 此方式存在的一个问题是，以后如果有一个 C 组件的 state，与 A 要做通信，就会再添加一个 Container 组件，如果是 A 的 state 要跟 C 共享，更是毁灭性打击，之前提升到 Container 的 state，还要再提升一层。这种无休止的状态提升问题，后期的通信成本非常高，几乎是重写。
 
 * Context
-  <a data-fancybox title="image" href="https://user-images.githubusercontent.com/18378034/34917764-630fb04c-f985-11e7-9b4c-31af22e36618.png">![image](https://user-images.githubusercontent.com/18378034/34917764-630fb04c-f985-11e7-9b4c-31af22e36618.png)</a>
+  ![image](https://user-images.githubusercontent.com/18378034/34917764-630fb04c-f985-11e7-9b4c-31af22e36618.png)
 
 乍一看，Context 像是一个好的方案，它解决了无限状态提升的问题，都统一放到定义 Context 的组件就好了。不过 React 官网倒是不建议用它 [Why Not To Use Context](https://reactjs.org/docs/context.html#why-not-to-use-context)，理由是它一个实验性的特性，未来可能移除。不过个人觉得已经不太可能移除了，因为基本 React 的 Provider 组件都是基于此做的。
 
 下面是 Context 定义的一段代码：
-<a data-fancybox title="image" href="https://user-images.githubusercontent.com/18378034/34917765-678b1b70-f985-11e7-8e44-92c5f1ae1162.png">![image](https://user-images.githubusercontent.com/18378034/34917765-678b1b70-f985-11e7-8e44-92c5f1ae1162.png)</a>
+![image](https://user-images.githubusercontent.com/18378034/34917765-678b1b70-f985-11e7-8e44-92c5f1ae1162.png)
 
 真正不要使用 Context 的原因是，它在状态更新通知组件方面存在缺陷。Context 的机制是这样的，假如 context 中定义存在变化的值，比如上图的 value，Context 组件会重新渲染(执行 SCU，willReceivedProps)，重新生成 context 对象。此举会使得 Context 下面的所有组件都重新 render，才可以接收到最新的 context 对象。
 
@@ -74,7 +74,7 @@ react 组件是根据 state （或者 props）去渲染页面的，类似于一�
 
 # Flux
 Flux 是随着 React 的诞生，而提出的一种状态管理的解决方案。由于 MVC 模式在大型前端应用里变得流向复杂，以及 Model 和 View 的双向绑定问题。便提出了这样的结构：
-<a data-fancybox title="flux" href="https://user-images.githubusercontent.com/18378034/34917580-58d83204-f983-11e7-804f-4b88caaf1e28.jpg">![flux](https://user-images.githubusercontent.com/18378034/34917580-58d83204-f983-11e7-804f-4b88caaf1e28.jpg)</a>
+![flux](https://user-images.githubusercontent.com/18378034/34917580-58d83204-f983-11e7-804f-4b88caaf1e28.jpg)
 
 从 flux 开始，就是严格的数据流向，只能通过 actions 改变 store，actions 是借助 Dipatcher.dispatch
 这样的 API 发出，然后再修改 store，由 store 去更新 view。
@@ -89,7 +89,7 @@ Flux 是随着 React 的诞生，而提出的一种状态管理的解决方案�
 flux 在 store 驱动组件这一层，没有做很好的支持，如果要做需要频繁的绑定事件。另外 action 也没有很好的异步方案。这些工作都需要用户自己去摸索处理。所以在 redux 去处理好这些问题，并且提出了更好的思想的时候，flux 很快就被替代了。不过 flux 为 redux 做了很好的借鉴，流程，action 对象，单向数据流。
 
 # Redux
-<a data-fancybox title="redux" href="https://user-images.githubusercontent.com/18378034/34917582-5c04bb28-f983-11e7-8fba-aa0f9b3b65dc.jpg">![redux](https://user-images.githubusercontent.com/18378034/34917582-5c04bb28-f983-11e7-8fba-aa0f9b3b65dc.jpg)</a>
+![redux](https://user-images.githubusercontent.com/18378034/34917582-5c04bb28-f983-11e7-8fba-aa0f9b3b65dc.jpg)
 
 如果说 flux 是一种思想的话，redux 就是对 flux 最好的实现。redux 把 flux 的多个 store 概念干掉了，只有一个 store，并且内部由 reducer 计算生成新的 state tree。把 dispatcher 跟 action 解耦，action 就是一个简单的 actionCreator。redux 也基于 koa 的中间件思想，丰富了自己的拓展性。
 
@@ -222,7 +222,7 @@ then，dva 去封装的思想或许是更好的选择。try mobx...
 
 redux 还是遵循的 setState 一套流程，mobx 推出的时候，一个主张就是干掉 setState 的机制。
 
-<a data-fancybox title="image" href="https://user-images.githubusercontent.com/18378034/34917660-6fb4fe8e-f984-11e7-90e3-d5d57d006b70.png">![image](https://user-images.githubusercontent.com/18378034/34917660-6fb4fe8e-f984-11e7-90e3-d5d57d006b70.png)</a>
+![image](https://user-images.githubusercontent.com/18378034/34917660-6fb4fe8e-f984-11e7-90e3-d5d57d006b70.png)
 
 ## API
 * [ ]  只有五个。
@@ -233,7 +233,7 @@ redux 还是遵循的 setState 一套流程，mobx 推出的时候，一个主�
   Observer
 
 ## 数据流
-<a data-fancybox title="image" href="https://user-images.githubusercontent.com/18378034/34917669-86bd3f24-f984-11e7-9e4a-d4815726752b.png">![image](https://user-images.githubusercontent.com/18378034/34917669-86bd3f24-f984-11e7-9e4a-d4815726752b.png)</a>
+![image](https://user-images.githubusercontent.com/18378034/34917669-86bd3f24-f984-11e7-9e4a-d4815726752b.png)
 
 ## 依赖收集
 * [ ]  mobx 核心点。
@@ -261,7 +261,7 @@ redux 还是遵循的 setState 一套流程，mobx 推出的时候，一个主�
 
 # Mobx，Redux 比较
 ## 社区
-<a data-fancybox title="image" href="https://user-images.githubusercontent.com/18378034/34917681-bf8dba22-f984-11e7-9d1f-713563827c24.png">![image](https://user-images.githubusercontent.com/18378034/34917681-bf8dba22-f984-11e7-9d1f-713563827c24.png)</a>
+![image](https://user-images.githubusercontent.com/18378034/34917681-bf8dba22-f984-11e7-9d1f-713563827c24.png)
 
 使用度关注度，redux 更多，社区 redux 也是完胜。
 

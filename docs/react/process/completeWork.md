@@ -203,4 +203,4 @@ commitRoot(root);
 
 <!-- <img :src="$withBase('/img/completeWork.png')" alt="completeWork流程图"> -->
 
-<a data-fancybox title="completeWork流程图" href="/notes/assets/react/completeWork.png">![completeWork流程图](/notes/assets/react/completeWork.png)</a>
+![completeWork流程图](/notes/assets/react/completeWork.png)

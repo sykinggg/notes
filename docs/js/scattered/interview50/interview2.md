@@ -110,4 +110,4 @@ function removeSpace (str, type) {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/js/1618196824(1).jpg">![demo](/notes/assets/js/1618196824(1).jpg)</a>
+![demo](/notes/assets/js/1618196824(1).jpg)

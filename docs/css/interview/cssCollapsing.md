@@ -113,13 +113,13 @@ p {
 }
 ```
 
-<a data-fancybox title="结果示例" href="/notes/assets/css/1616565585(1).jpg">![结果示例](/notes/assets/css/1616565585(1).jpg)</a>
+![结果示例](/notes/assets/css/1616565585(1).jpg)
 
 # 间距类型
 
 CSS中的间距有两种类型，一种在元素外部，另一种在元素内部。对于本文，将其称为**outer**和**inner**。假设有一个元素，它内部的间距是**inner**，外部的间距是**outer**。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002553846591.jpg">![示例](/notes/assets/css/1591002553846591.jpg)</a>
+![示例](/notes/assets/css/1591002553846591.jpg)
 
 在CSS中，间距可以如下：
 
@@ -135,7 +135,7 @@ CSS中的间距有两种类型，一种在元素外部，另一种在元素内�
 
 当两个垂直元素具有margin，并且其中一个元素的margin大于另一个元素时，发生边距折叠。在这种情况下，将使用更大的margin，而另一个将被忽略。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002565162440.jpg">![示例](/notes/assets/css/1591002565162440.jpg)</a>
+![示例](/notes/assets/css/1591002565162440.jpg)
 
 在上面的模型中，一个元素有 `margin-bottom`，另一个元素有 `margin-top`，边距较大的元素获胜。
 
@@ -171,7 +171,7 @@ CSS中的间距有两种类型，一种在元素外部，另一种在元素内�
 }
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002573806167.jpg">![示例](/notes/assets/css/1591002573806167.jpg)</a>
+![示例](/notes/assets/css/1591002573806167.jpg)
 
 请注意，子元素固定在其父元素的顶部。那是因为它的边距折叠了。根据W3C，以下是针对该问题的一些解决方案：
 
@@ -181,14 +181,14 @@ CSS中的间距有两种类型，一种在元素外部，另一种在元素内�
 
 一个更直接的解决方案是将 padding-top 添加到父元素。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002580112619.jpg">![示例](/notes/assets/css/1591002580112619.jpg)</a>
+![示例](/notes/assets/css/1591002580112619.jpg)
 
 ## 负margin
 ---
 
 它可以与四个方向一起使用以留出余量，在某些用例中非常有用。让假设以下内容：
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002586596486.jpg">![示例](/notes/assets/css/1591002586596486.jpg)</a>
+![示例](/notes/assets/css/1591002586596486.jpg)
 
 父节点具有 `padding:1rem`，这导致子节点从顶部、左侧和右侧偏移。但是，子元素应该紧贴其父元素的边缘。负margin可以助你一臂之力。
 
@@ -211,7 +211,7 @@ CSS中的间距有两种类型，一种在元素外部，另一种在元素内�
 
 例如，它可以用于增加链接之间的间距，这将导致链接的可点击区域更大。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002597512161.jpg">![示例](/notes/assets/css/1591002597512161.jpg)</a>
+![示例](/notes/assets/css/1591002597512161.jpg)
 
 必须提出的是，垂直方向的padding对于那些具有 `display:inline` 的元素不适用，比如 `<span>` 或 `<a>`。如果添加了内边距，它不会影响元素，内边距将覆盖其他内联元素。
 
@@ -230,7 +230,7 @@ CSS中的间距有两种类型，一种在元素外部，另一种在元素内�
 
 在CSS网格中，可以使用 `grid-gap` 属性轻松在列和行之间添加间距。这是行和列间距的简写。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002603669597.jpg">![示例](/notes/assets/css/1591002603669597.jpg)</a>
+![示例](/notes/assets/css/1591002603669597.jpg)
 
 ```css
 .element {
@@ -284,17 +284,17 @@ gap属性可以使用如下:
 ## header 组件
 ---
 
-<a data-fancybox title="图片示例" href="/notes/assets/css/1591002624937425.jpg">![图片示例](/notes/assets/css/1591002624937425.jpg)</a>
+![图片示例](/notes/assets/css/1591002624937425.jpg)
 
 在这种情况下，标题具有logo，导航和用户个人资料
 
 ```html
 <header class="c-header">
-  <h1 class="c-logo"><a href="#">Logo</a></h1>
+  <h1 class="c-logo"></h1>
   <div class="c-header__nav">
     <nav class="c-nav">
       <ul>
-        <li><a href="#">...</a></li>
+        <li></li>
       </ul>
     </nav>
     <a href="#" class="c-user">
@@ -305,7 +305,7 @@ gap属性可以使用如下:
 </header>
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002630404607.jpg">![示例](/notes/assets/css/1591002630404607.jpg)</a>
+![示例](/notes/assets/css/1591002630404607.jpg)
 
 > Header的左侧和右侧都有padding，这样做的目的是防止内容物紧贴在边缘上。
 
@@ -352,7 +352,7 @@ gap属性可以使用如下:
 }
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002649744326.jpg">![示例](/notes/assets/css/1591002649744326.jpg)</a>
+![示例](/notes/assets/css/1591002649744326.jpg)
 
 > **产生的问题**：请注意，分隔符周围的间距现在相等，原因是导航项没有特定的宽度，而是具有`padding`。结果，导航项目的宽度基于其内容。以下是解决方案：
 
@@ -373,7 +373,7 @@ gap属性可以使用如下:
 ## 网格系统中的间距：Flexbox
 ---
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002658968135.jpg">![示例](/notes/assets/css/1591002658968135.jpg)</a>
+![示例](/notes/assets/css/1591002658968135.jpg)
 
 > 间距应在列和行之间。考虑以下HTML标记：
 
@@ -439,7 +439,7 @@ gap属性可以使用如下:
 
 描述：之所以用了负 `margin-left`，是因为第一张卡有 `padding-left`，而实际上不需要。所以，它将把 `.wrapper` 元素推到左边，取消那个不需要的空间。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002691201353.jpg">![示例](/notes/assets/css/1591002691201353.jpg)</a>
+![示例](/notes/assets/css/1591002691201353.jpg)
 
 ```css
 .wrapper {
@@ -489,7 +489,7 @@ img{
 ## Card组件
 ---
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002788366119.jpg">![示例](/notes/assets/css/1591002788366119.jpg)</a>
+![示例](/notes/assets/css/1591002788366119.jpg)
 
 ```html
 <article class="card">
@@ -532,7 +532,7 @@ img{
 
 > 产生的问题：由于对父元素 `.card__content` 进行了填充，因此边框没有粘在边缘上。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002811826084.jpg">![示例](/notes/assets/css/1591002811826084.jpg)</a>
+![示例](/notes/assets/css/1591002811826084.jpg)
 
 > 解决方案 负边距
 
@@ -546,7 +546,7 @@ img{
 
 > 产生的问题：内容粘在边缘
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002820823963.jpg">![示例](/notes/assets/css/1591002820823963.jpg)</a>
+![示例](/notes/assets/css/1591002820823963.jpg)
 
 > 解决方案 ： 内容应该从左右两边加垫
 
@@ -558,7 +558,7 @@ img{
 }
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002830309328.jpg">![示例](/notes/assets/css/1591002830309328.jpg)</a>
+![示例](/notes/assets/css/1591002830309328.jpg)
 
 ## 文章内容
 ---
@@ -592,14 +592,14 @@ img {
 }
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002843592255.jpg">![示例](/notes/assets/css/1591002843592255.jpg)</a>
+![示例](/notes/assets/css/1591002843592255.jpg)
 
 如果一个 `<p>` 后面有一个标题，例如“Types of Spacing”，那么 `<p>` 的 `margin-bottom` 将被忽略。你猜到了，那是因为页边距折叠。
 
 ## Just In Case Margin
 ---
 
-<a data-fancybox title="模型图" href="/notes/assets/css/1591002852805831.jpg">![模型图](/notes/assets/css/1591002852805831.jpg)</a>
+![模型图](/notes/assets/css/1591002852805831.jpg)
 
 当元素靠近的时候，它们看起来并不好看。是用flexbox搭建的。这项技术称为“对齐移位包装”，从CSS Tricks中学到了它的名称。
 
@@ -612,18 +612,18 @@ img {
 
 当视口尺寸较小时，它们的确以新行结尾。见下文：
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002861926291.jpg">![示例](/notes/assets/css/1591002861926291.jpg)</a>
+![示例](/notes/assets/css/1591002861926291.jpg)
 
 > 倾向于向元素添加一个 `margin-right`，这样可以防止它们相互接触，从而加快 `flex-wrap` 的工作速度。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002867318794.jpg">![示例](/notes/assets/css/1591002867318794.jpg)</a>
+![示例](/notes/assets/css/1591002867318794.jpg)
 
 ## CSS 书写模式
 ---
 
 > `writing-mode` CSS属性设置了文本行是水平还是垂直排列，以及块的前进方向。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002876294756.jpg">![示例](/notes/assets/css/1591002876294756.jpg)</a>
+![示例](/notes/assets/css/1591002876294756.jpg)
 
 ```css
 .wrapper {
@@ -642,7 +642,7 @@ img {
 ## 组件封装
 ---
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002898332287.jpg">![示例](/notes/assets/css/1591002898332287.jpg)</a>
+![示例](/notes/assets/css/1591002898332287.jpg)
 
 ```html
 <button class="button">Save Changes</button>
@@ -660,7 +660,7 @@ img {
 
 > 解决上述问题的一种方法是使用抽象的组件，其目标是托管其他组件，就像Max Stoiber所说的那样，这是将管理边距的责任移到了父元素上，让以这种思维方式重新思考以前的用例。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002910985555.jpg">![示例](/notes/assets/css/1591002910985555.jpg)</a>
+![示例](/notes/assets/css/1591002910985555.jpg)
 
 ```html
 <div class="list">
@@ -705,7 +705,7 @@ img {
 
 * 它应该是灵活的。间距可能在`X`页上，但不在`Y`页上。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002925174702.jpg">![示例](/notes/assets/css/1591002925174702.jpg)</a>
+![示例](/notes/assets/css/1591002925174702.jpg)
 
 那是一个 `<div>`，内联样式宽度：`16px`，它唯一的作用是在左边缘和包装器之间增加一个空白空间。
 
@@ -789,4 +789,4 @@ img {
 
 下面是 `min(2vmax，32px)` 的意思：使用一个等于 `2vmax` 的间隙，但不能超过 `32px`。
 
-<a data-fancybox title="示例" href="/notes/assets/css/1591002963675813.jpg">![示例](/notes/assets/css/1591002963675813.jpg)</a>
+![示例](/notes/assets/css/1591002963675813.jpg)

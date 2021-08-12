@@ -7,7 +7,7 @@
 
 轻量级、高性能的 Web 服务器，在现今的大型应用、网站基本都离不开 Nginx，已经成为了一项必选的技术；其实可以把它理解成 入口网关，这里举个例子可能更好理解:
 
-<a data-fancybox title="nginx 示例图" href="/notes/assets/16a578069b43eb7c.png">![nginx 示例图](/notes/assets/16a578069b43eb7c.png)</a>
+![nginx 示例图](/notes/assets/16a578069b43eb7c.png)
 
 * **特点**:
     
@@ -97,7 +97,7 @@
 
         * 对内容服务器来说是 **隐藏** 的，内容服务器并无法分清访问是来自用户或者代理；
 
-<a data-fancybox title="正向代理示意图" href="/notes/assets/16a57809b1887b38.png">![正向代理示意图](/notes/assets/16a57809b1887b38.png)</a>
+![正向代理示意图](/notes/assets/16a57809b1887b38.png)
 
 * **反向代理**:
 
@@ -111,7 +111,7 @@
 
         * 能有效保证内部服务器的 **稳定与安全**；
 
-<a data-fancybox title="反向代理示意图" href="/notes/assets/16a5780e66c024ca.png">![反向代理示意图](/notes/assets/16a5780e66c024ca.png)</a>
+![反向代理示意图](/notes/assets/16a5780e66c024ca.png)
 
 * **反向代理的好处**:
 

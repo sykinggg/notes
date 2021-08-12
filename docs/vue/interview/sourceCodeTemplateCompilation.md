@@ -416,7 +416,7 @@ generate是将AST转化成render funtion字符串的过程，得到结果是rend
 
 转化后得到AST，如下图：
 
-<a data-fancybox title="img" href="https://i.loli.net/2017/09/07/59b135001cbfa.png">![img](https://i.loli.net/2017/09/07/59b135001cbfa.png)</a>
+![img](https://i.loli.net/2017/09/07/59b135001cbfa.png)
 
 可以看到最外层的div是这颗AST的根节点，节点上有许多数据代表这个节点的形态，比如static表示是否是静态节点，staticClass表示静态class属性（非bind:class）。children代表该节点的子节点，可以看到children是一个长度为4的数组，里面包含的是该节点下的四个div子节点。children里面的节点与父节点的结构类似，层层往下形成一棵AST。
 

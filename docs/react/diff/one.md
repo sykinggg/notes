@@ -18,7 +18,7 @@
 
 <!-- <img :src="$withBase('/img/diff.png')" alt="diff"> -->
 
-<a data-fancybox title="diff" href="/notes/assets/react/diff.png">![diff](/notes/assets/react/diff.png)</a>
+![diff](/notes/assets/react/diff.png)
 
 让看看第二步**判断DOM节点是否可以复用**是如何实现的。
 

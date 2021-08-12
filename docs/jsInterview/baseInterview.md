@@ -45,7 +45,7 @@ const prototype = Object.prototype
 实例.constructor === 构造函数
 ```
 
-<a data-fancybox title="原型示例图" href="/notes/assets/168e9d9b940c4c6f.png">![原型示例图](/notes/assets/168e9d9b940c4c6f.png)</a>
+![原型示例图](/notes/assets/168e9d9b940c4c6f.png)
 
 **2.原型链：**
 ---
@@ -365,7 +365,7 @@ function square(n){
 
 通过解析转化成的`AST`如下图:
 
-<a data-fancybox title="AST流程图" href="/notes/assets/168e9d95910dd187.png">![AST流程图](/notes/assets/168e9d95910dd187.png)</a>
+![AST流程图](/notes/assets/168e9d95910dd187.png)
 
 **19. babel编译原理**
 ---
@@ -450,7 +450,7 @@ Array.prototype.flat = function() {
 
 JavaScript一共有8种数据类型，其中有7种基本数据类型：`Undefined`、`Null`、`Boolean`、`Number`、`String`、`Symbol`（es6新增，表示独一无二的值）和`BigInt`（es10新增）；
 
-<a data-fancybox title="demo" href="/notes/assets/js/037881b6bfbb413caf758a0911609b89_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/js/037881b6bfbb413caf758a0911609b89_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/js/037881b6bfbb413caf758a0911609b89_tplv-k3u1fbpfcp-watermark.image)
 
 1种引用数据类型——Object（Object本质上是由一组无序的名值对组成的）。里面包含 `function`、`Array`、`Date`等。JavaScript不支持任何创建自定义类型的机制，而所有值最终都将是上述 8 种数据类型之一。
 
@@ -484,7 +484,7 @@ JavaScript一共有8种数据类型，其中有7种基本数据类型：`Undefin
 
 > null和underfined没有.toString方法
 
-<a data-fancybox title="demo" href="/notes/assets/js/v2-59308bb89b868f36917e90e3a9175f22_1440w">![demo](/notes/assets/js/v2-59308bb89b868f36917e90e3a9175f22_1440w)</a>
+![demo](/notes/assets/js/v2-59308bb89b868f36917e90e3a9175f22_1440w)
 
 ## 25. JS中数据类型的判断（ typeof，instanceof，constructor，Object.prototype.toString.call()
 
@@ -792,7 +792,7 @@ Student.prototype.sayMyGrade = function() {
 
 6. apply、call、bind都是js给函数内置的一些API，调用他们可以为函数指定this的执行,同时也可以传参。
 
-<a data-fancybox title="demo" href="/notes/assets/js/v2-6228b3f5efabc66806f0937fbd1ab9d4_720w.jpg">![demo](/notes/assets/js/v2-6228b3f5efabc66806f0937fbd1ab9d4_720w.jpg)</a>
+![demo](/notes/assets/js/v2-6228b3f5efabc66806f0937fbd1ab9d4_720w.jpg)
 
 ## 35. JavaScript 原型，原型链
 
@@ -1045,9 +1045,9 @@ removeAttribute(key);
 
 ## 45. js数组和对象有哪些原生方法
 
-<a data-fancybox title="demo" href="/notes/assets/js/v2-7d5cc94dbef19976b4f766b925ed1a9a_720w.jpg">![demo](/notes/assets/js/v2-7d5cc94dbef19976b4f766b925ed1a9a_720w.jpg)</a>
+![demo](/notes/assets/js/v2-7d5cc94dbef19976b4f766b925ed1a9a_720w.jpg)
 
-<a data-fancybox title="demo" href="/notes/assets/js/v2-033b62cea47fe9d4176e3baf9419b916_720w.jpg">![demo](/notes/assets/js/v2-033b62cea47fe9d4176e3baf9419b916_720w.jpg)</a>
+![demo](/notes/assets/js/v2-033b62cea47fe9d4176e3baf9419b916_720w.jpg)
 
 ## 46. 常用的正则表达式
 
@@ -1092,7 +1092,7 @@ var pwd = /^(?=.\d)(?=.[a-z])(?=.[A-Z]).{8,10}$/
 
 ### 创建步骤：
 
-<a data-fancybox title="demo" href="/notes/assets/js/v2-9f92809fbd893ff41055898079018d3d_720w.jpg">![demo](/notes/assets/js/v2-9f92809fbd893ff41055898079018d3d_720w.jpg)</a>
+![demo](/notes/assets/js/v2-9f92809fbd893ff41055898079018d3d_720w.jpg)
 
 ### 面试手写（原生）：
 
@@ -1274,7 +1274,7 @@ js代码执行过程中会有很多任务，这些任务总的分成两类：
 
 当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。，我们用导图来说明：
 
-<a data-fancybox title="demo" href="/notes/assets/js/v2-d8d012ef2891180b221f279d88735ac8_720w.jpg">![demo](/notes/assets/js/v2-d8d012ef2891180b221f279d88735ac8_720w.jpg)</a>
+![demo](/notes/assets/js/v2-d8d012ef2891180b221f279d88735ac8_720w.jpg)
 
 我们解释一下这张图：
 
@@ -2444,7 +2444,7 @@ function curry(fn, ...args) {
 
 这个问题如果你在掘金上搜，你可能会搜索到类似下面的回答：
 
-<a data-fancybox title="demo" href="/notes/assets/js/1726f21a7f6f36a8">![demo](/notes/assets/js/1726f21a7f6f36a8)</a>
+![demo](/notes/assets/js/1726f21a7f6f36a8)
 
 说实话，看第一遍，我是不理解的，我需要去理一遍原型及原型链的知识才能理解。所以我觉得[MDN](https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FOperators%2Fnew)对new的解释更容易理解：
 

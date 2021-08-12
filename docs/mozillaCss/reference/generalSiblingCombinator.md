@@ -29,8 +29,8 @@ p ~ span {
 
 # 结果
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617679081(1).jpg">![demo](/notes/assets/mozillaCss/1617679081(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617679081(1).jpg)
 
 # 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617679124(1).jpg">![demo](/notes/assets/mozillaCss/1617679124(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617679124(1).jpg)

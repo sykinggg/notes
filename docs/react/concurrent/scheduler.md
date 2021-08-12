@@ -57,7 +57,7 @@ function workLoopConcurrent() {
 
 <!-- <img :src="$withBase('/img/time-slice.png')" alt="长任务"> -->
 
-<a data-fancybox title="长任务" href="/notes/assets/react/time-slice.png">![长任务](/notes/assets/react/time-slice.png)</a>
+![长任务](/notes/assets/react/time-slice.png)
 
 那么当`shouldYield`为`true`，以至于`performUnitOfWork`被中断后是如何重新启动的呢？会在介绍完"优先级调度"后解答。
 

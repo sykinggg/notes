@@ -172,7 +172,7 @@ if (
 
 接下去的例子都会根据下面的例子结构来讲，假设有如下结构的一个 React 节点树，他的`Fiber`结构如下：
 
-<a data-fancybox title="结构图" href="https://kgfacq.dm.files.1drv.com/y4mdey9O6FJ59ftJnhP1ej6YNMd0z1HWSQsmF42mJjlUiM8fVYKjcyV-0AlUvMdE5SpBHkRl7Wn_WcqaBlhtY-ifm4GLrc_whI9LlUsJyeKOdbmcwCdlqByqYRkCdbjm-6I8d0MuICm3TeAxxyttW3SNKRLWYPeinkDSrH31VLXI4I5M9IJ60x8d6RR1OtOcctUwRNExxMvS6yFQVUEuBulKA?width=721&height=471&cropmode=none">![结构图](https://kgfacq.dm.files.1drv.com/y4mdey9O6FJ59ftJnhP1ej6YNMd0z1HWSQsmF42mJjlUiM8fVYKjcyV-0AlUvMdE5SpBHkRl7Wn_WcqaBlhtY-ifm4GLrc_whI9LlUsJyeKOdbmcwCdlqByqYRkCdbjm-6I8d0MuICm3TeAxxyttW3SNKRLWYPeinkDSrH31VLXI4I5M9IJ60x8d6RR1OtOcctUwRNExxMvS6yFQVUEuBulKA?width=721&height=471&cropmode=none)</a>
+![结构图](https://kgfacq.dm.files.1drv.com/y4mdey9O6FJ59ftJnhP1ej6YNMd0z1HWSQsmF42mJjlUiM8fVYKjcyV-0AlUvMdE5SpBHkRl7Wn_WcqaBlhtY-ifm4GLrc_whI9LlUsJyeKOdbmcwCdlqByqYRkCdbjm-6I8d0MuICm3TeAxxyttW3SNKRLWYPeinkDSrH31VLXI4I5M9IJ60x8d6RR1OtOcctUwRNExxMvS6yFQVUEuBulKA?width=721&height=471&cropmode=none)
 
 后续会在这个基础上讲解不同情况下`expirationTime`的情况
 
@@ -183,7 +183,7 @@ if (
 
 最终因为 React 的更新需要从`FiberRoot`开始，所以会执行一次向上遍历找到`FiberRoot`，而向上遍历则正好是一步步找到**创建更新的节点的父节点**的过程，这时候 React 就会对每一个该节点的父节点链上的节点设置`childExpirationTime`，因为这个更新是他们的子孙节点造成的
 
-<a data-fancybox title="更新节点" href="https://h2facq.dm.files.1drv.com/y4mphJBnkRInXVdei2q3h0etKGLWTB5irIH2w23DMcoAKRIl0K7EJPFHjykQ5enpm5lgi_Jp9qTPhBTM64CQF2J_6wxtL1j2raUeLNUm7zXZzclXJQ6iPXjw75oGcdUMdsYCKNm2YawmEsJy2joPddhFLBN4PK51oGM16974Ad3A7azsRa0NunaDYNB1Lvhb3ZMrwKrx-3Yvi90e4vW3A02Iw?width=841&height=571&cropmode=none">![更新节点](https://h2facq.dm.files.1drv.com/y4mphJBnkRInXVdei2q3h0etKGLWTB5irIH2w23DMcoAKRIl0K7EJPFHjykQ5enpm5lgi_Jp9qTPhBTM64CQF2J_6wxtL1j2raUeLNUm7zXZzclXJQ6iPXjw75oGcdUMdsYCKNm2YawmEsJy2joPddhFLBN4PK51oGM16974Ad3A7azsRa0NunaDYNB1Lvhb3ZMrwKrx-3Yvi90e4vW3A02Iw?width=841&height=571&cropmode=none)</a>
+![更新节点](https://h2facq.dm.files.1drv.com/y4mphJBnkRInXVdei2q3h0etKGLWTB5irIH2w23DMcoAKRIl0K7EJPFHjykQ5enpm5lgi_Jp9qTPhBTM64CQF2J_6wxtL1j2raUeLNUm7zXZzclXJQ6iPXjw75oGcdUMdsYCKNm2YawmEsJy2joPddhFLBN4PK51oGM16974Ad3A7azsRa0NunaDYNB1Lvhb3ZMrwKrx-3Yvi90e4vW3A02Iw?width=841&height=571&cropmode=none)
 
 如上图所示，先忽略最左边的`child1`产生的一次异步更新，如果当前只有`child2`产生了一个`Sync`更新，那么`App`和`FiberRoot`的`childExpirationTime`都会更新成`Sync`
 
@@ -212,7 +212,7 @@ if (
 
 在`FiberRoot`上有两个值`earliestPendingTime`和`lastestPedingTime`，他们是一对值，**用来记录所有子树中需要进行渲染的更新的`expirationTime`的区间**
 
-<a data-fancybox title="FiberRoot 更新的示例图" href="https://hmfacq.dm.files.1drv.com/y4mTm9k8wciS1LTgRpOidtojQQIgCWVhDtXluYnvYIqbK0Z6NUXFqzm76SlooXVfTHb9sAU2pE7du3AbbR23JlZU0vJ1FghvT6X5HXcoguLi4Mp4PdE25AGFt_1w2NJ1K7o3UiqV3mH-kWnlEuWd5xPlkueCdm2FfYDWvCT40ynsrbziTCoE7QMxIbpHyAg6fYkKPHh0qRDY5vrK8ssy8jzuQ?width=841&height=586&cropmode=none">![FiberRoot 更新的示例图](https://hmfacq.dm.files.1drv.com/y4mTm9k8wciS1LTgRpOidtojQQIgCWVhDtXluYnvYIqbK0Z6NUXFqzm76SlooXVfTHb9sAU2pE7du3AbbR23JlZU0vJ1FghvT6X5HXcoguLi4Mp4PdE25AGFt_1w2NJ1K7o3UiqV3mH-kWnlEuWd5xPlkueCdm2FfYDWvCT40ynsrbziTCoE7QMxIbpHyAg6fYkKPHh0qRDY5vrK8ssy8jzuQ?width=841&height=586&cropmode=none)</a>
+![FiberRoot 更新的示例图](https://hmfacq.dm.files.1drv.com/y4mTm9k8wciS1LTgRpOidtojQQIgCWVhDtXluYnvYIqbK0Z6NUXFqzm76SlooXVfTHb9sAU2pE7du3AbbR23JlZU0vJ1FghvT6X5HXcoguLi4Mp4PdE25AGFt_1w2NJ1K7o3UiqV3mH-kWnlEuWd5xPlkueCdm2FfYDWvCT40ynsrbziTCoE7QMxIbpHyAg6fYkKPHh0qRDY5vrK8ssy8jzuQ?width=841&height=586&cropmode=none)
 
 在这个例子里，同时在`child1`、`child2`、`child3`产生里更新，并且根据优先级计算出了不同的更新时间（**再次重申，请忽略细节，现实中不太会出现同时产生的情况**）。
 

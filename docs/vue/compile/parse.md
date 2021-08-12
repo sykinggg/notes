@@ -222,7 +222,7 @@ function advance (n) {
 
 <!-- <img :src="$withBase('/notes/assets/advance-1.png')"> -->
 
-<a data-fancybox title="demo" href="/notes/assets/vue/advance-1.png">![demo](/notes/assets/vue/advance-1.png)</a>
+![demo](/notes/assets/vue/advance-1.png)
 
 调用 `advance` 函数：
 
@@ -235,7 +235,7 @@ advance(4)
 
 <!-- <img :src="$withBase('/notes/assets/advance-2.png')"> -->
 
-<a data-fancybox title="demo" href="/notes/assets/vue/advance-2.png">![demo](/notes/assets/vue/advance-2.png)</a>
+![demo](/notes/assets/vue/advance-2.png)
 
 
 匹配的过程中主要利用了正则表达式，如下：
@@ -451,7 +451,7 @@ function parseEndTag (tagName, start, end) {
 
 <!-- <img :src="$withBase('/notes/assets/stack.png')"> -->
 
-<a data-fancybox title="demo" href="/notes/assets/vue/stack.png">![demo](/notes/assets/vue/stack.png)</a>
+![demo](/notes/assets/vue/stack.png)
 
 那么对于闭合标签的解析，就是倒序 `stack`，找到第一个和当前 `endTag` 匹配的元素。如果是正常的标签匹配，那么 `stack` 的最后一个元素应该和当前的 `endTag` 匹配，但是考虑到如下错误情况：
 
@@ -878,7 +878,7 @@ return {
 
 <!-- <img :src="$withBase('/notes/assets/parse.png')"> -->
 
-<a data-fancybox title="demo" href="/notes/assets/vue/parse.png">![demo](/notes/assets/vue/parse.png)</a>
+![demo](/notes/assets/vue/parse.png)
 
 ## 总结
 

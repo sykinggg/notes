@@ -6,7 +6,7 @@
 
 先来看一下流程图：
 
-<a data-fancybox title="React.Children 流程图" href="https://pozvqg.dm.files.1drv.com/y4mmeXuR-FkgNj-8c2xEInueibhFoYSEdG7un9nWggJFV1nYGsjb6S8m0D776nWAyuXHwKz1kCVMelh96STs4RYe9EVppRjlQyiu7jwrPqH9iM-cR4YPS7UbJkFTZHg62yMg6k8n_c-DMQOoEzZhvmCdR8LAEPFY4JQvypWYj3LF1EpeR5zp6OIfkPOk3qei4Qwz903Q9lxtWpavsva6TceyQ?width=768&height=1152&cropmode=none">![React.Children 流程图](https://pozvqg.dm.files.1drv.com/y4mmeXuR-FkgNj-8c2xEInueibhFoYSEdG7un9nWggJFV1nYGsjb6S8m0D776nWAyuXHwKz1kCVMelh96STs4RYe9EVppRjlQyiu7jwrPqH9iM-cR4YPS7UbJkFTZHg62yMg6k8n_c-DMQOoEzZhvmCdR8LAEPFY4JQvypWYj3LF1EpeR5zp6OIfkPOk3qei4Qwz903Q9lxtWpavsva6TceyQ?width=768&height=1152&cropmode=none)</a>
+![React.Children 流程图](https://pozvqg.dm.files.1drv.com/y4mmeXuR-FkgNj-8c2xEInueibhFoYSEdG7un9nWggJFV1nYGsjb6S8m0D776nWAyuXHwKz1kCVMelh96STs4RYe9EVppRjlQyiu7jwrPqH9iM-cR4YPS7UbJkFTZHg62yMg6k8n_c-DMQOoEzZhvmCdR8LAEPFY4JQvypWYj3LF1EpeR5zp6OIfkPOk3qei4Qwz903Q9lxtWpavsva6TceyQ?width=768&height=1152&cropmode=none)
 
 当然这么看肯定云里雾里，接下去会对各个函数进行讲解，然后再回过头来配合图片观看更好理解。
 

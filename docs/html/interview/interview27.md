@@ -7,7 +7,7 @@ Browser Object Model 的缩写。即浏览器对象模型，这并没有一套�
 **常用的Bom属性**
 ---
 
-<a data-fancybox title="示例" href="/notes/assets/html/2020102414322631.png">![示例](/notes/assets/html/2020102414322631.png)</a>
+![示例](/notes/assets/html/2020102414322631.png)
 
 **navigator（浏览器对象）**
 
@@ -21,7 +21,7 @@ var isChrome =ua.indexOf('Chrome');
 console.log(isChrome); // true为是，false为不是
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/html/2020102414370328.png">![示例](/notes/assets/html/2020102414370328.png)</a>
+![示例](/notes/assets/html/2020102414370328.png)
 
 **screen（屏幕对象）**
 
@@ -90,7 +90,7 @@ DOM 是针对 HTML 的基于树的 API。描述了处理网页内容的方法和
 > 
 > 有了树模型，就有了层级结构，层级结构是指元素和元素之间的关系父子，兄弟。
 
-<a data-fancybox title="示例" href="/notes/assets/html/20201024140711640.png">![示例](/notes/assets/html/20201024140711640.png)</a>
+![示例](/notes/assets/html/20201024140711640.png)
 
 **DOM 节点操作**
 ---
@@ -141,18 +141,18 @@ nextElementSibling 获取当前节点的后一个兄弟元素
 ---
 
 <!-- ![demo](/notes/assets/html/20201024141424441.png) -->
-<a data-fancybox title="示例" href="/notes/assets/html/20201024141424441.png">![示例](/notes/assets/html/20201024141424441.png)</a>
+![示例](/notes/assets/html/20201024141424441.png)
 
 <!-- ![demo](/notes/assets/html/20201024141451942.png) -->
-<a data-fancybox title="示例" href="/notes/assets/html/20201024141451942.png">![示例](/notes/assets/html/20201024141451942.png)</a>
+![示例](/notes/assets/html/20201024141451942.png)
 
 <!-- ![demo](/notes/assets/html/20201024141514206.png) -->
-<a data-fancybox title="示例" href="/notes/assets/html/20201024141514206.png">![示例](/notes/assets/html/20201024141514206.png)</a>
+![示例](/notes/assets/html/20201024141514206.png)
 
 <!-- ![demo](/notes/assets/html/20201024141631577.png) -->
-<a data-fancybox title="示例" href="/notes/assets/html/20201024141631577.png">![示例](/notes/assets/html/20201024141631577.png)</a>
+![示例](/notes/assets/html/20201024141631577.png)
 
 优化流程
 
 <!-- ![demo](/notes/assets/html/20201024141702164.png) -->
-<a data-fancybox title="示例" href="/notes/assets/html/20201024141702164.png">![示例](/notes/assets/html/20201024141702164.png)</a>
+![示例](/notes/assets/html/20201024141702164.png)

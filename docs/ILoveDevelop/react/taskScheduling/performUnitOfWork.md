@@ -7,7 +7,7 @@
 
 如果`next`不存在，说明当前节点向下遍历子节点已经到底了，说明这个子树侧枝已经遍历完，可以完成这部分工作了。就执行`completeUnitOfWork`，`completeUnitOfWork`就是处理一些`effact tag`，他会一直往上返回直到`root`节点或者在某一个节点发现有`sibling`兄弟节点为止。如果到了`root`那么他的返回也是`null`，代表整棵树的遍历已经结束了，可以`commit`了，如果遇到兄弟节点就返回该节点，因为这个节点可能也会存在子节点，需要通过`beginWork`进行操作。
 
-<a data-fancybox title="节点流程图" href="https://i.postimg.cc/hPqjvNxr/work_Loop-v2.png">![节点流程图](https://i.postimg.cc/hPqjvNxr/work_Loop-v2.png)</a>
+![节点流程图](https://i.postimg.cc/hPqjvNxr/work_Loop-v2.png)
 
 源码
 

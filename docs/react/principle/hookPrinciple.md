@@ -18,7 +18,7 @@
 
 7. 为什么两次传入`useState`的值相同，函数组件不更新?
 
-<a data-fancybox title="demo" href="/notes/assets/react/d99a12ad708647d4bfd075a59d518c8b_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/d99a12ad708647d4bfd075a59d518c8b_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/d99a12ad708647d4bfd075a59d518c8b_tplv-k3u1fbpfcp-watermark.image)
 
 ## function组件和class组件本质的区别
 ---
@@ -287,7 +287,7 @@ const HooksDispatcherOnUpdate = {
 
 用流程图来描述整个过程：
 
-<a data-fancybox title="demo" href="/notes/assets/react/adcbd09984f84d0d97a15df124e83c09_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/adcbd09984f84d0d97a15df124e83c09_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/adcbd09984f84d0d97a15df124e83c09_tplv-k3u1fbpfcp-watermark.image)
 
 # hooks初始化
 
@@ -354,7 +354,7 @@ function mountWorkInProgressHook() {
 
 那么当函数组件执行之后，四个`hooks`和`workInProgress`将是如图的关系。
 
-<a data-fancybox title="demo" href="/notes/assets/react/5660f1be680140239a8cf4e34cfccc90_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/5660f1be680140239a8cf4e34cfccc90_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/5660f1be680140239a8cf4e34cfccc90_tplv-k3u1fbpfcp-watermark.image)
 
 知道每个`hooks`关系之后，应该理解了，为什么不能条件语句中，声明`hooks`。
 
@@ -369,7 +369,7 @@ if(isFisrt){
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/react/54a38675154a483885a3c5c9a80f360e_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/54a38675154a483885a3c5c9a80f360e_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/54a38675154a483885a3c5c9a80f360e_tplv-k3u1fbpfcp-watermark.image)
 
 **因为一旦在条件语句中声明`hooks`，在下一次函数组件更新，`hooks`链表结构，将会被破坏，`current`树的`memoizedState`缓存`hooks`信息，和当前`workInProgress`不一致，如果涉及到读取`state`等操作，就会发生异常。**
 
@@ -566,7 +566,7 @@ useEffect(()=>{
 
 最后`workInProgress.updateQueue`会以这样的形式保存：
 
-<a data-fancybox title="demo" href="/notes/assets/react/14ac9e04c10e45e5b93fc76d47a5fdd5_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/14ac9e04c10e45e5b93fc76d47a5fdd5_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/14ac9e04c10e45e5b93fc76d47a5fdd5_tplv-k3u1fbpfcp-watermark.image)
 
 **拓展:`effectList`**
 
@@ -786,13 +786,13 @@ function Index(){
 
 三次`setNumber`产生的`update`会暂且放入`pending queue`，在下一次函数组件执行时候，三次 `update`被合并到 `baseQueue`。结构如下图：
 
-<a data-fancybox title="demo" href="/notes/assets/react/52ed6118238d412aa20044ad33f25827_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/52ed6118238d412aa20044ad33f25827_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/52ed6118238d412aa20044ad33f25827_tplv-k3u1fbpfcp-watermark.image)
 
 接下来会把当前`useState`或是`useReduer`对应的`hooks`上的`baseState`和`baseQueue`更新到最新的状态。会循环`baseQueue`的`update`，复制一份`update`,更新`expirationTime`，对于有足够优先级的`update`（上述三个`setNumber`产生的`update`都具有足够的优先级），要获取最新的`state`状态。，会一次执行`useState`上的每一个`action`。得到最新的`state`。
 
 **更新state**
 
-<a data-fancybox title="demo" href="/notes/assets/react/6d78fac49ce648ea89bce06a25e1128d_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/6d78fac49ce648ea89bce06a25e1128d_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/6d78fac49ce648ea89bce06a25e1128d_tplv-k3u1fbpfcp-watermark.image)
 
 这里有会有两个疑问🤔️:
 
@@ -880,4 +880,4 @@ function updateRef(initialValue){
 
 **一次点击事件更新**
 
-<a data-fancybox title="demo" href="/notes/assets/react/a02c58be8c6f455f96c2e691b2ac6f7b_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/a02c58be8c6f455f96c2e691b2ac6f7b_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/a02c58be8c6f455f96c2e691b2ac6f7b_tplv-k3u1fbpfcp-watermark.image)

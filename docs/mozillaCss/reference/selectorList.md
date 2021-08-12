@@ -70,4 +70,4 @@ h3 { font-family: sans-serif }
 
 # 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617674781(1).jpg">![demo](/notes/assets/mozillaCss/1617674781(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617674781(1).jpg)

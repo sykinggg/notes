@@ -78,7 +78,7 @@ element::after { style properties }  /* CSS3 语法 */
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617764370(1).jpg">![demo](/notes/assets/mozillaCss/1617764370(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617764370(1).jpg)
 
 **装饰用法**
 
@@ -101,7 +101,7 @@ element::after { style properties }  /* CSS3 语法 */
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617765740(1).jpg">![demo](/notes/assets/mozillaCss/1617765740(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617765740(1).jpg)
 
 **提示用法**
 
@@ -139,11 +139,11 @@ span[data-descr]:hover::after {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617765999(1).jpg">![demo](/notes/assets/mozillaCss/1617765999(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617765999(1).jpg)
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617772337(1).jpg">![demo](/notes/assets/mozillaCss/1617772337(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617772337(1).jpg)
 
 # ::before (:before)
 
@@ -198,7 +198,7 @@ q::after {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617773106(1).jpg">![demo](/notes/assets/mozillaCss/1617773106(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617773106(1).jpg)
 
 **修饰实例**
 
@@ -219,7 +219,7 @@ q::after {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617783650(1).jpg">![demo](/notes/assets/mozillaCss/1617783650(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617783650(1).jpg)
 
 **待办列表**
 
@@ -276,7 +276,7 @@ list.addEventListener('click', function(ev) {
 
 ## 结果
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617783707(1).jpg">![demo](/notes/assets/mozillaCss/1617783707(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617783707(1).jpg)
 
 **注释**
 
@@ -311,11 +311,11 @@ line to flow under it.</span>
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617783858(1).jpg">![demo](/notes/assets/mozillaCss/1617783858(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617783858(1).jpg)
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617783892(1).jpg">![demo](/notes/assets/mozillaCss/1617783892(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617783892(1).jpg)
 
 # /::selection
 
@@ -393,11 +393,11 @@ p::selection {
 }
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617783858(1).jpg">![demo](/notes/assets/mozillaCss/1617783858(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617783858(1).jpg)
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617783892(1).jpg">![demo](/notes/assets/mozillaCss/1617783892(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617783892(1).jpg)
 
 # /::slotted()
 
@@ -479,4 +479,4 @@ customElements.define('person-details',
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617782663(1).jpg">![demo](/notes/assets/mozillaCss/1617782663(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617782663(1).jpg)

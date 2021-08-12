@@ -38,4 +38,4 @@ span#identified {
 <span>Here's another.</span>
 ```
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617673434(1).jpg">![demo](/notes/assets/mozillaCss/1617673434(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617673434(1).jpg)

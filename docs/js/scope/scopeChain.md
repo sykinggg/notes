@@ -97,13 +97,13 @@ myFunc();
 
 内部属性[[scope]]指向当前的作用域对象，也就是函数的标识符被创建的时候，所能够直接访问的那个作用域对象（即全局对象）。
 
-<a data-fancybox title="状态示例" href="https://camo.githubusercontent.com/bf702f0df678f20694e04fb24fc2ea0e726434bc/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f322e706e67">![状态示例](https://camo.githubusercontent.com/bf702f0df678f20694e04fb24fc2ea0e726434bc/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f322e706e67)</a>
+![状态示例](https://camo.githubusercontent.com/bf702f0df678f20694e04fb24fc2ea0e726434bc/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f322e706e67)
 
 myFunc所引用的函数对象，其本身不仅仅含有函数的代码，并且还含有指向其被创建的时候的作用域对象。
 
 **调用时：**当myFunc函数被调用的时候，一个新的作用域对象被创建了。新的作用域对象中包含myFunc函数所定义的本地变量，以及其参数（arguments）。这个新的作用域对象的父作用域对象就是在运行myFunc时能直接访问的那个作用域对象（即全局对象）。
 
-<a data-fancybox title="执行示例" href="https://camo.githubusercontent.com/74f0b304b1940aab6f4e96949a4708f088e1ed82/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f332e706e67">![执行示例](https://camo.githubusercontent.com/74f0b304b1940aab6f4e96949a4708f088e1ed82/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f332e706e67)</a>
+![执行示例](https://camo.githubusercontent.com/74f0b304b1940aab6f4e96949a4708f088e1ed82/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f332e706e67)
 
 <font size=1>**有嵌套的函数**</font>
 
@@ -137,11 +137,11 @@ console.log(myCounter.get());   // 返回 105
 
 当调用 createCounter(100) 时，内嵌函数increment和get都有指向createCounter(100) scope的引用。假设createCounter(100)没有任何返回值，那么createCounter(100) scope不再被引用，于是就可以被垃圾回收。
 
-<a data-fancybox title="嵌套函数执行流程" href="https://camo.githubusercontent.com/faa2434436b9420b99ae45f42a5a55311250a7af/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f342e706e67">![嵌套函数执行流程](https://camo.githubusercontent.com/faa2434436b9420b99ae45f42a5a55311250a7af/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f342e706e67)</a>
+![嵌套函数执行流程](https://camo.githubusercontent.com/faa2434436b9420b99ae45f42a5a55311250a7af/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f342e706e67)
 
 但是createCounter(100)实际上是有返回值的，并且返回值被存储在了myCounter中，所以对象之间的引用关系如下图：
 
-<a data-fancybox title="执行的关系图" href="https://camo.githubusercontent.com/13a4e54f23639c5b274014f0caa21115760052f6/687474703a2f2f626c6f672e6c6561706f61686561642e636f6d2f323031352f30392f31352f6a732d636c6f737572652f6a735f636c6f737572655f352e706e67">![执行的关系图](https://camo.githubusercontent.com/13a4e54f23639c5b274014f0caa21115760052f6/687474703a2f2f626c6f672e6c6561706f61686561642e636f6d2f323031352f30392f31352f6a732d636c6f737572652f6a735f636c6f737572655f352e706e67)</a>
+![执行的关系图](https://camo.githubusercontent.com/13a4e54f23639c5b274014f0caa21115760052f6/687474703a2f2f626c6f672e6c6561706f61686561642e636f6d2f323031352f30392f31352f6a732d636c6f737572652f6a735f636c6f737572655f352e706e67)
 
 即使createCounter(100)已经返回，但是其作用域仍在，并且只能被内联函数访问。可以通过调用myCounter.increment() 或 myCounter.get()来直接访问createCounter(100)的作用域。
 
@@ -149,11 +149,11 @@ console.log(myCounter.get());   // 返回 105
 
 调用`get()`时，当执行到`return counter`时，在get()所在的作用域并没有找到对应的标示符，就会沿着作用域链往上找，直到找到变量`counter`，然后返回该变量。
 
-<a data-fancybox title="" href="https://camo.githubusercontent.com/4cff42540fb6a6ebd532389538101a16af65e7cb/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f362e706e67">![](https://camo.githubusercontent.com/4cff42540fb6a6ebd532389538101a16af65e7cb/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f362e706e67)</a>
+![](https://camo.githubusercontent.com/4cff42540fb6a6ebd532389538101a16af65e7cb/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f362e706e67)
 
 单独调用increment(5)时，参数value保存在当前的作用域对象。当函数要访问counter时，没有找到，于是沿着作用域链向上查找，在createCounter(100)的作用域找到了对应的标示符，increment()就会修改counter的值。除此之外，没有其他方式来修改这个变量。闭包的强大也在于此，能够存贮私有数据。
 
-<a data-fancybox title="" href="https://camo.githubusercontent.com/5e61b55212aae4198b0bdcb56179baf850ea3bd4/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f365f696e632e706e67">![](https://camo.githubusercontent.com/5e61b55212aae4198b0bdcb56179baf850ea3bd4/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f365f696e632e706e67)</a>
+![](https://camo.githubusercontent.com/5e61b55212aae4198b0bdcb56179baf850ea3bd4/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f365f696e632e706e67)
 
 创建两个函数：`myCounter1`和`myCounter2`
 
@@ -171,6 +171,6 @@ var myCounter2 = createCounter(200);
 
 关系图如下
 
-<a data-fancybox title="" href="https://camo.githubusercontent.com/ae96f45e96a12f66b88d8bc2126d815c197759b7/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f372e706e67">![](https://camo.githubusercontent.com/ae96f45e96a12f66b88d8bc2126d815c197759b7/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f372e706e67)</a>
+![](https://camo.githubusercontent.com/ae96f45e96a12f66b88d8bc2126d815c197759b7/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f372e706e67)
 
 myCounter1.increment和myCounter2.increment的函数对象拥有着一样的代码以及一样的属性值（name，length等等），但是它们的[[scope]]指向的是不一样的作用域对象。

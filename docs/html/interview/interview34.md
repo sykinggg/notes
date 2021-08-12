@@ -7,7 +7,7 @@
 如果页面内容不足够长时，页脚固定在浏览器窗口的底部；如果内容足够长时，页脚固定在页面的最底部。
 总而言之，就是页脚一直处于最底，效果大致如图所示：
 
-<a data-fancybox title="图片地址" href="https://misc.aotu.io/liqinuo/sticky_02.png">![图片地址](https://misc.aotu.io/liqinuo/sticky_02.png)</a>
+![图片地址](https://misc.aotu.io/liqinuo/sticky_02.png)
 
 # html 结构
 

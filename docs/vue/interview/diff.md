@@ -11,11 +11,11 @@ diff 算法是一种通过同层的树节点进行比较的高效算法，避免
 
 * ***比较只会在同层级进行, 不会跨层级比较。***
 
-<a data-fancybox title="diff层级示例图" href="https://static001.infoq.cn/resource/image/91/54/91e9c9519a11caa0c5bf70714383f054.png">![diff层级示例图](https://static001.infoq.cn/resource/image/91/54/91e9c9519a11caa0c5bf70714383f054.png)</a>
+![diff层级示例图](https://static001.infoq.cn/resource/image/91/54/91e9c9519a11caa0c5bf70714383f054.png)
 
 * ***在 diff 比较的过程中，循环从两边向中间收拢。***
 
-<a data-fancybox title="diff算法方向示例图" href="https://static001.infoq.cn/resource/image/2d/ec/2dcd6ad5cf82c65b9cfc43a27ba1e4ec.png">![diff算法方向示例图](https://static001.infoq.cn/resource/image/2d/ec/2dcd6ad5cf82c65b9cfc43a27ba1e4ec.png)</a>
+![diff算法方向示例图](https://static001.infoq.cn/resource/image/2d/ec/2dcd6ad5cf82c65b9cfc43a27ba1e4ec.png)
 
 **2. diff 流程**
 ---
@@ -39,7 +39,7 @@ let newEndVnode = newCh[newEndIdx] // 新节点结束 vnode
 
 经过第一步之后，初始的新旧 VNode 节点如下图所示：
 
-<a data-fancybox title="VNode示例图" href="https://static001.infoq.cn/resource/image/80/6d/80dc339f73b186479e6d1fc18bfbf66d.png">![VNode示例图](https://static001.infoq.cn/resource/image/80/6d/80dc339f73b186479e6d1fc18bfbf66d.png)</a>
+![VNode示例图](https://static001.infoq.cn/resource/image/80/6d/80dc339f73b186479e6d1fc18bfbf66d.png)
 
 * ***第二步***
 
@@ -129,23 +129,23 @@ else {// 没有找到相同的可以复用的节点，则新建节点处理
 
 再来看的实例，**第一次循环**后，找到了旧节点的末尾和新节点的开头 (都是 D) 相同，于是直接复用 D 节点作为 diff 后创建的第一个真实节点。同时旧节点的 `endIndex` 移动到了 C，新节点的 `startIndex` 移动到了 C。
 
-<a data-fancybox title="第一次示例图" href="https://static001.infoq.cn/resource/image/76/54/76032c78c8ef74047efd42c070e48854.png">![第一次示例图](https://static001.infoq.cn/resource/image/76/54/76032c78c8ef74047efd42c070e48854.png)</a>
+![第一次示例图](https://static001.infoq.cn/resource/image/76/54/76032c78c8ef74047efd42c070e48854.png)
 
 紧接着开始第二次循环，**第二次循环**后，同样是旧节点的末尾和新节点的开头 (都是 C) 相同，同理，diff 后创建了 C 的真实节点插入到第一次创建的 B 节点后面。同时旧节点的 `endIndex` 移动到了 B，新节点的 `startIndex` 移动到了 E。
 
-<a data-fancybox title="第二次示例图" href="https://static001.infoq.cn/resource/image/1c/d7/1c76e7489660188d35f0a38ea8c8ecd7.png">![第二次示例图](https://static001.infoq.cn/resource/image/1c/d7/1c76e7489660188d35f0a38ea8c8ecd7.png)</a>
+![第二次示例图](https://static001.infoq.cn/resource/image/1c/d7/1c76e7489660188d35f0a38ea8c8ecd7.png)
 
 接下来**第三次循环**中，发现 patchVnode 的 4 种情形都不符合，于是在旧节点队列中查找当前的新节点 E，结果发现没有找到，这时候只能直接创建新的真实节点 E，插入到第二次创建的 C 节点之后。同时新节点的 `startIndex` 移动到了 A。旧节点的 `startIndex` 和 `endIndex` 都保持不动。
 
-<a data-fancybox title="第三次示例图" href="https://static001.infoq.cn/resource/image/4b/08/4b622c0d61673ec5474465d82305d308.png">![第三次示例图](https://static001.infoq.cn/resource/image/4b/08/4b622c0d61673ec5474465d82305d308.png)</a>
+![第三次示例图](https://static001.infoq.cn/resource/image/4b/08/4b622c0d61673ec5474465d82305d308.png)
 
 **第四次循环**中，发现了新旧节点的开头 (都是 A) 相同，于是 diff 后创建了 A 的真实节点，插入到前一次创建的 E 节点后面。同时旧节点的 `startIndex` 移动到了 B，新节点的 `startIndex` 移动到了 B。
 
-<a data-fancybox title="第四次示例图" href="https://static001.infoq.cn/resource/image/59/b4/5982417c3e0b2fa9ae940354a0e67ab4.png">![第四次示例图](https://static001.infoq.cn/resource/image/59/b4/5982417c3e0b2fa9ae940354a0e67ab4.png)</a>
+![第四次示例图](https://static001.infoq.cn/resource/image/59/b4/5982417c3e0b2fa9ae940354a0e67ab4.png)
 
 **第五次循环**中，情形同第四次循环一样，因此 diff 后创建了 B 真实节点 插入到前一次创建的 A 节点后面。同时旧节点的 `startIndex` 移动到了 C，新节点的 `startIndex` 移动到了 F。
 
-<a data-fancybox title="第五次示例图" href="https://static001.infoq.cn/resource/image/16/86/16cf0ef90f6e19d26c0ddffeca067e86.png">![第五次示例图](https://static001.infoq.cn/resource/image/16/86/16cf0ef90f6e19d26c0ddffeca067e86.png)</a>
+![第五次示例图](https://static001.infoq.cn/resource/image/16/86/16cf0ef90f6e19d26c0ddffeca067e86.png)
 
 这时候发现新节点的 `startIndex` 已经大于 `endIndex` 了。不再满足循环的条件了。因此结束循环，接下来走后面的逻辑。
 
@@ -166,7 +166,7 @@ else {// 没有找到相同的可以复用的节点，则新建节点处理
 
 再回过头看的实例，新节点的数目大于旧节点，需要创建 `newStartIdx` 和 `newEndIdx` 之间的所有节点。在的实例中就是节点 F，因此直接创建 F 节点对应的真实节点放到 B 节点后面即可。
 
-<a data-fancybox title="第六次示例图" href="https://static001.infoq.cn/resource/image/dc/ad/dc215b45682cf6c9cc4700a5425673ad.png">![第六次示例图](https://static001.infoq.cn/resource/image/dc/ad/dc215b45682cf6c9cc4700a5425673ad.png)</a>
+![第六次示例图](https://static001.infoq.cn/resource/image/dc/ad/dc215b45682cf6c9cc4700a5425673ad.png)
 
 **总结**
 ---

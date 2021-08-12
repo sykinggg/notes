@@ -8,7 +8,7 @@
 <input /> <input type="submit" />
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/css/2012-04-24_162919.png">![示例](/notes/assets/css/2012-04-24_162919.png)</a>
+![示例](/notes/assets/css/2012-04-24_162919.png)
 
 使用CSS更改非`inline-block`水平元素为`inline-block`水平，也会有该问题：
 
@@ -22,13 +22,13 @@
 
 ```html
 <div class="space">
-    <a href="##">惆怅</a>
-    <a href="##">淡定</a>
-    <a href="##">热血</a>
+    
+    
+    
 </div>
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/css/2012-04-24_163352.png">![示例](/notes/assets/css/2012-04-24_163352.png)</a>
+![示例](/notes/assets/css/2012-04-24_163352.png)
 
 [inline-block元素间间距demo](http://www.zhangxinxu.com/study/201204/inline-block-space-example.html)
 
@@ -38,10 +38,7 @@
 
 ```html
 <div class="space">
-    <a href="##">
-    惆怅</a><a href="##">
-    淡定</a><a href="##">
-    热血</a>
+    
 </div>
 ```
 
@@ -51,7 +48,7 @@
 <div class="space">
     <a href="##">惆怅</a
     ><a href="##">淡定</a
-    ><a href="##">热血</a>
+    >
 </div>
 ```
 
@@ -59,9 +56,9 @@
 
 ```html
 <div class="space">
-    <a href="##">惆怅</a><!--
-    --><a href="##">淡定</a><!--
-    --><a href="##">热血</a>
+    <!--
+    --><!--
+    -->
 </div>
 ```
 
@@ -74,7 +71,7 @@
 }
 ```
 
-<a data-fancybox title="示例" href="/notes/assets/css/2012-04-24_205406.png">![示例](/notes/assets/css/2012-04-24_205406.png)</a>
+![示例](/notes/assets/css/2012-04-24_205406.png)
 
 例如，对于12像素大小的上下文，Arial字体的`margin`负值为`-3`像素，Tahoma和Verdana就是`-4`像素，而Geneva为`-6`像素。
 
@@ -88,7 +85,7 @@
 <div class="space">
     <a href="##">惆怅
     <a href="##">淡定
-    <a href="##">热血</a>
+    
 </div>
 ```
 
@@ -106,7 +103,7 @@
 
 [无闭合标签去除inline-block元素间距demo](http://www.zhangxinxu.com/study/201204/inline-block-space-skip-close-tag.html)
 
-<a data-fancybox title="示例" href="/notes/assets/css/2012-04-24_211852.png">![示例](/notes/assets/css/2012-04-24_211852.png)</a>
+![示例](/notes/assets/css/2012-04-24_211852.png)
 
 # 五、使用font-size:0
 

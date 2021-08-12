@@ -5,7 +5,7 @@
 
 对于`react-hooks`,已经写了三部曲，介绍了`react-hooks`使用，自定义hooks，以及`react-hooks`原理，感兴趣的同学可以去看看，文章末尾有链接，对于常用的`api`，这里参考了`react-hooks`如何使用那篇文章。并做了相应精简化和一些内容的补充。
 
-<a data-fancybox title="demo" href="/notes/assets/react/978f814d97e441838bad1d654ba1ef42_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/978f814d97e441838bad1d654ba1ef42_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/978f814d97e441838bad1d654ba1ef42_tplv-k3u1fbpfcp-watermark.image)
 
 ## useState
 ---
@@ -344,7 +344,7 @@ class Index extends React.Component{
 
 **效果:**
 
-<a data-fancybox title="demo" href="/notes/assets/react/8e8c05f0c82c43719079d4db9536abc0_tplv-k3u1fbpfcp-watermark.image">![demo](/notes/assets/react/8e8c05f0c82c43719079d4db9536abc0_tplv-k3u1fbpfcp-watermark.image)</a>
+![demo](/notes/assets/react/8e8c05f0c82c43719079d4db9536abc0_tplv-k3u1fbpfcp-watermark.image)
 
 ## useDebugValue
 ---

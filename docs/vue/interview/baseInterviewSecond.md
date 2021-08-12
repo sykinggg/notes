@@ -219,13 +219,13 @@ css的预编译,使用步骤如下：
 
 ```html
 <!-- 阻止单击事件继续传播 -->
-<a v-on:click.stop="doThis"></a>
+
 
 <!-- 提交事件不再重载页面 -->
 <form v-on:submit.prevent="onSubmit"></form>
 
 <!-- 修饰符可以串联 -->
-<a v-on:click.stop.prevent="doThat"></a>
+
 
 <!-- 只有修饰符 -->
 <form v-on:submit.prevent></form>
@@ -245,7 +245,7 @@ css的预编译,使用步骤如下：
 
 ```html
 <!-- 点击事件将只会触发一次 -->
-<a v-on:click.once="doThis"></a>
+
 ```
 
 不像其它只能对原生的 DOM 事件起作用的修饰符，`.once` 修饰符还能被用到自定义的**组件事件**上。
@@ -698,7 +698,7 @@ npm install vue-router -S
 
 ### 第二步在main.js中使用Vue Router组件
 
-<a data-fancybox title="demo" href="/notes/assets/vue/1734d65dc240568e.jpg">![demo](/notes/assets/vue/1734d65dc240568e.jpg)</a>
+![demo](/notes/assets/vue/1734d65dc240568e.jpg)
 
 ### 第三步配置路由
 
@@ -706,29 +706,29 @@ npm install vue-router -S
 
 > 路由组件可以是直接定义，也可以是导入已经定义好的组件。这里导入已经定义好的组件。如下
 
-<a data-fancybox title="demo" href="/notes/assets/vue/1734d65dc2668cc8.jpg">![demo](/notes/assets/vue/1734d65dc2668cc8.jpg)</a>
+![demo](/notes/assets/vue/1734d65dc2668cc8.jpg)
 
 * 定义路由（路由对象数组）
 
 > 定义路由对象数组。对象的`path`是自定义的路径（即使用这个路径可以找到对应的组件），`component`是指该路由对应的组件。如下：
 
-<a data-fancybox title="demo" href="/notes/assets/vue/1734d65dc3da62ed.jpg">![demo](/notes/assets/vue/1734d65dc3da62ed.jpg)</a>
+![demo](/notes/assets/vue/1734d65dc3da62ed.jpg)
 
 * 实例化Vue Router对象
 
 > 调用Vue Router的构造方法创建一个Vue Router的实例对象，将上一步定义的路由对象数组作为参数对象的值传入。如下
 
-<a data-fancybox title="demo" href="/notes/assets/vue/1734d65dc48e8bf4.jpg">![demo](/notes/assets/vue/1734d65dc48e8bf4.jpg)</a>
+![demo](/notes/assets/vue/1734d65dc48e8bf4.jpg)
 
 * 挂载根实例
 
-<a data-fancybox title="demo" href="/notes/assets/vue/1734d65dcb5f42d7.jpg">![demo](/notes/assets/vue/1734d65dcb5f42d7.jpg)</a>
+![demo](/notes/assets/vue/1734d65dcb5f42d7.jpg)
 
 ### 第四步在App.vue中使用路由
 
 在`App.vue`中使用标签来显示路由对应的组件，使用标签指定当点击时显示的对应的组件，`to`属性就是指定组件对应的路由。如下：
 
-<a data-fancybox title="demo" href="/notes/assets/vue/1734d65dc512c1e6.jpg">![demo](/notes/assets/vue/1734d65dc512c1e6.jpg)</a>
+![demo](/notes/assets/vue/1734d65dc512c1e6.jpg)
 
 ## 怎么定义vue-router的动态路由？怎么获取传过来的动态参数？
 

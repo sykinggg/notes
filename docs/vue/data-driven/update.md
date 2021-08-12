@@ -440,7 +440,7 @@ export function appendChild (node: Node, child: Node) {
 
 <!-- <img :src="$withBase('/notes/assets/new-vue.png')"/> -->
 
-<a data-fancybox title="new vue" href="/notes/assets/vue/new-vue.png">![new vue](/notes/assets/vue/new-vue.png)</a>
+![new vue](/notes/assets/vue/new-vue.png)
 
 这里只是分析了最简单和最基础的场景，在实际项目中，是把页面拆成很多组件的，Vue 另一个核心思想就是组件化。那么下一章就来分析 Vue 的组件化过程。
 

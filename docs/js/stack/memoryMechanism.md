@@ -201,7 +201,7 @@ b.x 	// --> {n: 2}
 
 * 2、赋值操作是从右到左，所以先执行a = {n: 2}，a的引用就被改变了，然后这个返回值又赋值给了a.x，需要注意的是这时候a.x是第一步中的{n: 1, x: undefined}那个对象，其实就是b.x，相当于b.x = {n: 2}
 
-<a data-fancybox title="执行流程" href="https://camo.githubusercontent.com/9bcfc7692e8178fdead75f619b8d42a6f1f6e26a/68747470733a2f2f7365676d656e746661756c742e636f6d2f696d672f625672565373">![执行流程](https://camo.githubusercontent.com/9bcfc7692e8178fdead75f619b8d42a6f1f6e26a/68747470733a2f2f7365676d656e746661756c742e636f6d2f696d672f625672565373)</a>
+![执行流程](https://camo.githubusercontent.com/9bcfc7692e8178fdead75f619b8d42a6f1f6e26a/68747470733a2f2f7365676d656e746661756c742e636f6d2f696d672f625672565373)
 
 **今日份思考题**
 ---

@@ -51,7 +51,7 @@ function shuffle (arr) {
 
 console.log(shuffle([1,2,3,4,5,6,7,8,9,0]))
 ```
-<a data-fancybox title="image" href="https://user-images.githubusercontent.com/10903843/61680936-0b429000-ad3e-11e9-971d-02d90647eeb3.png">![image](https://user-images.githubusercontent.com/10903843/61680936-0b429000-ad3e-11e9-971d-02d90647eeb3.png)</a>
+![image](https://user-images.githubusercontent.com/10903843/61680936-0b429000-ad3e-11e9-971d-02d90647eeb3.png)
 
 ## 思路三
 

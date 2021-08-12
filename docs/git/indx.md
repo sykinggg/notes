@@ -26,7 +26,7 @@
 
 　●　还有一个中央云存储库，开发人员可以向其提交更改，并与其他团队成员进行共享，如图所示，所有协作者都在提交更改“远程存储库”。
 
-<a data-fancybox title="git流" href="https://img.php.cn/upload/image/991/937/107/1578101551904065.jpg">![git流](https://img.php.cn/upload/image/991/937/107/1578101551904065.jpg)</a>
+![git流](https://img.php.cn/upload/image/991/937/107/1578101551904065.jpg)
 
 **3. 在 Git 中提交的命令是什么？**
 ---

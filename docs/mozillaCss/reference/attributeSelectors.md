@@ -106,7 +106,7 @@ a[href$=".org"] {
 
 **`结果`**
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617673832(1).jpg">![demo](/notes/assets/mozillaCss/1617673832(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617673832(1).jpg)
 
 **`多语言`**
 
@@ -153,7 +153,7 @@ div[data-lang="zh-TW"] {
 
 **`结果`**
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617673970(1).jpg">![demo](/notes/assets/mozillaCss/1617673970(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617673970(1).jpg)
 
 **`HTML 有序列表`**
 
@@ -189,8 +189,8 @@ ol[type="A" s] {
 
 **`结果`**
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617674240(1).jpg">![demo](/notes/assets/mozillaCss/1617674240(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617674240(1).jpg)
 
 **`浏览器兼容性`**
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617674311(1).jpg">![demo](/notes/assets/mozillaCss/1617674311(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617674311(1).jpg)

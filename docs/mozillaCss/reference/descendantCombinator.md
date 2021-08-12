@@ -58,8 +58,8 @@ li li {
 
 # 结果
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617679542.jpg">![demo](/notes/assets/mozillaCss/1617679542.jpg)</a>
+![demo](/notes/assets/mozillaCss/1617679542.jpg)
 
 # 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617679594(1).jpg">![demo](/notes/assets/mozillaCss/1617679594(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617679594(1).jpg)

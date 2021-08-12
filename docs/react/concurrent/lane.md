@@ -26,7 +26,7 @@
 
 <!-- <img :src="$withBase('/img/lane.jpeg')" alt="30sec"> -->
 
-<a data-fancybox title="30sec" href="/notes/assets/react/lane.jpeg">![30sec](/notes/assets/react/lane.jpeg)</a>
+![30sec](/notes/assets/react/lane.jpeg)
 
 不同的赛车疾驰在不同的赛道。内圈的赛道总长度更短，外圈更长。某几个临近的赛道的长度可以看作差不多长。
 

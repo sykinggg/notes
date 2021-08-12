@@ -33,6 +33,6 @@
 
 则会产生这样的效果:
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaCss/1617672495(1).jpg">![demo](/notes/assets/mozillaCss/1617672495(1).jpg)</a>
+![demo](/notes/assets/mozillaCss/1617672495(1).jpg)
 
 > 注: 笔者不推荐使用通配选择器,因为它是性能最低的一个CSS选择器

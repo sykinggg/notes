@@ -89,7 +89,7 @@ if (
 
 在没有`代码版本控制`前，我们在代码中逐步叠加功能。一切看起来井然有序，直到我们遇到了一个紧急线上bug（红色节点）。
 
-<a data-fancybox title="demo" href="/notes/assets/react/1733205a461f6f92.png">![demo](/notes/assets/react/1733205a461f6f92.png)</a>
+![demo](/notes/assets/react/1733205a461f6f92.png)
 
 为了修复这个bug，我们需要首先将之前的代码提交。
 
@@ -101,11 +101,11 @@ if (
 
 当有了`代码版本控制`，有紧急线上bug需要修复时，我们暂存当前分支的修改，在`master分支`修复bug并紧急上线。
 
-<a data-fancybox title="demo" href="/notes/assets/react/173320743bcd3794.png">![demo](/notes/assets/react/173320743bcd3794.png)</a>
+![demo](/notes/assets/react/173320743bcd3794.png)
 
 bug修复上线后通过`git rebase`命令和`开发分支`连接上。`开发分支`基于修复bug的版本继续开发。
 
-<a data-fancybox title="demo" href="/notes/assets/react/1733207d00f2307e.png">![demo](/notes/assets/react/1733207d00f2307e.png)</a>
+![demo](/notes/assets/react/1733207d00f2307e.png)
 
 在`React`中，通过`ReactDOM.createBlockingRoot`和`ReactDOM.createRoot`创建的应用在任务未过期情况下会采用异步的方式更新状态。
 

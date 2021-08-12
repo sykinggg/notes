@@ -60,7 +60,7 @@ JS脚本执行 -----  样式布局 ----- 样式绘制
 
 <!-- <img :src="$withBase('/img/long-task.png')" alt="长任务"> -->
 
-<a data-fancybox title="长任务" href="/notes/assets/react/long-task.png">![长任务](/notes/assets/react/long-task.png)</a>
+![长任务](/notes/assets/react/long-task.png)
 
 如何解决这个问题呢？
 
@@ -82,7 +82,7 @@ ReactDOM.unstable_createRoot(rootEl).render(<App/>);
 
 <!-- <img :src="$withBase('/img/time-slice.png')" alt="长任务"> -->
 
-<a data-fancybox title="长任务" href="/notes/assets/react/time-slice.png">![长任务](/notes/assets/react/time-slice.png)</a>
+![长任务](/notes/assets/react/time-slice.png)
 
 所以，解决`CPU瓶颈`的关键是实现`时间切片`，而`时间切片`的关键是：将**同步的更新**变为**可中断的异步更新**。
 
@@ -107,13 +107,13 @@ details 同步更新 vs 异步更新 Demo
 
 <!-- <img  :src="$withBase('/img/legacy-move.gif')" alt="同步"> -->
 
-<a data-fancybox title="同步" href="/notes/assets/react/legacy-move.gif">![同步](/notes/assets/react/legacy-move.gif)</a>
+![同步](/notes/assets/react/legacy-move.gif)
 
 作为对比，再点击“设置”面板中的“Siri与搜索”，进入“Siri与搜索”界面：
 
 <!-- <img  :src="$withBase('/img/concurrent-mov.gif')" alt="异步"> -->
 
-<a data-fancybox title="异步" href="/notes/assets/react/concurrent-mov.gif">![异步](/notes/assets/react/concurrent-mov.gif)</a>
+![异步](/notes/assets/react/concurrent-mov.gif)
 
 你能感受到两者体验上的区别么？
 

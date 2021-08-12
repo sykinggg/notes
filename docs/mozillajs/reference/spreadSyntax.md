@@ -223,4 +223,4 @@ var array = [...obj]; // TypeError: obj is not iterable
 
 ## 浏览器兼容性
 
-<a data-fancybox title="demo" href="/notes/assets/mozillaJs/1626773067165.jpg">![demo](/notes/assets/mozillaJs/1626773067165.jpg)</a>
+![demo](/notes/assets/mozillaJs/1626773067165.jpg)
