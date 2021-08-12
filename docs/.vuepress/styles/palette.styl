@@ -1,18 +1,75 @@
-/* 设置滚动条的样式 */
-::-webkit-scrollbar {
-    width: 12px;
-}
-/* 滚动槽 */
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-}
-/* 滚动条滑块 */
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
-}
-::-webkit-scrollbar-thumb:window-inactive {
-    background: rgba(255, 0, 0, 0.4);
-}
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap')
+@import "//at.alicdn.com/t/font_2352663_8bv8dbkn0yh.css"
+
+@font-face
+  font-family: '思源宋体'
+  src: url("/public/fonts/SourceHanSerifSC-Regular.otf")
+  font-weight: normal
+  font-style: normal
+
+:root
+    --boxes: #f5f7f9
+    --primary-color: #3884ff
+    --bg-color: white
+    --heading-char-color: #9daab6
+    --boxes-darker2: #bac2c9
+    --font: "Merriweather", '楷体', '楷体-简', '思源宋体' !important
+    --code-font: 'Source Code Pro', "Fira Code", "Consolas", "楷体", '楷体-简', "思源宋体"
+
+img
+    display: block
+    max-width: 100%
+    margin: 0 auto
+
+body
+    font-family: var(--font)
+
+.page .page-info,
+.page-nav,
+.code-group-nav-tab,
+.page-meta
+    font-family: var(--font)!important
+
+code,
+kbd,
+.line-number
+    font-family: var(--code-font) !important
+
+ul, ol
+    line-height: 2
+    padding-left: 2.2em
+
+blockquote 
+  width: 100%
+  background-color: var(--boxes)
+  border-left: 4px solid var(--primary-color)
+  border-radius: 0.3rem
+  padding: 1rem
+  color: black
+  padding-bottom: 5px
+
+blockquote > p 
+  margin-bottom: 20px
+
+blockquote > p:nth-last-child(1)
+  margin-bottom: 10px
+
+select 
+  background-color: var(--bg-color) !important
+  border-radius: 0.3rem !important
+  border: solid 1px var(--boxes-darker2) !important
+  box-shadow: none !important
+  color: var(---heading-text-color) !important
+  font-size: 0.9rem !important
+  font-weight: 500 !important
+  padding: 0.3rem !important
+  height: 2.1rem
+  font-family: var(--font)
+  outline: none
+
+select[multiple]
+  height: 6rem
+
+iframe 
+  border: none
