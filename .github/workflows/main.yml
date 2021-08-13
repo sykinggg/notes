@@ -13,13 +13,15 @@ jobs:
       uses: Yikun/gitee-mirror-action@v1.1
       with:
         # 必选，需要同步的Github用户（源）
-        src: git@github.com:sykinggg/notes.git
+        src: github/sykinggg
         # 必选，需要同步到的Gitee的用户（目的）
-        dst: git@gitee.com:systudy/notes.git
+        dst: gitee/systudy
         # 必选，Gitee公钥对应的私钥，https://gitee.com/profile/sshkeys
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         # 必选，Gitee对应的用于创建仓库的token，https://gitee.com/profile/personal_access_tokens
         dst_token:  ${{ secrets.GITEE_TOKEN }}
+        force_update: true
+        static_list: "notes"
   reload-pages:
     needs: login-gittee
     runs-on: ubuntu-latest
