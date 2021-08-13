@@ -494,6 +494,7 @@ features:
     * 第 1 期：基础面试题
         * [第一套综合基础面试题](/algorithm/interview/baseInterview.md)
 
+```yml
 action 暂存
 
 login-gittee:
@@ -526,3 +527,4 @@ login-gittee:
           gitee-repo: systudy/notes
           # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
           branch: gh_pages
+```
