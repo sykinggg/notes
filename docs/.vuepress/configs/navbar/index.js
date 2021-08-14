@@ -47,14 +47,8 @@ module.exports = [
       { text: 'es8', link: '/es8/interview1.md' },
       { text: 'es9', link: '/es9/interview1.md' },
       { text: 'es10', link: '/es10/interview1.md' },
-      { text: 'TypeScript 项目', link: '/ts/project/compilationContext' },
-      { text: 'TypeScript 类型系统', link: '/ts/typings/overview' },
       { text: 'JSX', link: '/ts/jsx/support' },
-      { text: 'TypeScript 错误提示', link: '/ts/error/interpreting' },
-      { text: 'TIPs', link: '/ts/tips/stringBasedEmuns' },
-      { text: 'TypeScript 编译原理', link: '/ts/compiler/overview' },
-      { text: 'TypeScript FAQs', link: '/ts/faqs/common-bug-not-bugs' },
-      { text: '版本差异', link: '/ts/new/typescript-3.7' },
+      { text: 'TypeScript 项目', link: '/ts/project/inDepthTs.md' },
     ]
   },
   {

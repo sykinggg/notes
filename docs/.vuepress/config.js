@@ -6,6 +6,7 @@ const sidebar = require('./configs/sidebar/index');
 const nav = require('./configs/navbar/index');
 
 module.exports = config({
+    hostname: '',
     base: '/notes/',
     dest: 'dist',
     port: 666,

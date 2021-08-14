@@ -784,19 +784,18 @@ module.exports = {
     '/design/commonJS.md',
     '/design/esHarmony.md',
   ],
-  '/ts/project/': [
+  '/ts/': [
     {
       title: 'TypeScript 项目',
       children: [
+        '/ts/project/inDepthTs.md',
         '/ts/project/compilationContext',
         '/ts/project/declarationspaces',
         '/ts/project/modules',
         '/ts/project/namespaces',
-        '/ts/project/dynamicImportExpressions'
+        '/ts/project/dynamicImportExpressions',
       ]
     },
-  ],
-  '/ts/typings/': [
     {
       title: 'TypeScript 类型系统',
       children: [
@@ -825,9 +824,7 @@ module.exports = {
         '/ts/typings/mixins',
         '/ts/typings/thisType'
       ]
-    }
-  ],
-  '/ts/jsx/': [
+    },
     {
       title: 'JSX',
       children: [
@@ -835,18 +832,14 @@ module.exports = {
         '/ts/jsx/reactJSX',
         '/ts/jsx/nonReactJSX'
       ]
-    }
-  ],
-  '/ts/error/': [
+    },
     {
       title: 'TypeScript 错误提示',
       children: [
         '/ts/error/interpreting',
         '/ts/error/common'
       ]
-    }
-  ],
-  '/ts/tips/': [
+    },
     {
       title: 'TIPs',
       children: [
@@ -872,9 +865,7 @@ module.exports = {
         '/ts/tips/covarianceAndContravariance',
         '/ts/tips/infer'
       ]
-    }
-  ],
-  '/ts/compiler/': [
+    },
     {
       title: 'TypeScript 编译原理',
       children: [
@@ -887,9 +878,7 @@ module.exports = {
         '/ts/compiler/checker',
         '/ts/compiler/emitter'
       ]
-    }
-  ],
-  '/ts/faqs/': [
+    },
     {
       title: 'TypeScript FAQs',
       children: [
@@ -907,9 +896,7 @@ module.exports = {
         '/ts/faqs/commandline-behavior',
         '/ts/faqs/tsconfig-behavior'
       ]
-    }
-  ],
-  '/ts/new/': [
+    },
     {
       title: '版本差异',
       children: [
@@ -917,6 +904,6 @@ module.exports = {
         '/ts/new/typescript-3.8',
         '/ts/new/typescript-3.7'
       ]
-    }
-  ]
+    },
+  ],
 }
