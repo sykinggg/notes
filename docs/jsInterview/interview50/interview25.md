@@ -18,7 +18,7 @@ let ua = navigator.userAgent;
   isIOS: /iphone|ipad|ipod|itouch/gi.test(ua), // IOS
 ```
 
-其实想说的只有判断移动端，有时候ua并不正确。所以我们会使用一些移动端的 api 来判断是不是移动端。
+其实想说的只有判断移动端，有时候ua并不正确。所以会使用一些移动端的 api 来判断是不是移动端。
 
 ## 解法二
 

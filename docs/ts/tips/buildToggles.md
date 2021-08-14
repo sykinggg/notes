@@ -46,5 +46,5 @@ if (process.env.NODE_ENV === 'production') {
 ```
 
 ::: tip
-我们使用 `process.env.NODE_ENV` 仅仅是因为绝大多数 JavaScript 库中都使用此变量，例如：`React`。
+使用 `process.env.NODE_ENV` 仅仅是因为绝大多数 JavaScript 库中都使用此变量，例如：`React`。
 :::

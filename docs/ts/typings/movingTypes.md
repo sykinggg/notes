@@ -2,7 +2,7 @@
 
 TypeScript 类型系统非常强大，它支持其他任何单一语言无法实现的类型流动和类型片段。
 
-这是因为 TypeScript 的设计目的之一是让你无缝与像 JavaScript 这类高动态的语言一起工作。在这里，我们介绍一些在 TypeScript 中使用移动类型的技巧。
+这是因为 TypeScript 的设计目的之一是让你无缝与像 JavaScript 这类高动态的语言一起工作。在这里，介绍一些在 TypeScript 中使用移动类型的技巧。
 
 关键的动机：当你改变了其中一个时，其他相关的会自动更新，并且当有事情变糟糕时，你会得到一个友好的提示，就好像一个被精心设计过的约束系统。
 
@@ -49,7 +49,7 @@ bar = '789'; // Error: 'string' 不能分配给 'number' 类型
 
 ```ts
 class Foo {
-  foo: number; // 我们想要捕获的类型
+  foo: number; // 想要捕获的类型
 }
 
 declare let _foo: Foo;
@@ -74,7 +74,7 @@ bar = 'Hello World'; // ok
 bar = 'anything else'; // Error
 ```
 
-在这个例子里，`bar` 有字面量类型 `Hello World`，我们在[字面量类型](./literals.md)章节已经深入讨论。
+在这个例子里，`bar` 有字面量类型 `Hello World`，在[字面量类型](./literals.md)章节已经深入讨论。
 
 ## 捕获键的名称
 

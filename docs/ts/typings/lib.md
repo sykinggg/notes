@@ -25,7 +25,7 @@ const foo = 123;
 const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
 ```
 
-现在你已经理解了 `lib.d.ts` 的重要性，至于它的内容是怎么样的，我们接下来将会解释。
+现在你已经理解了 `lib.d.ts` 的重要性，至于它的内容是怎么样的，接下来将会解释。
 
 ## 观察 `lib.d.ts` 的内容
 
@@ -33,7 +33,7 @@ const bar = foo.toString(); // Error: 属性 toString 不存在类型 number 上
 
 寻找代码类型（如：`Math.floor`）的最简单方式是使用 IDE 的 `F12`（跳转到定义）。
 
-让我们来看一个变量声明的示例，如 `window` 被定义为：
+让来看一个变量声明的示例，如 `window` 被定义为：
 
 ```ts
 declare var window: Window;
@@ -62,13 +62,13 @@ interface Window
 
 你可以在这些接口里看到大量的类型信息，当你不使用 TypeScript 时，你需要将它们保存在你的大脑里。现在你可以使用 `intellisense` 之类东西，从而可以减少对知识的记忆。
 
-使用这些全局变量是有利的。在不更改 `lib.d.ts` 的情况下，它可以让你添加额外的属性。接下来，我们将介绍这些概念。
+使用这些全局变量是有利的。在不更改 `lib.d.ts` 的情况下，它可以让你添加额外的属性。接下来，将介绍这些概念。
 
 ## 修改原始类型
 
-在 TypeScript 中，接口是开放式的，这意味着当你想使用不存在的成员时，只需要将它们添加至 `lib.d.ts` 中的接口声明中即可，TypeScript 将会自动接收它。注意，你需要在[全局模块](../project/modules.md)中做这些修改，以使这些接口与 `lib.d.ts` 相关联。我们推荐你创建一个称为 `global.d.ts` 的特殊文件。
+在 TypeScript 中，接口是开放式的，这意味着当你想使用不存在的成员时，只需要将它们添加至 `lib.d.ts` 中的接口声明中即可，TypeScript 将会自动接收它。注意，你需要在[全局模块](../project/modules.md)中做这些修改，以使这些接口与 `lib.d.ts` 相关联。推荐你创建一个称为 `global.d.ts` 的特殊文件。
 
-这里有我们需要添加至 `Window`，`Math`，`Date` 的一些例子：
+这里有需要添加至 `Window`，`Math`，`Date` 的一些例子：
 
 ### Window
 
@@ -194,7 +194,7 @@ console.log('foo bas'.endsWith('bas')); // true
 
 ### 终极 string
 
-基于可维护性，我们推荐创建一个 `global.d.ts` 文件。然而，如果你愿意，你可以通过使用 `declare global { /* global namespace */ }`，从文件模块中进入全局命名空间：
+基于可维护性，推荐创建一个 `global.d.ts` 文件。然而，如果你愿意，你可以通过使用 `declare global { /* global namespace */ }`，从文件模块中进入全局命名空间：
 
 ```ts
 // 确保是模块
@@ -232,7 +232,7 @@ console.log('foo bas'.endsWith('bas')); // true
 
 设置编译目标为 `es6` 时，能导致 `lib.d.ts` 包含更多像 Promise 现代（es6）内容的环境声明。编译器目标的这种作用，改变了代码的环境，这对某些人来说是理想的，但是这对另外一些人来说造成了困扰，因为它将编译出的代码与环境混为一谈。
 
-当你想对环境进行更细粒的控制时，你应该使用我们接下来将要讨论的 `--lib` 选项。
+当你想对环境进行更细粒的控制时，你应该使用接下来将要讨论的 `--lib` 选项。
 
 ## `--lib` 选项
 

@@ -80,11 +80,11 @@ console.log(timestampedActivatableUserExample.timestamp);
 console.log(timestampedActivatableUserExample.isActivated);
 ```
 
-让我们分解这个例子。
+让分解这个例子。
 
 ## 创建一个构造函数
 
-混合接受一个类，并且使用新功能扩展它。因此，我们需要定义构造函数的类型：
+混合接受一个类，并且使用新功能扩展它。因此，需要定义构造函数的类型：
 
 ```ts
 type Constructor<T = {}> = new (...args: any[]) => T;

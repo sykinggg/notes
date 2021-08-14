@@ -75,6 +75,6 @@ let foo = {} as Foo;
 foo.bar = 123;
 foo.bas = 'Hello World';
 
-// 然后我们尝试这样做：
+// 然后尝试这样做：
 foo.bar = 'Hello Stranger'; // 错误：你可能把 `bas` 写成了 `bar`，不能为数字类型的属性赋值字符串
 ```

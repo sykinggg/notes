@@ -28,7 +28,7 @@ let bar: never = (() => {
 })();
 ```
 
-很棒，现在让我们看看它的关键用例。
+很棒，现在让看看它的关键用例。
 
 ## 用例：详细的检查
 
@@ -53,7 +53,7 @@ function fail(message: string): never {
 }
 ```
 
-`never` 仅能被赋值给另外一个 `never` 类型，因此你可以用它来进行编译时的全面的检查，我们将会在[辨析联合类型](./discrominatedUnion.md)中讲解它。
+`never` 仅能被赋值给另外一个 `never` 类型，因此你可以用它来进行编译时的全面的检查，将会在[辨析联合类型](./discrominatedUnion.md)中讲解它。
 
 ## 与 `void` 的差异
 

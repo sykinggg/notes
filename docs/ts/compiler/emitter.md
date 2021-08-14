@@ -5,7 +5,7 @@ TypeScript 编译器提供了两个发射器：
 - `emitter.ts`：可能是你最感兴趣的发射器，它是 TS -> JavaScript 的发射器
 - `declarationEmitter.ts`：这个发射器用于为 _TypeScript 源文件（`.ts`）_ 创建*声明文件（`.d.ts`）*
 
-本节我们介绍 `emitter.ts`
+本节介绍 `emitter.ts`
 
 ### Promgram 对发射器的使用
 
@@ -42,7 +42,7 @@ emitFiles ->
 
 ### `emitJavaScript`
 
-该函数有良好的注释，我们下面给出它：
+该函数有良好的注释，下面给出它：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {
@@ -377,8 +377,8 @@ function emitFunctionDeclaration(node: FunctionLikeDeclaration) {
 
 ## 发射器源映射（SourceMaps）
 
-如前所述 `emitter.ts` 中的大部分代码是函数 `emitJavaScript`（我们之前展示过该函数的初始化例程）。
-它主要是设置一批本地变量并交给 `emitSourceFile` 处理。下面我们再看一遍这个函数，这次我们重点关注 `SourceMap` 的部分：
+如前所述 `emitter.ts` 中的大部分代码是函数 `emitJavaScript`（之前展示过该函数的初始化例程）。
+它主要是设置一批本地变量并交给 `emitSourceFile` 处理。下面再看一遍这个函数，这次重点关注 `SourceMap` 的部分：
 
 ```ts
 function emitJavaScript(jsFilePath: string, root?: SourceFile) {

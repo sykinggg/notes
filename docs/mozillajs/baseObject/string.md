@@ -151,7 +151,7 @@ console.log(eval(s2));      // returns the string "2 + 2"
 
 由于上述原因, 当一段代码在需要使用基本字符串的时候却使用了字符串对象就会导致执行失败(虽然一般情况下程序员们并不需要考虑这样的问题)。
 
-利用 [valueOf](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf) 方法，我们可以将字符串对象转换为其对应的基本字符串。
+利用 [valueOf](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/valueOf) 方法，可以将字符串对象转换为其对应的基本字符串。
 
 ```js
 console.log(eval(s2.valueOf())); // returns the number 4

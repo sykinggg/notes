@@ -2,9 +2,9 @@
 
 ## 可选链（Optional Chaining）
 
-在我们的 issue 追踪器中，可选链在 [issue #16](https://github.com/microsoft/TypeScript/issues/16) 中，自那以后，有超过 23000 条 issues 被记录在 issue 中。
+在的 issue 追踪器中，可选链在 [issue #16](https://github.com/microsoft/TypeScript/issues/16) 中，自那以后，有超过 23000 条 issues 被记录在 issue 中。
 
-可选链的核心是允许我们写下如果碰到 `null` 或者 `undefined`，TypeScript 能立即停止运行的代码。可选链耀眼的部分是使用 `?.` 运算符来访问一个可选属性的运算符。
+可选链的核心是允许写下如果碰到 `null` 或者 `undefined`，TypeScript 能立即停止运行的代码。可选链耀眼的部分是使用 `?.` 运算符来访问一个可选属性的运算符。
 
 下面代码：
 
@@ -12,7 +12,7 @@
 let x = foo?.bar.baz();
 ```
 
-告诉我们，当 `foo` 被定义了，`foo.bar.baz()` 将会执行完成；但是当 `foo` 是 `null` 或者 `undefined` 时，TypeScript 会立即停止运行，并且仅仅是返回 `undefined`。
+告诉，当 `foo` 被定义了，`foo.bar.baz()` 将会执行完成；但是当 `foo` 是 `null` 或者 `undefined` 时，TypeScript 会立即停止运行，并且仅仅是返回 `undefined`。
 
 也就是说，上文的代码等效于如下代码：
 
@@ -20,7 +20,7 @@ let x = foo?.bar.baz();
 let x = foo === null || foo === undefined ? undefined : foo.bar.baz();
 ```
 
-注意，如果 `bar` 是 `null` 或者 `undefined`，在访问 `bar` 时，我们的代码仍然会抛出一个错误。
+注意，如果 `bar` 是 `null` 或者 `undefined`，在访问 `bar` 时，的代码仍然会抛出一个错误。
 
 与此相似，如果 `baz` 是 `null` 或者 `undefined`，在调用时，它也会抛出一个错误。`?.` 只会检查它左边的值是 `undefined` 还是 `null` - 并不会检查后面的任何属性。
 
@@ -40,7 +40,7 @@ if (foo?.bar?.baz) {
 
 注意：`?.` 与 `&&` 运算符行为略有不同，因为 `&&` 专用于 "falsy" 的值（如：空字符串、`0`、`NaN`、和 `false`），但是 `?.` 是一个仅作用于结构上的操作符，`?.` 在验证有效数据如 `0` 或者空字符串时，它并没有使用短路验证的方式。
 
-可选链还包含另外两个运算符，首先是可选元素的访问，它的行为类似于可选属性的访问，但是它允许我们访问非标志符属性（例如：任意的字符串、数字和 symbols）：
+可选链还包含另外两个运算符，首先是可选元素的访问，它的行为类似于可选属性的访问，但是它允许访问非标志符属性（例如：任意的字符串、数字和 symbols）：
 
 ```ts
 /**
@@ -56,7 +56,7 @@ function tryGetFirstElement<T>(arr?: T[]) {
 }
 ```
 
-另外一个是可选调用，它能让我们有条件的调用表达式：
+另外一个是可选调用，它能让有条件的调用表达式：
 
 ```ts
 async function makeRequest(url: string, log?: (msg: string) => void) {
@@ -102,9 +102,9 @@ function barPercentage(foo?: { bar: number }) {
 
 ## Nullish Coalescing
 
-nullish coalescing 运算符是另一个即将推出的 ECMAScript 功能，它与 Optional chaining 一同被推出，并且我们团队一直参与了 TC39 的有关讨论。
+nullish coalescing 运算符是另一个即将推出的 ECMAScript 功能，它与 Optional chaining 一同被推出，并且团队一直参与了 TC39 的有关讨论。
 
-你可以这么想它的功能 - `??` 运算符 - 当处理 `null` 或者 `undefined` 时，它可以作为一种「倒退」到默认值的方式，当我们写下如下代码：
+你可以这么想它的功能 - `??` 运算符 - 当处理 `null` 或者 `undefined` 时，它可以作为一种「倒退」到默认值的方式，当写下如下代码：
 
 ```ts
 let x = foo ?? bar();
@@ -190,7 +190,7 @@ function assert(condition: any, msg?: string): asserts condition {
 
 `asserts condition` 的意思是，如果 `assert` 函数有返回，传入 `condition` 的参数必须为真，因为如果不是这样，它肯定会抛出一个错误。这意味着，在剩下的作用域中（if 条件后）`condition` 必须为 `truthy`。
 
-举一个例子，用这个断言函数意味着我们可以实现捕获之前的 `yell` 示例的错误。
+举一个例子，用这个断言函数意味着可以实现捕获之前的 `yell` 示例的错误。
 
 ```ts
 function yell(str) {
@@ -249,7 +249,7 @@ function yell(str: any) {
 }
 ```
 
-就像类型谓词签名一样，这些断言签名非常强大的。我们可以用它们实现一些非常复杂的想法和设计。
+就像类型谓词签名一样，这些断言签名非常强大的。可以用它们实现一些非常复杂的想法和设计。
 
 ```ts
 function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
@@ -265,7 +265,7 @@ function assertIsDefined<T>(val: T): asserts val is NonNullable<T> {
 
 ## 更好的支持返回函数的 `never`
 
-为了能使断言签名工作，其中的一个工作是，TypeScript 需要对调用时的函数，以及位置信息编码更多的信息。这给了我们扩展另一类函数的机会：返回 `never` 的函数。
+为了能使断言签名工作，其中的一个工作是，TypeScript 需要对调用时的函数，以及位置信息编码更多的信息。这给了扩展另一类函数的机会：返回 `never` 的函数。
 
 返回为 `never` 的函数，即是永远没有返回的函数。它表明抛出了异常、由于错误发生暂停、或者程序退出的情况。例如：[`process.exit(...)` 中的 `@types/node`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/5299d372a220584e75a031c13b3d555607af13f8/types/node/globals.d.ts#l874) 指定返回为 `never`。
 
@@ -345,7 +345,7 @@ interface JsonArray extends Array<Json> {}
 type Json = string | number | boolean | null | { [property: string]: Json } | Json[];
 ```
 
-这种新的行为，可以让我们在元组中递归使用类型别名，下面的代码，在以前会抛出错误，但是现在是有效的：
+这种新的行为，可以让在元组中递归使用类型别名，下面的代码，在以前会抛出错误，但是现在是有效的：
 
 ```ts
 type VirtualNode = string | [string, { [key: string]: any }, ...VirtualNode[]];
@@ -362,7 +362,7 @@ const myNode: VirtualNode = [
 
 ## `--declaration` and `--allowJs`
 
-`--declaration` 选项可以让我们从 TypeScript 源文件（如 `.ts`、`.tsx` 文件）中生成 `.d.ts`（声明文件）。这些 `.d.ts` 文件为什么很重要，有以下原因：
+`--declaration` 选项可以让从 TypeScript 源文件（如 `.ts`、`.tsx` 文件）中生成 `.d.ts`（声明文件）。这些 `.d.ts` 文件为什么很重要，有以下原因：
 
 首先，它们允许 TypeScript 在不需要重新检查源代码的情况下，能对其他项目进行类型检查。其次，它们允许 TypeScript 与没有使用 TypeScript 构建的 JavaScript 库之间更好的协作。最后，一个被经常忽略小细节：当使用由 TypeScript 驱动的编辑器来获得一些更好功能（比如自动完成）时，TypeScript 和 JavaScript 用户都可以从这些文件中受益。
 
@@ -489,7 +489,7 @@ For more details, you can [check out the original pull request](https://github.c
 
 ## `useDefineForClassFields` 标记与 `declare` 属性修饰符
 
-当在 TypeScript 中实现 class 中的公有字段时，我们尽可能的实现了以下代码功能：
+当在 TypeScript 中实现 class 中的公有字段时，尽可能的实现了以下代码功能：
 
 ```ts
 class C {
@@ -529,7 +529,7 @@ class C {
 }
 ```
 
-当然 TypeScript 3.7 版本在默认情况下编译出的代码不会有任何改变（与以前版本相同），我们一直在逐步更改，来帮助用户减少可能发生的破坏性更改。我们提供来一个新的标志 `useDefineForClassFields` 来使用此种模式，并带有一些新的逻辑检查。
+当然 TypeScript 3.7 版本在默认情况下编译出的代码不会有任何改变（与以前版本相同），一直在逐步更改，来帮助用户减少可能发生的破坏性更改。提供来一个新的标志 `useDefineForClassFields` 来使用此种模式，并带有一些新的逻辑检查。
 
 最大的两个改变如下：
 
@@ -634,8 +634,8 @@ class DogHouse extends AnimalHouse {
 
 ## 编辑有项目引用的项目，无需构建
 
-TypeScript 的项目引用功能给我们提供了一个方便的方式来拆分代码库，从而能让我们能实现更快地编译。
-遗憾的是，当我们编辑一个依赖未被构建（或者构建结果已过期）的项目时，会得到不好的编辑体验。
+TypeScript 的项目引用功能给提供了一个方便的方式来拆分代码库，从而能让能实现更快地编译。
+遗憾的是，当编辑一个依赖未被构建（或者构建结果已过期）的项目时，会得到不好的编辑体验。
 
 在 TypeScript 3.7 中，当打开一个有依赖的项目时，TypeScript 将会自动地使用原始 `.ts`/`.tsx` 文件来代替。
 这意味着在有依赖引用的项目中，代码的修改会马上同步和生效，从而编辑体验会有所提升，
@@ -669,7 +669,7 @@ function doAdminThing(user: User) {
 }
 ```
 
-在这里，我们忘记调用 `isAdministrator`，该代码错误的允许非管理员用户编辑配置。
+在这里，忘记调用 `isAdministrator`，该代码错误的允许非管理员用户编辑配置。
 
 在 TypeScript 3.7 中，它就会抛出错误：
 

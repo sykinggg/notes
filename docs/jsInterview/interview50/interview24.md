@@ -27,7 +27,7 @@ console.log(tempArray);
 arr.sort((a, b) => Math.random() - .5)
 ```
 
-不过我们team随机算法也用的洗牌算法，思路就是从后往前遍历，然后随机(0, i+1)，交换
+不过team随机算法也用的洗牌算法，思路就是从后往前遍历，然后随机(0, i+1)，交换
 
 ```js
 function shuffle(array) {

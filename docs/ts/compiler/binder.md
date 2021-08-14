@@ -39,7 +39,7 @@ SourceFile 是绑定器的工作单元，`binder.ts` 由 `checker.ts` 驱动。
 
 ## 绑定器函数
 
-`bindSourceFile` 和 `mergeSymbolTable` 是两个关键的绑定器函数，我们来看下：
+`bindSourceFile` 和 `mergeSymbolTable` 是两个关键的绑定器函数，来看下：
 
 ### `bindSourceFile`
 
@@ -51,7 +51,7 @@ SourceFile 是绑定器的工作单元，`binder.ts` 由 `checker.ts` 驱动。
 
 ### `bind`
 
-bind 能处理任一节点（不只是 `SourceFile`），它做的第一件事是分配 `node.parent`（如果 `parent` 变量已设置，绑定器在 `bindChildren` 函数的处理中仍会再次设置）， 然后交给 `bindWorker` 做很多*重*活。最后调用 `bindChildren`（该函数简单地将绑定器的状态（如：`parent`）存入函数本地变量中，接着在每个子节点上调用 `bind`，然后再将状态转存回绑定器中）。现在我们看下 `bindWorker`，一个更有趣的函数。
+bind 能处理任一节点（不只是 `SourceFile`），它做的第一件事是分配 `node.parent`（如果 `parent` 变量已设置，绑定器在 `bindChildren` 函数的处理中仍会再次设置）， 然后交给 `bindWorker` 做很多*重*活。最后调用 `bindChildren`（该函数简单地将绑定器的状态（如：`parent`）存入函数本地变量中，接着在每个子节点上调用 `bind`，然后再将状态转存回绑定器中）。现在看下 `bindWorker`，一个更有趣的函数。
 
 ### `bindWorker`
 
@@ -186,23 +186,23 @@ function getContainerFlags(node: Node): ContainerFlags {
 // 所有容器节点都以声明顺序保存在一个链表中。
 // 类型检查器中的 getLocalNameOfContainer 函数会使用该链表对容器使用的本地名称的唯一性做验证。
 function bindChildren(node: Node) {
-  // 在递归到子节点之前，我们先要保存父节点，容器和块容器。处理完弹出的子节点后，再将这些值存回原处。
+  // 在递归到子节点之前，先要保存父节点，容器和块容器。处理完弹出的子节点后，再将这些值存回原处。
   let saveParent = parent;
   let saveContainer = container;
   let savedBlockScopeContainer = blockScopeContainer;
 
-  // 现在要将这个节点设为父节点，我们要递归它的子节点。
+  // 现在要将这个节点设为父节点，要递归它的子节点。
   parent = node;
 
   // 根据节点的类型，需要对当前容器或块容器进行调整。 如果当前节点是个容器，则自动将其视为当前的块容器。
-  // 由于我们知道容器可能包含本地变量，因此提前初始化 .locals 字段。
+  // 由于知道容器可能包含本地变量，因此提前初始化 .locals 字段。
   // 这样做是因为很可能需要将一些子（节点）置入 .locals 中（例如：函数参数或变量声明）。
   //
-  // 但是，我们不会主动为块容器创建 .locals，因为通常块容器中不会有块作用域变量。
-  // 我们不想为遇到的每个块都分配一个对象，大多数情况没有必要。
+  // 但是，不会主动为块容器创建 .locals，因为通常块容器中不会有块作用域变量。
+  // 不想为遇到的每个块都分配一个对象，大多数情况没有必要。
   //
-  // 最后，如果是个块容器，我们就清理该容器中可能存在的 .locals 对象。这种情况常在增量编译场景中发生。
-  // 由于我们可以重用上次编译的节点，而该节点可能已经创建了 locals 对象。
+  // 最后，如果是个块容器，就清理该容器中可能存在的 .locals 对象。这种情况常在增量编译场景中发生。
+  // 由于可以重用上次编译的节点，而该节点可能已经创建了 locals 对象。
   // 因此必须清理，以免意外地从上次的编译中移动了过时的数据。
   let containerFlags = getContainerFlags(node);
   if (containerFlags & ContainerFlags.IsContainer) {
@@ -226,7 +226,7 @@ function bindChildren(node: Node) {
 }
 ```
 
-您可能还记得绑定器函数中的这部分：`bindChildren` 由 `bind` 函数调用。我们得到这样的递归绑定：`bind` 调用 `bindChildren`，而 `bindChildren` 又为其每个子节点调用 `bind`
+您可能还记得绑定器函数中的这部分：`bindChildren` 由 `bind` 函数调用。得到这样的递归绑定：`bind` 调用 `bindChildren`，而 `bindChildren` 又为其每个子节点调用 `bind`
 
 ## 绑定器符号表
 
@@ -283,13 +283,13 @@ function declareSymbol(
   let symbol: Symbol;
   if (name !== undefined) {
     // 检查符号表中是否已有同名的符号。若没有，创建此名称的新符号并加入表中。
-    // 注意，我们尚未给新符号指定任何标志。这可以确保不会和传入的 excludes 标志起冲突。
+    // 注意，尚未给新符号指定任何标志。这可以确保不会和传入的 excludes 标志起冲突。
     //
     // 如果已存在的一个符号，查看是否与要创建的新符号冲突。
     // 例如：同一符号表中，'var' 符号和 'class' 符号会冲突。
     // 如果有冲突，报告该问题给该符号的每个声明，然后为该声明创建一个新符号
     //
-    // 如果我们创建的新符号既没在符号表中重名也没和现有符号冲突，就将该节点添加为新符号的唯一声明。
+    // 如果创建的新符号既没在符号表中重名也没和现有符号冲突，就将该节点添加为新符号的唯一声明。
     //
     // 否则，就要（将新符号）合并进兼容的现有符号中（例如同一容器中有多个同名的 'var' 时）。这种情况下要把该节点添加到符号的声明列表中。
     symbol = hasProperty(symbolTable, name)

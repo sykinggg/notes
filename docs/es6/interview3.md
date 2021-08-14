@@ -54,7 +54,7 @@ function foo() {
 
 **SO，箭头函数不能直接修改它的this指向。**
 
-幸运的是，我们可以通过间接的形式来修改箭头函数的指向：
+幸运的是，可以通过间接的形式来修改箭头函数的指向：
 
 **去修改被继承的普通函数的this指向，然后箭头函数的this指向也会跟着改变**，这在上一个栗子中有演示。
 
@@ -151,7 +151,7 @@ a(1, 2, 3, 4);
 arguments.push(0); // arguments.push is not a function
 ```
 
-如上，如果我们需要使用数组的`API`，需要使用扩展符/`Array.from`来将它转换成真正的数组:
+如上，如果需要使用数组的`API`，需要使用扩展符/`Array.from`来将它转换成真正的数组:
 
 ```js
 arguments = [...arguments]; 或者 ：arguments = Array.from(arguments);

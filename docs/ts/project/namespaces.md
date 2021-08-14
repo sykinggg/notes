@@ -42,7 +42,7 @@ Utility.log('Call me');
 Utility.error('maybe');
 ```
 
-`namespace` 关键字编译后的 JavaScript 代码，与我们早些时候看到的 JavaScript 代码一样。
+`namespace` 关键字编译后的 JavaScript 代码，与早些时候看到的 JavaScript 代码一样。
 
 ```js
 (function (Utility) {
@@ -52,4 +52,4 @@ Utility.error('maybe');
 
 值得注意的一点是，命名空间是支持嵌套的。因此，你可以做一些类似于在 `Utility` 命名空间下嵌套一个命名空间 `Messaging` 的事情。
 
-对于大多数项目，我们建议使用外部模块和命名空间，来快速演示和移植旧的 JavaScript 代码。
+对于大多数项目，建议使用外部模块和命名空间，来快速演示和移植旧的 JavaScript 代码。

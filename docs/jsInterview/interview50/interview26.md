@@ -44,7 +44,7 @@ Function.prototype.myBind = function (context) {
   var args = [...arguments].slice(1)
   // 返回一个函数
   return function F() {
-    // 因为返回了一个函数，我们可以 new F()，所以需要判断
+    // 因为返回了一个函数，可以 new F()，所以需要判断
     if (this instanceof F) {
       return new _this(...args, ...arguments)
     }
@@ -105,7 +105,7 @@ call() 方法调用一个函数。简单理解为调用函数的方式，但是�
 注意：
 
 - 返回值就是函数的返回值，因为它就是调用函数
-- 因此当我们想改变 this 指向，同时想调用这个函数的时候，可以使用 call，比如继承
+- 因此当想改变 this 指向，同时想调用这个函数的时候，可以使用 call，比如继承
 - call()无参数 / call(null) / call(undefined);这三种 this 都指向 window
 
 **实现 call 方法**

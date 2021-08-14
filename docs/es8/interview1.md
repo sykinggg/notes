@@ -30,7 +30,7 @@ async function process(array) {
 
 `Object.values()`是一个与`Object.keys()`类似的新函数，但返回的是Object自身属性的所有值，不包括继承的值。
 
-假设我们要遍历如下对象`obj`的所有值：
+假设要遍历如下对象`obj`的所有值：
 
 ```js
 const obj = {a: 1, b: 2, c: 3};
@@ -50,13 +50,13 @@ const values=Object.values(obj1);
 console.log(values);//[1, 2, 3]
 ```
 
-从上述代码中可以看出`Object.values()`为我们省去了遍历key，并根据这些key获取value的步骤。
+从上述代码中可以看出`Object.values()`为省去了遍历key，并根据这些key获取value的步骤。
 
 ## 3.Object.entries()
 
 `Object.entries()`函数返回一个给定对象自身可枚举属性的键值对的数组。
 
-接下来我们来遍历上文中的`obj`对象的所有属性的`key`和`value`：
+接下来来遍历上文中的`obj`对象的所有属性的`key`和`value`：
 
 > 不使用`Object.entries()` :`ES7`
 

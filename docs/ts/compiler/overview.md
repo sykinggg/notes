@@ -16,7 +16,7 @@ TypeScript 编译器源文件位于 [`src/compiler`](https://github.com/Microsof
 
 ### BYOTS
 
-我们有个名为 [Bring Your Own TypeScript (BYOTS)](https://github.com/basarat/byots) 的项目，通过暴露内部接口让编译器 API 使用起来更简单。你可以在全局范围上暴露你 TypeScript 应用的本地变量。
+有个名为 [Bring Your Own TypeScript (BYOTS)](https://github.com/basarat/byots) 的项目，通过暴露内部接口让编译器 API 使用起来更简单。你可以在全局范围上暴露你 TypeScript 应用的本地变量。
 
 ### 语法和语义
 
@@ -58,7 +58,7 @@ AST + 符号 ~~ 检查器 ~~> 类型验证
 AST + 检查器 ~~ 发射器 ~~> JavaScript 代码
 ```
 
-TypeScript 编译器中还有一些其他文件，为我们接下来介绍的很多关键部分提供实用工具。
+TypeScript 编译器中还有一些其他文件，为接下来介绍的很多关键部分提供实用工具。
 
 ## 文件：Utilities
 
@@ -87,4 +87,4 @@ TypeScript 编译器中还有一些其他文件，为我们接下来介绍的很
 
 `system.ts`，TypeScript 编译器与操作系统的所有交互均通过 `System` 接口进行。接口及其实现（`WScript` 和 `Node`） 均定义在 `system.ts` 中。你可以将其视为*操作环境（OE, Operating Environment）*。
 
-现在对主要文件有一个整体了解了，我们继续介绍程序（[`Program`](./program.md)）的概念
+现在对主要文件有一个整体了解了，继续介绍程序（[`Program`](./program.md)）的概念

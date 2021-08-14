@@ -10,7 +10,7 @@ foo['Hello'] = 'World';
 console.log(foo['Hello']); // World
 ```
 
-我们在键 `Hello` 下保存了一个字符串 `World`，除字符串外，它也可以保存任意的 JavaScript 对象，例如一个类的实例。
+在键 `Hello` 下保存了一个字符串 `World`，除字符串外，它也可以保存任意的 JavaScript 对象，例如一个类的实例。
 
 ```ts
 class Foo {
@@ -52,7 +52,7 @@ let foo = ['World'];
 console.log(foo[0]); // World
 ```
 
-因此，这就是 JavaScript。现在让我们看看 TypeScript 对这些概念更优雅的处理。
+因此，这就是 JavaScript。现在让看看 TypeScript 对这些概念更优雅的处理。
 
 ## TypeScript 索引签名
 
@@ -99,17 +99,17 @@ console.log((1).toString()); // 1
 console.log((2).toString()); // 2
 ```
 
-因此，我们有以下结论：
+因此，有以下结论：
 
 ::: tip
 TypeScript 的索引签名必须是 `string` 或者 `number`。
 
-`symbols` 也是有效的，TypeScript 支持它。在接下来我们将会讲解它。
+`symbols` 也是有效的，TypeScript 支持它。在接下来将会讲解它。
 :::
 
 ## 声明一个索引签名
 
-在上文中，我们通过使用 `any` 来让 TypeScript 允许我们可以做任意我们想做的事情。实际上，我们可以明确的指定索引签名。例如：假设你想确认存储在对象中任何内容都符合 `{ message: string }` 的结构，你可以通过 `[index: string]: { message: string }` 来实现。
+在上文中，通过使用 `any` 来让 TypeScript 允许可以做任意想做的事情。实际上，可以明确的指定索引签名。例如：假设你想确认存储在对象中任何内容都符合 `{ message: string }` 的结构，你可以通过 `[index: string]: { message: string }` 来实现。
 
 ```ts
 const foo: {
@@ -194,7 +194,7 @@ const good: FromIndex = { b: 1, c: 2 };
 const bad: FromIndex = { b: 1, c: 2, d: 3 };
 ```
 
-这通常与 `keyof/typeof` 一起使用，来获取变量的类型，在下一章节中，我们将解释它。
+这通常与 `keyof/typeof` 一起使用，来获取变量的类型，在下一章节中，将解释它。
 
 变量的规则一般可以延迟被推断：
 
@@ -248,7 +248,7 @@ const failsSilently: NestedCSS = {
 };
 ```
 
-取而代之，我们把索引签名分离到自己的属性里，如命名为 `nest`（或者 `children`、`subnodes` 等）：
+取而代之，把索引签名分离到自己的属性里，如命名为 `nest`（或者 `children`、`subnodes` 等）：
 
 ```ts
 interface NestedCSS {
@@ -274,7 +274,7 @@ const failsSliently: NestedCSS {
 
 ## 索引签名中排除某些属性
 
-有时，你需要把属性合并至索引签名（虽然我们并不建议这么做，你应该使用上文中提到的嵌套索引签名的形式），如下例子：
+有时，你需要把属性合并至索引签名（虽然并不建议这么做，你应该使用上文中提到的嵌套索引签名的形式），如下例子：
 
 ```ts
 type FieldState = {

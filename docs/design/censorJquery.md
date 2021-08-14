@@ -2,13 +2,13 @@
 
 ## 观察者模式
 
-> 另一个我们之前提到过的模式就是观察者（`发布/订阅`）模式.这种模式下，系统中的对象可以在关注的事件发生的时候给其他对象发送消息，也可以被其他对象所通知。
+> 另一个之前提到过的模式就是观察者（`发布/订阅`）模式.这种模式下，系统中的对象可以在关注的事件发生的时候给其他对象发送消息，也可以被其他对象所通知。
 >
 > `jQuery`核心库很多年前就已经提供了对于类似于发布/订阅系统的支持，它们称之为定制事件。
 >
 > `jQuery`的早期版本中，可以通过使用`jQuery.bind()`(订阅),`jQuery.trigger()`(发布),和`jQuery.unbind()`(取消订阅)来使用这些定制事件，但在近期的版本中，这些都可以通过使用`jQuery.on()`,`jQuery.trigger()`和`jQuery.off()`来完成。
 
-下面我们来看一下实际应用中的一个例子:
+下面来看一下实际应用中的一个例子:
 
 ```js
 // Equivalent to subscribe(topicName, callback)
@@ -23,7 +23,7 @@ $( document ).trigger( "topicName" );
 $( document ).off( "topicName" );
 ```
 
-> 对于`jQuery.on()`和`jQuery.off()`的调用最后会经过`jQuery`的事件系统，与`Ajax`一样，由于它们的实现代码相对较长，我们只看一下实际上事件处理器是在哪儿以及如何将定制事件加入到系统中的:
+> 对于`jQuery.on()`和`jQuery.off()`的调用最后会经过`jQuery`的事件系统，与`Ajax`一样，由于它们的实现代码相对较长，只看一下实际上事件处理器是在哪儿以及如何将定制事件加入到系统中的:
 
 ```js
 jQuery.event = {
@@ -72,7 +72,7 @@ jQuery.event = {
       }
 ```
 
-对于那些喜欢使用传统的命名方案的人， Ben Alamn对于上面的方法提供了一个简单的包装，然后为我们提供了`jQuery.publish()`,`jQuery.subscribe`和`jQuery.unscribe`方法。我之前在书中提到过，现在我们可以完整的看一下这个包装器。
+对于那些喜欢使用传统的命名方案的人， Ben Alamn对于上面的方法提供了一个简单的包装，然后为提供了`jQuery.publish()`,`jQuery.subscribe`和`jQuery.unscribe`方法。我之前在书中提到过，现在可以完整的看一下这个包装器。
 
 ```js
 (function( $ ) {

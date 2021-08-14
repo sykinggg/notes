@@ -1,6 +1,6 @@
 # 辨析联合类型
 
-当类中含有[字面量成员](./literals.md)时，我们可以用该类的属性来辨析联合类型。
+当类中含有[字面量成员](./literals.md)时，可以用该类的属性来辨析联合类型。
 
 作为一个例子，考虑 `Square` 和 `Rectangle` 的联合类型 `Shape`。`Square` 和 `Rectangle`有共同成员 `kind`，因此 `kind` 存在于 `Shape` 中。
 
@@ -51,7 +51,7 @@ interface Rectangle {
 }
 
 // 有人仅仅是添加了 `Circle` 类型
-// 我们可能希望 TypeScript 能在任何被需要的地方抛出错误
+// 可能希望 TypeScript 能在任何被需要的地方抛出错误
 interface Circle {
   kind: 'circle';
   radius: number;

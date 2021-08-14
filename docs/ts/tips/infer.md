@@ -75,11 +75,11 @@ type AA = ParamType<string>; // string
 
 ## 一些用例
 
-至此，相信你已经对 `infer` 已有基本了解，我们来看看一些使用它的「骚操作」：
+至此，相信你已经对 `infer` 已有基本了解，来看看一些使用它的「骚操作」：
 
 - **tuple** 转 **union** ，如：`[string, number]` -> `string | number`
 
-  解答之前，我们需要了解 tuple 类型在一定条件下，是可以赋值给数组类型：
+  解答之前，需要了解 tuple 类型在一定条件下，是可以赋值给数组类型：
 
   ```ts
   type TTuple = [string, number];
@@ -110,7 +110,7 @@ type AA = ParamType<string>; // string
 
   这个可能要稍微麻烦一点，需要 `infer` 配合「 [Distributive conditional types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#distributive-conditional-types) 」使用。
 
-  在[相关链接](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#distributive-conditional-types)中，我们可以了解到「Distributive conditional types」是由「naked type parameter」构成的条件类型。而「naked type parameter」表示没有被 `Wrapped` 的类型（如：`Array<T>`、`[T]`、`Promise<T>` 等都是不是「naked type parameter」）。「Distributive conditional types」主要用于拆分 `extends` 左边部分的联合类型，举个例子：在条件类型 `T extends U ? X : Y` 中，当 `T` 是 `A | B` 时，会拆分成 `A extends U ? X : Y | B extends U ? X : Y`；
+  在[相关链接](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-8.html#distributive-conditional-types)中，可以了解到「Distributive conditional types」是由「naked type parameter」构成的条件类型。而「naked type parameter」表示没有被 `Wrapped` 的类型（如：`Array<T>`、`[T]`、`Promise<T>` 等都是不是「naked type parameter」）。「Distributive conditional types」主要用于拆分 `extends` 左边部分的联合类型，举个例子：在条件类型 `T extends U ? X : Y` 中，当 `T` 是 `A | B` 时，会拆分成 `A extends U ? X : Y | B extends U ? X : Y`；
 
   有了这个前提，再利用在逆变位置上，[同一类型变量的多个候选类型将会被推断为交叉类型](https://github.com/Microsoft/TypeScript/pull/21496)的特性，即
 
@@ -123,7 +123,7 @@ type AA = ParamType<string>; // string
   type T21 = Bar<{ a: (x: T1) => void; b: (x: T2) => void }>; // T1 & T2
   ```
 
-  因此，综合以上几点，我们可以得到在 [stackoverflow](https://stackoverflow.com/questions/50374908/transform-union-type-to-intersection-type) 上的一个答案：
+  因此，综合以上几点，可以得到在 [stackoverflow](https://stackoverflow.com/questions/50374908/transform-union-type-to-intersection-type) 上的一个答案：
 
   ```ts
   type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends ((k: infer I) => void) ? I : never;

@@ -4,7 +4,7 @@
 
 ## 仅仅导入/导出声明
 
-为了能让我们导入类型，TypeScript 重用了 JavaScript 导入语法。例如在下面的这个例子中，我们确保 JavaScript 的值 `doThing` 以及 TypeScript 类型 `Options` 一同被导入
+为了能让导入类型，TypeScript 重用了 JavaScript 导入语法。例如在下面的这个例子中，确保 JavaScript 的值 `doThing` 以及 TypeScript 类型 `Options` 一同被导入
 
 ```ts
 // ./foo.ts
@@ -26,7 +26,7 @@ function doThingBetter(options: Options) {
 }
 ```
 
-这很方便的，因为在大多数的情况下，我们不必担心导入了什么 —— 仅仅是我们想导入的内容。
+这很方便的，因为在大多数的情况下，不必担心导入了什么 —— 仅仅是想导入的内容。
 
 遗憾的是，这仅是因为一个被称之为「导入省略」的功能而起作用。当 TypeScript 输出一个 JavaScript 文件时，TypeScript 会识别出 `Options` 仅仅是当作了一个类型来使用，它将会删除 `Options`
 
@@ -56,7 +56,7 @@ import { MyThing } from './some-module.js';
 export { MyThing };
 ```
 
-如果单从这个文件来看，我们无从得知答案。如果 `Mything` 仅仅是一个类型，Babel 和 TypeScript 使用的 `transpileModule` API 编译出的代码将无法正确工作，并且 TypeScript 的 `isolatedModules` 编译选项将会提示我们，这种写法将会抛出错误。问题的关键在于，没有一种方式能识别它仅仅是个类型，以及是否应该删除它，因此「导入省略」并不够好。
+如果单从这个文件来看，无从得知答案。如果 `Mything` 仅仅是一个类型，Babel 和 TypeScript 使用的 `transpileModule` API 编译出的代码将无法正确工作，并且 TypeScript 的 `isolatedModules` 编译选项将会提示，这种写法将会抛出错误。问题的关键在于，没有一种方式能识别它仅仅是个类型，以及是否应该删除它，因此「导入省略」并不够好。
 
 同时，这也存在另外一个问题，TypeScript 导入省略将会去除只包含用于类型声明的导入语句。对于含有副作用的模块，这造成了明显的不同行为。于是，使用者将会不得不添加一条额外的声明语句，来确保有副作用。
 
@@ -68,7 +68,7 @@ import { SomeTypeFoo, SomeOtherTypeBar } from './module-with-side-effects';
 import './module-with-side-effects';
 ```
 
-一个我们看到的具体例子是出现在 Angularjs（1.x）中， `services` 需要在全局在注册（它是一个副作用），但是导入的 `services` 仅仅用于类型声明中。
+一个看到的具体例子是出现在 Angularjs（1.x）中， `services` 需要在全局在注册（它是一个副作用），但是导入的 `services` 仅仅用于类型声明中。
 
 ```ts
 // ./service.ts
@@ -87,9 +87,9 @@ inject('globalServiceId', function(service: Service) {
 
 结果 `./service.js` 中的代码不会被执行，导致在运行时会被中断。
 
-为了避免这类行为，我们意识到在什么该被导入/删除方面，需要给使用者提供更细粒度的控制。
+为了避免这类行为，意识到在什么该被导入/删除方面，需要给使用者提供更细粒度的控制。
 
-在 TypeScript 3.8 版本中，我们添加了一个仅仅导入/导出声明语法来作为解决方式。
+在 TypeScript 3.8 版本中，添加了一个仅仅导入/导出声明语法来作为解决方式。
 
 ```ts
 import type { SomeThing } from "./some-module.js";
@@ -116,7 +116,7 @@ class Button extends Component<ButtonProps> {
 }
 ```
 
-如果在之前你使用过 Flow，它们的语法是相似的。一个不同的地方是我们添加了一个新的限制条件，来避免可能混淆的代码。
+如果在之前你使用过 Flow，它们的语法是相似的。一个不同的地方是添加了一个新的限制条件，来避免可能混淆的代码。
 
 ```ts
 // Is only 'Foo' a type? Or every declaration in the import?
@@ -127,7 +127,7 @@ import type Foo, { Bar, Baz } from "some-module";
 // error! A type-only import can specify a default import or named bindings, but not both.
 ```
 
-与 `import type` 相关联，我们提供来一个新的编译选项：`importsNotUsedAsValues`，通过它可以来控制没被使用的导入语句将会被如何处理，它的名字是暂定的，但是它提供来三个不同的选项。
+与 `import type` 相关联，提供来一个新的编译选项：`importsNotUsedAsValues`，通过它可以来控制没被使用的导入语句将会被如何处理，它的名字是暂定的，但是它提供来三个不同的选项。
 
 - `remove`，这是现在的行为 —— 丢弃这些导入语句。这仍然是默认行为，没有破坏性的更改
 - `preserve`，它将会保留所有的语句，即使是从来没有被使用。它可以保留副作用
@@ -162,12 +162,12 @@ jeremy.#name
 
 不同于正常属性（甚至是使用 `private` 修饰符声明的属性），私有字段有一些需要记住的规则：
 
-- 私有字段使用 `#` 字符作为开始，通常，我们也把这些称为私有名称。
+- 私有字段使用 `#` 字符作为开始，通常，也把这些称为私有名称。
 - 每个私有字段的名字，在被包含的类中，都是唯一的
 - 在 TypeScript 中，像 `public` 和 `private` 修饰符不能用于私有字段
-- 私有字段不能在所包含的类之外访问 —— 即使是对于 JavaScript 使用者来说也是如此。通常，我们把这种称为「hard privacy」。
+- 私有字段不能在所包含的类之外访问 —— 即使是对于 JavaScript 使用者来说也是如此。通常，把这种称为「hard privacy」。
 
-除了「hard privacy」，私有字段的另外一个优点是我们先前提到的唯一性。
+除了「hard privacy」，私有字段的另外一个优点是先前提到的唯一性。
 
 正常的属性容易被子类所改写
 
@@ -261,7 +261,7 @@ class C {
 
 ### 该使用哪个？
 
-我们已经收到很多关于「我该使用 `private` 关键字，还是使用 ECMAScript 提供的私有字段 `#` 了？」这类的问题。
+已经收到很多关于「我该使用 `private` 关键字，还是使用 ECMAScript 提供的私有字段 `#` 了？」这类的问题。
 
 像所有其他好的问题一样，答案总是令人遗憾的：它取决你。
 
@@ -306,7 +306,7 @@ console.log(new C()["#foo"]); // prints undefined
 
 正如上文所述，使用 ECMAScript 的私有字段，创建子类会更容易，因为它们是**真**私有。当使用 ECMAScript 私有字段时，子类无需担心字段名字的冲突。当使用 TypeScript `private` 属性声明时，使用者仍然需要小心不要覆盖父类中的相同字段。
 
-最后，还有一些你需要考虑的事情，比如你打算让你的代码在哪运行？当前，TypeScript 只有在编译目标为 ECMAScript 2015（ES6）及其以上时，才能支持该私有字段。因为我们在底层使用 `WeakMaps` 实现这种方法 —— `WeakMaps` 并不能以一种不会导致内存泄漏的方式 polyfill。对比而言，TypeScript 的 `private` 声明属性能在所有的编译目标下正常工作 —— 甚至是 ECMAScript 3。
+最后，还有一些你需要考虑的事情，比如你打算让你的代码在哪运行？当前，TypeScript 只有在编译目标为 ECMAScript 2015（ES6）及其以上时，才能支持该私有字段。因为在底层使用 `WeakMaps` 实现这种方法 —— `WeakMaps` 并不能以一种不会导致内存泄漏的方式 polyfill。对比而言，TypeScript 的 `private` 声明属性能在所有的编译目标下正常工作 —— 甚至是 ECMAScript 3。
 
 ## `export * as ns` 语法
 
@@ -351,9 +351,9 @@ async function main() {
 main().catch(e => console.error(e));
 ```
 
-为了避免引入 `async` 函数，我们可以使用一个简便的语法，它在即将到来的 ECMAScript feature 中被称为 `top-level await`。
+为了避免引入 `async` 函数，可以使用一个简便的语法，它在即将到来的 ECMAScript feature 中被称为 `top-level await`。
 
-在当前的 JavaScript 中（以及其他具有相似功能的大多数其他语言），`await` 仅仅只能用于 `async` 函数内部。然而，使用 `top-level await` 时，我们可以在一个模块的顶层使用 `await`。
+在当前的 JavaScript 中（以及其他具有相似功能的大多数其他语言），`await` 仅仅只能用于 `async` 函数内部。然而，使用 `top-level await` 时，可以在一个模块的顶层使用 `await`。
 
 ```ts
 const response = await fetch('...');
@@ -401,7 +401,7 @@ new Foo().stuff;
 - `@private` 表示一个属性只能在包含的类中访问
 - `@protected` 表示该属性只能在所包含的类及子类中访问，但不能在类的实例中访问
 
-下一步，我们计划添加 `@readonly` 修饰符，来确保一个属性只能在初始化时被修改：
+下一步，计划添加 `@readonly` 修饰符，来确保一个属性只能在初始化时被修改：
 
 ```ts
 // @ts-check
@@ -426,7 +426,7 @@ new Foo().stuff++;
 
 ## watchOptions
 
-一直以来，TypeScript 致力于在 `--watch` 模式下和编辑器中提供可靠的文件监听功能。尽管在大部分情况下，它都能很好的工作，但是在 Node.js 中，文件监控非常困难，这主要体现在我们的代码逻辑中。在 Node.js 中内置的 API 中，要么占用大量的 CPU 资源，要么不准确（[fs.watchFile](https://nodejs.org/api/fs.html#fs_fs_watchfile_filename_options_listener)），甚至它们在各个平台的行为不一致（[fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener)）。除此之外，我们几乎不可能确定哪个 API 会更好的工作，因为它们不仅依赖于平台，还取决于文件所在的文件系统。
+一直以来，TypeScript 致力于在 `--watch` 模式下和编辑器中提供可靠的文件监听功能。尽管在大部分情况下，它都能很好的工作，但是在 Node.js 中，文件监控非常困难，这主要体现在的代码逻辑中。在 Node.js 中内置的 API 中，要么占用大量的 CPU 资源，要么不准确（[fs.watchFile](https://nodejs.org/api/fs.html#fs_fs_watchfile_filename_options_listener)），甚至它们在各个平台的行为不一致（[fs.watch](https://nodejs.org/api/fs.html#fs_fs_watch_filename_options_listener)）。除此之外，几乎不可能确定哪个 API 会更好的工作，因为它们不仅依赖于平台，还取决于文件所在的文件系统。
 
 这一直是个难题，因为 TypeScript 需要在更多平台上运行，而不仅仅是 Node.js。并且需要考虑到避免依赖模块完全独立。这尤其适用于对 Node.js 原生模块有依赖的模块。
 
@@ -484,4 +484,4 @@ fileA.ts < -fileB.ts < -fileC.ts < -fileD.ts;
 
 在 `--watch` 模式下，改变 `fileA.ts` 文件通常意味着 TypeScript 需要至少重新检查 `fileB.ts`、`fileC.ts` 和 `fileD.ts`，当使用 `assumeChangesOnlyAffectDirectDependencies` 时，`fileA.ts` 改变，意味着只需要检查 `fileA.ts` 和 `fileB.ts` 即可。
 
-在类似与 VSCode 的代码库中，使用该编译选项时，某些文件的构建时间从大约 14s 减小到 1s。然而我们并不推荐所有的代码库中都使用该编译选项，你可能对拥有庞大代码库时，延迟提示所有错误更感兴趣（例如一个专用的配置文件 `tsconfig.fullbuild.json` 或者是 CI 中）。
+在类似与 VSCode 的代码库中，使用该编译选项时，某些文件的构建时间从大约 14s 减小到 1s。然而并不推荐所有的代码库中都使用该编译选项，你可能对拥有庞大代码库时，延迟提示所有错误更感兴趣（例如一个专用的配置文件 `tsconfig.fullbuild.json` 或者是 CI 中）。

@@ -14,7 +14,7 @@ let sampleVariable: { bar: number };
 function foo(sampleParameter: { bar: number }) {}
 ```
 
-这里我们使用了内联类型注解，除此之外，你还可以使用接口等其他方式。
+这里使用了内联类型注解，除此之外，你还可以使用接口等其他方式。
 
 ### 返回类型注解
 
@@ -31,7 +31,7 @@ function foo(sample: Foo): Foo {
 }
 ```
 
-我们在这里使用了一个 `interface`，但你可以自由地使用其他注解方式，例如内联注解。
+在这里使用了一个 `interface`，但你可以自由地使用其他注解方式，例如内联注解。
 
 通常，你不*需要*注解函数的返回类型，因为它可以由编译器推断：
 

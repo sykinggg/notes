@@ -12,13 +12,13 @@
 
 ## IIFE
 
-`IIFE` 是 Immediately Invoked Function Expression 的缩写，作为一个基础知识，很多人可能都已经知道 `IIFE` 是怎么回事，(如果你已经掌握了 `IIFE`，可以跳过这节阅读后面的内容) 但这里我们仍旧会解释一下，它是怎么来的，因为在后面我们还会再次提到它：
+`IIFE` 是 Immediately Invoked Function Expression 的缩写，作为一个基础知识，很多人可能都已经知道 `IIFE` 是怎么回事，(如果你已经掌握了 `IIFE`，可以跳过这节阅读后面的内容) 但这里仍旧会解释一下，它是怎么来的，因为在后面还会再次提到它：
 
-最开始，我们对于模块区分的概念，可能是从文件的区分开始的，在一个简易的项目中，编程的习惯是通过一个 `HTML` 文件加上若干个 `JavaScript` 文件来区分不同的模块，就像这样：
+最开始，对于模块区分的概念，可能是从文件的区分开始的，在一个简易的项目中，编程的习惯是通过一个 `HTML` 文件加上若干个 `JavaScript` 文件来区分不同的模块，就像这样：
 
 ![demo](/notes/assets/es6/16a3628664b76721.png)
 
-我们可以通过这样一个简单的项目来说明，来看看每个文件里面的内容：
+可以通过这样一个简单的项目来说明，来看看每个文件里面的内容：
 
 ### demo.html
 
@@ -43,7 +43,7 @@
 
 ### 其他三个 JavaScript 文件
 
-在不同的 `js` 文件中我们定义了不同的变量，分别对应文件名：
+在不同的 `js` 文件中定义了不同的变量，分别对应文件名：
 
 ```js
 var header = '这是一条顶部信息' //header.js
@@ -58,7 +58,7 @@ var footer = '这是一条底部信息' //footer.js
 
 ![demo](/notes/assets/es6/16a362fa976d51a9.png)
 
-这简直就是一场噩梦，你可能没有意识到这会导致什么严重的结果，我们试着在 `footer.js` 中对 `header` 变量进行赋值操作，让我们在末尾加上这样一行代码：
+这简直就是一场噩梦，你可能没有意识到这会导致什么严重的结果，试着在 `footer.js` 中对 `header` 变量进行赋值操作，让在末尾加上这样一行代码：
 
 ```js
 header = 'nothing'
@@ -68,9 +68,9 @@ header = 'nothing'
 
 ![demo](/notes/assets/es6/16a363ca9cce48ec.png)
 
-Okay，现在我们知道，仅仅通过不同的文件，我们无法做到将这些变量分开，因为它们都被绑在了同一个 `window` 变量上。
+Okay，现在知道，仅仅通过不同的文件，无法做到将这些变量分开，因为它们都被绑在了同一个 `window` 变量上。
 
-但是更重要的是，怎么去解决呢？我们都知道，在 `JavaScript` 中，**函数拥有自己的作用域** 的，也就是说，如果我们可以用一个函数将这些变量包裹起来，那这些变量就不会直接被声明在全局变量 `window` 上了：
+但是更重要的是，怎么去解决呢？都知道，在 `JavaScript` 中，**函数拥有自己的作用域** 的，也就是说，如果可以用一个函数将这些变量包裹起来，那这些变量就不会直接被声明在全局变量 `window` 上了：
 
 所以现在 `main.js` 的内容会被修改成这样：
 
@@ -84,13 +84,13 @@ function mainWarraper() {
 mainWarraper()
 ```
 
-为了确保我们定义在函数 `mainWarraper` 的内容会被执行，所以我们必须在这里执行 `mainWarraper()` 本身，现在我们在 `window` 里面找不到 `main_message` 和 `main_error` 了，因为它们被隐藏在了 `mainWarraper` 中，但是 `mainWarraper` 仍旧污染了我们的 `window`：
+为了确保定义在函数 `mainWarraper` 的内容会被执行，所以必须在这里执行 `mainWarraper()` 本身，现在在 `window` 里面找不到 `main_message` 和 `main_error` 了，因为它们被隐藏在了 `mainWarraper` 中，但是 `mainWarraper` 仍旧污染了的 `window`：
 
 ![demo](/notes/assets/es6/16a364231a2d6dc6.png)
 
 这个方案还不够完美，怎么改进呢？
 
-答案就是我们要说的 IIFE 我们可以定义一个 **立即执行的匿名函数** 来解决这个问题：
+答案就是要说的 IIFE 可以定义一个 **立即执行的匿名函数** 来解决这个问题：
 
 ```js
 (function() {
@@ -102,7 +102,7 @@ mainWarraper()
 
 因为是一个匿名的函数，执行完后很快就会被释放，这种机制不会污染全局对象。
 
-虽然看起来有些麻烦，但它确实解决了我们将变量分离开来的需求，不是吗？然而在今天，几乎没有人会用这样方式来实现模块化编程。
+虽然看起来有些麻烦，但它确实解决了将变量分离开来的需求，不是吗？然而在今天，几乎没有人会用这样方式来实现模块化编程。
 
 后来又发生了什么呢？
 
@@ -110,7 +110,7 @@ mainWarraper()
 
 在 2009 年的一个冬天， 一名来自 Mozilla 团队的的工程师 ***Kevin Dangoor*** 开始捣鼓了一个叫 ***ServerJS*** 的项目，他是这样描述的：
 
-这个项目在 2009 年的 8 月份更名为今日我们熟悉的 CommonJS 以显示 API 更广泛的适用性。我觉得那时他可能并没有料到，这一规则的制定会让整个前端发生翻天覆地的变化。
+这个项目在 2009 年的 8 月份更名为今日熟悉的 CommonJS 以显示 API 更广泛的适用性。我觉得那时他可能并没有料到，这一规则的制定会让整个前端发生翻天覆地的变化。
 
 CommonJS 在 [Wikipedia](https://en.wikipedia.org/wiki/CommonJS) 中是这样描述的：
 
@@ -122,9 +122,9 @@ CommonJS 在 [Wikipedia](https://en.wikipedia.org/wiki/CommonJS) 中是这样描
 
 ### Node.js Modules
 
-> 这里不会解释 `Node.js Modules` 的 API 基本用法，因为这些都可以通过阅读 [官方文档](https://nodejs.org/docs/latest/api/modules.html#modules_modules) 来了解，我们会讨论为什么会这样设计，以及大家比较难理解的点来展开。
+> 这里不会解释 `Node.js Modules` 的 API 基本用法，因为这些都可以通过阅读 [官方文档](https://nodejs.org/docs/latest/api/modules.html#modules_modules) 来了解，会讨论为什么会这样设计，以及大家比较难理解的点来展开。
 
-在 Node.js 模块系统中，每个文件都被视为一个单独的模块，在一个Node.js 的模块中，本地的变量是私有的，而这个私有的实现，是通过把 Node.js 的模块包装在一个函数中，也就是 `The module wrapper`，我们来看看，在 [官方示例](https://nodejs.org/docs/latest/api/modules.html#modules_the_module_wrapper)中 它长什么样：
+在 Node.js 模块系统中，每个文件都被视为一个单独的模块，在一个Node.js 的模块中，本地的变量是私有的，而这个私有的实现，是通过把 Node.js 的模块包装在一个函数中，也就是 `The module wrapper`，来看看，在 [官方示例](https://nodejs.org/docs/latest/api/modules.html#modules_the_module_wrapper)中 它长什么样：
 
 
 ```js
@@ -138,7 +138,7 @@ CommonJS 在 [Wikipedia](https://en.wikipedia.org/wiki/CommonJS) 中是这样描
 
 如果你真正阅读了上一节中关于 `IIFE` 的内容，你会发现，其实核心思想是一样的，`Node.js` 对于模块私有化的实现也还是通过了一个函数。但是这有哪些不同呢？
 
-虽然这里有 `5` 个参数，但是我们把它们先放在一边，然后尝试站在一个模块的角度来思考这样一个问题：作为一个模块，你希望自己具备什么样的能力呢?
+虽然这里有 `5` 个参数，但是把它们先放在一边，然后尝试站在一个模块的角度来思考这样一个问题：作为一个模块，你希望自己具备什么样的能力呢?
 
 1. **暴露部分自己的方法或者变量的能力** ：这是我存在的意义，因为，对于那些想使用我的人而言这是必须的。[ `exports:导出对象` , `module:模块的引用` ]
 
@@ -148,9 +148,9 @@ CommonJS 在 [Wikipedia](https://en.wikipedia.org/wiki/CommonJS) 中是这样描
 
 ### Node.js Modules 中 require 的实现
 
-为什么我们要了解 `require` 方法的实现呢？因为理解这一过程，我们可以更好地理解下面的几个问题：
+为什么要了解 `require` 方法的实现呢？因为理解这一过程，可以更好地理解下面的几个问题：
 
-1. 当我们引入一个模块的时候，我们究竟做了怎样一件事情？
+1. 当引入一个模块的时候，究竟做了怎样一件事情？
 
 2. `exports` 和 `module.exports` 有什么联系和区别？
 
@@ -163,7 +163,7 @@ function require(/* ... */) {
   const module = { exports: {} };
   ((module, exports) => {
     // Module code here. In this example, define a function.
-    // 模块代码在这里，在这个例子中，我们定义了一个函数
+    // 模块代码在这里，在这个例子中，定义了一个函数
     function someFunc() {}
     exports = someFunc;
     // At this point, exports is no longer a shortcut to module.exports, and
@@ -187,7 +187,7 @@ function require(/* ... */) {
 
 代码中的注释以及 require 函数第一行默认值的声明，很清楚的阐述了，`exports` 和 `module.exports` 的区别和联系:
 
-`exports` 是 `module.exports` 的引用。作为一个引用，如果我们修改它的值，实际上修改的是它对应的引用对象的值。
+`exports` 是 `module.exports` 的引用。作为一个引用，如果修改它的值，实际上修改的是它对应的引用对象的值。
 
 就如:
 
@@ -199,7 +199,7 @@ module.exports = {
 }
 ```
 
-但是如果我们修改了 `exports` 引用的地址，对于它原来所引用的内容来说，没有任何影响，反而我们断开了这个引用于原来的地址之间的联系：
+但是如果修改了 `exports` 引用的地址，对于它原来所引用的内容来说，没有任何影响，反而断开了这个引用于原来的地址之间的联系：
 
 ```js
 exports = {
@@ -208,7 +208,7 @@ exports = {
 
 // 相当于
 
-let other = {a: 1} //为了更加直观，我们这样声明了一个变量
+let other = {a: 1} //为了更加直观，这样声明了一个变量
 exports = other
 ```
 
@@ -218,19 +218,19 @@ exports = other
 
 `CommonJS` 这一标准的初衷是为了让 `JavaScript` 在多个环境下都实现模块化，但是 Node.js 中的实现依赖了 Node.js 的环境变量：`module`，`exports`，`require`，`global`，浏览器没法用啊，所以后来出现了 `Browserify` 这样的实现，但是这并不是本文要讨论的内容，有兴趣的同学可以读读阮一峰老师的 [这篇文章](http://www.ruanyifeng.com/blog/2015/05/commonjs-in-browser.html)。
 
-说完了服务端的模块化，接下来我们聊聊，在浏览器这一端的模块化，又经历了些什么呢？
+说完了服务端的模块化，接下来聊聊，在浏览器这一端的模块化，又经历了些什么呢？
 
 ## RequireJS & AMD（Asynchronous Module Definition）
 
-试想一下，假如我们现在是在浏览器环境下，使用类似于 `Node.js Module` 的方式来管理我们的模块（例如 `Browserify`)，会有什么样的问题呢？
+试想一下，假如现在是在浏览器环境下，使用类似于 `Node.js Module` 的方式来管理的模块（例如 `Browserify`)，会有什么样的问题呢？
 
-因为我们已经了解了 `require()` 的实现，所以你会发现这其实是一个复制的过程，将被 `require` 的内容，赋值到一个 `module` 对象的属性上，然后返回这个对象的 `exports` 属性。
+因为已经了解了 `require()` 的实现，所以你会发现这其实是一个复制的过程，将被 `require` 的内容，赋值到一个 `module` 对象的属性上，然后返回这个对象的 `exports` 属性。
 
-这样做会有什么问题呢？在我们还没有完成复制的时候，无法使用被引用的模块中的方法和属性。在服务端可能这不是一个问题(因为服务器的文件都是存放在本地，并且是有缓存的)，但在浏览器环境下，这会导致阻塞，使得我们后面的步骤无法进行下去，还可能会执行一个未定义的方法而导致出错。
+这样做会有什么问题呢？在还没有完成复制的时候，无法使用被引用的模块中的方法和属性。在服务端可能这不是一个问题(因为服务器的文件都是存放在本地，并且是有缓存的)，但在浏览器环境下，这会导致阻塞，使得后面的步骤无法进行下去，还可能会执行一个未定义的方法而导致出错。
 
 相对于服务端的模块化，浏览器环境下，模块化的标准必须满足一个新的需求：异步的模块管理
 
-在这样的背景下，[RequireJS](https://requirejs.org/docs/api.html) 出现了，我们简单的了解一下它最核心的部分：
+在这样的背景下，[RequireJS](https://requirejs.org/docs/api.html) 出现了，简单的了解一下它最核心的部分：
 
 * 引入其他模块: `require()`
 
@@ -294,7 +294,7 @@ define(["./cart", "./inventory"], function(cart, inventory) {
 
 `RequireJS` 是基于 [AMD 规范](https://github.com/amdjs/amdjs-api/wiki/AMD) 实现的，那么相对于 Node.js 的 Module 它有什么优势呢?
 
-* 以函数的形式返回模块的值，尤其是构造函数，可以更好的实现API 设计，`Node` 中通过 `module.exports` 来支持这个，但使用 `"return function (){}"` 会更清晰。这意味着，我们不必通过处理 `“module”` 来实现 `“module.exports”`，它是一个更清晰的代码表达式。
+* 以函数的形式返回模块的值，尤其是构造函数，可以更好的实现API 设计，`Node` 中通过 `module.exports` 来支持这个，但使用 `"return function (){}"` 会更清晰。这意味着，不必通过处理 `“module”` 来实现 `“module.exports”`，它是一个更清晰的代码表达式。
 
 * 动态代码加载（在`AMD`系统中通过`require（[]，function（）{}）`来完成）是一项基本要求。 `CJS`谈到了，
 有一些建议，但没有完全囊括它。 `Node` 不支持这种需求，而是依赖于`require（''）`的同步行为，这对于 `Web` 环境来说是不方便的。
@@ -311,7 +311,7 @@ define(["./cart", "./inventory"], function(cart, inventory) {
 
 ### 新的问题
 
-通过上面的语法说明，我们会发现一个很明显的问题，在使用 `RequireJS` 声明一个模块时，必须指定所有的依赖项 ，这些依赖项会被当做形参传到 `factory` 中，对于依赖的模块会提前执行（`在 RequireJS 2.0 也可以选择延迟执行`），这被称为：`依赖前置`。
+通过上面的语法说明，会发现一个很明显的问题，在使用 `RequireJS` 声明一个模块时，必须指定所有的依赖项 ，这些依赖项会被当做形参传到 `factory` 中，对于依赖的模块会提前执行（`在 RequireJS 2.0 也可以选择延迟执行`），这被称为：`依赖前置`。
 
 加大了开发过程中的难度，无论是阅读之前的代码还是编写新的内容，也会出现这样的情况：`引入的另一个模块中的内容是条件性执行的`。
 
@@ -350,17 +350,17 @@ define(function(require, exports, module) {
 });
 ```
 
-我们可以很清楚的看到，`CMD` 规范中，只有当我们用到了某个外部模块的时候，它才会去引入，这回答了我们上一小节中遗留的问题，这也是它与 `AMD` 规范最大的不同点：`CMD推崇依赖就近 + 延迟执行`
+可以很清楚的看到，`CMD` 规范中，只有当用到了某个外部模块的时候，它才会去引入，这回答了上一小节中遗留的问题，这也是它与 `AMD` 规范最大的不同点：`CMD推崇依赖就近 + 延迟执行`
 
 ## 仍然存在的问题
 
-我们能够看到，按照 `CMD` 规范的依赖就近的规则定义一个模块，会导致模块的加载逻辑偏重，有时你并不知道当前模块具体依赖了哪些模块或者说这样的依赖关系并不直观。
+能够看到，按照 `CMD` 规范的依赖就近的规则定义一个模块，会导致模块的加载逻辑偏重，有时你并不知道当前模块具体依赖了哪些模块或者说这样的依赖关系并不直观。
 
 而且对于 `AMD` 和 `CMD` 来说，都只是适用于浏览器端的规范，而 `Node.js module` 仅仅适用于服务端，都有各自的局限性。
 
 ## ECMAScript6 Module
 
-ECMAScript6 标准增加了 JavaScript 语言层面的模块体系定义，作为浏览器和服务器通用的模块解决方案它可以取代我们之前提到的 `AMD` ，`CMD` ,`CommonJS`。(在此之前还有一个 UMD（Universal Module Definition）规范也适用于前后端，但是本文不讨论，有兴趣可以查看 [UMD文档](https://github.com/umdjs/umd) )
+ECMAScript6 标准增加了 JavaScript 语言层面的模块体系定义，作为浏览器和服务器通用的模块解决方案它可以取代之前提到的 `AMD` ，`CMD` ,`CommonJS`。(在此之前还有一个 UMD（Universal Module Definition）规范也适用于前后端，但是本文不讨论，有兴趣可以查看 [UMD文档](https://github.com/umdjs/umd) )
 
 关于 `ES6` 的 `Module` 相信大家每天的工作中都会用到，对于使用上有疑问可以看看 [ES6 Module 入门，阮一峰](http://es6.ruanyifeng.com/#docs/module)，当然你也可以查看 [TC39的官方文档](https://tc39.github.io/ecma262/#sec-ecmascript-language-scripts-and-modules)
 
@@ -378,7 +378,7 @@ ECMAScript6 标准增加了 JavaScript 语言层面的模块体系定义，作�
 
 * 对循环依赖的支持比 `CommonJS` 好。
 
-注意这里的描述里出现了两个词 **循环依赖** 和 **静态分析**，我们在后面会深入讨论。首先我们来看看， TC39 的 [官方文档](https://www.ecma-international.org/ecma-262/6.0/index.html) 中定义的 ES6 modules 规范是什么。
+注意这里的描述里出现了两个词 **循环依赖** 和 **静态分析**，在后面会深入讨论。首先来看看， TC39 的 [官方文档](https://www.ecma-international.org/ecma-262/6.0/index.html) 中定义的 ES6 modules 规范是什么。
 
 ### 深入 ES6 Module 规范
 
@@ -403,7 +403,7 @@ ECMAScript6 标准增加了 JavaScript 语言层面的模块体系定义，作�
 | ModuleEvaluation() | 如果此模块已经被执行过，则不执行任何操作。 否则，传递执行此模块的所有模块依赖关系，然后执行此模块。 ModuleDeclarationInstantiation 必须在调用此方法之前完成 |
 
 
-也就是说，一个最最基础的模块，至少应该包含上面这些字段，和方法。反复阅读后你会发现，其实这里只是告知了一个最基础的模块，应该包含某些功能的方法，或者定义了模块的格式，但是在我们具体实现的时候，就像原文中说的一样：
+也就是说，一个最最基础的模块，至少应该包含上面这些字段，和方法。反复阅读后你会发现，其实这里只是告知了一个最基础的模块，应该包含某些功能的方法，或者定义了模块的格式，但是在具体实现的时候，就像原文中说的一样：
 
 实现可以是：将 `sourceText` 解析为模块，对其进行早期错误条件分析，并在执行`TopLevelModuleEvaluationJob`之前对其进行实例化。
 
@@ -413,11 +413,11 @@ ECMAScript6 标准增加了 JavaScript 语言层面的模块体系定义，作�
 
 #### 从 babel-helper-module-transforms 来看 ES6 module 实现
 
-`Babel` 作为 `ES6` 官方指定的编译器，在如今的前端开发中发挥着巨大的作用，它可以帮助我们将开发人员书写的 `ES6` 语法的代码转译为 `ES5` 的代码然后交给 `JS` 引擎去执行，这一行为让我们可以毫无顾忌的使用 `ES6` 给我们带来的方便。
+`Babel` 作为 `ES6` 官方指定的编译器，在如今的前端开发中发挥着巨大的作用，它可以帮助将开发人员书写的 `ES6` 语法的代码转译为 `ES5` 的代码然后交给 `JS` 引擎去执行，这一行为让可以毫无顾忌的使用 `ES6` 给带来的方便。
 
-这里我们就以 `Babel` 中 [babel-helper-module-transforms](https://github.com/babel/babel/blob/master/packages/babel-helper-module-transforms/src/index.js) 的具体实现，来看看它是如何实现 ES6 module 转换的步骤
+这里就以 `Babel` 中 [babel-helper-module-transforms](https://github.com/babel/babel/blob/master/packages/babel-helper-module-transforms/src/index.js) 的具体实现，来看看它是如何实现 ES6 module 转换的步骤
 
-首先我们罗列一下这个文件中出现的所有方法(省略掉方法体和参数)
+首先罗列一下这个文件中出现的所有方法(省略掉方法体和参数)
 
 ```js
 /**
@@ -494,9 +494,9 @@ function buildExportInitializationStatements() {...}
 function buildInitStatement() {...}
 ```
 
-然后我们来看看他们的调用关系：
+然后来看看他们的调用关系：
 
-> 我们以 A -> B 的形式表示在 A 中调用了 B
+> 以 A -> B 的形式表示在 A 中调用了 B
 
 1. `buildNamespaceInitStatements`:为给定的请求源创建运行时初始化语句。这些将初始化所有运行时导入/导出逻辑
 
@@ -505,7 +505,7 @@ function buildInitStatement() {...}
 -> `buildExportInitializationStatements` 创建所有静态已知的名称的 **exports**
 -> `buildInitStatement` 给定一组 **export names**，创建一组嵌套分配将它们全部初始化为给定的表达式。
 
-所以总结一下，加上前面我们已知的第一步，其实后面的步骤分为两部分：
+所以总结一下，加上前面已知的第一步，其实后面的步骤分为两部分：
 
 1. 解析：首先会对模块的源代码进行语法错误检查。例如  [early-errors](https://www.ecma-international.org/ecma-262/6.0/index.html#sec-module-semantics-static-semantics-early-errors)，如果解析失败，让 body 报出一个或多个解析错误和/或早期错误。如果解析成功并且没有找到早期错误，则将 body 作为生成的解析树继续执行，最后返回一个 [Source Text Module Records](https://www.ecma-international.org/ecma-262/6.0/index.html#sec-source-text-module-records)
 
@@ -513,10 +513,10 @@ function buildInitStatement() {...}
 
 3. 以引用返回的元数据描述的模块，并且用一组 export names 将所有静态的 exports 初始化为指定的表达式。
 
-到这里其实我们已经可以很清晰的知道，在 **编译阶段** ，我们一段 ES6 module 中的代码经历了什么：
+到这里其实已经可以很清晰的知道，在 **编译阶段** ，一段 ES6 module 中的代码经历了什么：
 
 `ES6 module 源码` -> `Babel 转译`->  `一段可以执行的代码`
 
-也就是说直到编译结束，其实我们模块内部的代码都只是被转换成了一段静态的代码，只有进入到 **运行时** 才会被执行。
+也就是说直到编译结束，其实模块内部的代码都只是被转换成了一段静态的代码，只有进入到 **运行时** 才会被执行。
 
 这也就让 **静态分析** 有了可能。

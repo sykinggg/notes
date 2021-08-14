@@ -2,7 +2,7 @@
 
 ## 神奇的虚拟DOM
 
-首先神奇不神奇的我们先不去关注，先来简单说说何为虚拟DOM
+首先神奇不神奇的先不去关注，先来简单说说何为虚拟DOM
 
 **虚拟DOM**简而言之就是，用JS去按照DOM结构来实现的树形结构对象，你也可以叫做**DOM对象**
 
@@ -12,7 +12,7 @@
 
 ### 实现一下虚拟DOM
 
-在亲自上阵之前，我们让粮草先行，先发个图，来看一下整个目录结构是什么样子的
+在亲自上阵之前，让粮草先行，先发个图，来看一下整个目录结构是什么样子的
 
 ![demo](/notes/assets/react/1699a54e3737e10c.png)
 
@@ -29,7 +29,7 @@ cd dom-diff
 npm run start
 ```
 
-现在我们开始正式写吧，从创建虚拟DOM及渲染DOM起步吧
+现在开始正式写吧，从创建虚拟DOM及渲染DOM起步吧
 
 ### 创建虚拟DOM
 
@@ -59,11 +59,11 @@ export {
 }
 ```
 
-写好了方法，我们就从`index.js`文件入手来看看是否成功吧
+写好了方法，就从`index.js`文件入手来看看是否成功吧
 
 ### 调用createElement方法
 
-在主入口文件里，我们主要做的操作就是来创建一个`DOM`对象，渲染`DOM`以及通过diff后去打补丁更新`DOM`，不啰嗦了，直接看代码：
+在主入口文件里，主要做的操作就是来创建一个`DOM`对象，渲染`DOM`以及通过diff后去打补丁更新`DOM`，不啰嗦了，直接看代码：
 
 ```js
 // index.js
@@ -80,7 +80,7 @@ let virtualDom = createElement('ul', {class: 'list'}, [
 console.log(virtualDom);
 ```
 
-`createElement`方法也是`vue`和`react`用来创建`虚拟DOM`的方法，我们也叫这个名字，方便记忆。接收三个参数，分别是**type**，**props**和**children**
+`createElement`方法也是`vue`和`react`用来创建`虚拟DOM`的方法，也叫这个名字，方便记忆。接收三个参数，分别是**type**，**props**和**children**
 
 * 参数分析
 
@@ -295,7 +295,7 @@ function diffChildren(oldChildren, newChildren, patches) {
 export default diff;
 ```
 
-代码虽然又臭又长，但是这些代码就让我们实现了`diff算法`了，所以大家先不要盲动，不要盲动，且听风吟，让我一一道来
+代码虽然又臭又长，但是这些代码就让实现了`diff算法`了，所以大家先不要盲动，不要盲动，且听风吟，让我一一道来
 
 ### 比较规则
 
@@ -307,7 +307,7 @@ export default diff;
 
 * 节点类型不相同，直接采用替换模式`{type: 'REPLACE', newNode}`
 
-根据这些**规则**，我们再来看一下**diff代码**中的**walk方法**这位关键先生
+根据这些**规则**，再来看一下**diff代码**中的**walk方法**这位关键先生
 
 `walk`方法都做了什么？
 

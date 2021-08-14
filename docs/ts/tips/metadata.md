@@ -90,7 +90,7 @@ Reflect.getMetadata('methodMetaData', new SomeClass(), 'someMethod'); // 'b'
 
 ### 控制反转和依赖注入
 
-在 Angular 2+ 的版本中，[控制反转与依赖注入](https://segmentfault.com/a/1190000008626680)便是基于此实现，现在，我们来实现一个简单版：
+在 Angular 2+ 的版本中，[控制反转与依赖注入](https://segmentfault.com/a/1190000008626680)便是基于此实现，现在，来实现一个简单版：
 
 ```ts
 type Constructor<T = any> = new (...args: any[]) => T;
@@ -137,7 +137,7 @@ class SomeClass {
 }
 ```
 
-这些 Decorator 也是基于 `Reflect Metadata` 实现，这次，我们将 `metadataKey` 定义在 `descriptor` 的 `value` 上：
+这些 Decorator 也是基于 `Reflect Metadata` 实现，这次，将 `metadataKey` 定义在 `descriptor` 的 `value` 上：
 
 ```ts
 const METHOD_METADATA = 'method'；
@@ -185,7 +185,7 @@ function mapRoute(instance: Object) {
 };
 ```
 
-因此，我们可以得到一些有用的信息：
+因此，可以得到一些有用的信息：
 
 ```ts
 Reflect.getMetadata(PATH_METADATA, SomeClass); // '/test'

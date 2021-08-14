@@ -56,7 +56,7 @@ function printAllChildren(node: ts.Node, depth = 0) {
 }
 ```
 
-我们进一步讨论解析器时会看到该函数的使用示例。
+进一步讨论解析器时会看到该函数的使用示例。
 
 ## AST 技巧：SyntaxKind 枚举
 

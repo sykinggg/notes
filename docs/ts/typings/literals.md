@@ -10,7 +10,7 @@
 let foo: 'Hello';
 ```
 
-在这里，我们创建了一个被称为 `foo` 变量，它仅接收一个字面量值为 `Hello` 的变量：
+在这里，创建了一个被称为 `foo` 变量，它仅接收一个字面量值为 `Hello` 的变量：
 
 ```ts
 let foo: 'Hello';
@@ -52,7 +52,7 @@ const test = {
 iTakeFoo(test.someProp); // Error: Argument of type string is not assignable to parameter of type 'foo'
 ```
 
-这是由于 `test` 被推断为 `{ someProp: string }`，我们可以采用一个简单的类型断言来告诉 TypeScript 你想推断的字面量：
+这是由于 `test` 被推断为 `{ someProp: string }`，可以采用一个简单的类型断言来告诉 TypeScript 你想推断的字面量：
 
 ```ts
 function iTakeFoo(foo: 'foo') {}
@@ -122,4 +122,4 @@ sample = 'AnythingElse'; // ERROR!
 
 ## 辨析联合类型
 
-我们将会在此书的稍后章节讲解它。
+将会在此书的稍后章节讲解它。

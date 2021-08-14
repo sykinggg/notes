@@ -1,6 +1,6 @@
 # ThisType
 
-通过 `ThisType` 我们可以在对象字面量中键入 `this`，并提供通过上下文类型控制 `this` 类型的便捷方式。它只有在 `--noImplicitThis` 的选项下才有效。
+通过 `ThisType` 可以在对象字面量中键入 `this`，并提供通过上下文类型控制 `this` 类型的便捷方式。它只有在 `--noImplicitThis` 的选项下才有效。
 
 现在，在对象字面量方法中的 `this` 类型，将由以下决定：
 

@@ -1,6 +1,6 @@
 # 环境声明
 
-正如我们在为什么使用 [TypeScript](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html) 中所说：
+正如在为什么使用 [TypeScript](https://basarat.gitbooks.io/typescript/content/docs/why-typescript.html) 中所说：
 
 > TypeScript 的设计目标之一是让你在 TypeScript 中安全、轻松地使用现有的 JavaScript 库，TypeScript 通过声明文件来做到这一点
 
@@ -23,7 +23,7 @@ declare var foo: any;
 foo = 123; // allow
 ```
 
-你可以选择把这些声明放入 `.ts` 或者 `.d.ts` 里。在你实际的项目里，我们强烈建议你应该把声明放入独立的 `.d.ts` 里（可以从一个命名为 `global.d.ts` 或者 `vendor.d.ts` 文件开始）。
+你可以选择把这些声明放入 `.ts` 或者 `.d.ts` 里。在你实际的项目里，强烈建议你应该把声明放入独立的 `.d.ts` 里（可以从一个命名为 `global.d.ts` 或者 `vendor.d.ts` 文件开始）。
 
 如果一个文件有扩展名 `.d.ts`，这意味着每个根级别的声明都必须以 `declare` 关键字作为前缀。这有利于让开发者清楚的知道，在这里 TypeScript 将不会把它编译成任何代码，同时开发者需要确保这些在编译时存在。
 
@@ -52,7 +52,7 @@ declare let process: any;
 process.exit();
 ```
 
-我们推荐尽可能的使用接口，例如：
+推荐尽可能的使用接口，例如：
 
 ```ts
 interface Process {
@@ -62,7 +62,7 @@ interface Process {
 declare let process: Process;
 ```
 
-因为这允许其他人扩充这些全局变量，并且会告诉 TypeScript 有关于这些声明的修改。例如：考虑到以下情况，我们添加一个 `exitWithLogging` 函数至 `process`：
+因为这允许其他人扩充这些全局变量，并且会告诉 TypeScript 有关于这些声明的修改。例如：考虑到以下情况，添加一个 `exitWithLogging` 函数至 `process`：
 
 ```ts
 interface Process {
@@ -75,4 +75,4 @@ process.exitWithLogging = function() {
 };
 ```
 
-接下来，让我们更详细的了解接口。
+接下来，让更详细的了解接口。

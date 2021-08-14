@@ -10,4 +10,4 @@ JSX 背后的动机是允许用户在 JavaScript 中书写类似于 HTML 的视�
 - 让视图层了解运行时的上下文（加强传统 MVC 中的控制器与视图连接）。
 - 复用 JavaScript 设计模式维护 HTML 部分，例如：用 `Array.prototype.map.`、`?:`、`switch` 等，代替创建新的可替代品。
 
-这能够减少错误的可能性，并且能增加用户界面的可维护性。目前 JSX 的主要消费者来自 [facebook 推出的 ReactJS](http://facebook.github.io/react/)，接下来我们结合它来讨论 JSX 用法。
+这能够减少错误的可能性，并且能增加用户界面的可维护性。目前 JSX 的主要消费者来自 [facebook 推出的 ReactJS](http://facebook.github.io/react/)，接下来结合它来讨论 JSX 用法。

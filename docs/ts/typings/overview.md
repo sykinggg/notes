@@ -2,12 +2,12 @@
 
 ## TypeScript 类型系统
 
-在讨论[为什么使用 TypeScript](https://jkchao.github.io/typescript-book-chinese/#whys) 时，我们表述了 TypeScript 类型系统的主要功能。以下是一些关键点：
+在讨论[为什么使用 TypeScript](https://jkchao.github.io/typescript-book-chinese/#whys) 时，表述了 TypeScript 类型系统的主要功能。以下是一些关键点：
 
 - TypeScript 的类型系统被设计为可选的，因此，你的 JavaScript 就是 TypeScript;
 - TypeScript 不会阻止 JavaScript 的运行，即使存在类型错误也不例外，这能让你的 JavaScript 逐步迁移至 TypeScript。
 
-现在让我们开始学习 TypeScript 类型系统的语法吧，在这一章节中，你将能给你的代码加上类型注解，并且能看到它的益处。这将为我们进一步了解类型系统做铺垫。
+现在让开始学习 TypeScript 类型系统的语法吧，在这一章节中，你将能给你的代码加上类型注解，并且能看到它的益处。这将为进一步了解类型系统做铺垫。
 
 ## 基本注解
 
@@ -90,7 +90,7 @@ name = {
 };
 ```
 
-在这里，我们把类型注解：`first: string` + `second: string` 合并到了一个新的类型注解 `Name` 里，这样能强制对每个成员进行类型检查。接口在 TypeScript 拥有强大的力量，稍后，我们将会用一个内容专门阐述如何更好的使用它。
+在这里，把类型注解：`first: string` + `second: string` 合并到了一个新的类型注解 `Name` 里，这样能强制对每个成员进行类型检查。接口在 TypeScript 拥有强大的力量，稍后，将会用一个内容专门阐述如何更好的使用它。
 
 ## 内联类型注解
 
@@ -221,7 +221,7 @@ let reversedNums = numArr.reverse();
 reversedNums = ['1', '2']; // Error
 ```
 
-当稍后在 [环境声明](./ambient.md) 章节中提及 `lib.d.ts` 时，我们会讨论更多关于 `Array<T>` 的信息。
+当稍后在 [环境声明](./ambient.md) 章节中提及 `lib.d.ts` 时，会讨论更多关于 `Array<T>` 的信息。
 
 ## 联合类型
 
@@ -322,4 +322,4 @@ type Callback = (data: string) => void;
 
 ## 最后
 
-现在你已经能够为你的大部分 JavaScript 代码添加类型注解，接着，让我们深入了解 TypeScript 的类型系统吧。
+现在你已经能够为你的大部分 JavaScript 代码添加类型注解，接着，让深入了解 TypeScript 的类型系统吧。

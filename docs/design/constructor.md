@@ -2,13 +2,13 @@
 
 ## 构造器模式
 
-> 在面向对象编程中，构造器是一个当新建对象的内存被分配后，用来初始化该对象的一个特殊函数。在JavaScript中几乎所有的东西都是对象，我们经常会对对象的构造器十分感兴趣。
+> 在面向对象编程中，构造器是一个当新建对象的内存被分配后，用来初始化该对象的一个特殊函数。在JavaScript中几乎所有的东西都是对象，经常会对对象的构造器十分感兴趣。
 >
 > 对象构造器是被用来创建特殊类型的对象的，首先它要准备使用的对象，其次在对象初次被创建时，通过接收参数，构造器要用来对成员的属性和方法进行赋值。
 
 ## 对象创建
 
-下面是我们创建对象的三种基本方式:
+下面是创建对象的三种基本方式:
 
 下面的每一种都会创建一个新的对象:
 
@@ -65,7 +65,7 @@ var defineProp = function ( obj, key, value ){
   Object.defineProperty( obj, key, config );
 };
 
-// 为了使用它，我们要创建一个“person”对象
+// 为了使用它，要创建一个“person”对象
 var person = Object.create( null );
 
 // 用属性构造对象
@@ -107,13 +107,13 @@ defineProp(driver, "topSpeed", "100mph");
 // 获取继承的属性 (1981)
 console.log( driver.dateOfBirth );
 
-// 获取我们设置的属性 (100mph)
+// 获取设置的属性 (100mph)
 console.log( driver.topSpeed );
 ```
 
 ## 基础构造器
 
-> 正如我们先前所看到的，Javascript不支持类的概念，但它有一种与对象一起工作的构造器函数。使用new关键字来调用该函数，我们可以告诉Javascript把这个函数当做一个构造器来用,它可以用自己所定义的成员来初始化一个对象。
+> 正如先前所看到的，Javascript不支持类的概念，但它有一种与对象一起工作的构造器函数。使用new关键字来调用该函数，可以告诉Javascript把这个函数当做一个构造器来用,它可以用自己所定义的成员来初始化一个对象。
 >
 > 在这个构造器内部，关键字this引用到刚被创建的对象。回到对象创建，一个基本的构造函数看起来像这样:
 
@@ -131,7 +131,7 @@ function Car( model, year, miles ) {
 
 // 使用:
 
-// 我们可以示例化一个Car
+// 可以示例化一个Car
 var civic = new Car( "Honda Civic", 2009, 20000 );
 var mondeo = new Car( "Ford Mondeo", 2010, 5000 );
 
@@ -146,7 +146,7 @@ console.log( mondeo.toString() );
 
 ## 使用“原型”的构造器
 
-在Javascript中函数有一个prototype的属性。当我们调用Javascript的构造器创建一个对象时，构造函数prototype上的属性对于所创建的对象来说都看见。照这样，就可以创建多个访问相同prototype的Car对象了。下面，我们来扩展一下原来的例子：
+在Javascript中函数有一个prototype的属性。当调用Javascript的构造器创建一个对象时，构造函数prototype上的属性对于所创建的对象来说都看见。照这样，就可以创建多个访问相同prototype的Car对象了。下面，来扩展一下原来的例子：
 
 ```js
 function Car( model, year, miles ) {
@@ -157,8 +157,8 @@ function Car( model, year, miles ) {
 
 }
 
-// 注意这里我们使用Note here that we are using Object.prototype.newMethod 而不是
-// Object.prototype ，以避免我们重新定义原型对象
+// 注意这里使用Note here that we are using Object.prototype.newMethod 而不是
+// Object.prototype ，以避免重新定义原型对象
 Car.prototype.toString = function () {
   return this.model + " has done " + this.miles + " miles";
 };

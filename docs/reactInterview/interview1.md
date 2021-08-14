@@ -353,7 +353,7 @@ function shouldConstruct(Component) {
 
 * `transaction.getReactMountReady()`会得到`CallbackQueue`，所以只是加入到队列中，后续执行
 
-* 我们来看`performInitialMount`(依然在 `ReactCompositeComponent.js` 中)
+* 来看`performInitialMount`(依然在 `ReactCompositeComponent.js` 中)
 
 ```js
 performInitialMount: function (renderedElement, hostParent, hostContainerInfo, transaction, context) {
@@ -383,7 +383,7 @@ performInitialMount: function (renderedElement, hostParent, hostContainerInfo, t
 
 * `performInitialMount` 中先调用`componentWillMount`，这个过程中 `merge state`，然后调用`_renderValidatedComponent`(最终会调用`inst.render()` )返回 `ReactElement`，然后调用`_instantiateReactComponent` 由 `ReactElement` 创建 `ReactComponent`，最后进行递归渲染。
 
-* 挂载之后，可以通过`setState`来更新(机制较为复杂，后文会单独分析)，此过程通过调用`updateComponent`来完成更新。我们来看`updateComponent`(依然在 `ReactCompositeComponent.js` 中)
+* 挂载之后，可以通过`setState`来更新(机制较为复杂，后文会单独分析)，此过程通过调用`updateComponent`来完成更新。来看`updateComponent`(依然在 `ReactCompositeComponent.js` 中)
 
 ```js
 updateComponent: function (transaction, prevParentElement, nextParentElement, prevUnmaskedContext, nextUnmaskedContext) {
@@ -494,7 +494,7 @@ ReactComponent.prototype.setState = function (partialState, callback) {
 };
 ```
 
-可以看到这里只是简单的调用`enqueueSetState`放入队列中，而我们知道，不可能这么简单的。来看`enqueueSetState(ReactUpdateQueue.js中)`，`this.updater`会在 `mount` 时候赋值为`updateQueue`
+可以看到这里只是简单的调用`enqueueSetState`放入队列中，而知道，不可能这么简单的。来看`enqueueSetState(ReactUpdateQueue.js中)`，`this.updater`会在 `mount` 时候赋值为`updateQueue`
 
 ```js
 enqueueSetState: function (publicInstance, partialState) {

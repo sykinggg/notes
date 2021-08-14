@@ -4,7 +4,7 @@
 
 ## 建立
 
-在 [TypeScript in the browser](https://basarat.gitbooks.io/typescript/content/docs/quick/browser.html) 章节中，我们已经学会开始开发 React 的应用了，以下是一些重点：
+在 [TypeScript in the browser](https://basarat.gitbooks.io/typescript/content/docs/quick/browser.html) 章节中，已经学会开始开发 React 的应用了，以下是一些重点：
 
 - 使用文件后缀 `.tsx`（替代 `.ts`）；
 - 在你的 `tsconfig.json` 配置文件的 `compilerOptions` 里设置选项 `"jsx": "react"`；
@@ -19,7 +19,7 @@ React 不但能渲染 HTML 标签（strings）也能渲染 React 组件（classe
 
 ### HTML 标签
 
-一个 HTML 标签 `foo` 被标记为 `JSX.IntrinsicElements.foo` 类型。在我们已经安装的文件 `react-jsx.d.ts` 中定义了所有主要标签的类型，如下是一部分示例：
+一个 HTML 标签 `foo` 被标记为 `JSX.IntrinsicElements.foo` 类型。在已经安装的文件 `react-jsx.d.ts` 中定义了所有主要标签的类型，如下是一部分示例：
 
 ```ts
 declare namespace JSX {
@@ -156,7 +156,7 @@ const X: React.Component<Props> = foo // 来自其他地方
 
 ### React JSX tip: 泛型组件
 
-它完全能按我们预期工作，如：
+它完全能按预期工作，如：
 
 ```tsx
 // 一个泛型组件
@@ -240,7 +240,7 @@ class FocusingInput extends React.Component<{ value: string; onChange: (value: s
 
 ### 类型断言
 
-如我们之前[提到](../typings/typeAssertion.md#as-foo-与-foo)的，可以使用 `as Foo` 语法进行类型断言。
+如之前[提到](../typings/typeAssertion.md#as-foo-与-foo)的，可以使用 `as Foo` 语法进行类型断言。
 
 ## 默认 Props
 

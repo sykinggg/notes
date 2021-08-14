@@ -13,7 +13,7 @@ function f({ x: number }) {
 
 对于那些习惯于查看 TypeScript 类型字面量的人来说，解构语法是有悖常理的。语法 `f({ x: number })` 声明了属性名从 `x` 转换为 `number` 名的解构。
 
-让我们从发出的代码来收到启发：
+让从发出的代码来收到启发：
 
 ```ts
 function f(_a) {

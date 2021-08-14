@@ -37,7 +37,7 @@ foo = foo; // Okey
 
 ## 使用枚举
 
-TypeScript 中[枚举](../typings/enums.md) 提供一定程度的名义化类型。如果两个枚举的命名不相同，则它们类型不相等。我们可以利用这个事实来为结构上兼容的类型，提供名义化类型。
+TypeScript 中[枚举](../typings/enums.md) 提供一定程度的名义化类型。如果两个枚举的命名不相同，则它们类型不相等。可以利用这个事实来为结构上兼容的类型，提供名义化类型。
 
 解决办法包括：
 
@@ -82,7 +82,7 @@ str = barId;
 
 ## 使用接口
 
-因为 `number` 类型与 `enum` 类型在类型上是兼容的，因此我们不能使用上述提到的方法来处理它们。取而代之，我们可以使用接口打破这种类型的兼容性。TypeScript 编译团队仍然在使用这种方法，因此它值得一提。使用 `_` 前缀和 `Brand` 后缀是一种我强烈推荐的惯例方法（[TypeScript 也这么推荐](https://github.com/Microsoft/TypeScript/blob/7b48a182c05ea4dea81bab73ecbbe9e013a79e99/src/compiler/types.ts#L693-L698)）。
+因为 `number` 类型与 `enum` 类型在类型上是兼容的，因此不能使用上述提到的方法来处理它们。取而代之，可以使用接口打破这种类型的兼容性。TypeScript 编译团队仍然在使用这种方法，因此它值得一提。使用 `_` 前缀和 `Brand` 后缀是一种我强烈推荐的惯例方法（[TypeScript 也这么推荐](https://github.com/Microsoft/TypeScript/blob/7b48a182c05ea4dea81bab73ecbbe9e013a79e99/src/compiler/types.ts#L693-L698)）。
 
 解决办法包括：
 

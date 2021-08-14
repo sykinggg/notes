@@ -38,7 +38,7 @@ sideEffect(value => {
 })
 ```
 
-> callback 让我们拥有了获取不可预测行为结果的能力
+> callback 让拥有了获取不可预测行为结果的能力
 > 这得益于 JavaScript 函数是一等公民
 
 ## 引入的新问题
@@ -411,7 +411,7 @@ function toPromise(obj) {
 
 * generator
 
-* function（thunk function 我们不做讨论）
+* function（thunk function 不做讨论）
 
 ```js
 // 数组种的所有 item 都做了 promise 的过滤
@@ -440,7 +440,7 @@ function objectToPromise(obj) {
   })
 
   function defer(promise, key) {
-    // js 引擎喜欢稳定的对象结构，所有预先定义（也告诉我们少用 delete 语句）
+    // js 引擎喜欢稳定的对象结构，所有预先定义（也告诉少用 delete 语句）
     results[key] = undefined
     promises.push(promise.then(function (res) {
       results[key] = res
@@ -485,7 +485,7 @@ Promise.resolve({
 })
 ```
 
-> 我们不需要判断是不是一个 `promise`，只需要判断像不像一个 `promise`
+> 不需要判断是不是一个 `promise`，只需要判断像不像一个 `promise`
 > 无论是你自己写 `promise`，第三方库的 `promise`，还是 js 引擎实现的 `promise`。这带来了良好的兼容性
 
 ### CO.Warp
@@ -513,7 +513,7 @@ const gen = fn()
 
 * co 将 promise 和 generator 函数结合在一起，给了 Js 更加强大的生命力
 
-* 到最后的发展阶段，我们有了控制异步行为更好的手段，这让我们能更好的结合函数式编程
+* 到最后的发展阶段，有了控制异步行为更好的手段，这让能更好的结合函数式编程
 
 * Js 的异步与各个平台的 event loop 息息相关，不同平台的行为可能不一致（后话）
 
@@ -543,8 +543,8 @@ const gen = fn()
     }),
 
     methods: {
-      // 问题在于异步请求是副作用，我们无法预测这个结果在什么时间到来
-      // 导致我们无法保证程序的顺序。同样也很难复现，同样的输入可能导致不同的输出
+      // 问题在于异步请求是副作用，无法预测这个结果在什么时间到来
+      // 导致无法保证程序的顺序。同样也很难复现，同样的输入可能导致不同的输出
       async getMessage () {
         this.message = await fetch('xx')
       }

@@ -57,7 +57,7 @@ SemicolonToken
 
 ## 扫描器状态
 
-调用 `scan` 后，扫描器更新其局部状态（扫描位置，当前 token 详情等）。扫描器提供了一组工具函数获取当前扫描器状态。下例中，我们创建一个扫描器并用它识别 token 以及 token 在代码中的位置。
+调用 `scan` 后，扫描器更新其局部状态（扫描位置，当前 token 详情等）。扫描器提供了一组工具函数获取当前扫描器状态。下例中，创建一个扫描器并用它识别 token 以及 token 在代码中的位置。
 
 `code/compiler/scanner/runScannerWithPosition.ts`
 

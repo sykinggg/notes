@@ -4,15 +4,15 @@
 
 ## 合并多个commit为一个完整commit
 
-当我们在本地仓库中提交了多次，在我们把本地提交push到公共仓库中之前，为了让提交记录更简洁明了，我们希望把如下分支B、C、D三个提交记录合并为一个完整的提交，然后再push到公共仓库。
+当在本地仓库中提交了多次，在把本地提交push到公共仓库中之前，为了让提交记录更简洁明了，希望把如下分支B、C、D三个提交记录合并为一个完整的提交，然后再push到公共仓库。
 
 ![示例](/notes/assets/git/2147642-42195cacced56729.webp)
 
-现在我们在测试分支上添加了四次提交，我们的目标是把最后三个提交合并为一个提交：
+现在在测试分支上添加了四次提交，的目标是把最后三个提交合并为一个提交：
 
 ![示例](/notes/assets/git/2147642-ce849c4eab3d803b.webp)
 
-这里我们使用命令:
+这里使用命令:
 
 ```shell
 git rebase -i  [startpoint]  [endpoint]
@@ -20,7 +20,7 @@ git rebase -i  [startpoint]  [endpoint]
 
 其中`-i`的意思是`--interactive`，即弹出交互式的界面让用户编辑完成合并操作，`[startpoint]` `[endpoint]`则指定了一个编辑区间，如果不指定`[endpoint]`，则该区间的终点默认是当前分支`HEAD`所指向的`commit`(注：该区间指定的是一个前开后闭的区间)。
 
-在查看到了log日志后，我们运行以下命令：
+在查看到了log日志后，运行以下命令：
 
 ```shell
 git rebase -i 36224db
@@ -32,11 +32,11 @@ git rebase -i 36224db
 git rebase -i HEAD~3 
 ```
 
-然后我们会看到如下界面:
+然后会看到如下界面:
 
 ![demo](/notes/assets/git/2147642-03d48aa767efb307.webp)
 
-上面未被注释的部分列出的是我们本次rebase操作包含的所有提交，下面注释部分是git为我们提供的命令说明。每一个`commit id` 前面的`pick`表示指令类型，`git` 为我们提供了以下几个命令:
+上面未被注释的部分列出的是本次rebase操作包含的所有提交，下面注释部分是git为提供的命令说明。每一个`commit id` 前面的`pick`表示指令类型，`git` 为提供了以下几个命令:
 
 
 * p，选择`<commit>` =使用提交
@@ -71,7 +71,7 @@ git rebase -i HEAD~3
 如果您在此处删除一行，那将丢失。
 但是，如果删除所有内容，则重新定位将中止。
 
-根据我们的需求，我们将commit内容编辑如下:
+根据的需求，将commit内容编辑如下:
 
 ![demo](/notes/assets/git/2147642-a651234e62ed20a5.webp)
 
@@ -85,13 +85,13 @@ git rebase -i HEAD~3
 
 ## 2.将某一段commit粘贴到另一个分支上
 
-当我们项目中存在多个分支，有时候我们需要将某一个分支中的一段提交同时应用到其他分支中，就像下图：
+当项目中存在多个分支，有时候需要将某一个分支中的一段提交同时应用到其他分支中，就像下图：
 
 ![demo](/notes/assets/git/2147642-0de010746cb78401.webp)
 
-希望将`develop`分支中的C~E部分复制到`master`分支中，这时我们就可以通过`rebase`命令来实现（如果只是复制某一两个提交到其他分支，建议使用更简单的命令:`git cherry-pick`）。
+希望将`develop`分支中的C~E部分复制到`master`分支中，这时就可以通过`rebase`命令来实现（如果只是复制某一两个提交到其他分支，建议使用更简单的命令:`git cherry-pick`）。
 
-在实际模拟中，我们创建了`master`和`develop`两个分支:
+在实际模拟中，创建了`master`和`develop`两个分支:
 
 **master分支:**
 
@@ -101,7 +101,7 @@ git rebase -i HEAD~3
 
 ![demo](/notes/assets/git/2147642-8519a024c88129c5.webp)
 
-我们使用命令的形式为:
+使用命令的形式为:
 
 ```shell
 git rebase [startpoint] [endpoint] --onto [branchName]
@@ -109,19 +109,19 @@ git rebase [startpoint] [endpoint] --onto [branchName]
 
 其中，`[startpoint]` `[endpoint]`仍然和上一个命令一样指定了一个编辑区间(前开后闭)，`--onto`的意思是要将该指定的提交复制到哪个分支上。
 
-所以，在找到C(`90bc0045b`)和E(`5de0da9f2`)的提交id后，我们运行以下命令：
+所以，在找到C(`90bc0045b`)和E(`5de0da9f2`)的提交id后，运行以下命令：
 
 ```shell
 git rebase 90bc0045b 5de0da9f2 --onto master
 ```
 
-注:因为`[startpoint]` `[endpoint]`指定的是一个前开后闭的区间，为了让这个区间包含C提交，我们将区间起始点向后退了一步。
+注:因为`[startpoint]` `[endpoint]`指定的是一个前开后闭的区间，为了让这个区间包含C提交，将区间起始点向后退了一步。
 
 运行完成后查看当前分支的日志:
 
 ![demo](/notes/assets/git/2147642-de397671caac1966.webp)
 
-可以看到，C~E部分的提交内容已经复制到了G的后面了，大功告成？NO！我们看一下当前分支的状态:
+可以看到，C~E部分的提交内容已经复制到了G的后面了，大功告成？NO！看一下当前分支的状态:
 
 ![demo](/notes/assets/git/2147642-cfd21fdb1e4038bc.webp)
 
@@ -129,7 +129,7 @@ git rebase 90bc0045b 5de0da9f2 --onto master
 
 ![](/notes/assets/git/2147642-a3bbfea6d760f64a.webp)
 
-所以，虽然此时HEAD所指向的内容正是我们所需要的，但是master分支是没有任何变化的，git只是将C~E部分的提交内容复制一份粘贴到了master所指向的提交后面，我们需要做的就是将master所指向的提交id设置为当前HEAD所指向的提交id就可以了，即:
+所以，虽然此时HEAD所指向的内容正是所需要的，但是master分支是没有任何变化的，git只是将C~E部分的提交内容复制一份粘贴到了master所指向的提交后面，需要做的就是将master所指向的提交id设置为当前HEAD所指向的提交id就可以了，即:
 
 ```shell
 git checkout master

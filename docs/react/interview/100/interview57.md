@@ -662,7 +662,7 @@ function parse (str:string){
 
 ## 29. 业务代码里面的异步请求需要 try catch
 
-* `ajax` 请求，使用 `try catch`，错误提示后端返回,并且做一些失败后的状态操作例如进入列表页，我们需要一个 `loading` 状态，然后去请求数据,可是失败之后，也需要把 `loading` 状态去掉,把 `loading` 隐藏的代码就写在 `finally` 里面。
+* `ajax` 请求，使用 `try catch`，错误提示后端返回,并且做一些失败后的状态操作例如进入列表页，需要一个 `loading` 状态，然后去请求数据,可是失败之后，也需要把 `loading` 状态去掉,把 `loading` 隐藏的代码就写在 `finally` 里面。
 
 ```ts
 getStudentList = async () => {
@@ -720,7 +720,7 @@ this.setState({
 
 ## 32. 不要在 setState 前面加 await
 
-* `setState` 前面也是可以带 `await` 的，会变成同步设置状态,但这是一种巧合，不确定未来哪个版本就不支持了，为了遵循 `react` 框架的设计原则，我们使用回掉函数的形式。
+* `setState` 前面也是可以带 `await` 的，会变成同步设置状态,但这是一种巧合，不确定未来哪个版本就不支持了，为了遵循 `react` 框架的设计原则，使用回掉函数的形式。
 
 ```ts
 // bad
@@ -966,7 +966,7 @@ interface IProps {
 
 ## 43. 使用私有属性取代state状态
 
-对于一些不需要控制`ui`的状态属性，我们可以直接绑到`this`上， 即私有属性，没有必要弄到`this.state`上，不然会触发渲染机制，造成性能浪费 例如请求翻页数据的时候,我们都会有个变量。
+对于一些不需要控制`ui`的状态属性，可以直接绑到`this`上， 即私有属性，没有必要弄到`this.state`上，不然会触发渲染机制，造成性能浪费 例如请求翻页数据的时候,都会有个变量。
 
 ```ts
 // bad
@@ -986,9 +986,9 @@ queryParams:Record<string,any> = {
 
 总结四句话。
 
-* 我们在写组件或者函数的的时候，`工具函数和业务逻辑抽离`，`表单校验和业务抽离`、`事件函数和业务抽离`，`ajax和业务抽离`。
+* 在写组件或者函数的的时候，`工具函数和业务逻辑抽离`，`表单校验和业务抽离`、`事件函数和业务抽离`，`ajax和业务抽离`。
 
-* 例如有些页面是通过`location.href`跳转的，我们有些业务逻辑等都是放到`didmountMount`,但是后期改需求，可能要用`react-router`进行跳转，可能要改的逻辑就会很多了，所以函数抽离出来，需求更新就少改一点代码。
+* 例如有些页面是通过`location.href`跳转的，有些业务逻辑等都是放到`didmountMount`,但是后期改需求，可能要用`react-router`进行跳转，可能要改的逻辑就会很多了，所以函数抽离出来，需求更新就少改一点代码。
 
 * 如果还不确定如何划分函数的细粒度，我有个建议。使用过两次以上的代码，要抽离组件或者函数，两次的可以不用
 
@@ -1118,7 +1118,7 @@ clearSessioin = () => {
 
 ## 50. 代码检查插件
 
-我们可以使用构建工具继承 `husky` `eslint` `tslint` `lint-stage` `prettier`来规范代码。
+可以使用构建工具继承 `husky` `eslint` `tslint` `lint-stage` `prettier`来规范代码。
 
 * [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier)
 

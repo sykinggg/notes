@@ -27,7 +27,7 @@ interface Bar {}
 const bar = Bar; // Error: "cannot find name 'Bar'"
 ```
 
-出现错误提示提示： `cannot find name 'Bar'` 的原因是名称 `Bar` 并未定义在变量声明空间。这将带领我们进入下一个主题 -- 变量声明空间。
+出现错误提示提示： `cannot find name 'Bar'` 的原因是名称 `Bar` 并未定义在变量声明空间。这将带领进入下一个主题 -- 变量声明空间。
 
 ## 变量声明空间
 
@@ -42,7 +42,7 @@ const someOtherVar = 123;
 这很棒，尤其是当你想把一个类来当做变量传递时。
 
 ::: warning
-我们并不能把一些如 `interface` 定义的内容当作变量使用。
+并不能把一些如 `interface` 定义的内容当作变量使用。
 :::
 
 与此相似，一些用 `var` 声明的变量，也只能在变量声明空间使用，不能用作类型注解。

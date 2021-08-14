@@ -34,7 +34,7 @@ export default function configureStore() {
 介绍完了使用步骤，接下来进入正题。
 
 ## 源码解析
-首先让我们来看下 `combineReducers` 函数
+首先让来看下 `combineReducers` 函数
 
 ```js
 // 传入一个 object
@@ -126,7 +126,7 @@ export default function combineReducers(reducers) {
 
 `combineReducers` 函数总的来说很简单，总结来说就是接收一个对象，将参数过滤后返回一个函数。该函数里有一个过滤参数后的对象 finalReducers，遍历该对象，然后执行对象中的每一个 reducer 函数，最后将新的 state 返回。
 
-接下来让我们来看看 combinrReducers 中用到的两个函数
+接下来让来看看 combinrReducers 中用到的两个函数
 
 ```js
 // 这是执行的第一个用于抛错的函数
@@ -222,10 +222,10 @@ function getUnexpectedStateShapeWarningMessage(
 }
 ```
 
-接下来让我们先来看看 `compose` 函数
+接下来让先来看看 `compose` 函数
 
 ```js
-// 这个函数设计的很巧妙，通过传入函数引用的方式让我们完成多个函数的嵌套使用，术语叫做高阶函数
+// 这个函数设计的很巧妙，通过传入函数引用的方式让完成多个函数的嵌套使用，术语叫做高阶函数
 // 通过使用 reduce 函数做到从右至左调用函数
 // 对于上面项目中的例子
 compose(
@@ -247,7 +247,7 @@ export default function compose(...funcs) {
 }
 ```
 
-然后我们来解析 `createStore` 函数的部分代码
+然后来解析 `createStore` 函数的部分代码
 
 ```js
 export default function createStore(reducer, preloadedState, enhancer) {
@@ -359,7 +359,7 @@ export default thunk;}
 }
 ```
 
-好了，我们现在将困难的部分都攻克了，来看一些简单的代码
+好了，现在将困难的部分都攻克了，来看一些简单的代码
 
 ```js
 // 这个没啥好说的，就是把当前的 state 返回，但是当正在执行 reducer 时不能执行该方法

@@ -23,7 +23,7 @@ import { Bar } from '../demo/bar';
 import { Baz } from '../demo/baz';
 ```
 
-但如果我们在同级添加 barrel 文件 `demo/index.ts`，然后这样定义它：
+但如果在同级添加 barrel 文件 `demo/index.ts`，然后这样定义它：
 
 ```ts
 // demo/index.ts
@@ -40,7 +40,7 @@ import { Foo, Bar, Baz } from '../demo'; // ../demo，会自动解析成 ../demo
 
 ## 命名导出
 
-除了使用通配符 `*` 导出模块中的所有东西，我们也可以选择要导出什么以及如何导出。试想一个存在多个函数的 `baz.ts`：
+除了使用通配符 `*` 导出模块中的所有东西，也可以选择要导出什么以及如何导出。试想一个存在多个函数的 `baz.ts`：
 
 ```ts
 // demo/foo.ts

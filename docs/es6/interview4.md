@@ -10,7 +10,7 @@
 
 3. 为什么可以使用 `es6` 的 `import` 去引用 `commonjs` 规范定义的模块，或者反过来也可以又是为什么？
 
-4. 我们在浏览一些 `npm` 下载下来的 `UI` 组件模块时（比如说 `element-ui` 的 `lib` 文件下），看到的都是 `webpack` 编译好的 `js` 文件，可以使用 `import` 或 `require` 再去引用。但是我们平时编译好的 `js` 是无法再被其他模块 `import` 的，这是为什么？
+4. 在浏览一些 `npm` 下载下来的 `UI` 组件模块时（比如说 `element-ui` 的 `lib` 文件下），看到的都是 `webpack` 编译好的 `js` 文件，可以使用 `import` 或 `require` 再去引用。但是平时编译好的 `js` 是无法再被其他模块 `import` 的，这是为什么？
 
 5. `babel` 在模块化的场景中充当了什么角色？以及 `webpack` ？哪个启到了关键作用？
 
@@ -93,7 +93,7 @@ console.log(__WEBPACK_IMPORTED_MODULE_0__c__["a" /* default */]);
 
 上面这段 `js` 就是使用 `webpack` 编译后的代码（经过精简），其中就包含了 `webpack`的运行时代码，其中就是关于模块的实现。
 
-我们再精简下代码，会发现这是个自执行函数。
+再精简下代码，会发现这是个自执行函数。
 
 ```js
 (function(modules) {
@@ -103,9 +103,9 @@ console.log(__WEBPACK_IMPORTED_MODULE_0__c__["a" /* default */]);
 
 > 自执行函数的入参是个数组，这个数组包含了所有的模块，包裹在函数中。
 
-自执行函数体里的逻辑就是处理模块的逻辑。关键在于 `__webpack_require__` 函数，这个函数就是 `require` 或者是 `import` 的替代，我们可以看到在函数体内先定义了这个函数，然后调用了他。这里会传入一个 `moduleId`，这个例子中是`0`，也就是我们的入口模块 `a.js` 的内容。
+自执行函数体里的逻辑就是处理模块的逻辑。关键在于 `__webpack_require__` 函数，这个函数就是 `require` 或者是 `import` 的替代，可以看到在函数体内先定义了这个函数，然后调用了他。这里会传入一个 `moduleId`，这个例子中是`0`，也就是的入口模块 `a.js` 的内容。
 
-我们再看 `__webpack_require__` 内执行了
+再看 `__webpack_require__` 内执行了
 
 ```js
 modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
@@ -120,7 +120,7 @@ return module.exports；
 
 * **webpack_require**
 
-我们再看第一个函数（即入口模块）的逻辑（精简）：
+再看第一个函数（即入口模块）的逻辑（精简）：
 
 ```js
 function (module, __webpack_exports__, __webpack_require__) {
@@ -133,11 +133,11 @@ console.log(__WEBPACK_IMPORTED_MODULE_0__c__["a" /* default */]);
 }
 ```
 
-我们可以看到入口模块又调用了 `__webpack_require__(1)` 去引用入参数组里的第2个函数。
+可以看到入口模块又调用了 `__webpack_require__(1)` 去引用入参数组里的第2个函数。
 
 然后会将入参的 `__webpack_exports__` 对象添加 `default` 属性，并赋值。
 
-这里我们就能看到模块化的实现原理，这里的 `__webpack_exports__` 就是这个模块的 `module.exports` 通过对象的引用传参，间接的给 `module.exports` 添加属性。
+这里就能看到模块化的实现原理，这里的 `__webpack_exports__` 就是这个模块的 `module.exports` 通过对象的引用传参，间接的给 `module.exports` 添加属性。
 
 最后会将 `module.exports return` 出来。就完成了 `__webpack_require__` 函数的使命。
 
@@ -203,7 +203,7 @@ import a from './a.js';
 
 通过`babel`转换后得到 `var a = require(./a.js)` 得到的对象却是整个对象，肯定不是 `es6` 语句的本意，所以需要对 `a` 做些改变。
 
-我们在导出提到，`default` 输出会赋值给导出对象的`default`属性。
+在导出提到，`default` 输出会赋值给导出对象的`default`属性。
 
 ```js
 exports.default = 123;
@@ -228,7 +228,7 @@ var a = _a2['default'];
 
 ### babel 的作用 - 引入 * 通配符
 
-我们使用 `import * as a from './a.js'` `es6`语法的本意是想将 `es6` 模块的所有命名输出以及`defalut`输出打包成一个对象赋值给a变量。
+使用 `import * as a from './a.js'` `es6`语法的本意是想将 `es6` 模块的所有命名输出以及`defalut`输出打包成一个对象赋值给a变量。
 
 已知以 `commonjs` 规范导出：
 
@@ -276,7 +276,7 @@ function _interopRequireWildcard(obj) {
 
 ### babel 的作用 - 总结
 
-经过上面的转换分析，我们得知即使我们使用了 `es6` 的模块系统，如果借助 `babel` 的转换，`es6` 的模块系统最终还是会转换成 `commonjs` 的规范。所以我们如果是使用 `babel` 转换 `es6` 模块，混合使用 `es6` 的模块和 `commonjs` 的规范是没有问题的，因为最终都会转换成 `commonjs`。
+经过上面的转换分析，得知即使使用了 `es6` 的模块系统，如果借助 `babel` 的转换，`es6` 的模块系统最终还是会转换成 `commonjs` 的规范。所以如果是使用 `babel` 转换 `es6` 模块，混合使用 `es6` 的模块和 `commonjs` 的规范是没有问题的，因为最终都会转换成 `commonjs`。
 
 **这里解释了问题3**
 
@@ -284,13 +284,13 @@ function _interopRequireWildcard(obj) {
 
 ## babel5 & babel6
 
-我们在上文 `babel` 对导出模块的转换提到，`es6` 的 `export default` 都会被转换成 `exports.default`，即使这个模块只有这一个输出。
+在上文 `babel` 对导出模块的转换提到，`es6` 的 `export default` 都会被转换成 `exports.default`，即使这个模块只有这一个输出。
 
 **这也解释了问题1**
 
 > 为何有的地方使用 `require` 去引用一个模块时需要加上 `default`？ `require('xx').default`
 
-我们经常会使用 `es6` 的 `export default` 来输出模块，而且这个输出是这个模块的唯一输出，我们会误以为这种写法输出的是模块的默认输出。
+经常会使用 `es6` 的 `export default` 来输出模块，而且这个输出是这个模块的唯一输出，会误以为这种写法输出的是模块的默认输出。
 
 ```js
 // a.js
@@ -304,7 +304,7 @@ export default 123;
 var foo = require('./a.js')
 ```
 
-在使用 `require` 进行引用时，我们也会误以为引入的是a文件的默认输出。
+在使用 `require` 进行引用时，也会误以为引入的是a文件的默认输出。
 
 结果这里需要改成 `var foo = require('./a.js').default`
 
@@ -380,14 +380,14 @@ var foo = require('./a.js');
 
 **这里解释了问题4**
 
-> 我们在浏览一些 `npm` 下载下来的 `UI` 组件模块时（比如说 `element-ui` 的 `lib` 文件下），看到的都是 `webpack` 编译好的 `js` 文件，可以使用 `import` 或 `require` 再去引用。但是我们平时编译好的 `js` 是无法再被其他模块 `import` 的，这是为什么？
+> 在浏览一些 `npm` 下载下来的 `UI` 组件模块时（比如说 `element-ui` 的 `lib` 文件下），看到的都是 `webpack` 编译好的 `js` 文件，可以使用 `import` 或 `require` 再去引用。但是平时编译好的 `js` 是无法再被其他模块 `import` 的，这是为什么？
 
 ## 模块依赖的优化
 
 ### 按需加载的原理
 
 
-我们在使用各大 `UI` 组件库时都会被介绍到为了避免引入全部文件，请使用 `babel-plugin-component` 等`babel` 插件。
+在使用各大 `UI` 组件库时都会被介绍到为了避免引入全部文件，请使用 `babel-plugin-component` 等`babel` 插件。
 
 ```js
 import { Button, Select } from 'element-ui'
@@ -412,7 +412,7 @@ import Select from 'element-ui/lib/select'
 
 即使转换成了 `commonjs` 规范，也只是引入自己这个组件的`js`，将引入量减少到最低。
 
-所以我们会看到几乎所有的`UI`组件库的目录形式都是
+所以会看到几乎所有的`UI`组件库的目录形式都是
 
 ```js
 |-lib
@@ -428,7 +428,7 @@ import Select from 'element-ui/lib/select'
 
 ### tree-shaking
 
-`webpack2` 开始引入 `tree-shaking` 技术，通过静态分析 `es6` 的语法，可以删除没有被使用的模块。他只对 `es6` 的模块有效，所以一旦 `babel` 将 `es6` 的模块转换成 `commonjs`，`webpack2` 将无法使用这项优化。所以要使用这项技术，我们只能使用 `webpack` 的模块处理，加上 `babel` 的`es6`转换能力（需要关闭模块转换）。
+`webpack2` 开始引入 `tree-shaking` 技术，通过静态分析 `es6` 的语法，可以删除没有被使用的模块。他只对 `es6` 的模块有效，所以一旦 `babel` 将 `es6` 的模块转换成 `commonjs`，`webpack2` 将无法使用这项优化。所以要使用这项技术，只能使用 `webpack` 的模块处理，加上 `babel` 的`es6`转换能力（需要关闭模块转换）。
 
 最方便的使用方法为修改`babel`的配置。
 

@@ -84,7 +84,7 @@ iterator.next();                             // { value: undefined, done: true }
 [...someString]                              // ["h", "i"]
 ```
 
-### 我们可以通过提供自己的 @@iterator 方法，重新定义迭代行为：
+### 可以通过提供自己的 @@iterator 方法，重新定义迭代行为：
 
 ```js
 // 必须构造 String 对象以避免字符串字面量 auto-boxing
@@ -119,7 +119,7 @@ someString + "";                              // "hi"
 
 ### 自定义可迭代对象
 
-我们可以实现一个自己的可迭代对象，就像这样:
+可以实现一个自己的可迭代对象，就像这样:
 
 ```js
 var myIterable = {};
