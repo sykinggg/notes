@@ -155,3 +155,55 @@ class Cake{
 
 }
 ```
+
+## ES6 Module 相对于 CommonJS 的优势
+
+关于 ES Module 和 CommonJS 的规范以及语法，这里不再详细叙述，如果你还不了解这两者的语法糖，可以查看 [ECMAScript 6 入门 / Module 语法](https://link.juejin.cn/?target=https%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fmodule)、[ES Module 标准](https://link.juejin.cn/?target=https%3A%2F%2Ftc39.es%2Fecma262%2F%23sec-modules)以及 [Node.js 的 CommonJS 模块](https://link.juejin.cn/?target=http%3A%2F%2Fnodejs.cn%2Fapi%2Fmodules.html)，两者的主要区别如下所示：
+
+| 类型 | ES Module | CommonJS |
+| ---- | ---- | ---- |
+| 加载方式 | 编译时	| 运行时 |
+| 引入性质 | 引用 / 只读 | 浅拷贝 / 可读写 |
+| 模块作用域 | this	| this / __filename / __dirname... |
+
+### 1 加载方式
+
+加载方式是 ES Module 和 CommonJS 的最主要区别，这使得两者在**编译时**和**运行时**上各有优劣。首先来看一下 ES Module 在加载方式上的特性，如下所示：
+
+```ts
+// 编译时：VS Code 鼠标 hover 到 b 时可以显示出 b 的类型信息
+import { b } from './b';
+
+const a = 1;
+// WARNING: 具有逻辑
+if(a === 1) {
+   // 编译时：ESLint: Parsing error: 'import' and 'export' may only appear at the top level
+   // 运行时：SyntaxError: Unexpected token '{'
+   // TIPS: 这里可以使用 import() 进行动态导入
+   import { b } from './b';
+}
+
+const c = 'b';
+// WARNING: 含有变量
+// 编译时：ESLint：Parsing error: Unexpected token `
+// 运行时：SyntaxError: Unexpected template string
+import { d } from `./${c}`;
+```
+
+CommonJS 相对于 ES Module 在加载方式上的特性如下所示：
+
+```ts
+const a = 1;
+
+if(a === 1) {
+  // VS Code 鼠标 hover 到 b 时，无法显示出 b 的类型信息
+  const b = require('./b');
+}
+
+const c = 'b';
+const d = require(`./${c}`);
+```
+
+大家可能知道上述语法的差异性，接下来通过理论知识重点讲解一下两者产生差异的主要原因。在[前端知识点扫盲（一）/ 编译器原理](https://juejin.cn/post/6987549240436195364)中重点讲解了整个编译器的执行阶段，如下图所示：
+
+![demo](/notes/assets/design/ee672b39fdae42a1a9318947be3bc39d_tplv-k3u1fbpfcp-watermark.awebp)
