@@ -8,6 +8,22 @@ jobs:
   login-gittee:
     runs-on: ubuntu-latest
     steps:
+    - name: Gitee Pages Action
+      # You may pin to the exact commit or the version.
+      # uses: yanglbme/gitee-pages-action@3bb86e685ca25d05177e4ec96c032acf4a5dd9ff
+      uses: yanglbme/gitee-pages-action@v1.2.8
+      with:
+        # The Gitee username, like yanglbme
+        gitee-username: systudy
+        # The Gitee password
+        gitee-password: ${{ secrets.GITEE_PASSWORD }}
+        # The Gitee repository, like doocs/leetcode
+        gitee-repo: systudy/notes
+        # Which branch to build
+        branch: notes
+        # Which directory to build
+        directory: gh-page
+        # Use force https or not
     - name: Sync to Gitee
       uses: Yikun/gitee-mirror-action@v1.1
       with:
