@@ -30,18 +30,6 @@ jobs:
         gitee-repo: systudy/notes
         # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
         branch: master
-    - name: Sync to Gitee
-      uses: Yikun/gitee-mirror-action@v1.1
-      with:
-        # 必选，需要同步的Github用户（源）
-        src: github/sykinggg
-        # 必选，需要同步到的Gitee的用户（目的）
-        dst: gitee/systudy
-        # 必选，Gitee公钥对应的私钥，https://gitee.com/profile/sshkeys
-        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-        # 必选，Gitee对应的用于创建仓库的token，https://gitee.com/profile/personal_access_tokens
-        dst_token:  ${{ secrets.GITEE_TOKEN }}
-        static_list: "notes"
   reload-pages:
     needs: login-gittee
     runs-on: ubuntu-latest
