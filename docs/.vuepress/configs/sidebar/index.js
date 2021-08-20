@@ -465,6 +465,15 @@ module.exports = {
       ]
     }
   ],
+  '/esbuild/': [
+    '/esbuild/description.md',
+    {
+      title: 'API',
+      children: [
+        '/esbuild/api/transform.md',
+      ]
+    }
+  ],
   '/git/': [
     {
       title: 'git 基础整理',
@@ -756,6 +765,7 @@ module.exports = {
     }
   ],
   '/design/': [
+    '/design/functionalProgramming.md',
     '/design/overview.md',
     '/design/constructor.md',
     '/design/module.md',

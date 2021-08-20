@@ -214,6 +214,10 @@ module.exports = [
         // ]
       },
       {
+        text: 'esbuild',
+        link: '/esbuild/description.md'
+      },
+      {
         text: 'git',
         link: '/git/indx.md',
         // items: [
