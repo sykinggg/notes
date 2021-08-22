@@ -54,7 +54,7 @@ func main() {
 [Charset](/esbuild/api/transform.md#charset)
 [Color](/esbuild/api/transform.md#color)
 [Footer](/esbuild/api/transform.md#footer)
-[Global name](/esbuild/api/transform.md#)
+[Global name](/esbuild/api/transform.md#global-name)
 [JSX](/esbuild/api/transform.md#)
 [JSX factory](/esbuild/api/transform.md#)
 [JSX fragment](/esbuild/api/transform.md#)
@@ -122,60 +122,60 @@ func main() {
 如果提供了至少一个输入文件或存在 --bundle 标志，则命令行界面将使用此 API 调用。请注意，默认情况下 esbuild 不捆绑。您必须显式传递 --bundle 标志以启用捆绑。如果未提供输入文件，则从标准输入读取单个输入文件。构建 API 可以采用以下选项：
 
 ### 基础配置
-[Bundle]()
-[Define]()
-[Entry points]()
-[External]()
-[Format]()
-[Inject]()
-[Loader]()
-[Minify]()
-[Outdir]()
-[Outfile]()
-[Platform]()
-[Serve]()
-[Sourcemap]()
-[Splitting]()
-[Target]()
-[Watch]()
-[Write]()
+[Bundle](/esbuild/api/transform.md#bundle)
+[Define](/esbuild/api/transform.md#define)
+[Entry points](/esbuild/api/transform.md#entry-points)
+[External](/esbuild/api/transform.md#external)
+[Format](/esbuild/api/transform.md#format)
+[Inject](/esbuild/api/transform.md#inject)
+[Loader](/esbuild/api/transform.md#loader)
+[Minify](/esbuild/api/transform.md#minify)
+[Outdir](/esbuild/api/transform.md#outdir)
+[Outfile](/esbuild/api/transform.md#outfile)
+[Platform](/esbuild/api/transform.md#platform)
+[Serve](/esbuild/api/transform.md#serve)
+[Sourcemap](/esbuild/api/transform.md#sourcemap)
+[Splitting](/esbuild/api/transform.md#splitting)
+[Target](/esbuild/api/transform.md#target)
+[Watch](/esbuild/api/transform.md#watch)
+[Write](/esbuild/api/transform.md#write)
 
 ### 高级配置
 
-[Allow overwrite]()
-[Asset names]()
-[Banner]()
-[Charset]()
-[Chunk names]()
-[Color]()
-[Conditions]()
-[Entry names]()
-[Footer]()
-[Global name]()
-[Incremental]()
-[JSX]()
-[JSX factory]()
-[JSX fragment]()
-[Keep names]()
-[Legal comments]()
-[Log level]()
-[Log limit]()
-[Main fields]()
-[Metafile]()
-[Node paths]()
-[Out extension]()
-[Outbase]()
-[Preserve symlinks]()
-[Public path]()
-[Pure]()
-[Resolve extensions]()
-[Source Root]()
-[Sourcefile]()
-[Sources Content]()
-[Stdin]()
-[Tree shaking]()
-[Tsconfig]()
-[Working directory]()
+[Allow overwrite](/esbuild/api/transform.md#allow-overwrite)
+[Asset names](/esbuild/api/transform.md#asset-names)
+[Banner](/esbuild/api/transform.md#banner)
+[Charset](/esbuild/api/transform.md#charset)
+[Chunk names](/esbuild/api/transform.md#chunk-names)
+[Color](/esbuild/api/transform.md#color)
+[Conditions](/esbuild/api/transform.md#conditions)
+[Entry names](/esbuild/api/transform.md#entry-names)
+[Footer](/esbuild/api/transform.md#footer)
+[Global name](/esbuild/api/transform.md#global-name)
+[Incremental](/esbuild/api/transform.md#incremental)
+[JSX](/esbuild/api/transform.md#)
+[JSX factory](/esbuild/api/transform.md#)
+[JSX fragment](/esbuild/api/transform.md#)
+[Keep names](/esbuild/api/transform.md#)
+[Legal comments](/esbuild/api/transform.md#)
+[Log level](/esbuild/api/transform.md#)
+[Log limit](/esbuild/api/transform.md#)
+[Main fields](/esbuild/api/transform.md#)
+[Metafile](/esbuild/api/transform.md#)
+[Node paths](/esbuild/api/transform.md#)
+[Out extension](/esbuild/api/transform.md#)
+[Outbase](/esbuild/api/transform.md#)
+[Preserve symlinks](/esbuild/api/transform.md#)
+[Public path](/esbuild/api/transform.md#)
+[Pure](/esbuild/api/transform.md#)
+[Resolve extensions](/esbuild/api/transform.md#)
+[Source Root](/esbuild/api/transform.md#)
+[Sourcefile](/esbuild/api/transform.md#)
+[Sources Content](/esbuild/api/transform.md#)
+[Stdin](/esbuild/api/transform.md#)
+[Tree shaking](/esbuild/api/transform.md#)
+[Tsconfig](/esbuild/api/transform.md#)
+[Working directory](/esbuild/api/transform.md#)
 
 ## Simple options
 
@@ -868,8 +868,418 @@ func main() {
 }
 ```
 
-`esm` 格式既可以在浏览器中使用，也可以在节点中使用，但是您必须将其作为模块显式加载。如果您从另一个模块`import`它，这会自动发生。否则：
+`esm` 格式既可以在浏览器中使用，也可以在node中使用，但是您必须将其作为模块显式加载。如果您从另一个模块`import`它，这会自动发生。否则：
 
 * 在浏览器中，您可以使用 `<script src="file.js" type="module"></script>` 加载模块。
 
 * 在 `node` 中，您可以使用 `node --experimental-modules file.mjs` 加载模块。请注意，节点需要 `.mjs` 扩展名，除非您在 package.json 文件中配置了 `"type": "module"`。您可以使用 `esbuild` 中的 `out` 扩展设置来自定义 `esbuild` 生成的文件的输出扩展。您可以在此处阅读有关在节点中使用 [ECMAScript 模块](https://nodejs.org/api/esm.html)的更多信息。
+
+### Inject
+
+支持：Build
+
+此选项允许您使用来自另一个文件的导入自动替换全局变量。这可能是一个有用的工具，可以将您无法控制的代码适应新环境。例如，假设您有一个名为 `process-shim.js` 的文件，它导出名为 `process` 的变量：
+
+```js
+// process-shim.js
+export let process = {
+  cwd: () => ''
+}
+```
+
+```js
+// entry.js
+console.log(process.cwd())
+```
+
+这旨在替换 `node` 的 `process.cwd()` 函数的使用，以防止调用它的包在浏览器中运行时崩溃。您可以使用注入功能将全局标识符过程的所有使用替换为对该文件的导入：
+
+```
+// cli
+
+esbuild entry.js --bundle --inject:./process-shim.js --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['entry.js'],
+  bundle: true,
+  inject: ['./process-shim.js'],
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"entry.js"},
+    Bundle:      true,
+    Inject:      []string{"./process-shim.js"},
+    Outfile:     "out.js",
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+结果是这样的：
+
+```js
+// out.js
+let process = {cwd: () => ""};
+console.log(process.cwd());
+```
+
+* **使用带定义的[注入](https://esbuild.github.io/api/#define)**
+
+您还可以将其与定义[功能](https://esbuild.github.io/api/#define)结合起来，以便对您导入的内容更具选择性。例如：
+
+```js
+// process-shim.js
+export function dummy_process_cwd() {
+  return ''
+}
+```
+
+```js
+// entry.js
+console.log(process.cwd())
+```
+
+您可以使用定义功能将 `process.cwd` 映射到 `dummy_process_cwd`，然后使用注入功能从 `process-shim.js` 注入 `dummy_process_cwd`：
+
+```
+// cli
+
+esbuild entry.js --bundle --define:process.cwd=dummy_process_cwd --inject:./process-shim.js --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['entry.js'],
+  bundle: true,
+  define: { 'process.cwd': 'dummy_process_cwd' },
+  inject: ['./process-shim.js'],
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"entry.js"},
+    Bundle:      true,
+    Define: map[string]string{
+      "process.cwd": "dummy_process_cwd",
+    },
+    Inject:  []string{"./process-shim.js"},
+    Outfile: "out.js",
+    Write:   true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+这导致以下输出：
+
+```js
+// out.js
+function dummy_process_cwd() {
+  return "";
+}
+console.log(dummy_process_cwd());
+```
+
+* **[JSX](https://esbuild.github.io/content-types/#jsx) 的自动导入**
+
+您可以使用注入功能自动提供 `JSX` 表达式的实现。比如你可以自动导入`react`包来提供`React.createElement`等功能。有关详细信息，[请参阅 JSX 文档](https://esbuild.github.io/content-types/#auto-import-for-jsx)。
+
+* **在没有导入的情况下注入文件**
+
+您还可以将此功能用于没有导出的文件。在这种情况下，注入的文件只是在输出的其余部分之前出现，就好像每个输入文件都包含导入`“./file.js”`。由于 ECMAScript 模块的工作方式，这种注入仍然是“hygienic”，因为不同文件中具有相同名称的符号被重命名，因此它们不会相互冲突。
+
+* **有条件地注入文件**
+
+如果您只想在实际使用导出时有条件地导入文件，您应该将注入的文件标记为没有副作用，将其放入包中并在该包的 `package.json` 文件中添加 `"sideEffects": false` 。此设置是[来自 Webpack 的约定](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free)，esbuild 尊重任何导入的文件，而不仅仅是用于注入的文件。
+
+### Loader
+
+支持：Transform | Build
+
+此选项更改给定输入文件的解释方式。例如，`js` 加载器将文件解释为 JavaScript，而 `css` 加载器将文件解释为 CSS。有关所有内置加载器的完整列表，[请参阅内容类型页面](https://esbuild.github.io/content-types/)。
+
+为给定的文件类型配置加载器允许您使用`import` 语句或 `require` 调用加载该文件类型。例如，将 `.png` 文件扩展名配置为使用[数据 URL](https://esbuild.github.io/content-types/#data-url) 加载器意味着导入 `.png` 文件会为您提供一个包含该图像内容的数据 URL：
+
+```js
+import url from './example.png'
+let image = new Image
+image.src = url
+document.body.appendChild(image)
+
+import svg from './example.svg'
+let doc = new DOMParser().parseFromString(svg, 'application/xml')
+let node = document.importNode(doc.documentElement, true)
+document.body.appendChild(node)
+```
+
+上面的代码可以使用构建 API 调用进行[捆绑](https://esbuild.github.io/api/#build-api)，如下所示：
+
+```
+// cli
+
+esbuild app.js --bundle --loader:.png=dataurl --loader:.svg=text
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  loader: {
+    '.png': 'dataurl',
+    '.svg': 'text',
+  },
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Loader: map[string]api.Loader{
+      ".png": api.LoaderDataURL,
+      ".svg": api.LoaderText,
+    },
+    Write: true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+如果您将构建 API 与来自 stdin 的输入一起使用，则此选项的指定方式不同，因为 [stdin](https://esbuild.github.io/api/#stdin) 没有文件扩展名。使用构建 API 为 stdin 配置加载器如下所示：
+
+```
+// cli
+
+echo 'let x: number = 1' | esbuild --loader=ts
+let x = 1;
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  stdin: {
+    contents: 'import pkg = require("./pkg")',
+    loader: 'ts',
+    resolveDir: __dirname,
+  },
+  bundle: true,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Loader: map[string]api.Loader{
+      ".png": api.LoaderDataURL,
+      ".svg": api.LoaderText,
+    },
+    Write: true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+如果您将构建 API 与来自 [stdin](https://esbuild.github.io/api/#stdin) 的输入一起使用，则此选项的指定方式不同，因为 stdin 没有文件扩展名。使用构建 API 为 stdin 配置加载器如下所示：
+
+```
+// cli
+
+echo 'import pkg = require("./pkg")' | esbuild --loader=ts --bundle
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  stdin: {
+    contents: 'import pkg = require("./pkg")',
+    loader: 'ts',
+    resolveDir: __dirname,
+  },
+  bundle: true,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Loader: map[string]api.Loader{
+      ".png": api.LoaderDataURL,
+      ".svg": api.LoaderText,
+    },
+    Write: true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+[转换 API](https://esbuild.github.io/api/#transform-api) 调用只需要一个加载器，因为它不涉及与文件系统的交互，因此不处理文件扩展名。为转换 API 配置加载器（在本例中为 `ts` 加载器）如下所示：
+
+```
+// cli
+
+echo 'let x: number = 1' | esbuild --loader=ts
+let x = 1;
+```
+
+```js
+// js
+
+let ts = 'let x: number = 1'
+require('esbuild').transformSync(ts, {
+  loader: 'ts',
+})
+{
+  code: 'let x = 1;\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  ts := "let x: number = 1"
+
+  result := api.Transform(ts, api.TransformOptions{
+    Loader: api.LoaderTS,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+### Minify
+
+支持：Transform | Build
+
+启用后，生成的代码将被缩小而不是漂亮的打印。压缩代码通常等同于非压缩代码，但更小，这意味着它下载速度更快但更难调试。通常你会在生产中而不是在开发中缩小代码。
+
+在 esbuild 中启用缩小如下所示：
+
+```
+// cli
+
+echo 'fn = obj => { return obj.x }' | esbuild --minify
+fn=n=>n.x;
+```
+
+```js
+// js
+
+var js = 'fn = obj => { return obj.x }'
+require('esbuild').transformSync(js, {
+  minify: true,
+})
+{
+  code: 'fn=n=>n.x;\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  js := "fn = obj => { return obj.x }"
+
+  result := api.Transform(js, api.TransformOptions{
+    MinifyWhitespace:  true,
+    MinifyIdentifiers: true,
+    MinifySyntax:      true,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
