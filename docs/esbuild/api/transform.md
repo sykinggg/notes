@@ -2172,3 +2172,1203 @@ func main() {
   }
 }
 ```
+
+### Target
+
+支持：Transform | Build
+
+这为生成的JavaScript代码设置了目标环境。例如，您可以将eSbuild配置为不生成节点版本10无法处理的任何较新的JavaScript。目标可以设置为诸如`ES2020`的JavaScript语言版本，也可以是单个引擎的版本列表（目前是`Chrome`，`Firefox`，`Safari`，`Edge`或`node`）。默认目标是`esnext`，这意味着默认情况下，eSbuild将假设支持所有最新的JavaScript功能。
+
+以下是一个使用esbuild中的所有可用目标环境名称的示例。请注意，您不需要指定所有这些;您只需指定项目所关心的目标环境的子集。如果您想要的（例如`Node12.19.0`而不是`Node12`），您也可以更精确地了解版本号
+
+```
+// cli
+
+esbuild app.js --target=es2020,chrome58,firefox57,safari11,edge16,node12
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  target: [
+    'es2020',
+    'chrome58',
+    'firefox57',
+    'safari11',
+    'edge16',
+    'node12',
+  ],
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Target:      api.ES2020,
+    Engines: []api.Engine{
+      {Name: api.EngineChrome, Version: "58"},
+      {Name: api.EngineFirefox, Version: "57"},
+      {Name: api.EngineSafari, Version: "11"},
+      {Name: api.EngineEdge, Version: "16"},
+      {Name: api.EngineNode, Version: "12"},
+    },
+    Write: true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+您可以参考[JavaScript Loader](https://esbuild.github.io/content-types/#javascript)，了解有关哪些语法功能的详细信息，其中包含语言版本。请记住，虽然`ES2020`等JavaScript语言版本在年份中确定，但这是规范批准的一年。它与年份无关，所有主要浏览器都实施该规范，这些规范通常会发生在早年或更晚于该年。
+
+请注意，如果使用eSbuild尚未支持转换为当前语言目标的语法功能，则Esbuild将生成不支持的语法的错误。例如，这通常是针对`ES5`语言版本的情况，因为eSbuild仅支持将大多数较新的JavaScript语法功能转换为`ES6`。
+
+### Watch
+
+支持：Build
+
+在构建API上启用监视模式告诉eSBuild侦听文件系统的更改，并在可以使构建无效的文件更改时重建。使用它看起来像这样：
+
+```
+// cli
+
+esbuild app.js --outfile=out.js --bundle --watch
+```
+
+```js
+// js
+
+require('esbuild').build({
+  entryPoints: ['app.js'],
+  outfile: 'out.js',
+  bundle: true,
+  watch: true,
+}).then(result => {
+  // Call "stop" on the result when you're done
+  result.stop()
+})
+```
+
+```go
+// go
+
+result := api.Build(api.BuildOptions{
+  EntryPoints: []string{"app.js"},
+  Outfile:     "out.js",
+  Bundle:      true,
+  Watch:       &api.WatchMode{},
+})
+
+// Call "stop" on the result when you're done
+result.Stop()
+```
+
+如果您使用的是JavaScript或Go API，则可以选择在增量构建完成时提供调用的回调。一旦构建完成，这可以用来做某事（例如，在浏览器中重新加载您的应用程序）：
+
+```js
+// js
+
+require('esbuild').build({
+  entryPoints: ['app.js'],
+  outfile: 'out.js',
+  bundle: true,
+  watch: {
+    onRebuild(error, result) {
+      if (error) console.error('watch build failed:', error)
+      else console.log('watch build succeeded:', result)
+    },
+  },
+}).then(result => {
+  // Call "stop" on the result when you're done
+  result.stop()
+})
+```
+
+```go
+// go
+
+result := api.Build(api.BuildOptions{
+  EntryPoints: []string{"app.js"},
+  Outfile:     "out.js",
+  Bundle:      true,
+  Watch: &api.WatchMode{
+    OnRebuild: func(result api.BuildResult) {
+      if len(result.Errors) > 0 {
+        fmt.Printf("watch build failed: %d errors\n", len(result.Errors))
+      } else {
+        fmt.Printf("watch build succeeded: %d warnings\n", len(result.Warnings))
+      }
+    },
+  },
+})
+
+// Call "stop" on the result when you're done
+result.Stop()
+```
+
+使用轮询而不是OS特定文件系统API实现eSBuild中的监视模式以进行可移植性。投票系统旨在使用相对较少的CPU与一个传统的投票系统一次扫描整个目录树。文件系统仍然是定期扫描的，但每个扫描只检查文件的随机子集，这意味着在更改之后将在更改之后不久会拾取文件的更改，但不一定立即才能拾取文件。
+
+凭借目前的启发式，应在每2秒内完全扫描大型项目，所以在最坏的情况下，最多可能需要2秒钟进行注意。但是，在发生了变化之后，更改的路径在最近更改的路径的短期列表中，在每次扫描中检查，因此应几乎立即注意到最近更改的文件的进一步更改。
+
+请注意，如果您不想使用基于轮询的方法，仍然可以使用esbuild的[增量构建API](https://esbuild.github.io/api/#incremental)和文件观察者库来实现手表模式。
+
+### Write
+
+支持：Build
+
+构建API调用可以直接写入文件系统，也可以返回将作为内存缓冲区中写入的文件。默认情况下，CLI和JavaScript API写入文件系统和GO API。要使用内存缓冲区：
+
+```js
+// js
+
+let result = require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  sourcemap: 'external',
+  write: false,
+  outdir: 'out',
+})
+
+for (let out of result.outputFiles) {
+  console.log(out.path, out.contents)
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Sourcemap:   api.SourceMapExternal,
+    Write:       false,
+    Outdir:      "out",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+
+  for _, out := range result.OutputFiles {
+    fmt.Printf("%v %v\n", out.Path, out.Contents)
+  }
+}
+```
+
+## 高级选项
+
+### Allow overwrite
+
+支持：Build
+
+启用此设置允许输出文件覆盖输入文件。它默认情况下未启用，因为这样做意味着覆盖源代码，如果未选中您的代码，则会导致数据丢失。但是，通过避免对临时目录的需求来说，支持这使得某些工作流程更容易。因此，您可以在要故意覆盖源代码时启用此项：
+
+```
+// cli
+
+esbuild app.js --outdir=. --allow-overwrite
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  outdir: '.',
+  allowOverwrite: true,
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints:    []string{"app.js"},
+    Outdir:         ".",
+    AllowOverwrite: true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Asset names
+
+支持：Build
+
+此选项控制[加载器](https://esbuild.github.io/api/#loader)设置为[文件](https://esbuild.github.io/content-types/#external-file)时生成的附加输出文件的文件名。它使用带有占位符的模板配置输出路径，该占位符将被替换为在生成输出路径时由特定于文件的值替换。例如，指定资产的`assets/ [name] - [hash]`将所有资产放入输出目录中的名为`assets`的子目录中，并包括文件名中资产的内容散列。这样看起来如此：
+
+```
+// cli
+
+esbuild app.js --asset-names=assets/[name]-[hash] --loader:.png=file --bundle --outdir=out
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  assetNames: 'assets/[name]-[hash]',
+  loader: { '.png': 'file' },
+  bundle: true,
+  outdir: 'out',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    AssetNames:  "assets/[name]-[hash]",
+    Loader: map[string]api.Loader{
+      ".png": api.LoaderFile,
+    },
+    Bundle: true,
+    Outdir: "out",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+有三个占位符可以在assets路径模板中使用：
+
+* `[dir]`
+
+这是从包含资产文件到outbase目录的目录的相对路径。其目的是通过镜像[输出目录](https://esbuild.github.io/api/#outbase)内的输入目录结构来帮助资产输出路径看起来更美观令人愉悦。
+
+* `[name]`
+
+这是没有扩展的资产的原始文件名。例如，如果资产最初是名为`Image.png`，则`[name]`将被模板中的`图像`替换。没有必要使用这个占位符;它只存在提供人类友好的资产名称来使调试更容易。
+
+* `[hash]`
+
+这是assets的内容哈希值，这对于避免名称碰撞是有用的。例如，您的代码可能导入`components/button/icon.png`和`components/select/icon.png`，在这种情况下，您需要散列来区分两个名为图标的两个`icon`。
+
+assets路径模板不需要包含文件扩展名。在模板替换后，资产的原始文件扩展将自动添加到输出路径的末尾。
+
+此选项类似于[块名称](https://esbuild.github.io/api/#chunk-names)和[条目名称](https://esbuild.github.io/api/#entry-names)选项。
+
+### Banner
+
+支持：Transform | Build
+
+使用此功能可在生成的JavaScript和CSS文件的开头插入任意字符串。这通常用于插入评论：
+
+```
+// cli
+
+esbuild app.js --banner:js=//comment --banner:css=/*comment*/
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  banner: {
+    js: '//comment',
+    css: '/*comment*/',
+  },
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Banner: map[string]string{
+      "js":  "//comment",
+      "css": "/*comment*/",
+    },
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+这类似于在[最后](https://esbuild.github.io/api/#footer)插入的页脚而不是开始。
+
+请注意，如果要将非注释代码插入CSS文件，请注意，CSS忽略非`@import`规则（除`@CharSet`规则之外）之后的non-`@import`规则，因此使用横幅注入CSS规则可能会意外禁用外部样式表的进口。
+
+### Charset
+
+支持：Transform | Build
+
+默认情况下，eSbuild的输出仅为ASCII。使用反斜杠转义序列逃离任何非ASCII字符。一个原因是因为默认情况下，浏览器误解了非ASCII字符，导致混淆。您必须将`<meta charset =“utf-8”>`显式添加到您的HTML或用正确的`Content-Type`标题为浏览器提供服务，以不敲打代码。另一个原因是非ASCII字符可以[显着慢下浏览器的解析器](https://v8.dev/blog/scanner)。但是，使用转义序列使生成的输出略大，并且还更难读取。
+
+如果您希望在不使用转义序列的情况下打印原始字符，并且确保浏览器将代码解释为UTF-8，则可以通过设置Charset来禁用字符逃避：
+
+```
+// cli
+
+echo 'let π = Math.PI' | esbuild
+let \u03C0 = Math.PI;
+echo 'let π = Math.PI' | esbuild --charset=utf8
+let π = Math.PI;
+```
+
+```js
+// js
+
+let js = 'let π = Math.PI'
+require('esbuild').transformSync(js)
+{
+  code: 'let \\u03C0 = Math.PI;\n',
+  map: '',
+  warnings: []
+}
+require('esbuild').transformSync(js, {
+  charset: 'utf8',
+})
+{
+  code: 'let π = Math.PI;\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  js := "let π = Math.PI"
+
+  result1 := api.Transform(js, api.TransformOptions{})
+
+  if len(result1.Errors) == 0 {
+    fmt.Printf("%s", result1.Code)
+  }
+
+  result2 := api.Transform(js, api.TransformOptions{
+    Charset: api.CharsetUTF8,
+  })
+
+  if len(result2.Errors) == 0 {
+    fmt.Printf("%s", result2.Code)
+  }
+}
+```
+
+一些警告：
+
+* 这尚未逃避嵌入正则表达式中的非ASCII字符。这是因为eSbuild目前根本没有解析正则表达式的内容。尽管有此限制，因此添加了该标志，因为它对不包含这样的案例的代码仍然有用。
+
+* 此标志不适用于评论。我相信在注释中保留非ASCII数据应该是正常的，因为即使编码是错误的，运行时环境也应该完全忽略所有评论的内容。例如，V8博客发布提到了一种优化，避免完全解码评论内容。无论如何都是由伊斯邦尔剥离了许可证相关评论之外的所有评论。
+
+* 此选项同时适用于所有输出文件类型（JavaScript，CSS和JSON）。因此，如果将Web服务器配置为发送正确的`Content-Type`标题并希望使用UTF-8 Charset，请确保将Web服务器配置为将`.js`和`.css`文件视为UTF-8。
+
+### Chunk names
+
+支持：Build
+
+此选项控制启用[代码拆分](https://esbuild.github.io/api/#splitting)时自动生成的共享代码块的文件名。它使用带有占位符的模板配置输出路径，当生成输出路径时，这些占位符将替换为特定于块的值。例如，指定 `chunks/[name]-[hash]` 的块名称模板会将所有生成的块放入输出目录中名为 chunks 的子目录中，并在文件名中包含块的内容哈希。这样做看起来像这样：
+
+```
+// cli
+
+esbuild app.js --chunk-names=chunks/[name]-[hash] --bundle --outdir=out --splitting --format=esm
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  chunkNames: 'chunks/[name]-[hash]',
+  bundle: true,
+  outdir: 'out',
+  splitting: true,
+  format: 'esm',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    ChunkNames:  "chunks/[name]-[hash]",
+    Bundle:      true,
+    Outdir:      "out",
+    Splitting:   true,
+    Format:      api.FormatESModule,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+有两个占位符可用于块路径模板：
+
+* `[name]`
+
+目前这将始终是`文本块`，尽管此占位符可能会在未来版本中采用其他值。
+
+* `[hash]`
+
+这是块的内容哈希。在生成多个共享代码块的情况下，为了将不同的块彼此区分开来，必须包括这一点。
+
+块路径模板不需要包含文件扩展名。模板替换后，为适当的内容类型配置的[输出扩展](https://esbuild.github.io/api/#out-extension)名将自动添加到输出路径的末尾。
+
+请注意，此选项仅控制自动生成的共享代码块的名称。它不控制与入口点相关的输出文件的名称。这些名称当前是根据原始入口点文件相对于 [outbase](https://esbuild.github.io/api/#outbase) 目录的路径确定的，并且无法更改此行为。将来会添加一个额外的 API 选项，让您可以更改入口点输出文件的文件名。
+
+此选项类似于[资产名称](https://esbuild.github.io/api/#asset-names)和[条目名称](https://esbuild.github.io/api/#entry-names)选项。
+
+### Color
+
+支持：Transform | Build
+
+此选项启用或禁用 esbuild 写入终端中 stderr 文件描述符的错误和警告消息中的颜色。默认情况下，如果 stderr 是 TTY 会话，则自动启用颜色，否则自动禁用。 esbuild 中的彩色输出如下所示：
+
+![demo](/notes/assets/design/1629696207477.jpg)
+
+可以通过将 color 设置为 `true` 来强制启用彩色输出。如果您自己将 esbuild 的 stderr 输出通过管道传输到 TTY，这将非常有用：
+
+```
+// cli
+
+echo 'typeof x == "null"' | esbuild --color=true 2> stderr.txt
+```
+
+```js
+// js
+
+let js = 'typeof x == "null"'
+require('esbuild').transformSync(js, {
+  color: true,
+})
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  js := "typeof x == 'null'"
+
+  result := api.Transform(js, api.TransformOptions{
+    Color: api.ColorAlways,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+也可以将彩色输出设置为 `false` 以禁用颜色。
+
+### Conditions
+
+支持：Build
+
+此功能控制如何解释 `package.json` 中的`导出字段`。可以使用条件设置添加自定义条件。您可以根据需要指定任意数量的这些，这些的含义完全取决于包作者。 Node 目前只认可推荐使用的`开发`和`生产`自定义条件。以下是添加自定义条件 `custom1` 和 `custom2` 的示例：
+
+```
+// cli
+
+esbuild src/app.js --bundle --conditions=custom1,custom2
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['src/app.js'],
+  bundle: true,
+  conditions: ['custom1', 'custom2'],
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"src/app.js"},
+    Bundle:      true,
+    Conditions:  []string{"custom1", "custom2"},
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+#### How conditions work
+
+条件允许您在不同情况下将相同的导入路径重定向到不同的文件位置。包含条件和路径的重定向映射存储在包的 `package.json` 文件的`导出字段`中。例如，这会将 `require('pkg/foo')` 重新映射到 `pkg/required.cjs` 并使用 `import` 和 `require` 条件将 `'pkg/foo'` 导入到 `pkg/imported.mjs`：
+
+```json
+{
+  "name": "pkg",
+  "exports": {
+    "./foo": {
+      "import": "./imported.mjs",
+      "require": "./required.cjs",
+      "default": "./fallback.js"
+    }
+  }
+}
+```
+
+条件按照它们在 JSON 文件中出现的顺序进行检查。所以上面的例子表现得有点像这样：
+
+```js
+if (importPath === './foo') {
+  if (conditions.has('import')) return './imported.mjs'
+  if (conditions.has('require')) return './required.cjs'
+  return './fallback.js'
+}
+```
+
+默认情况下，esbuild 内置了五个具有特殊行为的条件，并且无法禁用：
+
+* `default`
+
+此条件始终处于活动状态。它旨在最后出现，并让您在没有其他条件适用时提供后备。
+
+* `import`
+
+此条件仅在导入路径来自 ESM `导入语句`或 `import()` 表达式时才有效。它可用于提供特定于 ESM 的代码。
+
+* `require`
+
+此条件仅在导入路径来自 CommonJS `require()` 调用时才有效。它可用于提供 CommonJS 特定的代码。
+
+* `browser`
+
+当esbuild的[平台设置](https://esbuild.github.io/api/#platform)设置为`浏览器`时，此条件仅激活。它可用于提供特定于浏览器的代码。
+
+* `node`
+
+当eSbuild的[平台设置设](https://esbuild.github.io/api/#platform)置为`node`时，此条件仅激活。它可用于提供特定于node的代码。
+
+请注意，当您使用`require`和`import`条件时，您的包裹可能会多次捆绑在捆绑包中！这是一个微妙的问题，除了围绕生成的捆绑包之外，由于代码状态的重复副本，可能会导致错误。这通常被称为[双包危险](https://nodejs.org/docs/latest/api/packages.html#packages_dual_package_hazard)。避免此方法的主要方式是将所有代码放在`require`条件下，并具有`import`条件只是一个非受控块`require`，可在您的包装上调用，并使用ESM语法重新导出包裹。
+
+### Entry names
+
+支持：Build
+
+此选项控制对应于每个输入条目点文件的输出文件的文件名。它使用带有占位符的模板配置输出路径，该占位符将被替换为在生成输出路径时由特定于文件的值替换。例如，指定`[dir]/[name]-[hash]`的条目名称模板包括文件名中的输出文件的哈希，并将文件放入输出目录中，可能会在子目录下（请参阅有关[`[ Dir]`下面）。这样看起来如此：
+
+```
+// cli
+
+esbuild src/main-app/app.js --entry-names=[dir]/[name]-[hash] --outbase=src --bundle --outdir=out
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['src/main-app/app.js'],
+  entryNames: '[dir]/[name]-[hash]',
+  outbase: 'src',
+  bundle: true,
+  outdir: 'out',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"src/main-app/app.js"},
+    EntryNames:  "[dir]/[name]-[hash]",
+    Outbase:     "src",
+    Bundle:      true,
+    Outdir:      "out",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+有三个占位符可以在进入路径模板中使用：
+
+* `[dir]`
+
+这是从包含输入条目点文件到[outbase](https://esbuild.github.io/api/#outbase)目录的目录的相对路径。其目的是帮助您避免不同子目录中相同名为的入口点之间的碰撞。
+
+例如，如果有两个条目点`src/pages/home/index.ts`和`src/pages/about/index.ts`，则`outbase`目录是`src`，条目名称模板是`[dir]/[name]`，输出目录将包含`pages/home/index.js`和`pages/about/index.js`。如果输入名称模板只是`[name]`而言，捆绑将失败，因为输出目录中存在两个具有相同输出路径索​​引的输出文件。
+
+* `[name]`
+
+这是没有扩展名的入口点的原始文件名。例如，如果输入条目点文件名为`App.js`，则`[Name]`将在模板中的`应用程序`替换。
+
+* `[hash]`
+
+这是输出文件的内容散列，可用于采取浏览器缓存的最佳优势。将`[hash]`添加到您的入口点名称意味着eSbuild将计算与相应的输出文件中的所有内容相关的散列（以及如果[代码拆分](https://esbuild.github.io/api/#splitting)是活动的任何输出文件，则它导入的任何输出文件）。散列旨在且仅在更改与该输出文件相关的任何输入文件时才更改。
+
+之后，您可以让您的Web服务器告诉浏览器，以便将浏览器永远缓存这些文件（在练习中，您可以说他们从现在就像在一年中那样长时间到期）。然后，您可以使用[元文件](https://esbuild.github.io/api/#metafile)中的信息来确定哪个输出文件路径对应于哪个输入条目点，以便您知道`<script>`标记中包含的路径包含在哪条路径中。
+
+条目路径模板不需要包含文件扩展名。基于文件类型的适当[突出](https://esbuild.github.io/api/#out-extension)扩展将在模板替换后自动添加到输出路径的末尾。
+
+此选项类似于[资产名称](https://esbuild.github.io/api/#asset-names)和[块名称](https://esbuild.github.io/api/#chunk-names)选项。
+
+### Footer
+
+支持：Transform | Build
+
+使用此选项可在生成的JavaScript和CSS文件的末尾插入任意字符串。这通常用于插入评论：
+
+```
+// cli
+
+esbuild app.js --footer:js=//comment --footer:css=/*comment*/
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  footer: {
+    js: '//comment',
+    css: '/*comment*/',
+  },
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Footer: map[string]string{
+      "js":  "//comment",
+      "css": "/*comment*/",
+    },
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+这类似于[横幅](https://esbuild.github.io/api/#banner)，该横幅在开始而不是结束时插入。
+
+### Global name
+
+支持：Transform | Build
+
+此选项仅在[格式](https://esbuild.github.io/api/#format)设置为`IIFE`时事项（代表立即调用的函数表达式）。它设置全局变量的名称，用于从入口点存储导出：
+
+```
+// cli
+
+echo 'module.exports = "test"' | esbuild --format=iife --global-name=xyz
+```
+
+```js
+// js
+
+let js = 'module.exports = "test"'
+require('esbuild').transformSync(js, {
+  format: 'iife',
+  globalName: 'xyz',
+})
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  js := "module.exports = 'test'"
+
+  result := api.Transform(js, api.TransformOptions{
+    Format:     api.FormatIIFE,
+    GlobalName: "xyz",
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+使用`iife`格式指定全局名称将生成查看类似的代码：
+
+```js
+var xyz = (() => {
+  ...
+  var require_stdin = __commonJS((exports, module) => {
+    module.exports = "test";
+  });
+  return require_stdin();
+})();
+```
+
+全局名称也可以是复合属性表达式，在这种情况下，eSbuild将生成具有该属性的全局变量。不覆盖冲突的现有全局变量。这可以用于实现“命名方式”，其中多个独立脚本将导出添加到同一全局对象上。例如：
+
+```
+// cli
+
+echo 'module.exports = "test"' | esbuild --format=iife --global-name='example.versions["1.0"]'
+```
+
+```js
+// js
+
+let js = 'module.exports = "test"'
+require('esbuild').transformSync(js, {
+  format: 'iife',
+  globalName: 'example.versions["1.0"]',
+})
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  js := "module.exports = 'test'"
+
+  result := api.Transform(js, api.TransformOptions{
+    Format:     api.FormatIIFE,
+    GlobalName: `example.versions["1.0"]`,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+上面使用的复合全局名称生成如下所示的代码：
+
+```js
+var example = example || {};
+example.versions = example.versions || {};
+example.versions["1.0"] = (() => {
+  ...
+  var require_stdin = __commonJS((exports, module) => {
+    module.exports = "test";
+  });
+  return require_stdin();
+})();
+```
+
+### Incremental
+
+支持：Build
+
+如果您的用例涉及使用相同的选项致电呼叫eSbuild的[构建API](https://esbuild.github.io/api/#build-api)，则可能希望使用此API。例如，如果您正在实现文件观察者服务，这将是有用的。增量构建比常规构建更有效，因为有些数据被缓存，并且如果自上次构建以来原始文件没有更改，则可以重用。目前，增量构建API使用两种形式的缓存：
+
+* 文件存储在内存中，如果文件元数据自上次构建以来未更改，则不会从文件系统重新读取。此优化仅适用于文件系统路径。它不适用于由[插件](https://esbuild.github.io/plugins/)创建的虚拟模块。
+
+* 解析[AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree)存储在内存中，如果文件内容自上次构建以来没有更改，则避免重新解析AST。除了文件系统模块之外，此优化还适用于由Plugins创建的虚拟模块，只要虚拟模块路径保持不变。
+
+以下是如何进行增量构建：
+
+```js
+// js
+
+async function example() {
+  let result = await require('esbuild').build({
+    entryPoints: ['app.js'],
+    bundle: true,
+    outfile: 'out.js',
+    incremental: true,
+  })
+
+  // Call "rebuild" as many times as you want
+  for (let i = 0; i < 5; i++) {
+    let result2 = await result.rebuild()
+  }
+
+  // Call "dispose" when you're done to free up resources.
+  result.rebuild.dispose()
+}
+
+example()
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Outfile:     "out.js",
+    Incremental: true,
+  })
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+
+  // Call "Rebuild" as many times as you want
+  for i := 0; i < 5; i++ {
+    result2 := result.Rebuild()
+    if len(result2.Errors) > 0 {
+      os.Exit(1)
+    }
+  }
+}
+```
+
+### JSX
+
+支持：Transform | Build
+
+此选项告诉eSBuild如何处理JSX语法。您可以将eSBuild转换为JS（默认值）或保留输出中的JSX语法。保留JSX语法：
+
+```
+// cli
+
+echo '<div/>' | esbuild --jsx=preserve --loader=jsx
+<div />;
+```
+
+```js
+// js
+
+require('esbuild').transformSync('<div/>', {
+  jsx: 'preserve',
+  loader: 'jsx',
+})
+{
+  code: '<div />;\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  result := api.Transform("<div/>", api.TransformOptions{
+    JSXMode: api.JSXModePreserve,
+    Loader:  api.LoaderJSX,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+请注意，如果保留JSX语法，则输出文件不再有效JavaScript代码。当您希望在捆绑后通过另一个工具在eSBuild的输出文件中将JSX语法转换为eSbuild的输出文件中的JSX语法，通常是与一个eSBuild实现不同的JSX-to-JS转换。
+
+### JSX factory
+
+支持：Transform | Build
+
+这设置了对每个JSX元素调用的函数。通常是诸如此类的JSX表达式：
+
+```jsx
+<div>Example text</div>
+```
+
+被编译成函数调用`React.createElement`。如下所示：
+
+```jsx
+React.createElement("div", null, "Example text");
+```
+
+您可以通过更改JSX工厂来调用除`React.createLement`之外的内容。例如，要调用函数`h`（而不是由其他库使用，例如 [Preact](https://preactjs.com/)）：
+
+```
+// cli
+
+echo '<div/>' | esbuild --jsx-factory=h --loader=jsx
+/* @__PURE__ */ h("div", null);
+```
+
+```js
+// js
+
+require('esbuild').transformSync('<div/>', {
+  jsxFactory: 'h',
+  loader: 'jsx',
+})
+{
+  code: '/* @__PURE__ */ h("div", null);\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  result := api.Transform("<div/>", api.TransformOptions{
+    JSXFactory: "h",
+    Loader:     api.LoaderJSX,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+或者，如果您使用的是类型签字，只需通过将此添加到`TSConfig.JSON`文件和eSbuild即可自动将其拾取而无法配置：
+
+```json
+{
+  "compilerOptions": {
+    "jsxFactory": "h"
+  }
+}
+```
+
+### JSX fragment
+
+支持：Transform | Build
+
+这设置了对每个JSX片段调用的函数。通常是一个JSX片段表达式，如下所示：
+
+```jsx
+<>Stuff</>
+```
+
+被编译为使用`React.Fragment`组件如下所示：
+
+```js
+React.createElement(React.Fragment, null, "Stuff");
+```
+
+您可以通过更改JSX片段，使用除`React.fragment`之外的组件。例如，要使用组件`Fragment`（由其他库使用，例如[ Preact](https://preactjs.com/)）：
+
+```
+// cli
+
+echo '<>x</>' | esbuild --jsx-fragment=Fragment --loader=jsx
+/* @__PURE__ */ React.createElement(Fragment, null, "x");
+```
+
+```js
+// js
+
+require('esbuild').transformSync('<>x</>', {
+  jsxFragment: 'Fragment',
+  loader: 'jsx',
+})
+{
+  code: '/* @__PURE__ */ React.createElement(Fragment, null, "x");\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  result := api.Transform("<>x</>", api.TransformOptions{
+    JSXFragment: "Fragment",
+    Loader:      api.LoaderJSX,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+或者，如果您使用的是类型签字，只需通过将此添加到`tsconfig.json`文件和eSbuild即可自动将其拾取而无法配置：
+
+```json
+{
+  "compilerOptions": {
+    "jsxFragmentFactory": "Fragment"
+  }
+}
+```
+
+### Keep names
+
+支持：Transform | Build
+
+在JavaScript中，函数的`名称`属性和类默认为源代码中的附近标识符。这些语法表单都将函数的`名称`属性设置为`“fn”`：
+
+```js
+function fn() {}
+let fn = function() {};
+fn = function() {};
+let [fn = function() {}] = [];
+let {fn = function() {}} = {};
+[fn = function() {}] = [];
+({fn = function() {}} = {});
+```
+
+但是，[压缩](https://esbuild.github.io/api/#minify)重命名符号以降低代码大小和捆绑有时需要重命名符号以避免冲突。这对这些案例中的许多情况进行了`名称`属性的值。这通常很好，因为`名称`属性通常仅用于调试。但是，某些框架依赖于`名称`属性进行注册和绑定目的。如果是这种情况，您可以启用此选项即使在压缩代码中也可以保留原始`名称`值：
+
+```
+// cli
+
+esbuild app.js --minify --keep-names
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  minify: true,
+  keepNames: true,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints:       []string{"app.js"},
+    MinifyWhitespace:  true,
+    MinifyIdentifiers: true,
+    MinifySyntax:      true,
+    KeepNames:         true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Legal comments
+
+支持：Transform | Build
+
+“法律评论”被认为是包含`@License`或`@PreServe`或以//开始的任何声明级别评论`//!`或`/*!`默认情况下，这些注释保留在输出文件中，因为它遵循代码的原始作者的意图。但是，可以使用以下选项之一来配置此行为：
+
+* `none`
+
+不要保留任何法律评论。
+
+* `inline`
+
+保留所有法律评论。
+
+* `eof`
+
+将所有法律评论移动到文件的末尾。
+
