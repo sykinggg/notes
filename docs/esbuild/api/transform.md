@@ -732,7 +732,7 @@ func main() {
 
 #### IIFE
 
-`iife` 格式代表“立即调用的函数表达式”，旨在在浏览器中运行。将代码包装在函数表达式中可确保代码中的任何变量不会意外地与全局范围内的变量发生冲突。如果您的入口点具有要在浏览器中公开为全局的导出，您可以使用全局名称设置来配置该全局的名称。 `iife` 格式是默认格式，除非您将平台设置为节点。使用它看起来像这样：
+`iife` 格式代表“立即调用的函数表达式”，旨在在浏览器中运行。将代码包装在函数表达式中可确保代码中的任何变量不会意外地与全局范围内的变量发生冲突。如果您的入口点具有要在浏览器中公开为全局的导出，您可以使用全局名称设置来配置该全局的名称。 `iife` 格式是默认格式，除非您将平台设置为node。使用它看起来像这样：
 
 ```
 // cli
@@ -872,7 +872,7 @@ func main() {
 
 * 在浏览器中，您可以使用 `<script src="file.js" type="module"></script>` 加载模块。
 
-* 在 `node` 中，您可以使用 `node --experimental-modules file.mjs` 加载模块。请注意，节点需要 `.mjs` 扩展名，除非您在 package.json 文件中配置了 `"type": "module"`。您可以使用 `esbuild` 中的 `out` 扩展设置来自定义 `esbuild` 生成的文件的输出扩展。您可以在此处阅读有关在节点中使用 [ECMAScript 模块](https://nodejs.org/api/esm.html)的更多信息。
+* 在 `node` 中，您可以使用 `node --experimental-modules file.mjs` 加载模块。请注意，node需要 `.mjs` 扩展名，除非您在 package.json 文件中配置了 `"type": "module"`。您可以使用 `esbuild` 中的 `out` 扩展设置来自定义 `esbuild` 生成的文件的输出扩展。您可以在此处阅读有关在node中使用 [ECMAScript 模块](https://nodejs.org/api/esm.html)的更多信息。
 
 ### Inject
 
@@ -1236,9 +1236,9 @@ func main() {
 
 支持：Transform | Build
 
-启用后，生成的代码将被缩小而不是漂亮的打印。压缩代码通常等同于非压缩代码，但更小，这意味着它下载速度更快但更难调试。通常你会在生产中而不是在开发中缩小代码。
+启用后，生成的代码将被压缩而不是漂亮的打印。压缩代码通常等同于非压缩代码，但更小，这意味着它下载速度更快但更难调试。通常你会在生产中而不是在开发中压缩代码。
 
-在 esbuild 中启用缩小如下所示：
+在 esbuild 中启用压缩如下所示：
 
 ```
 // cli
@@ -1280,6 +1280,895 @@ func main() {
 
   if len(result.Errors) == 0 {
     fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+此选项组合执行三个独立的操作：删除空格，将语法重写为更紧凑，并将局部变量重命名为更短。通常你想要做所有这些事情，但如果需要，也可以单独启用这些选项：
+
+```
+// cli
+
+echo 'fn = obj => { return obj.x }' | esbuild --minify-whitespace
+fn=obj=>{return obj.x};
+echo 'fn = obj => { return obj.x }' | esbuild --minify-identifiers
+fn = (n) => {
+  return n.x;
+};
+echo 'fn = obj => { return obj.x }' | esbuild --minify-syntax
+fn = (obj) => obj.x;
+```
+
+```js
+// js
+
+var js = 'fn = obj => { return obj.x }'
+require('esbuild').transformSync(js, {
+  minifyWhitespace: true,
+})
+{
+  code: 'fn=obj=>{return obj.x};\n',
+  map: '',
+  warnings: []
+}
+require('esbuild').transformSync(js, {
+  minifyIdentifiers: true,
+})
+{
+  code: 'fn = (n) => {\n  return n.x;\n};\n',
+  map: '',
+  warnings: []
+}
+require('esbuild').transformSync(js, {
+  minifySyntax: true,
+})
+{
+  code: 'fn = (obj) => obj.x;\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  css := "div { color: yellow }"
+
+  result1 := api.Transform(css, api.TransformOptions{
+    Loader:           api.LoaderCSS,
+    MinifyWhitespace: true,
+  })
+
+  if len(result1.Errors) == 0 {
+    fmt.Printf("%s", result1.Code)
+  }
+
+  result2 := api.Transform(css, api.TransformOptions{
+    Loader:            api.LoaderCSS,
+    MinifyIdentifiers: true,
+  })
+
+  if len(result2.Errors) == 0 {
+    fmt.Printf("%s", result2.Code)
+  }
+
+  result3 := api.Transform(css, api.TransformOptions{
+    Loader:       api.LoaderCSS,
+    MinifySyntax: true,
+  })
+
+  if len(result3.Errors) == 0 {
+    fmt.Printf("%s", result3.Code)
+  }
+}
+```
+
+这些相同的概念也适用于 CSS，而不仅仅是 JavaScript：
+
+```
+// cli
+
+echo 'div { color: yellow }' | esbuild --loader=css --minify
+div{color:#ff0}
+```
+
+```js
+// js
+
+var css = 'div { color: yellow }'
+require('esbuild').transformSync(css, {
+  loader: 'css',
+  minify: true,
+})
+{
+  code: 'div{color:#ff0}\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  css := "div { color: yellow }"
+
+  result := api.Transform(css, api.TransformOptions{
+    Loader:            api.LoaderCSS,
+    MinifyWhitespace:  true,
+    MinifyIdentifiers: true,
+    MinifySyntax:      true,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+esbuild 中的 JavaScript 压缩算法通常生成的输出非常接近行业标准 JavaScript 压缩工具的压缩输出大小。该[基准](https://github.com/privatenumber/minification-benchmarks/tree/cd3e5acb8d38da5f86426d44ac95974812559683#readme)测试对不同压缩器之间的输出大小进行了示例比较。虽然 esbuild 不是所有情况下的最佳 JavaScript 压缩器（并且不会尝试成为），但它努力在大多数代码的专用压缩工具大小的百分之几内生成压缩的输出，并且当然做得更快比其他工具。
+
+#### 思考
+
+以下是使用 esbuild 作为压缩器时要记住的一些事项：
+
+* 您可能还应该在启用压缩时设置目标[选项](https://esbuild.github.io/api/#target)。默认情况下，esbuild 利用现代 JavaScript 功能来使您的代码更小。例如，`a === undefined ||一个 === 空？ 1 : a` 可以压缩为 `a ?? 1`. 如果您不希望 esbuild 在压缩时利用现代 JavaScript 功能，您应该使用较旧的语言目标，例如 `--target=es6`。
+
+* 压缩对于 100% 的 JavaScript 代码都是不安全的。这对于 esbuild 以及其他流行的 JavaScript 压缩器（如 terser）都是如此。特别是，esbuild 并非旨在保留对函数调用 `.toString()` 的值。这样做的原因是因为如果所有函数中的所有代码都必须逐字保存，那么压缩几乎不会做任何事情并且几乎毫无用处。然而，这意味着依赖 `.toString()` 返回值的 JavaScript 代码在压缩时可能会中断。例如，当代码被压缩时，AngularJS 框架中的一些模式会中断，因为 AngularJS 使用 `.toString()` 来读取函数的参数名称。解决方法是[改用显式注释](https://docs.angularjs.org/api/auto/service/$injector#injection-function-annotation)。
+
+* 默认情况下，esbuild 不会在函数和类对象上保留 `.name` 的值。这是因为大多数代码不依赖于这个属性，使用较短的名称是一个重要的大小优化。但是，某些代码确实依赖 `.name` 属性进行注册和绑定。如果您需要依赖它，您应该启用[保留名称](https://esbuild.github.io/api/#keep-names)选项。
+
+* 使用某些 JavaScript 功能可以禁用许多 esbuild 的优化，包括压缩。具体来说，使用直接 `eval` 和/或 `with` 语句可以防止 esbuild 将标识符重命名为较小的名称，因为这些功能会导致标识符绑定发生在运行时而不是编译时。这几乎总是无意的，并且只是因为人们不知道直接 `eval` 是什么以及它为什么不好。
+
+> 如果您正在考虑编写一些这样的代码：
+
+```js
+// Direct eval (will disable minification for the whole file)
+let result = eval(something)
+```
+
+> 您可能应该像这样编写代码，以便可以压缩代码：
+
+```js
+// Indirect eval (has no effect on the surrounding code)
+let result = (0, eval)(something)
+```
+
+这里有关于直接`eval`的后果和可用替代方案的更多信息。
+
+* esbuild 中的压缩算法尚未进行高级代码优化。特别是，以下代码优化对于 JavaScript 代码是可能的，但不是由 esbuild 完成的（不是详尽的列表）：
+  
+  * 函数体内的死代码消除
+  
+  * 函数内联
+  
+  * 跨语句常量传播
+  
+  * 对象形状建模
+  
+  * 分配下沉
+  
+  * 方法去虚拟化
+  
+  * 符号执行
+  
+  * JSX 表达式提升
+  
+  * TypeScript 枚举检测和内联
+
+如果您的代码使用的模式要求其中一些代码优化形式紧凑，或者您正在为您的用例搜索最佳 JavaScript 压缩算法，您应该考虑使用其他工具。实现其中一些高级代码优化的工具的一些示例包括 [Terser](https://github.com/terser/terser#readme) 和 [Google Closure Compiler](https://github.com/google/closure-compiler#readme)。
+
+### Outdir
+
+支持：Build
+
+此选项设置构建操作的输出目录。例如，此命令将生成一个名为的目录
+
+```
+// cli
+
+esbuild app.js --bundle --outdir=out
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  outdir: 'out',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Outdir:      "out",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+如果输出目录尚不存在，则会生成输出目录，但如果已包含某些文件，则不会清除它。任何生成的文件都会以静默方式覆盖同名的现有文件。如果您希望输出目录仅包含来自当前 esbuild 运行的文件，您应该在运行 esbuild 之前自己清除输出目录。
+
+如果您的构建在不同的目录中包含多个入口点，则目录结构将从所有输入入口点路径中最低的[公共祖先目录](https://en.wikipedia.org/wiki/Lowest_common_ancestor)开始复制到输出目录中。例如，如果有两个入口点 `src/home/index.ts` 和 `src/about/index.ts`，则输出目录将包含 `home/index.js` 和 `about/index.js`。如果要自定义此行为，则应更改 [outbase 目录](https://esbuild.github.io/api/#outbase)。
+
+### Outfile
+
+支持: Build
+
+此选项设置构建操作的输出文件名。这仅适用于有单个入口点的情况。如果有多个入口点，则必须改用 [outdir](https://esbuild.github.io/api/#outdir) 选项来指定输出目录。使用 outfile 看起来像这样：
+
+```
+// cli
+
+esbuild app.js --bundle --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Outdir:      "out.js",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Platform
+
+支持：Build
+
+默认情况下，esbuild 的 bundler 被配置为生成用于浏览器的代码。如果您的捆绑代码打算在 node 中运行，您应该将平台设置为 `node`：
+
+```
+// cli
+
+esbuild app.js --bundle --platform=node
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  platform: 'node',
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Platform:    api.PlatformNode,
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+当平台设置为`浏览器(browser)`时（默认值）：
+
+* 默认输出[格式](https://esbuild.github.io/api/#format)设置为 `iife`，它将生成的 JavaScript 代码包装在立即调用的函数表达式中，以防止变量泄漏到全局范围内。
+
+* 如果包在其 `package.json` 文件中为`浏览器`字段指定了映射，esbuild 将使用该映射将特定文件或模块替换为其浏览器友好版本。例如，一个包可能包含用 `path-browserify` 替换`路径`。
+
+* [主要字段](https://esbuild.github.io/api/#main-fields)设置设置为 `browser,module,main` 但有一些额外的特殊行为。如果包支持 `module` 和 `main` 但不支持`浏览器`，那么如果使用 `require()` 导入该`包`，则使用 `main` 而不是 `module`。此行为通过将函数分配给 `module.exports` 来提高与导出函数的 CommonJS 模块的兼容性。
+
+* [条件](https://esbuild.github.io/api/#conditions)设置自动包含`浏览器`条件。这改变了 `package.json` 文件中的`导出`字段被解释为更喜欢浏览器特定代码的方式。
+
+* 如果启用了所有[压缩选项](https://esbuild.github.io/api/#minify)，则所有 `process.env.NODE_ENV` 表达式都会[自动定义](https://esbuild.github.io/api/#define)为`“production”`，否则为`“development”`。仅当 `process`、`process.env` 和 `process.env.NODE_ENV` 尚未定义时才会发生这种情况。这种替换对于避免基于 React 的代码立即崩溃是必要的（因为`进程`是node API，而不是 Web API）。
+
+当平台设置为node时：
+
+* 默认输出[格式](https://esbuild.github.io/api/#format)设置为`cjs`，代表CommonJS（node使用的模块格式）。使用 `export` 语句的 ES6 样式导出将转换为 CommonJS `导出`对象上的 getter。
+
+* 所有[内置node模块](https://nodejs.org/docs/latest/api/)（例如 `fs`）都会自动标记为[外部](https://esbuild.github.io/api/#external)模块，因此当捆绑器尝试捆绑它们时，它们不会导致错误。
+
+
+  * [主要字段](https://esbuild.github.io/api/#main-fields)设置设置为 `main,module`。这意味着同时提供 `module` 和 `main` 的包可能不会发生摇树，因为摇树适用于 ECMAScript 模块，但不适用于 CommonJS 模块。
+
+  * 不幸的是，一些包错误地将模块视为“浏览器代码”而不是“ECMAScript `模块`代码”，因此为了兼容性需要这种默认行为。如果您想启用摇树并且知道这样做是安全的，您可以手动将[主要字段](https://esbuild.github.io/api/#main-fields)设置配置为 `module,main`。
+
+* [条件](https://esbuild.github.io/api/#conditions)设置自动包含`node`条件。这改变了 `package.json` 文件中的`导出`字段被解释为更喜欢特定于node的代码的方式。
+
+当平台设置为neutral时：
+
+* 默认输出[格式](https://esbuild.github.io/api/#format)设置为 `esm`，它使用 ECMAScript 2015（即 ES6）引入的`导出`语法。如果此默认值不合适，您可以更改输出格式。
+
+* 默认情况下，[主要字段](https://esbuild.github.io/api/#main-fields)设置为空。如果您想使用 npm 样式的包，您可能必须将其配置为其他内容，例如 node 使用的标准 `main` 字段的 main 。
+
+* [条件](https://esbuild.github.io/api/#conditions)设置不会自动包含任何特定于平台的值。
+
+另请参阅[浏览器的捆绑](https://esbuild.github.io/getting-started/#bundling-for-the-browser)和[node的捆绑](https://esbuild.github.io/getting-started/#bundling-for-node)。
+
+### Serve
+
+支持: Build
+
+在开发过程中，进行更改时通常会在文本编辑器和浏览器之间来回切换。在浏览器中重新加载代码之前手动重新运行 esbuild 很不方便。有几种方法可以自动执行此操作：
+
+* 使用[监视模式](https://esbuild.github.io/api/#watch)在文件更改时重新运行 esbuild
+
+* 配置您的文本编辑器以在每次保存时运行 esbuild
+
+* 使用根据每个请求重建的 Web 服务器为您的代码提供服务
+
+这个 API 调用实现了最后一个方法。服务 API 类似于[构建 API](https://esbuild.github.io/api/#build-api) 调用，但它不是将生成的文件写入文件系统，而是启动一个长期存在的本地 HTTP Web 服务器，为最新构建的生成文件提供服务。每一批新请求都会导致 esbuild 在响应请求之前重新运行构建命令，以便您的文件始终是最新的。
+
+与其他方法相比，这种方法的优势在于 Web 服务器可以延迟浏览器的请求，直到构建完成。这样，在最新构建完成之前在浏览器中重新加载代码将永远不会运行先前构建中的代码。这些文件是从内存中提供的，不会写入文件系统，以确保无法观察到过时的文件。
+
+请注意，这仅用于开发。不要在生产中使用它。在生产中，您应该在不使用 esbuild 作为 Web 服务器的情况下提供静态文件。
+
+使用服务 API 有两种不同的方法：
+
+#### 方法一：用 esbuild 服务一切
+
+使用这种方法，除了 esbuild 生成的文件之外，您还为 esbuild 提供了一个名为 `serveir 的目录`，其中包含要提供的额外内容。这适用于创建一些静态 HTML 页面并希望使用 esbuild 捆绑 JavaScript 和/或 CSS 的简单情况。您可以将您的 HTML 文件放在 `servedir` 中，并将您的其他源代码放在 `servedir` 之外，然后将 `outdir` 设置在 `servedir` 内的某个位置：
+
+```
+// cli
+
+esbuild src/app.js --servedir=www --outdir=www/js --bundle
+```
+
+```js
+// js
+
+require('esbuild').serve({
+  servedir: 'www',
+}, {
+  entryPoints: ['src/app.js'],
+  outdir: 'www/js',
+  bundle: true,
+}).then(server => {
+  // Call "stop" on the web server when you're done
+  server.stop()
+})
+```
+
+```go
+// go
+
+server, err := api.Serve(api.ServeOptions{
+  Servedir: "www",
+}, api.BuildOptions{
+  EntryPoints: []string{"src/app.js"},
+  Outdir:      "www/js",
+  Bundle:      true,
+})
+
+// Call "stop" on the web server when you're done
+server.Stop()
+```
+
+在上面的例子中，你的 `www/index.html` 页面可以像这样引用 `src/app.js` 中的编译代码：
+
+```html
+<script src="js/app.js"></script>
+```
+
+当您这样做时，每个 HTTP 请求都会导致 esbuild 重建您的代码并为您提供最新版本。因此，每次您重新加载页面时，`js/app.js` 将始终是最新的。请注意，虽然生成的代码似乎在 `outdir` 目录中，但它实际上从未使用 serve API 写入文件系统。相反，生成的代码阴影的路径（即优先于）`servedir` 和生成的文件中的其他路径直接从内存中提供。
+
+这样做的好处是您可以在开发和生产中使用完全相同的 HTML 页面。在开发中，您可以使用 `--servedir=` 运行 esbuild，esbuild 将直接提供生成的输出文件。对于生产，您可以省略该标志，esbuild 会将生成的文件写入文件系统。在这两种情况下，您应该在开发和生产中使用完全相同的代码在浏览器中获得完全相同的结果。
+
+默认情况下，端口会自动选择为第一个等于或大于 8000 的开放端口。端口号从 API 调用返回（或打印到 CLI 的终端），因此您可以知道要访问哪个 URL。如有必要，可以将端口设置为特定的内容（在下面进一步描述）。
+
+#### 方法 2：仅使用 esbuild 提供生成的文件
+
+使用这种方法，您只需告诉 esbuild 提供 [outdir](https://esbuild.github.io/api/#outdir) 的内容，而无需为其提供任何额外的内容。这适用于更复杂的开发设置。例如，您可能希望使用 NGINX 作为反向代理，在开发过程中将不同路径路由到单独的后端服务（例如 `/static/` 到 NGINX、`/api/` 到 node、`/js/` 到 esbuild 等）。通过这种方法使用 esbuild 看起来像这样：
+
+```
+// cli
+
+esbuild src/app.js --outfile=out.js --bundle --serve=8000
+```
+
+```js
+// js
+
+require('esbuild').serve({
+  port: 8000,
+}, {
+  entryPoints: ['src/app.js'],
+  bundle: true,
+  outfile: 'out.js',
+}).then(server => {
+  // Call "stop" on the web server when you're done
+  server.stop()
+})
+```
+
+```go
+// go
+
+server, err := api.Serve(api.ServeOptions{
+  Port: 8000,
+}, api.BuildOptions{
+  EntryPoints: []string{"src/app.js"},
+  Bundle:      true,
+  Outfile:     "out.js",
+})
+
+// Call "stop" on the web server when you're done
+server.Stop()
+```
+
+上面示例中的 API 调用将在 [http://localhost:8000/out.js](http://localhost:8000/out.js) 处提供 src/app.js 的编译内容。就像第一种方法一样，每个 HTTP 请求都会导致 esbuild 重建您的代码并为您提供最新版本，因此 `out.js` 将始终是最新的。然后，您的 HTML 文件（由另一个端口上的另一个 Web 服务器提供服务）可以像这样从您的 HTML 引用编译后的文件：
+
+```html
+<script src="http://localhost:8000/out.js"></script>
+```
+
+在未启用 Web 服务器的情况下使用普通构建命令时，Web 服务器的 URL 结构完全反映[输出目录](https://esbuild.github.io/api/#outdir)的 URL 结构。例如，如果输出目录通常包含一个名为 `./pages/about.js` 的文件，则 Web 服务器将具有相应的 `/pages/about.js` 路径。
+
+如果您想浏览 Web 服务器以查看哪些 URL 可用，您可以通过访问目录名而不是文件名来使用内置目录列表。例如，如果您在端口 8000 上运行 esbuild 的 Web 服务器，则可以在浏览器中访问 [http://localhost:8000/](http://localhost:8000/) 以查看 Web 服务器的根目录。从那里您可以单击链接以浏览 Web 服务器上的不同文件和目录。
+
+#### Arguments
+
+请注意，服务 API 是与[构建 API](https://esbuild.github.io/api/#build-api) 不同的 API 调用。这是因为启动一个长时间运行的 Web 服务器是不同的，足以保证不同的参数和返回值。服务 API 调用的第一个参数是带有服务特定选项的选项对象：
+
+```ts
+interface ServeOptions {
+  port?: number;
+  host?: string;
+  servedir?: string;
+  onRequest?: (args: ServeOnRequestArgs) => void;
+}
+
+interface ServeOnRequestArgs {
+  remoteAddress: string;
+  method: string;
+  path: string;
+  status: number;
+  timeInMS: number;
+}
+```
+
+```go
+type ServeOptions struct {
+  Port      uint16
+  Host      string
+  Servedir  string
+  OnRequest func(ServeOnRequestArgs)
+}
+
+type ServeOnRequestArgs struct {
+  RemoteAddress string
+  Method        string
+  Path          string
+  Status        int
+  TimeInMS      int
+}
+```
+
+* port
+
+可以选择在此处配置 HTTP 端口。如果省略，则默认为开放端口，优先选择端口 8000。您可以在命令行上使用 `--serve=8000` 而不是 `--serve` 设置端口。
+
+* host
+
+默认情况下，esbuild 使 Web 服务器可用于所有 IPv4 网络接口。这对应于 `0.0.0.0` 的主机地址。如果您想配置不同的主机（例如，仅在 `127.0.0.1` 环回接口上提供服务而不向网络公开任何内容），您可以使用此参数指定主机。您可以使用 `--serve=127.0.0.1:8000` 而不是 `--serve` 在命令行上设置主机。
+
+如果您需要使用 IPv6 而不是 IPv4，您只需要指定一个 IPv6 主机地址。等效于 IPv6 中的 `127.0.0.1` 环回接口是 `::1`，等效于 IPv6 中的 `0.0.0.0` 通用接口是 `::`。如果在命令行中将主机设置为 IPv6 地址，则需要用方括号将 IPv6 地址括起来，以区分地址中的冒号和分隔主机和端口的冒号，如下所示：`--serve=[:: ]：8000`。
+
+* servedir
+
+当传入请求与任何生成的输出文件路径不匹配时，这是 esbuild 的 HTTP 服务器提供的额外内容目录，而不是 404。这使您可以将 esbuild 用作通用的本地 Web 服务器。例如，使用 `esbuild --servedir=`。为`本地`主机上的`当前目录`提供服务。在前面关于不同方法的部分中更详细地描述了使用 serveir。
+
+* onRequest
+
+每个传入请求都会调用一次，并提供有关请求的一些信息。 CLI 使用此回调为每个请求打印日志消息。时间字段是为请求生成数据的时间，但不包括将请求流式传输到客户端的时间。
+
+请注意，这是在请求完成后调用的。无法使用此回调以任何方式修改请求。如果你想这样做，你应该[在 esbuild 前面放置一个代理](https://esbuild.github.io/api/#customizing-server-behavior)。
+
+服务 API 调用的第二个参数是在每个请求上调用的底层构建 API 的正常选项集。有关这些选项的更多信息，请参阅[构建 API](https://esbuild.github.io/api/#build-api) 的文档。
+
+#### Return values
+
+```js
+// js
+
+interface ServeResult {
+  port: number;
+  host: string;
+  wait: Promise<void>;
+  stop: () => void;
+}
+```
+
+```go
+// go
+
+type ServeResult struct {
+  Port uint16
+  Host string
+  Wait func() error
+  Stop func()
+}
+```
+
+* port
+
+这是 Web 服务器最终使用的端口。如果您没有指定端口，您将需要使用它，因为 esbuild 最终会选择一个任意的开放端口，并且您需要知道它选择了哪个端口才能连接到它。如果您使用的是 CLI，则此端口号将打印到终端中的 stderr。
+
+* host
+
+这是最终被 Web 服务器使用的主机。除非配置了自定义主机，否则它将是 `0.0.0.0`（即在所有可用的网络接口上提供服务）。
+
+* wait
+
+只要可以打开套接字，服务 API 调用就会立即返回。`await`返回值提供了一种在 Web 服务器终止时通知的方法，无论是由于网络错误还是由于在将来的某个时间点`stop`调用。
+
+* stop
+
+调用这个回调来停止 web 服务器，当你不再需要它来清理资源时你应该这样做。这将立即终止所有打开的连接并唤醒任何`等待`等待返回值的代码。
+
+#### Customizing server behavior
+
+无法连接到 esbuild 的本地服务器来自定义服务器本身的行为。相反，应该通过在 esbuild 前面放置一个代理来自定义行为。
+
+这是一个简单的代理服务器示例，可帮助您入门。它添加了一个自定义的 404 页面，而不是 esbuild 的默认 404 页面：
+
+```js
+// js
+
+const esbuild = require('esbuild');
+const http = require('http');
+
+// Start esbuild's server on a random local port
+esbuild.serve({
+  servedir: __dirname,
+}, {
+  // ... your build options go here ...
+}).then(result => {
+  // The result tells us where esbuild's local server is
+  const {host, port} = result
+
+  // Then start a proxy server on port 3000
+  http.createServer((req, res) => {
+    const options = {
+      hostname: host,
+      port: port,
+      path: req.url,
+      method: req.method,
+      headers: req.headers,
+    }
+
+    // Forward each incoming request to esbuild
+    const proxyReq = http.request(options, proxyRes => {
+      // If esbuild returns "not found", send a custom 404 page
+      if (proxyRes.statusCode === 404) {
+        res.writeHead(404, { 'Content-Type': 'text/html' });
+        res.end('<h1>A custom 404 page</h1>');
+        return;
+      }
+
+      // Otherwise, forward the response from esbuild to the client
+      res.writeHead(proxyRes.statusCode, proxyRes.headers);
+      proxyRes.pipe(res, { end: true });
+    });
+
+    // Forward the body of the request to esbuild
+    req.pipe(proxyReq, { end: true });
+  }).listen(3000);
+});
+```
+
+此代码在随机本地端口上启动 esbuild 的服务器，然后在端口 3000 上启动代理服务器。在开发过程中，您将在浏览器中加载 [http://localhost:3000](http://localhost:3000)，它与代理通信。此示例演示在 esbuild 处理请求后修改响应，但您也可以在 esbuild 处理请求之前修改或替换请求。
+
+你可以用这样的代理做很多事情，包括：
+
+* 注入你自己的 404 页面（上面的例子）
+
+* 自定义路由到文件系统上文件的映射
+
+* 将一些路由重定向到 API 服务器而不是 esbuild
+
+* 使用您自己的自签名证书添加对 HTTPS 的支持
+
+如果您有更高级的需求，也可以使用真正的代理，例如 [NGINX](https://nginx.org/en/docs/beginners_guide.html#proxy)。
+
+### Sourcemap
+
+支持：Transform | Build
+
+源映射可以使调试代码更容易。它们对将生成的输出文件中的行/列偏移转换回相应原始输入文件中的行/列偏移所需的信息进行编码。如果您生成的代码与原始代码有很大不同（例如，您的原始代码是 TypeScript 或您启用了[压缩](https://esbuild.github.io/api/#minify)），这将非常有用。如果您更喜欢在浏览器的开发人员工具中查看单个文件而不是一个大的捆绑文件，这也很有用。
+
+请注意，JavaScript 和 CSS 都支持源地图输出，并且相同的选项适用于两者。下面讨论 `.js` 文件的所有内容也同样适用于 `.css` 文件。
+
+启用源映射生成将在任何生成的 .js 文件旁边生成一个 `.js.map` 文件，并在指向 `.js.map` 文件的 `.js` 文件底部添加一个特殊的 `//# sourceMappingURL=` 注释：
+
+```
+// cli
+
+esbuild app.ts --sourcemap --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.ts'],
+  sourcemap: true,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.ts"},
+    Sourcemap:   api.SourceMapLinked,
+    Outfile:     "out.js",
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+如果输入文件本身包含一个特殊的 `//# sourceMappingURL=` 注释，esbuild 将自动尝试解析链接的源映射。如果成功，生成的源映射中的映射将一直映射回输入源映射中引用的原始源代码。
+
+如果你想从生成的 `.js` 文件中省略特殊的 `//# sourceMappingURL=` 注释，但你仍然想生成 `.js.map` 文件，你应该将源映射模式设置为`外部`：
+
+```
+// cli
+
+esbuild app.ts --sourcemap=external --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.ts'],
+  sourcemap: 'external',
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.ts"},
+    Sourcemap:   api.SourceMapExternal,
+    Outfile:     "out.js",
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+如果要将整个源映射插入 `.js` 文件而不是生成单独的 `.js.map` 文件，则应将源映射模式设置为`内联`：
+
+```
+// cli
+
+esbuild app.ts --sourcemap=inline --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.ts'],
+  sourcemap: 'inline',
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.ts"},
+    Sourcemap:   api.SourceMapInline,
+    Outfile:     "out.js",
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+请记住，源映射通常非常大，因为它们包含您所有的原始源代码，因此您通常不希望发布包含`内联`源映射的代码。要从源映射中删除源代码（仅保留文件名和行/列映射），请使用[源内容](https://esbuild.github.io/api/#sources-content)选项。
+
+如果你想同时拥有`inline`和`external`的效果，你应该将source map mode设置为`both`：
+
+```
+// cli
+
+esbuild app.ts --sourcemap=both --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.ts'],
+  sourcemap: 'both',
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.ts"},
+    Sourcemap:   api.SourceMapInlineAndExternal,
+    Outfile:     "out.js",
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+#### Using source maps
+
+在浏览器中，只要启用了源映射设置，浏览器的开发人员工具就会自动获取源映射。请注意，浏览器仅使用源映射在记录到控制台时更改堆栈跟踪的显示。堆栈跟踪本身不会被修改，因此在您的代码中检查 `error.stack` 仍然会提供包含已编译代码的未映射堆栈跟踪。以下是在浏览器的开发人员工具中启用此设置的方法：
+
+* Chrome：⚙ → 启用 JavaScript 源映射
+
+* Safari: ⚙ → Sources → Enable source maps
+
+* Firefox：···→ 启用源地图
+
+在 node 中，从 [v12.12.0](https://nodejs.org/en/blog/release/v12.12.0/) 版本开始原生支持源映射。默认情况下禁用此功能，但可以使用标志启用。与浏览器不同，实际的堆栈跟踪也在 node 中修改，因此检查代码中的 `error.stack` 将提供包含原始源代码的映射堆栈跟踪。以下是如何在节点中启用此设置（`--enable-source-maps` 标志必须位于脚本文件名之前）：
+
+```
+// cli
+
+node --enable-source-maps app.js
+```
+
+### Splitting
+
+支持: Build
+
+> 代码拆分仍然是正在进行的工作。它目前仅适用于`ESM`输出[格式](https://esbuild.github.io/api/#format)。还有一个 [ordering issue](https://github.com/evanw/esbuild/issues/399) 问题，横跨代码拆分块具有`导入`语句。您可以遵循关于此功能的[the tracking issue](https://github.com/evanw/esbuild/issues/16)问题。
+
+这使得“代码拆分”能够用于两个目的：
+
+* 在多个入口点之间共享的代码被拆分为入口点导入的单独的共享文件。这样，如果用户首先浏览一个页面然后到另一个页面，如果共享部分已被下载并被其浏览器缓存，则它们不必从头下载第二页的所有JavaScript。
+
+* 通过异步`import()`表达式引用的代码将被拆分为单独的文件，并且仅在评估该表达式时加载。这允许您通过仅下载您需要的代码来改进应用的初始下载时间，然后在稍后需要懒惰下载其他代码。
+* 没有代码拆分启用，`import()` 表达式变为Promise.resolve().then(() => require())。这仍然保留了表达式的异步语义，但这意味着导入的代码包含在同一捆绑包中，而不是将其拆分为单独的文件。
+
+启用代码拆分时，还必须使用[outir](https://esbuild.github.io/api/#outdir)的设置配置输出目录：
+
+```
+// cli
+
+esbuild home.ts about.ts --bundle --splitting --outdir=out --format=esm
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['home.ts', 'about.ts'],
+  bundle: true,
+  splitting: true,
+  outdir: 'out',
+  format: 'esm',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"home.ts", "about.ts"},
+    Bundle:      true,
+    Splitting:   true,
+    Outdir:      "out",
+    Format:      api.FormatESModule,
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
   }
 }
 ```
