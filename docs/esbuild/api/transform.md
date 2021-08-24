@@ -4,14 +4,16 @@
 
 转换 API 调用对单个字符串进行操作，而无需访问文件系统。这使其非常适合在没有文件系统的环境（例如浏览器）中使用或作为其他工具链的一部分使用。下面是一个简单的转换：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli" active>
+```bash
 echo 'let x: number = 1' | esbuild --loader=ts
 let x = 1;
 ```
+</CodeGroupItem>
 
+<CodeGroupItem title="js">
 ```js
-// js
 require('esbuild').transformSync('let x: number = 1', {
   loader: 'ts',
 })
@@ -21,14 +23,14 @@ require('esbuild').transformSync('let x: number = 1', {
   warnings: []
 }
 ```
+</CodeGroupItem>
 
+<CodeGroupItem title="go">
 ```go
-// go
 package main
 
 import "fmt"
 import "github.com/evanw/esbuild/pkg/api"
-
 func main() {
   result := api.Transform("let x: number = 1", api.TransformOptions{
     Loader: api.LoaderTS,
@@ -39,6 +41,9 @@ func main() {
   }
 }
 ```
+</CodeGroupItem>
+</CodeGroup>
+
 
 如果未提供输入文件且不存在 --bundle 标志，则命令行界面将使用此 API 调用。在这种情况下，输入字符串来自标准输入，输出字符串进入标准输出。转换 API 可以采用以下选项：
 
@@ -47,7 +52,7 @@ func main() {
 [Format](/esbuild/api/transform.md#format)
 [Loader](/esbuild/api/transform.md#loader)
 [Minify](/esbuild/api/transform.md#minify)
-[SourceMap](/esbuild/api/transform.md#sourceMap)
+[SourceMap](/esbuild/api/transform.md#sourcemap)
 [Target](/esbuild/api/transform.md#target)
 ### 高级配置
 [Banner](/esbuild/api/transform.md#banner)
