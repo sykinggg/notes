@@ -52,7 +52,8 @@ module.exports = config({
             shortname: 'sycoder'
         }],
         // "code-switcher",
-        "element-ui"
+        "element-ui",
+        '@vuepress/medium-zoom'
     ],
     head: [
         ['link', {
