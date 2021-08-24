@@ -55,19 +55,19 @@ func main() {
 [Color](/esbuild/api/transform.md#color)
 [Footer](/esbuild/api/transform.md#footer)
 [Global name](/esbuild/api/transform.md#global-name)
-[JSX](/esbuild/api/transform.md#)
-[JSX factory](/esbuild/api/transform.md#)
-[JSX fragment](/esbuild/api/transform.md#)
-[Keep names](/esbuild/api/transform.md#)
-[Legal comments](/esbuild/api/transform.md#)
-[Log level](/esbuild/api/transform.md#)
-[Log limit](/esbuild/api/transform.md#)
-[Pure](/esbuild/api/transform.md#)
-[Source Root](/esbuild/api/transform.md#)
-[Sourcefile](/esbuild/api/transform.md#)
-[Sources Content](/esbuild/api/transform.md#)
-[Tree shaking](/esbuild/api/transform.md#)
-[Tsconfig raw](/esbuild/api/transform.md#)
+[JSX](/esbuild/api/transform.md#jsx)
+[JSX factory](/esbuild/api/transform.md#jsx-factory)
+[JSX fragment](/esbuild/api/transform.md#jsx-fragment)
+[Keep names](/esbuild/api/transform.md#keep-names)
+[Legal comments](/esbuild/api/transform.md#legal-comments)
+[Log level](/esbuild/api/transform.md#log-level)
+[Log limit](/esbuild/api/transform.md#log-limit)
+[Pure](/esbuild/api/transform.md#pure)
+[Source Root](/esbuild/api/transform.md#source-root)
+[Sourcefile](/esbuild/api/transform.md#sourcefile)
+[Sources Content](/esbuild/api/transform.md#sources-content)
+[Tree shaking](/esbuild/api/transform.md#tree-shaking)
+[Tsconfig raw](/esbuild/api/transform.md#tsconfig-raw)
 
 ## Build API
 
@@ -153,29 +153,29 @@ func main() {
 [Footer](/esbuild/api/transform.md#footer)
 [Global name](/esbuild/api/transform.md#global-name)
 [Incremental](/esbuild/api/transform.md#incremental)
-[JSX](/esbuild/api/transform.md#)
-[JSX factory](/esbuild/api/transform.md#)
-[JSX fragment](/esbuild/api/transform.md#)
-[Keep names](/esbuild/api/transform.md#)
-[Legal comments](/esbuild/api/transform.md#)
-[Log level](/esbuild/api/transform.md#)
-[Log limit](/esbuild/api/transform.md#)
-[Main fields](/esbuild/api/transform.md#)
-[Metafile](/esbuild/api/transform.md#)
-[Node paths](/esbuild/api/transform.md#)
-[Out extension](/esbuild/api/transform.md#)
-[Outbase](/esbuild/api/transform.md#)
-[Preserve symlinks](/esbuild/api/transform.md#)
-[Public path](/esbuild/api/transform.md#)
-[Pure](/esbuild/api/transform.md#)
-[Resolve extensions](/esbuild/api/transform.md#)
-[Source Root](/esbuild/api/transform.md#)
-[Sourcefile](/esbuild/api/transform.md#)
-[Sources Content](/esbuild/api/transform.md#)
-[Stdin](/esbuild/api/transform.md#)
-[Tree shaking](/esbuild/api/transform.md#)
-[Tsconfig](/esbuild/api/transform.md#)
-[Working directory](/esbuild/api/transform.md#)
+[JSX](/esbuild/api/transform.md#jsx)
+[JSX factory](/esbuild/api/transform.md#jsx-factory)
+[JSX fragment](/esbuild/api/transform.md#jsx-fragment)
+[Keep names](/esbuild/api/transform.md#keep-names)
+[Legal comments](/esbuild/api/transform.md#legal-comments)
+[Log level](/esbuild/api/transform.md#log-level)
+[Log limit](/esbuild/api/transform.md#log-limit)
+[Main fields](/esbuild/api/transform.md#main-fields)
+[Metafile](/esbuild/api/transform.md#metafile)
+[Node paths](/esbuild/api/transform.md#node-paths)
+[Out extension](/esbuild/api/transform.md#out-extension)
+[Outbase](/esbuild/api/transform.md#outbase)
+[Preserve symlinks](/esbuild/api/transform.md#preserve-symlinks)
+[Public path](/esbuild/api/transform.md#public-path)
+[Pure](/esbuild/api/transform.md#pure)
+[Resolve extensions](/esbuild/api/transform.md#resolve-extensions)
+[Source Root](/esbuild/api/transform.md#source-root)
+[Sourcefile](/esbuild/api/transform.md#sourcefile)
+[Sources Content](/esbuild/api/transform.md#sources-content)
+[Stdin](/esbuild/api/transform.md#stdin)
+[Tree shaking](/esbuild/api/transform.md#tree-shaking)
+[Tsconfig](/esbuild/api/transform.md#tsconfig)
+[Working directory](/esbuild/api/transform.md#working-directory)
 
 ## Simple options
 
@@ -2108,7 +2108,7 @@ func main() {
 
 * Firefox：···→ 启用源地图
 
-在 node 中，从 [v12.12.0](https://nodejs.org/en/blog/release/v12.12.0/) 版本开始原生支持源映射。默认情况下禁用此功能，但可以使用标志启用。与浏览器不同，实际的堆栈跟踪也在 node 中修改，因此检查代码中的 `error.stack` 将提供包含原始源代码的映射堆栈跟踪。以下是如何在节点中启用此设置（`--enable-source-maps` 标志必须位于脚本文件名之前）：
+在 node 中，从 [v12.12.0](https://nodejs.org/en/blog/release/v12.12.0/) 版本开始原生支持源映射。默认情况下禁用此功能，但可以使用标志启用。与浏览器不同，实际的堆栈跟踪也在 node 中修改，因此检查代码中的 `error.stack` 将提供包含原始源代码的映射堆栈跟踪。以下是如何在node中启用此设置（`--enable-source-maps` 标志必须位于脚本文件名之前）：
 
 ```
 // cli
@@ -2177,7 +2177,7 @@ func main() {
 
 支持：Transform | Build
 
-这为生成的JavaScript代码设置了目标环境。例如，您可以将eSbuild配置为不生成节点版本10无法处理的任何较新的JavaScript。目标可以设置为诸如`ES2020`的JavaScript语言版本，也可以是单个引擎的版本列表（目前是`Chrome`，`Firefox`，`Safari`，`Edge`或`node`）。默认目标是`esnext`，这意味着默认情况下，eSbuild将假设支持所有最新的JavaScript功能。
+这为生成的JavaScript代码设置了目标环境。例如，您可以将eSbuild配置为不生成node版本10无法处理的任何较新的JavaScript。目标可以设置为诸如`ES2020`的JavaScript语言版本，也可以是单个引擎的版本列表（目前是`Chrome`，`Firefox`，`Safari`，`Edge`或`node`）。默认目标是`esnext`，这意味着默认情况下，eSbuild将假设支持所有最新的JavaScript功能。
 
 以下是一个使用esbuild中的所有可用目标环境名称的示例。请注意，您不需要指定所有这些;您只需指定项目所关心的目标环境的子集。如果您想要的（例如`Node12.19.0`而不是`Node12`），您也可以更精确地了解版本号
 
@@ -3371,4 +3371,1233 @@ func main() {
 * `eof`
 
 将所有法律评论移动到文件的末尾。
+
+* `linked`
+
+将所有法律评论移动到`.legal.txt`文件并用评论链接到它们。
+
+* `external`
+
+将所有法律评论移动到`.legal.txt`文件，但不链接到它们。
+
+默认行为是`EOF`当[捆绑](https://esbuild.github.io/api/#bundle)包启用并否则`内联`。设置法律评论模式如下所示：
+
+```
+// cli
+
+esbuild app.js --legal-comments=eof
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  legalComments: 'eof',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints:   []string{"app.js"},
+    LegalComments: api.LegalCommentsEndOfFile,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+请注意，“语句级别”表示注释必须在允许多个语句的上下文中出现，例如在顶级范围或语句块中。因此表达中的评论不被视为许可评论。
+
+### Log level
+
+支持：Transform | Build
+
+可以更改日志级别以防止eSbuild打印警告和/或错误消息到终端。六个日志级别为：
+
+* `silent`
+
+请勿显示任何日志输出。
+
+* `error`
+
+只显示错误。
+
+* `warning`
+
+只显示警告和错误。
+
+* `info`
+
+显示警告，错误和输出文件摘要。这是默认的日志级别。
+
+* `debug`
+
+从`信息`和一些可以帮助您调试损坏捆绑包的其他邮件记录所有内容。此日志级别具有性能影响，其中一些消息可能是误报，因此默认情况下未显示此信息。
+
+* `verbose`
+
+这会生成一个日志消息的洪流，并添加到带有文件系统驱动程序的调试问题。它不适用于一般使用。
+
+可以设置日志级别：
+
+```cli
+// cli
+
+echo 'typeof x == "null"' | esbuild --log-level=error
+```
+
+```js
+// js
+
+let js = 'typeof x == "null"'
+require('esbuild').transformSync(js, {
+  logLevel: 'error',
+})
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  js := "typeof x == 'null'"
+
+  result := api.Transform(js, api.TransformOptions{
+    LogLevel: api.LogLevelError,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+### Log limit
+
+支持：Transform | Build
+
+默认情况下，eSBuild在报告10条消息后停止报告日志消息。这避免了意外生成压倒性数量的日志消息，这可以轻松锁定较慢的终端仿真器，例如Windows命令提示符。它还避免使用具有有限滚动缓冲器的终端仿真器的整个滚动缓冲区。
+
+日志限制可以更改为另一个值，也可以通过将其设置为零完全禁用。这将显示所有日志消息：
+
+```
+// cli
+
+esbuild app.js --log-limit=0
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  logLimit: 0,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    LogLimit:    0,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Main fields
+
+支持：Build
+
+当您在node中导入包时，该软件包包中的`mane` `package.json`文件确定导入哪个文件（以及[许多其他规则](https://nodejs.org/api/modules.html#modules_all_together)）。包括eSBuild的主要JavaScript Bundlers，允许您指定其他包。json字段以在解析包时尝试。通常有三个这些领域：
+
+* `main`
+
+这是[标准字段](https://docs.npmjs.com/files/package.json#main)，用于与node一起使用的所有包。名称`Main`中硬编码为Node的模块分辨率逻辑本身。因为它旨在与node一起使用，所以可以合理地期望此字段中的文件路径是CommonJS样式模块。
+
+* `module`
+
+该领域来自如何将EcMasscript模块集成到node中的[提案](https://github.com/dherman/defense-of-dot-js/blob/f31319be735b21739756b87d551f6711bd7aa283/proposal.md)。因此，预计此字段中的文件路径是ECMAScript风格模块是合理的。node未采用此提议（Node使用`“type”`：`“module”`而不是），但主要是主要的捆绑程序采用，因为ECMAScript风格模块导致更好的[树抖动](https://esbuild.github.io/api/#tree-shaking)，或拆除死亡代码。
+
+对于包作者：某些软件包错误地使用特定于浏览器代码的`模块`字段，为`main`留下特定于node的代码。这可能是因为node忽略了`模块`字段，人们通常只使用Bundlers特定于浏览器代码。然而，捆绑的node特定代码也有价值（例如，它减少了下载和启动时间），并将特定于`模块`中的浏览器代码的软件包阻止捆绑程序能够有效地进行树摇动。如果您尝试在包中发布特定于浏览器的代码，请使用`浏览器`字段。
+
+* `browser`
+
+此字段来自一个[提议](https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211)，允许捆绑程序用浏览器友好版本替换特定于node的文件或模块。它允许您指定备用浏览器特定的入口点。请注意，程序包可以一起使用`浏览器`和`模块`字段（请参阅下面的注释）。
+
+默认主字段取决于当前平台[设置](https://esbuild.github.io/api/#platform)，并且基本上是`浏览器`，`模块`，`main`和主要的`main`，node `module`。这些默认值应该是与现有包生态系统最广泛兼容。但如果您愿意，您可以根据这样自定义它们：
+
+```
+// cli
+
+esbuild app.js --bundle --main-fields=module,main
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  mainFields: ['module', 'main'],
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    MainFields:  []string{"module", "main"},
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+对于包作者：如果要创建使用`浏览器`字段的包与`模块`字段结合使用浏览器字段以填写完整CommonJS-VS-ESM和浏览器-VS-Node兼容性矩阵中的所有四个条目，则要使用展开的`浏览器`字段的形式，即地图而不是仅限字符串：
+
+```json
+{
+  "main": "./node-cjs.js",
+  "module": "./node-esm.js",
+  "browser": {
+    "./node-cjs.js": "./browser-cjs.js",
+    "./node-esm.js": "./browser-esm.js"
+  }
+}
+```
+
+### Metafile
+
+支持：Build
+
+此选项告诉ESBuild以JSON格式生成有关构建的一些元数据。以下示例将元数据放在名为`meta.json`的文件中：
+
+```
+// cli
+
+esbuild app.js --bundle --metafile=meta.json --outfile=out.js
+```
+
+```js
+// js
+
+const result = require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  metafile: true,
+  outfile: 'out.js',
+})
+require('fs').writeFileSync('meta.json',
+  JSON.stringify(result.metafile))
+```
+
+```go
+// go
+
+package main
+
+import "io/ioutil"
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Metafile:    true,
+    Outfile:     "out.js",
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+
+  ioutil.WriteFile("meta.json", []byte(result.Metafile), 0644)
+}
+```
+
+然后可以通过其他工具分析此数据。例如，[Bundle Buddy](https://www.bundle-buddy.com/esbuild)可以消耗eSBuild的元数据格式，并在捆绑包中生成模块的Treemap可视化以及每个人占用多少空间。
+
+元数据JSON格式如图所示（使用typescript界面描述）：
+
+```ts
+interface Metadata {
+  inputs: {
+    [path: string]: {
+      bytes: number
+      imports: {
+        path: string
+        kind: string
+      }[]
+    }
+  }
+  outputs: {
+    [path: string]: {
+      bytes: number
+      inputs: {
+        [path: string]: {
+          bytesInOutput: number
+        }
+      }
+      imports: {
+        path: string
+        kind: string
+      }[]
+      exports: string[]
+      entryPoint?: string
+    }
+  }
+}
+```
+
+### Node paths
+
+支持：Build
+
+node的模块分辨率算法支持一个名为[node_path](https://nodejs.org/api/modules.html#modules_loading_from_the_global_folders)的环境变量，其中包含在解析导入路径时使用的全局目录列表。除了所有父目录中的`node_modules`目录之外，还搜索这些路径。您可以使用带有CLI的环境变量并使用JS和GO API的阵列将此目录列表传递给eSBuild列表：
+
+```
+// cli
+
+NODE_PATH=someDir esbuild app.js --bundle --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  nodePaths: ['someDir'],
+  entryPoints: ['app.js'],
+  bundle: true,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    NodePaths:   []string{"someDir"},
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Outfile:     "out.js",
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+如果您使用的是CLI并希望使用`Node_Path`传递多个目录，则必须将它们分开`:`UNIX和`;`在Windows上。这是node本身使用的格式相同的格式。
+
+### Out extension
+
+支持：Build
+
+此选项允许您自定义 esbuild 生成的文件的文件扩展名，而不是 `.js` 或 `.css`。特别是`.mjs` 和`.cjs` 文件扩展名在node 中有特殊含义（它们分别表示ESM 和CommonJS 格式的文件）。如果您使用 esbuild 生成多个文件并且必须使用 [outdir](https://esbuild.github.io/api/#outdir) 选项而不是 [outfile](https://esbuild.github.io/api/#outfile) 选项，则此选项很有用。你可以这样使用它：
+
+```
+// cli
+
+esbuild app.js --bundle --outdir=dist --out-extension:.js=.mjs
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  outdir: 'dist',
+  outExtension: { '.js': '.mjs' },
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Outdir:      "dist",
+    OutExtensions: map[string]string{
+      ".js": ".mjs",
+    },
+    Write: true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Outbase
+
+支持：Build
+
+如果您的构建在单独的目录中包含多个入口点，则目录结构将复制到相对于 outbase 目录的[输出目录](https://esbuild.github.io/api/#outdir)中。例如，如果有两个入口点 `src/pages/home/index.ts` 和 `src/pages/about/index.ts` 并且 outbase 目录是 `src`，则输出目录将包含 `pages/home/index.js` 和 `pages/about/index.js`。以下是如何使用它：
+
+```
+// cli
+
+esbuild src/pages/home/index.ts src/pages/about/index.ts --bundle --outdir=out --outbase=src
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: [
+    'src/pages/home/index.ts',
+    'src/pages/about/index.ts',
+  ],
+  bundle: true,
+  outdir: 'out',
+  outbase: 'src',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{
+      "src/pages/home/index.ts",
+      "src/pages/about/index.ts",
+    },
+    Bundle:  true,
+    Outdir:  "out",
+    Outbase: "src",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+如果未指定 outbase 目录，则默认为所有输入入口点路径中[最低的公共祖先](https://en.wikipedia.org/wiki/Lowest_common_ancestor)目录。这是上面示例中的 `src/pages`，这意味着默认情况下输出目录将包含 `home/index.js` 和 `about/index.js`。
+
+### Preserve symlinks
+
+支持：Build
+
+此设置反映了节点中的 [--preserve-symlinks](https://nodejs.org/api/cli.html#cli_preserve_symlinks) 设置。如果您使用该设置（或 Webpack 中类似的 [resolve.symlinks](https://webpack.js.org/configuration/resolve/#resolvesymlinks) 设置），您可能也需要在 esbuild 中启用此设置。它可以像这样启用：
+
+```
+// cli
+
+esbuild app.js --bundle --preserve-symlinks --outfile=out.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  preserveSymlinks: true,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints:      []string{"app.js"},
+    Bundle:           true,
+    PreserveSymlinks: true,
+    Outfile:          "out.js",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+启用此设置会导致 esbuild 通过原始文件路径（即没有跟随符号链接的路径）而不是真实文件路径（即跟随符号链接之后的路径）来确定文件标识。这对于某些目录结构是有益的。请记住，这意味着如果有多个符号链接指向一个文件，它可能会被赋予多个身份，这可能导致它在生成的输出文件中多次出现。
+
+注意：术语“符号链接”表示[符号链接](https://en.wikipedia.org/wiki/Symbolic_link)，指的是一种文件系统功能，其中一个路径可以重定向到另一个路径。
+
+### Public path
+
+支持：Build
+
+这与外部文件加载器结合使用很有用。默认情况下，加载器使用`默认`导出将导入文件的名称导出为字符串。公共路径选项允许您在此加载程序加载的每个文件的导出字符串之前添加基本路径：
+
+```
+// cli
+
+esbuild app.js --bundle --loader:.png=file --public-path=https://www.example.com/v1 --outdir=out
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  loader: { '.png': 'file' },
+  publicPath: 'https://www.example.com/v1',
+  outdir: 'out',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    Loader: map[string]api.Loader{
+      ".png": api.LoaderFile,
+    },
+    Outdir:     "out",
+    PublicPath: "https://www.example.com/v1",
+    Write:      true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Pure
+
+支持：Transform | Build
+
+各种 JavaScript 工具都使用一个约定，其中在 new 或 call 表达式之前包含 `/* @__PURE__ */` 或 `/* #__PURE__ */` 的特殊注释意味着如果结果值未使用，则可以删除该表达式。它看起来像这样：
+
+```js
+let button = /* @__PURE__ */ React.createElement(Button, null);
+```
+
+在打包程序无法自行证明删除是安全的情况下，打包程序（例如 esbuild 在摇树（又名死代码删除）期间使用此信息来执行跨模块边界的未使用导入的细粒度删除） JavaScript 代码的动态特性。
+
+请注意，虽然注释说“pure”，但令人困惑的是，它并不表示被调用的函数是纯函数。例如，它并不表示可以缓存对该函数的重复调用。该名称本质上只是“如果未使用则可以删除”的抽象简写。
+
+一些表达式如 JSX 和某些内置全局变量在 esbuild 中自动注释为 `/* @__PURE__ */`。您还可以配置其他全局变量以标记为 `/* @__PURE__ */`。例如，您可以将全局 `console.log` 函数标记为这样，以便在包缩小时自动将其从包中删除，只要结果未被使用。
+
+值得一提的是，注解的作用只扩展到调用本身，而不扩展到参数。仍然保留有副作用的参数：
+
+```
+// cli
+
+echo 'console.log("foo:", foo())' | esbuild --pure:console.log
+/* @__PURE__ */ console.log("foo:", foo());
+
+echo 'console.log("foo:", foo())' | esbuild --pure:console.log --minify
+foo();
+```
+
+```js
+// js
+
+let js = 'console.log("foo:", foo())'
+require('esbuild').transformSync(js, {
+  pure: ['console.log'],
+})
+{
+  code: '/* @__PURE__ */ console.log("foo:", foo());\n',
+  map: '',
+  warnings: []
+}
+require('esbuild').transformSync(js, {
+  pure: ['console.log'],
+  minify: true,
+})
+{
+  code: 'foo();\n',
+  map: '',
+  warnings: []
+}
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  js := "console.log('foo:', foo())"
+
+  result1 := api.Transform(js, api.TransformOptions{
+    Pure: []string{"console.log"},
+  })
+
+  if len(result1.Errors) == 0 {
+    fmt.Printf("%s", result1.Code)
+  }
+
+  result2 := api.Transform(js, api.TransformOptions{
+    Pure:         []string{"console.log"},
+    MinifySyntax: true,
+  })
+
+  if len(result2.Errors) == 0 {
+    fmt.Printf("%s", result2.Code)
+  }
+}
+```
+
+### Resolve extensions
+
+支持：Build
+
+[node 使用的解析算法](https://nodejs.org/api/modules.html#modules_file_modules)支持隐式文件扩展名。您可以 `require('./file')` ，它会按顺序检查 `./file`、.`/file.js`、`./file.json` 和 `./file.node`。包括 esbuild 在内的现代打包器也将此概念扩展到其他文件类型。可以使用解析扩展名设置自定义 esbuild 中隐式文件扩展名的完整顺序，默认为 `.tsx`,`.ts`,`.jsx`,`.js`,`.css`,`.json`：
+
+```
+// cli
+
+esbuild app.js --bundle --resolve-extensions=.ts,.js
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  resolveExtensions: ['.ts', '.js'],
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints:       []string{"app.js"},
+    Bundle:            true,
+    ResolveExtensions: []string{".ts", ".js"},
+    Write:             true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Source Root
+
+支持：Transform | Build
+
+此功能仅在启用源映射时相关。它允许您设置[源映射](https://esbuild.github.io/api/#sourcemap)中的 `sourceRoot` 字段的值，该值指定源映射中所有其他路径相对于的路径。如果此字段不存在，则源映射中的所有路径都被解释为相对于包含源映射的目录。
+
+您可以像这样配置 `sourceRoot`：
+
+```
+// cli
+
+esbuild app.js --sourcemap --source-root=https://raw.githubusercontent.com/some/repo/v1.2.3/
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  sourcemap: true,
+  sourceRoot: 'https://raw.githubusercontent.com/some/repo/v1.2.3/',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Sourcemap:   api.SourceMapInline,
+    SourceRoot:  "https://raw.githubusercontent.com/some/repo/v1.2.3/",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Sourcefile
+
+支持：Transform | Build
+
+当使用没有文件名的输入时，此选项设置文件名。使用转换 API 和使用带有标准输入的构建 API 时会发生这种情况。配置的文件名反映在错误消息和源映射中。如果未配置，则文件名默认为 `<stdin>`。它可以这样配置：
+
+```
+// cli
+
+cat app.js | esbuild --sourcefile=example.js --sourcemap
+```
+
+```js
+// js
+
+let fs = require('fs')
+let js = fs.readFileSync('app.js', 'utf8')
+
+require('esbuild').transformSync(js, {
+  sourcefile: 'example.js',
+  sourcemap: 'inline',
+})
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "io/ioutil"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  js, err := ioutil.ReadFile("app.js")
+  if err != nil {
+    panic(err)
+  }
+
+  result := api.Transform(string(js),
+    api.TransformOptions{
+      Sourcefile: "example.js",
+      Sourcemap:  api.SourceMapInline,
+    })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+### Sources Content
+
+支持：Transform | Build
+
+[源映射](https://esbuild.github.io/api/#sourcemap)是使用源映射格式的[第 3 版](https://sourcemaps.info/spec.html)生成的，这是迄今为止最广泛支持的变体。每个源映射看起来像这样：
+
+```json
+{
+  "version": 3,
+  "sources": ["bar.js", "foo.js"],
+  "sourcesContent": ["bar()", "foo()\nimport './bar'"],
+  "mappings": ";AAAA;;;ACAA;",
+  "names": []
+}
+```
+
+`sourcesContent` 字段是一个可选字段，包含所有原始源代码。这对调试很有帮助，因为这意味着原始源代码将在调试器中可用。
+
+但是，在某些情况下不需要它。例如，如果您只是在生产中使用源映射来生成包含原始文件名的堆栈跟踪，则不需要原始源代码，因为不涉及调试器。在这种情况下，可能需要省略 `sourcesContent` 字段以使源映射更小：
+
+```
+// cli
+
+esbuild --bundle app.js --sourcemap --sources-content=false
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  bundle: true,
+  entryPoints: ['app.js'],
+  sourcemap: true,
+  sourcesContent: false,
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    Bundle:         true,
+    EntryPoints:    []string{"app.js"},
+    Sourcemap:      api.SourceMapInline,
+    SourcesContent: api.SourcesContentExclude,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Stdin
+
+支持：Build
+
+通常，构建 API 调用将一个或多个文件名作为输入。但是，此选项可用于在文件系统上根本不存在模块的情况下运行构建。它被称为“标准输入”，因为它对应于在命令行上将文件通过管道传输到标准输入。
+
+除了指定 stdin 文件的内容之外，您还可以选择指定解析目录（用于确定相对导入的位置）、[源文件](https://esbuild.github.io/api/#sourcefile)（在错误消息和源映射中使用的文件名）和[加载程序](https://esbuild.github.io/api/#loader)（这决定了文件内容的解释方式）。 CLI 无法指定解析目录。相反，它会自动设置为当前工作目录。
+
+以下是如何使用此功能：
+
+```
+// cli
+
+echo 'export * from "./another-file"' | esbuild --bundle --sourcefile=imaginary-file.js --loader=ts --format=cjs
+```
+
+```js
+// js
+
+let result = require('esbuild').buildSync({
+  stdin: {
+    contents: `export * from "./another-file"`,
+
+    // These are all optional:
+    resolveDir: require('path').join(__dirname, 'src'),
+    sourcefile: 'imaginary-file.js',
+    loader: 'ts',
+  },
+  format: 'cjs',
+  write: false,
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    Stdin: &api.StdinOptions{
+      Contents: "export * from './another-file'",
+
+      // These are all optional:
+      ResolveDir: "./src",
+      Sourcefile: "imaginary-file.js",
+      Loader:     api.LoaderTS,
+    },
+    Format: api.FormatCommonJS,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Tree shaking
+
+支持：Transform | Build
+
+摇树是 JavaScript 社区用于消除死代码的术语，这是一种常见的编译器优化，可自动删除无法访问的代码。请注意，esbuild 中的树抖动在捆绑期间始终处于启用状态，并且无法关闭，因为修剪未使用的代码会使生成的文件更小，而不会改变可观察的行为。
+
+用一个例子来解释摇树是最容易的。考虑以下文件。有一个使用的函数和一个未使用的函数：
+
+```js
+// input.js
+function one() {
+  console.log('one')
+}
+function two() {
+  console.log('two')
+}
+one()
+```
+
+如果您将此文件与 `esbuild --bundle input.js --outfile=output.js` 捆绑在一起，则未使用的函数将自动被丢弃，留下以下输出：
+
+```js
+// input.js
+function one() {
+  console.log("one");
+}
+one();
+```
+
+如果我们将函数拆分成一个单独的库文件并使用 `import` 语句导入它们，这甚至可以工作：
+
+```js
+// lib.js
+export function one() {
+  console.log('one')
+}
+export function two() {
+  console.log('two')
+}
+```
+
+```js
+// input.js
+import * as lib from './lib.js'
+lib.one()
+```
+
+如果您将此文件与 `esbuild --bundle input.js --outfile=output.js` 捆绑在一起，未使用的函数和未使用的导入仍将被自动丢弃，留下以下输出：
+
+```js
+// lib.js
+function one() {
+  console.log("one");
+}
+
+// input.js
+one();
+```
+
+这样 esbuild 只会捆绑您实际使用的库的部分，这有时可以节省大量的大小。请注意，esbuild 的摇树实现依赖于 ECMAScript 模块`导入`和`导出`语句的使用。它不适用于 `CommonJS` 模块。 npm 上的许多库都包含这两种格式，而 esbuild 尝试选择默认情况下适用于摇树的格式。您可以使用[主字段选](https://esbuild.github.io/api/#main-fields)项自定义 esbuild 选择的格式。
+
+#### Manual tree shaking annotations(手动摇树注释)
+
+由于 JavaScript 是一种动态语言，有时对于编译器来说识别未使用的代码非常困难，因此社区开发了某些注释来帮助告诉编译器哪些代码应该被视为未使用。目前esbuild支持两种形式的摇树注解：
+
+* 函数调用前的内联 `/* @__PURE__ */` 注释告诉 esbuild 如果不使用结果值，可以删除函数调用。有关更多信息，请参阅[pure API](https://esbuild.github.io/api/#pure) 选项。
+
+* `package.json` 中的 `sideEffects` 字段可用于告诉 esbuild 如果来自该文件的所有导入最终都未使用，则可以删除包中的哪些文件。这是来自 Webpack 的约定，许多发布到 npm 的库已经在它们的包定义中包含了这个字段。您可以在该字段的 [Webpack 文档](https://webpack.js.org/guides/tree-shaking/)中了解有关该字段的更多信息。
+
+这些注释可能有问题，因为编译器的准确性完全依赖于开发人员，而且开发人员偶尔会发布带有不正确注释的包。 `sideEffects` 字段对于开发人员来说特别容易出错，因为默认情况下，如果不使用导入，它会导致包中的所有文件都被视为死代码。如果您添加一个包含副作用的新文件并忘记更新该字段，那么当人们尝试捆绑它时，您的包可能会损坏。
+
+这就是为什么 esbuild 包含一种忽略摇树注释的方法。只有在遇到包被破坏的问题时，才应该启用此功能，因为必需的代码意外地从包中删除：
+
+```
+// cli
+
+esbuild app.js --bundle --tree-shaking=ignore-annotations
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.js'],
+  bundle: true,
+  treeShaking: 'ignore-annotations',
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.js"},
+    Bundle:      true,
+    TreeShaking: api.TreeShakingIgnoreAnnotations,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+启用这意味着 esbuild 将不再尊重 `/* @__PURE__ */` 注释或 `sideEffects` 字段。然而，它仍然会对未使用的导入进行自动树摇动，因为这不依赖于开发人员的注释。理想情况下，此标志只是一种临时解决方法。您应该将这些问题报告给软件包的维护者以修复它们，因为它们表明软件包存在问题，并且也可能会绊倒其他人。
+
+### Tsconfig
+
+支持：Build
+
+通常，[构建 API](https://esbuild.github.io/api/#build-api) 会自动发现 `tsconfig.json` 文件并在构建过程中读取它们的内容。但是，您也可以配置自定义 `tsconfig.json` 文件来代替使用。如果您需要使用不同的设置对同一代码进行多次构建，这会很有用：
+
+```
+// cli
+
+esbuild app.ts --bundle --tsconfig=custom-tsconfig.json
+```
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['app.ts'],
+  bundle: true,
+  tsconfig: 'custom-tsconfig.json',
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "os"
+
+func main() {
+  result := api.Build(api.BuildOptions{
+    EntryPoints: []string{"app.ts"},
+    Bundle:      true,
+    Tsconfig:    "custom-tsconfig.json",
+    Write:       true,
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+### Tsconfig raw
+
+支持：Transform
+
+此选项可用于将您的 `tsconfig.json` 文件传递​​给不访问文件系统的[transform API](https://esbuild.github.io/api/#transform-api)。使用它看起来像这样：
+
+```
+// cli
+
+echo 'class Foo { foo }' | esbuild --loader=ts --tsconfig-raw='{"compilerOptions":{"useDefineForClassFields":true}}'
+```
+
+```js
+// js
+
+let ts = 'class Foo { foo }'
+require('esbuild').transformSync(ts, {
+  loader: 'ts',
+  tsconfigRaw: `{
+    "compilerOptions": {
+      "useDefineForClassFields": true,
+    },
+  }`,
+})
+```
+
+```go
+// go
+
+package main
+
+import "fmt"
+import "github.com/evanw/esbuild/pkg/api"
+
+func main() {
+  ts := "class Foo { foo }"
+
+  result := api.Transform(ts, api.TransformOptions{
+    Loader: api.LoaderTS,
+    TsconfigRaw: `{
+      "compilerOptions": {
+        "useDefineForClassFields": true,
+      },
+    }`,
+  })
+
+  if len(result.Errors) == 0 {
+    fmt.Printf("%s", result.Code)
+  }
+}
+```
+
+### Working directory
+
+支持：Build
+
+此 API 选项允许您指定用于构建的工作目录。它通常默认为您用来调用 esbuild 的 API 的进程的[当前工作目录](https://en.wikipedia.org/wiki/Working_directory)。 esbuild 将工作目录用于一些不同的事情，包括将作为 API 选项给出的相对路径解析为绝对路径，以及将绝对路径漂亮地打印为日志消息中的相对路径。以下是覆盖它的方法：
+
+```js
+// js
+
+require('esbuild').buildSync({
+  entryPoints: ['file.js'],
+  absWorkingDir: process.cwd(),
+  outfile: 'out.js',
+})
+```
+
+```go
+// go
+
+package main
+
+import "github.com/evanw/esbuild/pkg/api"
+import "log"
+import "os"
+
+func main() {
+  cwd, err := os.Getwd()
+  if err != nil {
+    log.Fatal(err)
+  }
+
+  result := api.Build(api.BuildOptions{
+    EntryPoints:   []string{"file.js"},
+    AbsWorkingDir: cwd,
+    Outfile:       "out.js",
+  })
+
+  if len(result.Errors) > 0 {
+    os.Exit(1)
+  }
+}
+```
+
+## JS-specific details
+
+因为 JavaScript 是单线程的，所以有几种不同的方式来调用 API，并具有不同的性能和便利性权衡。重要的是要了解差异以根据您的情况选择正确的差异。
+
+首先是同步 API。这是最方便的选项，因为单线程 JavaScript 代码具有最干净的语法。如果您只需要运行 esbuild 然后退出，这也是最佳性能。但是，它会阻塞主线程，因此如果您在此期间还有其他工作要执行，您就不想使用它。这也是唯一不能使用插件的选项（因为插件是异步的）。它看起来像这样：
+
+```js
+let esbuild = require('esbuild')
+let result1 = esbuild.transformSync(code, options)
+let result2 = esbuild.buildSync(options)
+```
+
+然后是异步 API。每次调用都会返回一个承诺而不是立即完成。在幕后，esbuild 二进制文件作为单个子进程生成，在主机进程中的所有调用之间共享。主机使用自定义二进制协议通过 stdin、stdout 和 stderr 管道与子进程通信。如果您只需要运行 esbuild 一次但需要在后台做其他工作，这是理想的选择。它还允许您同时运行许多同时运行的 esbuild API 调用，然后将这些调用分布在所有可用内核中以获得最大性能。使用它看起来像这样：
+
+```js
+let esbuild = require('esbuild')
+esbuild.transform(code, options).then(result => { ... })
+esbuild.build(options).then(result => { ... })
+```
+
+### Running in the browser
+
+esbuild API 也可以在 Web Worker 中使用 WebAssembly 在浏览器中运行。要利用这一点，您需要安装 `esbuild-wasm` 包而不是 `esbuild` 包：
+
+```
+// cli
+
+npm install esbuild-wasm
+```
+
+浏览器的 API 与 node 的 API 类似，只是需要先调用 `initialize()`，并且需要传递 WebAssembly 二进制文件的 URL。 API 的同步版本也不可用。假设您使用的是打包器，它看起来像这样：
+
+```js
+let esbuild = require('esbuild-wasm')
+
+esbuild.initialize({
+  wasmURL: './node_modules/esbuild-wasm/esbuild.wasm',
+}).then(() => {
+  esbuild.transform(code, options).then(result => { ... })
+  esbuild.build(options).then(result => { ... })
+})
+```
+
+如果您已经从一个 worker 运行此代码并且不想 `initialize` 创建另一个 worker，您可以将 worker: `false` 传递给它。然后它将在与调用 `initialize` 的线程相同的线程中创建一个 WebAssembly 模块。
+
+您还可以通过注入 `lib/browser.min.js` 文件，将 esbuild 的 API 用作 HTML 文件中的脚本标记，而无需使用捆绑程序。在这种情况下，API 创建了一个名为 `esbuild` 的全局对象，用于保存 API 对象：
+
+```html
+<script src="./node_modules/esbuild-wasm/lib/browser.min.js"></script>
+<script>
+  esbuild.initialize({
+    wasmURL: './node_modules/esbuild-wasm/esbuild.wasm',
+  }).then(() => { ... })
+</script>
+```
+
+如果您需要将此 API 与 ECMAScript 模块一起使用，您应该导入 `esm/browser.min.js` 文件：
+
+```html
+<script type="module">
+  import * as esbuild from './node_modules/esbuild-wasm/esm/browser.min.js'
+
+  esbuild.initialize({
+    wasmURL: './node_modules/esbuild-wasm/esbuild.wasm',
+  }).then(() => { ... })
+</script>
+```
 

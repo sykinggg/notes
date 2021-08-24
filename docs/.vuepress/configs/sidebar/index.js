@@ -472,6 +472,12 @@ module.exports = {
       children: [
         '/esbuild/api/transform.md',
       ]
+    },
+    {
+      title: 'contentTypes',
+      children: [
+        '/esbuild/contentTypes/content.md',
+      ]
     }
   ],
   '/git/': [
