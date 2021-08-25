@@ -35,3 +35,12 @@ esbuild内部的算法是经过精心设计的，以尽可能使所有可用的C
 可以通过以下三种方式之一访问 API：在命令行上、在 JavaScript 中和在 Go 中。三种语言的概念和参数在很大程度上是相同的
 
 esbuild 的 API 中有两个主要的 API 调用：transform 和 build。
+
+<CodeGroup>
+<CodeGroupItem title="cli">
+</CodeGroupItem>
+<CodeGroupItem title="js">
+</CodeGroupItem>
+<CodeGroupItem title="go">
+</CodeGroupItem>
+</CodeGroup>
