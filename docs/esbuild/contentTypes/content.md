@@ -288,14 +288,18 @@ export { React }
 
 然后使用eSbuild的[注入功能](https://esbuild.github.io/api/#inject)将其注入每个文件：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli">
+
+```sh
 
 esbuild app.jsx --bundle --inject:./react-shim.js --outfile=out.js
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="js">
+
 ```js
-// js
 
 require('esbuild').buildSync({
   entryPoints: ['app.jsx'],
@@ -305,8 +309,10 @@ require('esbuild').buildSync({
 })
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
 ```go
-// go
 
 package main
 
@@ -328,6 +334,9 @@ func main() {
 }
 ```
 
+</CodeGroupItem>
+</CodeGroup>
+
 由于注入功能是通用代码注入机制，因此它可以与任何JSX变换库一起使用，而不仅仅是反应。
 
 > **重要提示：**需要`导出`陈述。不要删除它。 inject功能将`导入`语句注入到每个文件顶部的`rest-shim.js`的内容如下所示：
@@ -342,14 +351,18 @@ import { /* ... */ } from './react-shim.js'
 
 如果您使用的是与React以外的库（如[摘要](https://preactjs.com/)）使用的JSX，则可能需要配置[JSX Factory](https://esbuild.github.io/api/#jsx-factory)和[JSX片段](https://esbuild.github.io/api/#jsx-fragment)设置，因为它们默认为`React.CreateAlement`和`React.cragment`：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli">
+
+```sh
 
 esbuild app.jsx --jsx-factory=h --jsx-fragment=Fragment
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="js">
+
 ```js
-// js
 
 require('esbuild').buildSync({
   entryPoints: ['app.jsx'],
@@ -359,8 +372,10 @@ require('esbuild').buildSync({
 })
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
 ```go
-// go
 
 package main
 
@@ -380,6 +395,9 @@ func main() {
   }
 }
 ```
+
+</CodeGroupItem>
+</CodeGroup>
 
 或者，如果您使用的是类型签字，只需通过将此添加到`TSConfig.JSON`文件和eSbuild即可自动将其拾取而无法配置：
 
@@ -418,14 +436,18 @@ Loader: `css`
 
 默认情况下，此加载器将启用`.css`文件。它将文件加载为CSS语法。 CSS是eSBuild中的一流内容类型，这意味着eSbuild可以直接捆绑CSS文件，而无需从JavaScript代码导入CSS：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli">
+
+```sh
 
 esbuild --bundle app.css --outfile=out.css
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="js">
+
 ```js
-// js
 
 require('esbuild').buildSync({
   entryPoints: ['app.css'],
@@ -434,8 +456,10 @@ require('esbuild').buildSync({
 })
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
 ```go
-// go
 
 package main
 
@@ -455,6 +479,9 @@ func main() {
   }
 }
 ```
+
+</CodeGroupItem>
+</CodeGroup>
 
 您可以`@Import`其他CSS文件和参考图像以及带有`URL（）`和esbuild的字体文件将捆绑在一起。请注意，由于eSbuild没有任何预先配置，您必须为图像和字体文件配置加载器。通常这是[data URL](https://esbuild.github.io/content-types/#data-url)加载程序或[外部文件](https://esbuild.github.io/content-types/#external-file)加载器。
 
@@ -494,14 +521,17 @@ console.log(uint8array)
 
 如果您需要一个`ArrayBuffer`，则只需访问`UInt8Array.Buffer`。请注意，默认情况下未启用此加载器。您需要为类似的文件扩展名配置它：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli">
 
+```sh
 esbuild app.js --bundle --loader:.data=binary
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="js">
+
 ```js
-// js
 
 require('esbuild').buildSync({
   entryPoints: ['app.js'],
@@ -511,8 +541,10 @@ require('esbuild').buildSync({
 })
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
 ```go
-// go
 
 package main
 
@@ -535,6 +567,9 @@ func main() {
 }
 ```
 
+</CodeGroupItem>
+</CodeGroup>
+
 ## Base64
 
 Loader: `base64`
@@ -548,14 +583,18 @@ console.log(base64string)
 
 请注意，默认情况下未启用此加载器。您需要为类似的文件扩展名配置它：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli">
+
+```sh
 
 esbuild app.js --bundle --loader:.data=base64
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="js">
+
 ```js
-// js
 
 require('esbuild').buildSync({
   entryPoints: ['app.js'],
@@ -565,8 +604,10 @@ require('esbuild').buildSync({
 })
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
 ```go
-// go
 
 package main
 
@@ -588,6 +629,9 @@ func main() {
   }
 }
 ```
+
+</CodeGroupItem>
+</CodeGroup>
 
 如果您打算将其转换为`UINT8ARRAY`或`ArrayBuffer`，则应使用`二进制`加载器。它使用优化的Base64到二进制转换器比通常的`ATOB`转换过程更快。
 
@@ -612,14 +656,18 @@ data:image/png;base64,iVBORw0KGgo=
 
 请注意，默认情况下未启用此加载程序。您需要将其配置为适当的文件扩展名，如下所示：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli">
+
+```sh
 
 esbuild app.js --bundle --loader:.png=dataurl
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="js">
+
 ```js
-// js
 
 require('esbuild').buildSync({
   entryPoints: ['app.js'],
@@ -629,8 +677,10 @@ require('esbuild').buildSync({
 })
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
 ```go
-// go
 
 package main
 
@@ -653,6 +703,9 @@ func main() {
 }
 ```
 
+</CodeGroupItem>
+</CodeGroup>
+
 ## External file
 
 Loader: `file`
@@ -668,14 +721,18 @@ document.body.appendChild(image)
 
 请注意，默认情况下未启用此加载程序。您需要将其配置为适当的文件扩展名，如下所示：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli">
+
+```sh
 
 esbuild app.js --bundle --loader:.png=file --outdir=out
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="js">
+
 ```js
-// js
 
 require('esbuild').buildSync({
   entryPoints: ['app.js'],
@@ -685,8 +742,10 @@ require('esbuild').buildSync({
 })
 ```
 
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
 ```go
-// go
 
 package main
 
@@ -710,5 +769,7 @@ func main() {
 }
 ```
 
-默认情况下，导出的字符串只是文件名。如果您想为导出的字符串添加基本路径，可以使用[公共路径](https://esbuild.github.io/api/#public-path) API 选项来完成。
+</CodeGroupItem>
+</CodeGroup>
 
+默认情况下，导出的字符串只是文件名。如果您想为导出的字符串添加基本路径，可以使用[公共路径](https://esbuild.github.io/api/#public-path) API 选项来完成。

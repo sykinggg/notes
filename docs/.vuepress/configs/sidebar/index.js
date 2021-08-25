@@ -478,6 +478,12 @@ module.exports = {
       children: [
         '/esbuild/contentTypes/content.md',
       ]
+    },
+    {
+      title: 'plugins',
+      children: [
+        '/esbuild/plugins/plugins.md',
+      ]
     }
   ],
   '/git/': [
