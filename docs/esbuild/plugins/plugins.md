@@ -552,3 +552,160 @@ func main() {
 请记住，许多回调可能同时运行。在JavaScript中，如果您的回调执行昂贵的工作，可以在其他线程中运行，例如`fs.readfilesync（）`，您应该使回调`async`和使用`await`（在这种情况下使用`fs.promises.readfile（）`）来允许其他代码与此同时运行。在Go中，每个回调可能在单独的goroutine上运行。如果您的插件使用任何共享数据结构，请确保在适当的同步时进行同步。
 
 ### Load options
+
+`onload` API在设置功能中被`调用`，并在某些情况下注册要触发的回调。需要一些选择：
+
+<CodeGroup>
+<CodeGroupItem title="js">
+
+```js
+interface OnLoadOptions {
+  filter: RegExp;
+  namespace?: string;
+}
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
+```go
+type OnLoadOptions struct {
+  Filter    string
+  Namespace string
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+* `filter`
+
+每个回调必须提供一个过滤器，这是一个正则表达式。当路径与此过滤器不匹配时，将跳过注册的回调。您可以在[此阅读更多有关过滤器的信息](https://esbuild.github.io/plugins/#filters)。
+
+* `namespace`
+
+这是可选的。如果提供的话，回调仅在所提供的命名空间中的模块中的路径上运行。您可以在[此处阅读更多关于命名空间的信息](https://esbuild.github.io/plugins/#namespaces)。
+
+### Load arguments
+
+当eSBuild调用`onload`注册的回调时，它将提供这些参数，其中包含有关要加载的模块的信息：
+
+<CodeGroup>
+<CodeGroupItem title="js">
+
+```js
+interface OnLoadArgs {
+  path: string;
+  namespace: string;
+  pluginData: any;
+}
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
+```go
+type OnLoadArgs struct {
+  Path       string
+  Namespace  string
+  PluginData interface{}
+}
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+* `path`
+
+这是模块的完全解析的路径。如果命名空间是`文件`，则应被视为文件系统路径，但否则路径可以采用任何形式。例如，下面的示例[HTTP插件](https://esbuild.github.io/plugins/#http-plugin)对以`HTTP：//`开始的路径提供了特殊含义。
+
+* `namespace`
+
+这是模块路径所在的命名空间，如解析该文件的[解析回调](https://esbuild.github.io/plugins/#resolve-callbacks)所设置。它默认为已加载eSbuild默认行为的模块的`文件`命名空间。您可以在[此处阅读更多关于命名空间的信息](https://esbuild.github.io/plugins/#namespaces)。
+
+* `pluginData`
+
+此属性从上一个插件传递，如在插件链中运行的[解析回调](https://esbuild.github.io/plugins/#resolve-callbacks)设置。
+
+### Load results
+
+这是可以使用`onload`添加的回调来返回的对象来提供模块的内容。如果您想从回调返回而不提供任何内容，则只需返回默认值（在JavaScript和`OnloadResult {}`中拒绝）。以下是可以返回的可选属性：
+
+<CodeGroup>
+<CodeGroupItem title="js">
+
+```js
+interface OnLoadResult {
+  contents?: string | Uint8Array;
+  errors?: Message[];
+  loader?: Loader;
+  pluginData?: any;
+  pluginName?: string;
+  resolveDir?: string;
+  warnings?: Message[];
+  watchDirs?: string[];
+  watchFiles?: string[];
+}
+
+interface Message {
+  text: string;
+  location: Location | null;
+  detail: any; // The original error from a JavaScript plugin, if applicable
+}
+
+interface Location {
+  file: string;
+  namespace: string;
+  line: number; // 1-based
+  column: number; // 0-based, in bytes
+  length: number; // in bytes
+  lineText: string;
+}
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="go">
+
+```go
+type OnLoadResult struct {
+  Contents   *string
+  Errors     []Message
+  Loader     Loader
+  PluginData interface{}
+  PluginName string
+  ResolveDir string
+  Warnings   []Message
+  WatchDirs  []string
+  WatchFiles []string
+}
+
+type Message struct {
+  Text     string
+  Location *Location
+  Detail   interface{} // The original error from a Go plugin, if applicable
+}
+
+type Location struct {
+  File      string
+  Namespace string
+  Line      int // 1-based
+  Column    int // 0-based, in bytes
+  Length    int // in bytes
+  LineText  string
+}
+```
+</CodeGroupItem>
+</CodeGroup>
+
+* `contents`
+
+将其设置为字符串以指定模块的内容。如果设置了这一点，则不会为此已解决的路径运行更多的负载回调。如果未设置为此，eSBuild将继续运行当前登记的负载回调。然后，如果仍未设置内容，则eSBuild将默认为如果已解析路径位于`文件`命名空间中，则默认默认为从文件系统加载内容。
+
+* `loader`
+
+这告诉esbuild如何解释内容。例如，[JS](https://esbuild.github.io/content-types/#javascript) Loader将内容解释为JavaScript，[CSS](https://esbuild.github.io/content-types/#css)加载程序将内容解释为CSS。如果未指定，则加载器默认为`JS`。有关所有内置加载器的完整列表，请参阅[内容类型](https://esbuild.github.io/content-types/)页面。
+
+* `resolveDir`
+
+这是在将此模块中的导入路径解析为文件系统上的实际路径时，这是要使用的文件系统目录。对于`文件`命名空间中的模块，此值默认为模块路径的目录部分。否则此值默认为空，除非插件提供一个。如果插件未提供一个，eSbuild的默认行为将无法解析此模块中的任何导入。此目录将传递到在此模块中未解决的导入路径上运行的任何[解决调用](https://esbuild.github.io/plugins/#resolve-callbacks)。
+
