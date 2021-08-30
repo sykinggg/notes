@@ -146,7 +146,7 @@ Loader: `ts` or `tsx`
 
 ### TypeScript的注意事项
 
-使用eSbuild使用类型签字时，您应该记住以下内容（除了[JavaScript Capeats](https://esbuild.github.io/content-types/#javascript-caveats)）：
+使用eSbuild使用类型签字时，您应该记住以下内容（除了[JavaScript Capeats](./content/#/#javascript-caveats)）：
 
 #### 文件独立编译
 
@@ -224,15 +224,17 @@ render(button);
 
 默认情况下，此加载器默认为`.jsx`和`.tsx`文件。请注意，默认情况下，不会在`.js`文件中启用JSX语法。如果您想启用它，您需要配置它：
 
-```
-// cli
+<CodeGroup>
+<CodeGroupItem title="cli">
 
+```sh
 esbuild app.js --bundle --loader:.js=jsx
 ```
 
-```js
-// js
+</CodeGroupItem>
+<CodeGroupItem title="js">
 
+```js
 require('esbuild').buildSync({
   entryPoints: ['app.js'],
   bundle: true,
@@ -241,9 +243,10 @@ require('esbuild').buildSync({
 })
 ```
 
-```go
-// go
+</CodeGroupItem>
+<CodeGroupItem title="go">
 
+```go
 package main
 
 import "github.com/evanw/esbuild/pkg/api"
@@ -265,13 +268,16 @@ func main() {
 }
 ```
 
+</CodeGroupItem>
+</CodeGroup>
+
 ### 自动导入JSX
 
 使用JSX语法通常要求您手动导入您正在使用的JSX库。例如，如果您使用的反应，默认情况下，您需要导入到每个JSX文件中的反应：
 
 ```js
 import * as React from 'react'
-render(<div/>)
+render(<div></div>)
 ```
 
 这是因为JSX变换将JSX语法转换为`React.CReateElement`，但它本身并不导入任何内容，因此不会自动存在`React`变量。
@@ -483,7 +489,7 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-您可以`@Import`其他CSS文件和参考图像以及带有`URL（）`和esbuild的字体文件将捆绑在一起。请注意，由于eSbuild没有任何预先配置，您必须为图像和字体文件配置加载器。通常这是[data URL](https://esbuild.github.io/content-types/#data-url)加载程序或[外部文件](https://esbuild.github.io/content-types/#external-file)加载器。
+您可以`@Import`其他CSS文件和参考图像以及带有`URL（）`和esbuild的字体文件将捆绑在一起。请注意，由于eSbuild没有任何预先配置，您必须为图像和字体文件配置加载器。通常这是[data URL](./content/#/#data-url)加载程序或[外部文件](./content/#/#external-file)加载器。
 
 您还可以从JavaScript导入CSS。执行此操作后，eSBuild将收集来自给定入口点引用的所有CSS文件，并将其捆绑到旁边的JavaScript输出文件旁边的兄弟CSS输出文件中，以获取该JavaScript入口点。因此，如果esbuild生成`app.js`，它还会生成包含由`app.js`引用的所有CSS文件的`App.css`。以下是从JavaScript导入CSS文件的示例：
 

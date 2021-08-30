@@ -20,7 +20,7 @@
 
 ## 使用插件
 
-esbuild 插件是一个具有`名称`和`设置`功能的对象。它们以数组形式传递给[构建 API](https://esbuild.github.io/api/#build) 调用。 `setup` 函数为每个构建 API 调用运行一次。
+esbuild 插件是一个具有`名称`和`设置`功能的对象。它们以数组形式传递给[构建 API](./transform/#build) 调用。 `setup` 函数为每个构建 API 调用运行一次。
 
 这是一个简单的插件示例，允许您在构建时导入当前环境变量：
 
@@ -135,9 +135,9 @@ console.log(`PATH is ${PATH}`)
 
 ### 命名空间
 
-每个模块都有一个关联的命名空间。默认情况下，esbuild 在文件命名空间中运行，该命名空间对应于文件系统上的`文件`。但是 esbuild 也可以处理在文件系统上没有相应位置的“虚拟”模块。发生这种情况的一种情况是使用 [stdin](https://esbuild.github.io/api/#stdin) 提供模块。
+每个模块都有一个关联的命名空间。默认情况下，esbuild 在文件命名空间中运行，该命名空间对应于文件系统上的`文件`。但是 esbuild 也可以处理在文件系统上没有相应位置的“虚拟”模块。发生这种情况的一种情况是使用 [stdin](./transform/#stdin) 提供模块。
 
-插件可用于创建虚拟模块。虚拟模块通常使用文件以外的命名空间来区分它们与`文件`系统模块。通常命名空间特定于创建它们的插件。例如，下面的示例 [HTTP 插件](https://esbuild.github.io/plugins/#http-plugin)使用 `http-url` 命名空间来下载文件。
+插件可用于创建虚拟模块。虚拟模块通常使用文件以外的命名空间来区分它们与`文件`系统模块。通常命名空间特定于创建它们的插件。例如，下面的示例 [HTTP 插件](./plugins/#http-plugin)使用 `http-url` 命名空间来下载文件。
 
 ### Filters
 
@@ -269,11 +269,11 @@ type OnResolveOptions struct {
 
 * `filter`
 
-每个回调都必须提供一个过滤器，它是一个正则表达式。当路径与此过滤器不匹配时，将跳过注册的回调。您可以[在此处阅读有关过滤器的更多信息](https://esbuild.github.io/plugins/#filters)。
+每个回调都必须提供一个过滤器，它是一个正则表达式。当路径与此过滤器不匹配时，将跳过注册的回调。您可以[在此处阅读有关过滤器的更多信息](./plugins/#filters)。
 
 * `namespace`
 
-这是可选的。如果提供，则回调仅在提供的命名空间中的模块内的路径上运行。您可以在[此处阅读有关命名空间的更多信息](https://esbuild.github.io/plugins/#namespaces)。
+这是可选的。如果提供，则回调仅在提供的命名空间中的模块内的路径上运行。您可以在[此处阅读有关命名空间的更多信息](./plugins/#namespaces)。
 
 ### Resolve arguments
 
@@ -331,7 +331,7 @@ const (
 
 * `path`
 
-这是来自底层模块的源代码的逐字未解决的路径。它可以采取任何形式。虽然eSbuild的默认行为是将导入路径解释为相对路径或包名称，但是可用于引入新的路径表单。例如，下面的示例[HTTP插件](https://esbuild.github.io/plugins/#http-plugin)对以`HTTP：//`开始的路径提供了特殊含义。
+这是来自底层模块的源代码的逐字未解决的路径。它可以采取任何形式。虽然eSbuild的默认行为是将导入路径解释为相对路径或包名称，但是可用于引入新的路径表单。例如，下面的示例[HTTP插件](./plugins/#http-plugin)对以`HTTP：//`开始的路径提供了特殊含义。
 
 * `importer`
 
@@ -339,11 +339,11 @@ const (
 
 * `namespace`
 
-这是包含此导入的模块的命名空间，如加载此文件的[负载回调](https://esbuild.github.io/plugins/#load-callbacks)所设置的。这默认为包含eSbuild默认行为的模块的`文件`命名空间。您可以在[此处阅读更多关于命名空间的信息](https://esbuild.github.io/plugins/#namespaces)。
+这是包含此导入的模块的命名空间，如加载此文件的[负载回调](./plugins/#load-callbacks)所设置的。这默认为包含eSbuild默认行为的模块的`文件`命名空间。您可以在[此处阅读更多关于命名空间的信息](./plugins/#namespaces)。
 
 * `resolveDir`
 
-这是在解析文件系统上的实际路径的导入路径时要使用的文件系统目录。对于`文件`命名空间中的模块，此值默认为模块路径的目录部分。对于虚拟模块，此值默认为空，但[负载回调](https://esbuild.github.io/plugins/#load-callbacks)可以选择为虚拟模块提供一个解析目录。如果发生这种情况，将提供用于解析该文件中未解决的路径的回调。
+这是在解析文件系统上的实际路径的导入路径时要使用的文件系统目录。对于`文件`命名空间中的模块，此值默认为模块路径的目录部分。对于虚拟模块，此值默认为空，但[负载回调](./plugins/#load-callbacks)可以选择为虚拟模块提供一个解析目录。如果发生这种情况，将提供用于解析该文件中未解决的路径的回调。
 
 * `kind`
 
@@ -351,7 +351,7 @@ const (
 
 * `pluginData`
 
-此属性从上一个插件传递，如加载此文件的[负载回调](https://esbuild.github.io/plugins/#load-callbacks)所设置。
+此属性从上一个插件传递，如加载此文件的[负载回调](./plugins/#load-callbacks)所设置。
 
 ### Resolve results
 
@@ -430,7 +430,7 @@ type Location struct {
 
 * `external`
 
-将此设置为`true`以将模块标记为[外部](https://esbuild.github.io/api/#external)，这意味着它不会包含在捆绑包中，而是将在运行时导入。
+将此设置为`true`以将模块标记为[外部](./transform/#external)，这意味着它不会包含在捆绑包中，而是将在运行时导入。
 
 * `namespace`
 
@@ -440,13 +440,13 @@ type Location struct {
 
 * `errors` and `warnings`
 
-这些属性允许您通过路径分辨率期间生成的任何日志消息，以根据当前[日志级别](https://esbuild.github.io/api/#log-level)显示在终端中的eSBuild，并最终在最终构建结果中结束。例如，如果您正在调用库，并且该库可以返回错误和/或警告，您将希望使用这些属性转发它们。
+这些属性允许您通过路径分辨率期间生成的任何日志消息，以根据当前[日志级别](./transform/#log-level)显示在终端中的eSBuild，并最终在最终构建结果中结束。例如，如果您正在调用库，并且该库可以返回错误和/或警告，您将希望使用这些属性转发它们。
 
 如果您只有单个错误返回，则不必通过错误传递它。您可以简单地将`错误`丢弃在JavaScript中，或者将`错误`对象返回到Go中的第二个返回值。
 
 * `watchFiles` and `watchDirs`
 
-这些属性允许您返回eSbuild[watch mode](https://esbuild.github.io/api/#watch)的其他文件系统路径以扫描。默认情况下，eSBuild将仅扫描提供给`onload`插件的路径，并且仅当命名空间是`文件`时。如果您的插件需要对文件系统的其他更改作出反应，则需要使用其中一个属性。
+这些属性允许您返回eSbuild[watch mode](./transform/#watch)的其他文件系统路径以扫描。默认情况下，eSBuild将仅扫描提供给`onload`插件的路径，并且仅当命名空间是`文件`时。如果您的插件需要对文件系统的其他更改作出反应，则需要使用其中一个属性。
 
 如果`WatchFiles`数组的任何文件已自上次构建以来已更改任何文件，则将触发重建。更改检测有点复杂，可以检查文件内容和/或文件的元数据。
 
@@ -580,11 +580,11 @@ type OnLoadOptions struct {
 
 * `filter`
 
-每个回调必须提供一个过滤器，这是一个正则表达式。当路径与此过滤器不匹配时，将跳过注册的回调。您可以在[此阅读更多有关过滤器的信息](https://esbuild.github.io/plugins/#filters)。
+每个回调必须提供一个过滤器，这是一个正则表达式。当路径与此过滤器不匹配时，将跳过注册的回调。您可以在[此阅读更多有关过滤器的信息](./plugins/#filters)。
 
 * `namespace`
 
-这是可选的。如果提供的话，回调仅在所提供的命名空间中的模块中的路径上运行。您可以在[此处阅读更多关于命名空间的信息](https://esbuild.github.io/plugins/#namespaces)。
+这是可选的。如果提供的话，回调仅在所提供的命名空间中的模块中的路径上运行。您可以在[此处阅读更多关于命名空间的信息](./plugins/#namespaces)。
 
 ### Load arguments
 
@@ -617,15 +617,15 @@ type OnLoadArgs struct {
 
 * `path`
 
-这是模块的完全解析的路径。如果命名空间是`文件`，则应被视为文件系统路径，但否则路径可以采用任何形式。例如，下面的示例[HTTP插件](https://esbuild.github.io/plugins/#http-plugin)对以`HTTP：//`开始的路径提供了特殊含义。
+这是模块的完全解析的路径。如果命名空间是`文件`，则应被视为文件系统路径，但否则路径可以采用任何形式。例如，下面的示例[HTTP插件](./plugins/#http-plugin)对以`HTTP：//`开始的路径提供了特殊含义。
 
 * `namespace`
 
-这是模块路径所在的命名空间，如解析该文件的[解析回调](https://esbuild.github.io/plugins/#resolve-callbacks)所设置。它默认为已加载eSbuild默认行为的模块的`文件`命名空间。您可以在[此处阅读更多关于命名空间的信息](https://esbuild.github.io/plugins/#namespaces)。
+这是模块路径所在的命名空间，如解析该文件的[解析回调](./plugins/#resolve-callbacks)所设置。它默认为已加载eSbuild默认行为的模块的`文件`命名空间。您可以在[此处阅读更多关于命名空间的信息](./plugins/#namespaces)。
 
 * `pluginData`
 
-此属性从上一个插件传递，如在插件链中运行的[解析回调](https://esbuild.github.io/plugins/#resolve-callbacks)设置。
+此属性从上一个插件传递，如在插件链中运行的[解析回调](./plugins/#resolve-callbacks)设置。
 
 ### Load results
 
@@ -703,21 +703,21 @@ type Location struct {
 
 * `loader`
 
-这告诉esbuild如何解释内容。例如，[JS](https://esbuild.github.io/content-types/#javascript) Loader将内容解释为JavaScript，[CSS](https://esbuild.github.io/content-types/#css)加载程序将内容解释为CSS。如果未指定，则加载器默认为`JS`。有关所有内置加载器的完整列表，请参阅[内容类型](https://esbuild.github.io/content-types/)页面。
+这告诉esbuild如何解释内容。例如，[JS](./content/#javascript) Loader将内容解释为JavaScript，[CSS](./content/#css)加载程序将内容解释为CSS。如果未指定，则加载器默认为`JS`。有关所有内置加载器的完整列表，请参阅[内容类型](./content/#/)页面。
 
 * `resolveDir`
 
-这是在将此模块中的导入路径解析为文件系统上的实际路径时，这是要使用的文件系统目录。对于`文件`命名空间中的模块，此值默认为模块路径的目录部分。否则此值默认为空，除非插件提供一个。如果插件未提供一个，eSbuild的默认行为将无法解析此模块中的任何导入。此目录将传递到在此模块中未解决的导入路径上运行的任何[解决调用](https://esbuild.github.io/plugins/#resolve-callbacks)。
+这是在将此模块中的导入路径解析为文件系统上的实际路径时，这是要使用的文件系统目录。对于`文件`命名空间中的模块，此值默认为模块路径的目录部分。否则此值默认为空，除非插件提供一个。如果插件未提供一个，eSbuild的默认行为将无法解析此模块中的任何导入。此目录将传递到在此模块中未解决的导入路径上运行的任何[解决调用](./plugins/#resolve-callbacks)。
 
 * `errors` && `warnings`
 
-这些属性使您可以将路径解析期间生成的任何日志消息传递给 esbuild，它们将根据当前的[日志级别](https://esbuild.github.io/api/#log-level)显示在终端中，并最终出现在最终的构建结果中。例如，如果您正在调用一个库并且该库可以返回错误和/或警告，您将需要使用这些属性转发它们。
+这些属性使您可以将路径解析期间生成的任何日志消息传递给 esbuild，它们将根据当前的[日志级别](./transform/#log-level)显示在终端中，并最终出现在最终的构建结果中。例如，如果您正在调用一个库并且该库可以返回错误和/或警告，您将需要使用这些属性转发它们。
 
 如果您只有一个错误要返回，则不必通过错误传递它。你可以简单地在 JavaScript 中抛出错误，或者在 Go 中将错误对象作为第二个返回值返回。
 
 * `watchFiles` && `watchDirs`
 
-这些属性允许您返回额外的文件系统路径，以便 esbuild 的[监视模式](https://esbuild.github.io/api/#watch)进行扫描。默认情况下，esbuild 只会扫描提供给 `onLoad` 插件的路径，并且仅当命名空间是`文件`时。如果您的插件需要对文件系统中的其他更改做出反应，则需要使用这些属性之一。
+这些属性允许您返回额外的文件系统路径，以便 esbuild 的[监视模式](./transform/#watch)进行扫描。默认情况下，esbuild 只会扫描提供给 `onLoad` 插件的路径，并且仅当命名空间是`文件`时。如果您的插件需要对文件系统中的其他更改做出反应，则需要使用这些属性之一。
 
 如果 `watchFiles` 数组中的任何文件自上次构建以来已被更改，则将触发重建。更改检测有点复杂，可能会检查文件内容和/或文件的元数据。
 
@@ -739,9 +739,9 @@ type Location struct {
 
 缓存本质上是一个映射，它记住代表您的插件的转换函数。映射的键通常包含转换函数的输入，映射的值通常包含转换函数的输出。此外，地图通常具有某种形式的最近最少使用的缓存驱逐策略，以避免随着时间的推移尺寸不断增大。
 
-缓存可以存储在内存中（有利于与 esbuild 的[增量构建 API](https://esbuild.github.io/api/#incremental) 一起使用）、磁盘上（有利于跨单独的构建脚本调用进行缓存），甚至可以存储在服务器上（有利于可以在不同开发人员之间共享的非常慢的转换）机）。缓存的存储位置因情况而异，取决于您的插件。
+缓存可以存储在内存中（有利于与 esbuild 的[增量构建 API](./transform/#incremental) 一起使用）、磁盘上（有利于跨单独的构建脚本调用进行缓存），甚至可以存储在服务器上（有利于可以在不同开发人员之间共享的非常慢的转换）机）。缓存的存储位置因情况而异，取决于您的插件。
 
-这是一个简单的缓存示例。假设我们要缓存函数 `slowTransform()`，该函数将 `*.example` 格式的文件内容作为输入并将其转换为 JavaScript。当与 esbuild 的[增量构建 API](https://esbuild.github.io/api/#incremental) 一起使用时，避免对此函数进行冗余调用的内存缓存可能如下所示：
+这是一个简单的缓存示例。假设我们要缓存函数 `slowTransform()`，该函数将 `*.example` 格式的文件内容作为输入并将其转换为 JavaScript。当与 esbuild 的[增量构建 API](./transform/#incremental) 一起使用时，避免对此函数进行冗余调用的内存缓存可能如下所示：
 
 ```ts
 let examplePlugin = {
@@ -808,7 +808,7 @@ node_modules/pkg/file/index.css
 
 ## Start callbacks
 
-注册开始回调以在新构建开始时收到通知。这会触发所有构建，而不仅仅是初始构建，因此它对于[增量构建](https://esbuild.github.io/api/#incremental)、[监视模式](https://esbuild.github.io/api/#watch)和[服务 API](https://esbuild.github.io/api/#serve) 尤其有用。以下是添加开始回调的方法：
+注册开始回调以在新构建开始时收到通知。这会触发所有构建，而不仅仅是初始构建，因此它对于[增量构建](./transform/#incremental)、[监视模式](./transform/#watch)和[服务 API](./transform/#serve) 尤其有用。以下是添加开始回调的方法：
 
 <CodeGroup>
 <CodeGroupItem title="js">
@@ -853,13 +853,13 @@ func main() {
 
 您不应该使用 start 回调进行初始化，因为它可以多次运行。如果你想初始化一些东西，只需将你的插件初始化代码直接放在 `setup` 函数中。
 
-开始回调可以是`异步`的并且可以返回一个承诺。但是，构建在开始之前不会等待 promise 得到解决，因此慢启动回调不一定会减慢构建速度。所有启动回调也同时运行，而不是连续运行。返回的 Promise 纯粹用于错误报告，当 start 回调需要执行可能失败或可能产生警告的异步操作时很重要。如果您的插件需要在运行任何解析或加载回调之前等待启动回调中的异步任务完成，您将需要在该异步任务上阻止[解析](https://esbuild.github.io/plugins/#resolve-callbacks)或[加载](https://esbuild.github.io/plugins/#load-callbacks)回调。
+开始回调可以是`异步`的并且可以返回一个承诺。但是，构建在开始之前不会等待 promise 得到解决，因此慢启动回调不一定会减慢构建速度。所有启动回调也同时运行，而不是连续运行。返回的 Promise 纯粹用于错误报告，当 start 回调需要执行可能失败或可能产生警告的异步操作时很重要。如果您的插件需要在运行任何解析或加载回调之前等待启动回调中的异步任务完成，您将需要在该异步任务上阻止[解析](./plugins/#resolve-callbacks)或[加载](./plugins/#load-callbacks)回调。
 
-请注意，开始回调不能改变构建选项。初始构建选项只能在 `setup` 函数中修改，并且在 `setup` 返回后使用。第一个构建之后的所有构建都重用相同的[初始选项](https://esbuild.github.io/plugins/#build-options)，因此永远不会重新使用初始选项，并且忽略在 start 回调中完成的对 `build.initialOptions` 的修改。
+请注意，开始回调不能改变构建选项。初始构建选项只能在 `setup` 函数中修改，并且在 `setup` 返回后使用。第一个构建之后的所有构建都重用相同的[初始选项](./plugins/#build-options)，因此永远不会重新使用初始选项，并且忽略在 start 回调中完成的对 `build.initialOptions` 的修改。
 
 ## End callbacks
 
-注册结束回调以在新构建结束时收到通知。这会触发所有构建，而不仅仅是初始构建，因此它对于[增量构建](https://esbuild.github.io/api/#incremental)、[监视模式](https://esbuild.github.io/api/#watch)和[服务 API](https://esbuild.github.io/api/#serve) 尤其有用。添加结束回调的方法如下：
+注册结束回调以在新构建结束时收到通知。这会触发所有构建，而不仅仅是初始构建，因此它对于[增量构建](./transform/#incremental)、[监视模式](./transform/#watch)和[服务 API](./transform/#serve) 尤其有用。添加结束回调的方法如下：
 
 <CodeGroup>
 <CodeGroupItem title="js">
@@ -901,7 +901,7 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-所有结束回调都是串行运行的，并且每个回调都可以访问最终构建结果。它可以在返回之前修改构建结果，并且可以通过返回一个 promise 来延迟构建的结束。如果您希望能够检查构建图，您应该在[初始选项](https://esbuild.github.io/plugins/#build-options)上启用[元文件](https://esbuild.github.io/api/#metafile)设置，构建图将作为构建结果对象的`元文件`属性返回。
+所有结束回调都是串行运行的，并且每个回调都可以访问最终构建结果。它可以在返回之前修改构建结果，并且可以通过返回一个 promise 来延迟构建的结束。如果您希望能够检查构建图，您应该在[初始选项](./plugins/#build-options)上启用[元文件](./transform/#metafile)设置，构建图将作为构建结果对象的`元文件`属性返回。
 
 ## Accessing build options
 
@@ -952,7 +952,7 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-请注意，在构建开始后对构建选项的修改不会影响构建。特别是，如果插件在第一次构建开始后改变构建选项对象，[增量重建](https://esbuild.github.io/api/#incremental)、[观察模式](https://esbuild.github.io/api/#watch)和[服务模式](https://esbuild.github.io/api/#serve)不会更新它们的构建选项。
+请注意，在构建开始后对构建选项的修改不会影响构建。特别是，如果插件在第一次构建开始后改变构建选项对象，[增量重建](./transform/#incremental)、[观察模式](./transform/#watch)和[服务模式](./transform/#serve)不会更新它们的构建选项。
 
 ## Example plugins
 
@@ -1146,7 +1146,7 @@ export default (imports) =>
     result => result.instance.exports)
 ```
 
-然后该存根模块使用 esbuild 的内置[二进制](https://esbuild.github.io/content-types/#binary)加载器将 WebAssembly 文件本身作为 `wasm-binary` 命名空间中的另一个模块导入。这意味着导入 `.wasm` 文件实际上会生成两个虚拟模块。这是插件的代码：
+然后该存根模块使用 esbuild 的内置[二进制](./content/#binary)加载器将 WebAssembly 文件本身作为 `wasm-binary` 命名空间中的另一个模块导入。这意味着导入 `.wasm` 文件实际上会生成两个虚拟模块。这是插件的代码：
 
 <CodeGroup>
 <CodeGroupItem title="js">

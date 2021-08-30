@@ -895,7 +895,7 @@ func main() {
 
 #### CommonJS
 
-`cjs` 格式代表“CommonJS”，旨在在 `node.js` 中运行。它假设环境包含`exports`, `require`, 和 `module`。使用 `ECMAScript` 模块语法导出的入口点将被转换为一个模块，每个导出名称的导出都有一个 `getter`。当您将 [platform](https://esbuild.github.io/api/#platform)设置为`node`时，`cjs` 格式是默认格式。使用它看起来像这样：
+`cjs` 格式代表“CommonJS”，旨在在 `node.js` 中运行。它假设环境包含`exports`, `require`, 和 `module`。使用 `ECMAScript` 模块语法导出的入口点将被转换为一个模块，每个导出名称的导出都有一个 `getter`。当您将 [platform](./transform/#platform)设置为`node`时，`cjs` 格式是默认格式。使用它看起来像这样：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -1097,9 +1097,9 @@ let process = {cwd: () => ""};
 console.log(process.cwd());
 ```
 
-* **使用带定义的[注入](https://esbuild.github.io/api/#define)**
+* **使用带定义的[注入](./transform/#define)**
 
-您还可以将其与定义[功能](https://esbuild.github.io/api/#define)结合起来，以便对您导入的内容更具选择性。例如：
+您还可以将其与定义[功能](./transform/#define)结合起来，以便对您导入的内容更具选择性。例如：
 
 <CodeGroup>
 <CodeGroupItem title="process-shim.js">
@@ -1219,7 +1219,7 @@ let node = document.importNode(doc.documentElement, true)
 document.body.appendChild(node)
 ```
 
-上面的代码可以使用构建 API 调用进行[捆绑](https://esbuild.github.io/api/#build-api)，如下所示：
+上面的代码可以使用构建 API 调用进行[捆绑](./transform/#build-api)，如下所示：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -1275,7 +1275,7 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-如果您将构建 API 与来自 stdin 的输入一起使用，则此选项的指定方式不同，因为 [stdin](https://esbuild.github.io/api/#stdin) 没有文件扩展名。使用构建 API 为 stdin 配置加载器如下所示：
+如果您将构建 API 与来自 stdin 的输入一起使用，则此选项的指定方式不同，因为 [stdin](./transform/#stdin) 没有文件扩展名。使用构建 API 为 stdin 配置加载器如下所示：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -1332,7 +1332,7 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-如果您将构建 API 与来自 [stdin](https://esbuild.github.io/api/#stdin) 的输入一起使用，则此选项的指定方式不同，因为 stdin 没有文件扩展名。使用构建 API 为 stdin 配置加载器如下所示：
+如果您将构建 API 与来自 [stdin](./transform/#stdin) 的输入一起使用，则此选项的指定方式不同，因为 stdin 没有文件扩展名。使用构建 API 为 stdin 配置加载器如下所示：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -1388,7 +1388,7 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-[转换 API](https://esbuild.github.io/api/#transform-api) 调用只需要一个加载器，因为它不涉及与文件系统的交互，因此不处理文件扩展名。为转换 API 配置加载器（在本例中为 `ts` 加载器）如下所示：
+[转换 API](./transform/#transform-api) 调用只需要一个加载器，因为它不涉及与文件系统的交互，因此不处理文件扩展名。为转换 API 配置加载器（在本例中为 `ts` 加载器）如下所示：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -1661,11 +1661,11 @@ esbuild 中的 JavaScript 压缩算法通常生成的输出非常接近行业标
 
 以下是使用 esbuild 作为压缩器时要记住的一些事项：
 
-* 您可能还应该在启用压缩时设置目标[选项](https://esbuild.github.io/api/#target)。默认情况下，esbuild 利用现代 JavaScript 功能来使您的代码更小。例如，`a === undefined ||一个 === 空？ 1 : a` 可以压缩为 `a ?? 1`. 如果您不希望 esbuild 在压缩时利用现代 JavaScript 功能，您应该使用较旧的语言目标，例如 `--target=es6`。
+* 您可能还应该在启用压缩时设置目标[选项](./transform/#target)。默认情况下，esbuild 利用现代 JavaScript 功能来使您的代码更小。例如，`a === undefined ||一个 === 空？ 1 : a` 可以压缩为 `a ?? 1`. 如果您不希望 esbuild 在压缩时利用现代 JavaScript 功能，您应该使用较旧的语言目标，例如 `--target=es6`。
 
 * 压缩对于 100% 的 JavaScript 代码都是不安全的。这对于 esbuild 以及其他流行的 JavaScript 压缩器（如 terser）都是如此。特别是，esbuild 并非旨在保留对函数调用 `.toString()` 的值。这样做的原因是因为如果所有函数中的所有代码都必须逐字保存，那么压缩几乎不会做任何事情并且几乎毫无用处。然而，这意味着依赖 `.toString()` 返回值的 JavaScript 代码在压缩时可能会中断。例如，当代码被压缩时，AngularJS 框架中的一些模式会中断，因为 AngularJS 使用 `.toString()` 来读取函数的参数名称。解决方法是[改用显式注释](https://docs.angularjs.org/api/auto/service/$injector#injection-function-annotation)。
 
-* 默认情况下，esbuild 不会在函数和类对象上保留 `.name` 的值。这是因为大多数代码不依赖于这个属性，使用较短的名称是一个重要的大小优化。但是，某些代码确实依赖 `.name` 属性进行注册和绑定。如果您需要依赖它，您应该启用[保留名称](https://esbuild.github.io/api/#keep-names)选项。
+* 默认情况下，esbuild 不会在函数和类对象上保留 `.name` 的值。这是因为大多数代码不依赖于这个属性，使用较短的名称是一个重要的大小优化。但是，某些代码确实依赖 `.name` 属性进行注册和绑定。如果您需要依赖它，您应该启用[保留名称](./transform/#keep-names)选项。
 
 * 使用某些 JavaScript 功能可以禁用许多 esbuild 的优化，包括压缩。具体来说，使用直接 `eval` 和/或 `with` 语句可以防止 esbuild 将标识符重命名为较小的名称，因为这些功能会导致标识符绑定发生在运行时而不是编译时。这几乎总是无意的，并且只是因为人们不知道直接 `eval` 是什么以及它为什么不好。
 
@@ -1761,13 +1761,13 @@ func main() {
 
 如果输出目录尚不存在，则会生成输出目录，但如果已包含某些文件，则不会清除它。任何生成的文件都会以静默方式覆盖同名的现有文件。如果您希望输出目录仅包含来自当前 esbuild 运行的文件，您应该在运行 esbuild 之前自己清除输出目录。
 
-如果您的构建在不同的目录中包含多个入口点，则目录结构将从所有输入入口点路径中最低的[公共祖先目录](https://en.wikipedia.org/wiki/Lowest_common_ancestor)开始复制到输出目录中。例如，如果有两个入口点 `src/home/index.ts` 和 `src/about/index.ts`，则输出目录将包含 `home/index.js` 和 `about/index.js`。如果要自定义此行为，则应更改 [outbase 目录](https://esbuild.github.io/api/#outbase)。
+如果您的构建在不同的目录中包含多个入口点，则目录结构将从所有输入入口点路径中最低的[公共祖先目录](https://en.wikipedia.org/wiki/Lowest_common_ancestor)开始复制到输出目录中。例如，如果有两个入口点 `src/home/index.ts` 和 `src/about/index.ts`，则输出目录将包含 `home/index.js` 和 `about/index.js`。如果要自定义此行为，则应更改 [outbase 目录](./transform/#outbase)。
 
 ### Outfile
 
 支持: Build
 
-此选项设置构建操作的输出文件名。这仅适用于有单个入口点的情况。如果有多个入口点，则必须改用 [outdir](https://esbuild.github.io/api/#outdir) 选项来指定输出目录。使用 outfile 看起来像这样：
+此选项设置构建操作的输出文件名。这仅适用于有单个入口点的情况。如果有多个入口点，则必须改用 [outdir](./transform/#outdir) 选项来指定输出目录。使用 outfile 看起来像这样：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -1871,36 +1871,36 @@ func main() {
 
 当平台设置为`浏览器(browser)`时（默认值）：
 
-* 默认输出[格式](https://esbuild.github.io/api/#format)设置为 `iife`，它将生成的 JavaScript 代码包装在立即调用的函数表达式中，以防止变量泄漏到全局范围内。
+* 默认输出[格式](./transform/#format)设置为 `iife`，它将生成的 JavaScript 代码包装在立即调用的函数表达式中，以防止变量泄漏到全局范围内。
 
 * 如果包在其 `package.json` 文件中为`浏览器`字段指定了映射，esbuild 将使用该映射将特定文件或模块替换为其浏览器友好版本。例如，一个包可能包含用 `path-browserify` 替换`路径`。
 
-* [主要字段](https://esbuild.github.io/api/#main-fields)设置设置为 `browser,module,main` 但有一些额外的特殊行为。如果包支持 `module` 和 `main` 但不支持`浏览器`，那么如果使用 `require()` 导入该`包`，则使用 `main` 而不是 `module`。此行为通过将函数分配给 `module.exports` 来提高与导出函数的 CommonJS 模块的兼容性。
+* [主要字段](./transform/#main-fields)设置设置为 `browser,module,main` 但有一些额外的特殊行为。如果包支持 `module` 和 `main` 但不支持`浏览器`，那么如果使用 `require()` 导入该`包`，则使用 `main` 而不是 `module`。此行为通过将函数分配给 `module.exports` 来提高与导出函数的 CommonJS 模块的兼容性。
 
-* [条件](https://esbuild.github.io/api/#conditions)设置自动包含`浏览器`条件。这改变了 `package.json` 文件中的`导出`字段被解释为更喜欢浏览器特定代码的方式。
+* [条件](./transform/#conditions)设置自动包含`浏览器`条件。这改变了 `package.json` 文件中的`导出`字段被解释为更喜欢浏览器特定代码的方式。
 
-* 如果启用了所有[压缩选项](https://esbuild.github.io/api/#minify)，则所有 `process.env.NODE_ENV` 表达式都会[自动定义](https://esbuild.github.io/api/#define)为`“production”`，否则为`“development”`。仅当 `process`、`process.env` 和 `process.env.NODE_ENV` 尚未定义时才会发生这种情况。这种替换对于避免基于 React 的代码立即崩溃是必要的（因为`进程`是node API，而不是 Web API）。
+* 如果启用了所有[压缩选项](./transform/#minify)，则所有 `process.env.NODE_ENV` 表达式都会[自动定义](./transform/#define)为`“production”`，否则为`“development”`。仅当 `process`、`process.env` 和 `process.env.NODE_ENV` 尚未定义时才会发生这种情况。这种替换对于避免基于 React 的代码立即崩溃是必要的（因为`进程`是node API，而不是 Web API）。
 
 当平台设置为node时：
 
-* 默认输出[格式](https://esbuild.github.io/api/#format)设置为`cjs`，代表CommonJS（node使用的模块格式）。使用 `export` 语句的 ES6 样式导出将转换为 CommonJS `导出`对象上的 getter。
+* 默认输出[格式](./transform/#format)设置为`cjs`，代表CommonJS（node使用的模块格式）。使用 `export` 语句的 ES6 样式导出将转换为 CommonJS `导出`对象上的 getter。
 
-* 所有[内置node模块](https://nodejs.org/docs/latest/api/)（例如 `fs`）都会自动标记为[外部](https://esbuild.github.io/api/#external)模块，因此当捆绑器尝试捆绑它们时，它们不会导致错误。
+* 所有[内置node模块](https://nodejs.org/docs/latest/api/)（例如 `fs`）都会自动标记为[外部](./transform/#external)模块，因此当捆绑器尝试捆绑它们时，它们不会导致错误。
 
 
-  * [主要字段](https://esbuild.github.io/api/#main-fields)设置设置为 `main,module`。这意味着同时提供 `module` 和 `main` 的包可能不会发生摇树，因为摇树适用于 ECMAScript 模块，但不适用于 CommonJS 模块。
+  * [主要字段](./transform/#main-fields)设置设置为 `main,module`。这意味着同时提供 `module` 和 `main` 的包可能不会发生摇树，因为摇树适用于 ECMAScript 模块，但不适用于 CommonJS 模块。
 
-  * 不幸的是，一些包错误地将模块视为“浏览器代码”而不是“ECMAScript `模块`代码”，因此为了兼容性需要这种默认行为。如果您想启用摇树并且知道这样做是安全的，您可以手动将[主要字段](https://esbuild.github.io/api/#main-fields)设置配置为 `module,main`。
+  * 不幸的是，一些包错误地将模块视为“浏览器代码”而不是“ECMAScript `模块`代码”，因此为了兼容性需要这种默认行为。如果您想启用摇树并且知道这样做是安全的，您可以手动将[主要字段](./transform/#main-fields)设置配置为 `module,main`。
 
-* [条件](https://esbuild.github.io/api/#conditions)设置自动包含`node`条件。这改变了 `package.json` 文件中的`导出`字段被解释为更喜欢特定于node的代码的方式。
+* [条件](./transform/#conditions)设置自动包含`node`条件。这改变了 `package.json` 文件中的`导出`字段被解释为更喜欢特定于node的代码的方式。
 
 当平台设置为neutral时：
 
-* 默认输出[格式](https://esbuild.github.io/api/#format)设置为 `esm`，它使用 ECMAScript 2015（即 ES6）引入的`导出`语法。如果此默认值不合适，您可以更改输出格式。
+* 默认输出[格式](./transform/#format)设置为 `esm`，它使用 ECMAScript 2015（即 ES6）引入的`导出`语法。如果此默认值不合适，您可以更改输出格式。
 
-* 默认情况下，[主要字段](https://esbuild.github.io/api/#main-fields)设置为空。如果您想使用 npm 样式的包，您可能必须将其配置为其他内容，例如 node 使用的标准 `main` 字段的 main 。
+* 默认情况下，[主要字段](./transform/#main-fields)设置为空。如果您想使用 npm 样式的包，您可能必须将其配置为其他内容，例如 node 使用的标准 `main` 字段的 main 。
 
-* [条件](https://esbuild.github.io/api/#conditions)设置不会自动包含任何特定于平台的值。
+* [条件](./transform/#conditions)设置不会自动包含任何特定于平台的值。
 
 另请参阅[浏览器的捆绑](https://esbuild.github.io/getting-started/#bundling-for-the-browser)和[node的捆绑](https://esbuild.github.io/getting-started/#bundling-for-node)。
 
@@ -1910,13 +1910,13 @@ func main() {
 
 在开发过程中，进行更改时通常会在文本编辑器和浏览器之间来回切换。在浏览器中重新加载代码之前手动重新运行 esbuild 很不方便。有几种方法可以自动执行此操作：
 
-* 使用[监视模式](https://esbuild.github.io/api/#watch)在文件更改时重新运行 esbuild
+* 使用[监视模式](./transform/#watch)在文件更改时重新运行 esbuild
 
 * 配置您的文本编辑器以在每次保存时运行 esbuild
 
 * 使用根据每个请求重建的 Web 服务器为您的代码提供服务
 
-这个 API 调用实现了最后一个方法。服务 API 类似于[构建 API](https://esbuild.github.io/api/#build-api) 调用，但它不是将生成的文件写入文件系统，而是启动一个长期存在的本地 HTTP Web 服务器，为最新构建的生成文件提供服务。每一批新请求都会导致 esbuild 在响应请求之前重新运行构建命令，以便您的文件始终是最新的。
+这个 API 调用实现了最后一个方法。服务 API 类似于[构建 API](./transform/#build-api) 调用，但它不是将生成的文件写入文件系统，而是启动一个长期存在的本地 HTTP Web 服务器，为最新构建的生成文件提供服务。每一批新请求都会导致 esbuild 在响应请求之前重新运行构建命令，以便您的文件始终是最新的。
 
 与其他方法相比，这种方法的优势在于 Web 服务器可以延迟浏览器的请求，直到构建完成。这样，在最新构建完成之前在浏览器中重新加载代码将永远不会运行先前构建中的代码。这些文件是从内存中提供的，不会写入文件系统，以确保无法观察到过时的文件。
 
@@ -1987,7 +1987,7 @@ server.Stop()
 
 #### 方法 2：仅使用 esbuild 提供生成的文件
 
-使用这种方法，您只需告诉 esbuild 提供 [outdir](https://esbuild.github.io/api/#outdir) 的内容，而无需为其提供任何额外的内容。这适用于更复杂的开发设置。例如，您可能希望使用 NGINX 作为反向代理，在开发过程中将不同路径路由到单独的后端服务（例如 `/static/` 到 NGINX、`/api/` 到 node、`/js/` 到 esbuild 等）。通过这种方法使用 esbuild 看起来像这样：
+使用这种方法，您只需告诉 esbuild 提供 [outdir](./transform/#outdir) 的内容，而无需为其提供任何额外的内容。这适用于更复杂的开发设置。例如，您可能希望使用 NGINX 作为反向代理，在开发过程中将不同路径路由到单独的后端服务（例如 `/static/` 到 NGINX、`/api/` 到 node、`/js/` 到 esbuild 等）。通过这种方法使用 esbuild 看起来像这样：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -2041,13 +2041,13 @@ server.Stop()
 <script src="http://localhost:8000/out.js"></script>
 ```
 
-在未启用 Web 服务器的情况下使用普通构建命令时，Web 服务器的 URL 结构完全反映[输出目录](https://esbuild.github.io/api/#outdir)的 URL 结构。例如，如果输出目录通常包含一个名为 `./pages/about.js` 的文件，则 Web 服务器将具有相应的 `/pages/about.js` 路径。
+在未启用 Web 服务器的情况下使用普通构建命令时，Web 服务器的 URL 结构完全反映[输出目录](./transform/#outdir)的 URL 结构。例如，如果输出目录通常包含一个名为 `./pages/about.js` 的文件，则 Web 服务器将具有相应的 `/pages/about.js` 路径。
 
 如果您想浏览 Web 服务器以查看哪些 URL 可用，您可以通过访问目录名而不是文件名来使用内置目录列表。例如，如果您在端口 8000 上运行 esbuild 的 Web 服务器，则可以在浏览器中访问 [http://localhost:8000/](http://localhost:8000/) 以查看 Web 服务器的根目录。从那里您可以单击链接以浏览 Web 服务器上的不同文件和目录。
 
 #### Arguments
 
-请注意，服务 API 是与[构建 API](https://esbuild.github.io/api/#build-api) 不同的 API 调用。这是因为启动一个长时间运行的 Web 服务器是不同的，足以保证不同的参数和返回值。服务 API 调用的第一个参数是带有服务特定选项的选项对象：
+请注意，服务 API 是与[构建 API](./transform/#build-api) 不同的 API 调用。这是因为启动一个长时间运行的 Web 服务器是不同的，足以保证不同的参数和返回值。服务 API 调用的第一个参数是带有服务特定选项的选项对象：
 
 <CodeGroup>
 <CodeGroupItem title="ts">
@@ -2110,9 +2110,9 @@ type ServeOnRequestArgs struct {
 
 每个传入请求都会调用一次，并提供有关请求的一些信息。 CLI 使用此回调为每个请求打印日志消息。时间字段是为请求生成数据的时间，但不包括将请求流式传输到客户端的时间。
 
-请注意，这是在请求完成后调用的。无法使用此回调以任何方式修改请求。如果你想这样做，你应该[在 esbuild 前面放置一个代理](https://esbuild.github.io/api/#customizing-server-behavior)。
+请注意，这是在请求完成后调用的。无法使用此回调以任何方式修改请求。如果你想这样做，你应该[在 esbuild 前面放置一个代理](./transform/#customizing-server-behavior)。
 
-服务 API 调用的第二个参数是在每个请求上调用的底层构建 API 的正常选项集。有关这些选项的更多信息，请参阅[构建 API](https://esbuild.github.io/api/#build-api) 的文档。
+服务 API 调用的第二个参数是在每个请求上调用的底层构建 API 的正常选项集。有关这些选项的更多信息，请参阅[构建 API](./transform/#build-api) 的文档。
 
 #### Return values
 
@@ -2231,7 +2231,7 @@ esbuild.serve({
 
 支持：Transform | Build
 
-源映射可以使调试代码更容易。它们对将生成的输出文件中的行/列偏移转换回相应原始输入文件中的行/列偏移所需的信息进行编码。如果您生成的代码与原始代码有很大不同（例如，您的原始代码是 TypeScript 或您启用了[压缩](https://esbuild.github.io/api/#minify)），这将非常有用。如果您更喜欢在浏览器的开发人员工具中查看单个文件而不是一个大的捆绑文件，这也很有用。
+源映射可以使调试代码更容易。它们对将生成的输出文件中的行/列偏移转换回相应原始输入文件中的行/列偏移所需的信息进行编码。如果您生成的代码与原始代码有很大不同（例如，您的原始代码是 TypeScript 或您启用了[压缩](./transform/#minify)），这将非常有用。如果您更喜欢在浏览器的开发人员工具中查看单个文件而不是一个大的捆绑文件，这也很有用。
 
 请注意，JavaScript 和 CSS 都支持源地图输出，并且相同的选项适用于两者。下面讨论 `.js` 文件的所有内容也同样适用于 `.css` 文件。
 
@@ -2385,7 +2385,7 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-请记住，源映射通常非常大，因为它们包含您所有的原始源代码，因此您通常不希望发布包含`内联`源映射的代码。要从源映射中删除源代码（仅保留文件名和行/列映射），请使用[源内容](https://esbuild.github.io/api/#sources-content)选项。
+请记住，源映射通常非常大，因为它们包含您所有的原始源代码，因此您通常不希望发布包含`内联`源映射的代码。要从源映射中删除源代码（仅保留文件名和行/列映射），请使用[源内容](./transform/#sources-content)选项。
 
 如果你想同时拥有`inline`和`external`的效果，你应该将source map mode设置为`both`：
 
@@ -2457,7 +2457,7 @@ node --enable-source-maps app.js
 
 支持: Build
 
-> 代码拆分仍然是正在进行的工作。它目前仅适用于`ESM`输出[格式](https://esbuild.github.io/api/#format)。还有一个 [ordering issue](https://github.com/evanw/esbuild/issues/399) 问题，横跨代码拆分块具有`导入`语句。您可以遵循关于此功能的[the tracking issue](https://github.com/evanw/esbuild/issues/16)问题。
+> 代码拆分仍然是正在进行的工作。它目前仅适用于`ESM`输出[格式](./transform/#format)。还有一个 [ordering issue](https://github.com/evanw/esbuild/issues/399) 问题，横跨代码拆分块具有`导入`语句。您可以遵循关于此功能的[the tracking issue](https://github.com/evanw/esbuild/issues/16)问题。
 
 这使得“代码拆分”能够用于两个目的：
 
@@ -2466,16 +2466,18 @@ node --enable-source-maps app.js
 * 通过异步`import()`表达式引用的代码将被拆分为单独的文件，并且仅在评估该表达式时加载。这允许您通过仅下载您需要的代码来改进应用的初始下载时间，然后在稍后需要懒惰下载其他代码。
 * 没有代码拆分启用，`import()` 表达式变为Promise.resolve().then(() => require())。这仍然保留了表达式的异步语义，但这意味着导入的代码包含在同一捆绑包中，而不是将其拆分为单独的文件。
 
-启用代码拆分时，还必须使用[outir](https://esbuild.github.io/api/#outdir)的设置配置输出目录：
+启用代码拆分时，还必须使用[outir](./transform/#outdir)的设置配置输出目录：
+
 <CodeGroup>
+
 <CodeGroupItem title="cli">
 
 ```sh
-
 esbuild home.ts about.ts --bundle --splitting --outdir=out --format=esm
 ```
 
 </CodeGroupItem>
+
 <CodeGroupItem title="js">
 
 ```js
@@ -2490,6 +2492,7 @@ require('esbuild').buildSync({
 ```
 
 </CodeGroupItem>
+
 <CodeGroupItem title="go">
 
 ```go
@@ -2516,6 +2519,7 @@ func main() {
 ```
 
 </CodeGroupItem>
+
 </CodeGroup>
 
 ### Target
@@ -2696,7 +2700,7 @@ result.Stop()
 
 凭借目前的启发式，应在每2秒内完全扫描大型项目，所以在最坏的情况下，最多可能需要2秒钟进行注意。但是，在发生了变化之后，更改的路径在最近更改的路径的短期列表中，在每次扫描中检查，因此应几乎立即注意到最近更改的文件的进一步更改。
 
-请注意，如果您不想使用基于轮询的方法，仍然可以使用esbuild的[增量构建API](https://esbuild.github.io/api/#incremental)和文件观察者库来实现手表模式。
+请注意，如果您不想使用基于轮询的方法，仍然可以使用esbuild的[增量构建API](./transform/#incremental)和文件观察者库来实现手表模式。
 
 ### Write
 
@@ -2811,7 +2815,7 @@ func main() {
 
 支持：Build
 
-此选项控制[加载器](https://esbuild.github.io/api/#loader)设置为[文件](https://esbuild.github.io/content-types/#external-file)时生成的附加输出文件的文件名。它使用带有占位符的模板配置输出路径，该占位符将被替换为在生成输出路径时由特定于文件的值替换。例如，指定资产的`assets/ [name] - [hash]`将所有资产放入输出目录中的名为`assets`的子目录中，并包括文件名中资产的内容散列。这样看起来如此：
+此选项控制[加载器](./transform/#loader)设置为[文件](https://esbuild.github.io/content-types/#external-file)时生成的附加输出文件的文件名。它使用带有占位符的模板配置输出路径，该占位符将被替换为在生成输出路径时由特定于文件的值替换。例如，指定资产的`assets/ [name] - [hash]`将所有资产放入输出目录中的名为`assets`的子目录中，并包括文件名中资产的内容散列。这样看起来如此：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -2869,7 +2873,7 @@ func main() {
 
 * `[dir]`
 
-这是从包含资产文件到outbase目录的目录的相对路径。其目的是通过镜像[输出目录](https://esbuild.github.io/api/#outbase)内的输入目录结构来帮助资产输出路径看起来更美观令人愉悦。
+这是从包含资产文件到outbase目录的目录的相对路径。其目的是通过镜像[输出目录](./transform/#outbase)内的输入目录结构来帮助资产输出路径看起来更美观令人愉悦。
 
 * `[name]`
 
@@ -2881,7 +2885,7 @@ func main() {
 
 assets路径模板不需要包含文件扩展名。在模板替换后，资产的原始文件扩展将自动添加到输出路径的末尾。
 
-此选项类似于[块名称](https://esbuild.github.io/api/#chunk-names)和[条目名称](https://esbuild.github.io/api/#entry-names)选项。
+此选项类似于[块名称](./transform/#chunk-names)和[条目名称](./transform/#entry-names)选项。
 
 ### Banner
 
@@ -2940,7 +2944,7 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-这类似于在[最后](https://esbuild.github.io/api/#footer)插入的页脚而不是开始。
+这类似于在[最后](./transform/#footer)插入的页脚而不是开始。
 
 请注意，如果要将非注释代码插入CSS文件，请注意，CSS忽略非`@import`规则（除`@CharSet`规则之外）之后的non-`@import`规则，因此使用横幅注入CSS规则可能会意外禁用外部样式表的进口。
 
@@ -3030,7 +3034,7 @@ func main() {
 
 支持：Build
 
-此选项控制启用[代码拆分](https://esbuild.github.io/api/#splitting)时自动生成的共享代码块的文件名。它使用带有占位符的模板配置输出路径，当生成输出路径时，这些占位符将替换为特定于块的值。例如，指定 `chunks/[name]-[hash]` 的块名称模板会将所有生成的块放入输出目录中名为 chunks 的子目录中，并在文件名中包含块的内容哈希。这样做看起来像这样：
+此选项控制启用[代码拆分](./transform/#splitting)时自动生成的共享代码块的文件名。它使用带有占位符的模板配置输出路径，当生成输出路径时，这些占位符将替换为特定于块的值。例如，指定 `chunks/[name]-[hash]` 的块名称模板会将所有生成的块放入输出目录中名为 chunks 的子目录中，并在文件名中包含块的内容哈希。这样做看起来像这样：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -3094,11 +3098,11 @@ func main() {
 
 这是块的内容哈希。在生成多个共享代码块的情况下，为了将不同的块彼此区分开来，必须包括这一点。
 
-块路径模板不需要包含文件扩展名。模板替换后，为适当的内容类型配置的[输出扩展](https://esbuild.github.io/api/#out-extension)名将自动添加到输出路径的末尾。
+块路径模板不需要包含文件扩展名。模板替换后，为适当的内容类型配置的[输出扩展](./transform/#out-extension)名将自动添加到输出路径的末尾。
 
-请注意，此选项仅控制自动生成的共享代码块的名称。它不控制与入口点相关的输出文件的名称。这些名称当前是根据原始入口点文件相对于 [outbase](https://esbuild.github.io/api/#outbase) 目录的路径确定的，并且无法更改此行为。将来会添加一个额外的 API 选项，让您可以更改入口点输出文件的文件名。
+请注意，此选项仅控制自动生成的共享代码块的名称。它不控制与入口点相关的输出文件的名称。这些名称当前是根据原始入口点文件相对于 [outbase](./transform/#outbase) 目录的路径确定的，并且无法更改此行为。将来会添加一个额外的 API 选项，让您可以更改入口点输出文件的文件名。
 
-此选项类似于[资产名称](https://esbuild.github.io/api/#asset-names)和[条目名称](https://esbuild.github.io/api/#entry-names)选项。
+此选项类似于[资产名称](./transform/#asset-names)和[条目名称](./transform/#entry-names)选项。
 
 ### Color
 
@@ -3252,11 +3256,11 @@ if (importPath === './foo') {
 
 * `browser`
 
-当esbuild的[平台设置](https://esbuild.github.io/api/#platform)设置为`浏览器`时，此条件仅激活。它可用于提供特定于浏览器的代码。
+当esbuild的[平台设置](./transform/#platform)设置为`浏览器`时，此条件仅激活。它可用于提供特定于浏览器的代码。
 
 * `node`
 
-当eSbuild的[平台设置设](https://esbuild.github.io/api/#platform)置为`node`时，此条件仅激活。它可用于提供特定于node的代码。
+当eSbuild的[平台设置设](./transform/#platform)置为`node`时，此条件仅激活。它可用于提供特定于node的代码。
 
 请注意，当您使用`require`和`import`条件时，您的包裹可能会多次捆绑在捆绑包中！这是一个微妙的问题，除了围绕生成的捆绑包之外，由于代码状态的重复副本，可能会导致错误。这通常被称为[双包危险](https://nodejs.org/docs/latest/api/packages.html#packages_dual_package_hazard)。避免此方法的主要方式是将所有代码放在`require`条件下，并具有`import`条件只是一个非受控块`require`，可在您的包装上调用，并使用ESM语法重新导出包裹。
 
@@ -3321,7 +3325,7 @@ func main() {
 
 * `[dir]`
 
-这是从包含输入条目点文件到[outbase](https://esbuild.github.io/api/#outbase)目录的目录的相对路径。其目的是帮助您避免不同子目录中相同名为的入口点之间的碰撞。
+这是从包含输入条目点文件到[outbase](./transform/#outbase)目录的目录的相对路径。其目的是帮助您避免不同子目录中相同名为的入口点之间的碰撞。
 
 例如，如果有两个条目点`src/pages/home/index.ts`和`src/pages/about/index.ts`，则`outbase`目录是`src`，条目名称模板是`[dir]/[name]`，输出目录将包含`pages/home/index.js`和`pages/about/index.js`。如果输入名称模板只是`[name]`而言，捆绑将失败，因为输出目录中存在两个具有相同输出路径索​​引的输出文件。
 
@@ -3331,13 +3335,13 @@ func main() {
 
 * `[hash]`
 
-这是输出文件的内容散列，可用于采取浏览器缓存的最佳优势。将`[hash]`添加到您的入口点名称意味着eSbuild将计算与相应的输出文件中的所有内容相关的散列（以及如果[代码拆分](https://esbuild.github.io/api/#splitting)是活动的任何输出文件，则它导入的任何输出文件）。散列旨在且仅在更改与该输出文件相关的任何输入文件时才更改。
+这是输出文件的内容散列，可用于采取浏览器缓存的最佳优势。将`[hash]`添加到您的入口点名称意味着eSbuild将计算与相应的输出文件中的所有内容相关的散列（以及如果[代码拆分](./transform/#splitting)是活动的任何输出文件，则它导入的任何输出文件）。散列旨在且仅在更改与该输出文件相关的任何输入文件时才更改。
 
-之后，您可以让您的Web服务器告诉浏览器，以便将浏览器永远缓存这些文件（在练习中，您可以说他们从现在就像在一年中那样长时间到期）。然后，您可以使用[元文件](https://esbuild.github.io/api/#metafile)中的信息来确定哪个输出文件路径对应于哪个输入条目点，以便您知道`<script>`标记中包含的路径包含在哪条路径中。
+之后，您可以让您的Web服务器告诉浏览器，以便将浏览器永远缓存这些文件（在练习中，您可以说他们从现在就像在一年中那样长时间到期）。然后，您可以使用[元文件](./transform/#metafile)中的信息来确定哪个输出文件路径对应于哪个输入条目点，以便您知道`<script>`标记中包含的路径包含在哪条路径中。
 
-条目路径模板不需要包含文件扩展名。基于文件类型的适当[突出](https://esbuild.github.io/api/#out-extension)扩展将在模板替换后自动添加到输出路径的末尾。
+条目路径模板不需要包含文件扩展名。基于文件类型的适当[突出](./transform/#out-extension)扩展将在模板替换后自动添加到输出路径的末尾。
 
-此选项类似于[资产名称](https://esbuild.github.io/api/#asset-names)和[块名称](https://esbuild.github.io/api/#chunk-names)选项。
+此选项类似于[资产名称](./transform/#asset-names)和[块名称](./transform/#chunk-names)选项。
 
 ### Footer
 
@@ -3396,13 +3400,13 @@ func main() {
 </CodeGroupItem>
 </CodeGroup>
 
-这类似于[横幅](https://esbuild.github.io/api/#banner)，该横幅在开始而不是结束时插入。
+这类似于[横幅](./transform/#banner)，该横幅在开始而不是结束时插入。
 
 ### Global name
 
 支持：Transform | Build
 
-此选项仅在[格式](https://esbuild.github.io/api/#format)设置为`IIFE`时事项（代表立即调用的函数表达式）。它设置全局变量的名称，用于从入口点存储导出：
+此选项仅在[格式](./transform/#format)设置为`IIFE`时事项（代表立即调用的函数表达式）。它设置全局变量的名称，用于从入口点存储导出：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -3530,7 +3534,7 @@ example.versions["1.0"] = (() => {
 
 支持：Build
 
-如果您的用例涉及使用相同的选项致电呼叫eSbuild的[构建API](https://esbuild.github.io/api/#build-api)，则可能希望使用此API。例如，如果您正在实现文件观察者服务，这将是有用的。增量构建比常规构建更有效，因为有些数据被缓存，并且如果自上次构建以来原始文件没有更改，则可以重用。目前，增量构建API使用两种形式的缓存：
+如果您的用例涉及使用相同的选项致电呼叫eSbuild的[构建API](./transform/#build-api)，则可能希望使用此API。例如，如果您正在实现文件观察者服务，这将是有用的。增量构建比常规构建更有效，因为有些数据被缓存，并且如果自上次构建以来原始文件没有更改，则可以重用。目前，增量构建API使用两种形式的缓存：
 
 * 文件存储在内存中，如果文件元数据自上次构建以来未更改，则不会从文件系统重新读取。此优化仅适用于文件系统路径。它不适用于由[插件](https://esbuild.github.io/plugins/)创建的虚拟模块。
 
@@ -3830,7 +3834,7 @@ let {fn = function() {}} = {};
 ({fn = function() {}} = {});
 ```
 
-但是，[压缩](https://esbuild.github.io/api/#minify)重命名符号以降低代码大小和捆绑有时需要重命名符号以避免冲突。这对这些案例中的许多情况进行了`名称`属性的值。这通常很好，因为`名称`属性通常仅用于调试。但是，某些框架依赖于`名称`属性进行注册和绑定目的。如果是这种情况，您可以启用此选项即使在压缩代码中也可以保留原始`名称`值：
+但是，[压缩](./transform/#minify)重命名符号以降低代码大小和捆绑有时需要重命名符号以避免冲突。这对这些案例中的许多情况进行了`名称`属性的值。这通常很好，因为`名称`属性通常仅用于调试。但是，某些框架依赖于`名称`属性进行注册和绑定目的。如果是这种情况，您可以启用此选项即使在压缩代码中也可以保留原始`名称`值：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -3907,7 +3911,7 @@ func main() {
 
 将所有法律评论移动到`.legal.txt`文件，但不链接到它们。
 
-默认行为是`EOF`当[捆绑](https://esbuild.github.io/api/#bundle)包启用并否则`内联`。设置法律评论模式如下所示：
+默认行为是`EOF`当[捆绑](./transform/#bundle)包启用并否则`内联`。设置法律评论模式如下所示：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -4098,7 +4102,7 @@ func main() {
 
 * `module`
 
-该领域来自如何将EcMasscript模块集成到node中的[提案](https://github.com/dherman/defense-of-dot-js/blob/f31319be735b21739756b87d551f6711bd7aa283/proposal.md)。因此，预计此字段中的文件路径是ECMAScript风格模块是合理的。node未采用此提议（Node使用`“type”`：`“module”`而不是），但主要是主要的捆绑程序采用，因为ECMAScript风格模块导致更好的[树抖动](https://esbuild.github.io/api/#tree-shaking)，或拆除死亡代码。
+该领域来自如何将EcMasscript模块集成到node中的[提案](https://github.com/dherman/defense-of-dot-js/blob/f31319be735b21739756b87d551f6711bd7aa283/proposal.md)。因此，预计此字段中的文件路径是ECMAScript风格模块是合理的。node未采用此提议（Node使用`“type”`：`“module”`而不是），但主要是主要的捆绑程序采用，因为ECMAScript风格模块导致更好的[树抖动](./transform/#tree-shaking)，或拆除死亡代码。
 
 对于包作者：某些软件包错误地使用特定于浏览器代码的`模块`字段，为`main`留下特定于node的代码。这可能是因为node忽略了`模块`字段，人们通常只使用Bundlers特定于浏览器代码。然而，捆绑的node特定代码也有价值（例如，它减少了下载和启动时间），并将特定于`模块`中的浏览器代码的软件包阻止捆绑程序能够有效地进行树摇动。如果您尝试在包中发布特定于浏览器的代码，请使用`浏览器`字段。
 
@@ -4106,7 +4110,7 @@ func main() {
 
 此字段来自一个[提议](https://gist.github.com/defunctzombie/4339901/49493836fb873ddaa4b8a7aa0ef2352119f69211)，允许捆绑程序用浏览器友好版本替换特定于node的文件或模块。它允许您指定备用浏览器特定的入口点。请注意，程序包可以一起使用`浏览器`和`模块`字段（请参阅下面的注释）。
 
-默认主字段取决于当前平台[设置](https://esbuild.github.io/api/#platform)，并且基本上是`浏览器`，`模块`，`main`和主要的`main`，node `module`。这些默认值应该是与现有包生态系统最广泛兼容。但如果您愿意，您可以根据这样自定义它们：
+默认主字段取决于当前平台[设置](./transform/#platform)，并且基本上是`浏览器`，`模块`，`main`和主要的`main`，node `module`。这些默认值应该是与现有包生态系统最广泛兼容。但如果您愿意，您可以根据这样自定义它们：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -4324,7 +4328,7 @@ func main() {
 
 支持：Build
 
-此选项允许您自定义 esbuild 生成的文件的文件扩展名，而不是 `.js` 或 `.css`。特别是`.mjs` 和`.cjs` 文件扩展名在node 中有特殊含义（它们分别表示ESM 和CommonJS 格式的文件）。如果您使用 esbuild 生成多个文件并且必须使用 [outdir](https://esbuild.github.io/api/#outdir) 选项而不是 [outfile](https://esbuild.github.io/api/#outfile) 选项，则此选项很有用。你可以这样使用它：
+此选项允许您自定义 esbuild 生成的文件的文件扩展名，而不是 `.js` 或 `.css`。特别是`.mjs` 和`.cjs` 文件扩展名在node 中有特殊含义（它们分别表示ESM 和CommonJS 格式的文件）。如果您使用 esbuild 生成多个文件并且必须使用 [outdir](./transform/#outdir) 选项而不是 [outfile](./transform/#outfile) 选项，则此选项很有用。你可以这样使用它：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -4382,7 +4386,7 @@ func main() {
 
 支持：Build
 
-如果您的构建在单独的目录中包含多个入口点，则目录结构将复制到相对于 outbase 目录的[输出目录](https://esbuild.github.io/api/#outdir)中。例如，如果有两个入口点 `src/pages/home/index.ts` 和 `src/pages/about/index.ts` 并且 outbase 目录是 `src`，则输出目录将包含 `pages/home/index.js` 和 `pages/about/index.js`。以下是如何使用它：
+如果您的构建在单独的目录中包含多个入口点，则目录结构将复制到相对于 outbase 目录的[输出目录](./transform/#outdir)中。例如，如果有两个入口点 `src/pages/home/index.ts` 和 `src/pages/about/index.ts` 并且 outbase 目录是 `src`，则输出目录将包含 `pages/home/index.js` 和 `pages/about/index.js`。以下是如何使用它：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -4706,7 +4710,7 @@ func main() {
 
 支持：Transform | Build
 
-此功能仅在启用源映射时相关。它允许您设置[源映射](https://esbuild.github.io/api/#sourcemap)中的 `sourceRoot` 字段的值，该值指定源映射中所有其他路径相对于的路径。如果此字段不存在，则源映射中的所有路径都被解释为相对于包含源映射的目录。
+此功能仅在启用源映射时相关。它允许您设置[源映射](./transform/#sourcemap)中的 `sourceRoot` 字段的值，该值指定源映射中所有其他路径相对于的路径。如果此字段不存在，则源映射中的所有路径都被解释为相对于包含源映射的目录。
 
 您可以像这样配置 `sourceRoot`：
 
@@ -4820,7 +4824,7 @@ func main() {
 
 支持：Transform | Build
 
-[源映射](https://esbuild.github.io/api/#sourcemap)是使用源映射格式的[第 3 版](https://sourcemaps.info/spec.html)生成的，这是迄今为止最广泛支持的变体。每个源映射看起来像这样：
+[源映射](./transform/#sourcemap)是使用源映射格式的[第 3 版](https://sourcemaps.info/spec.html)生成的，这是迄今为止最广泛支持的变体。每个源映射看起来像这样：
 
 ```json
 {
@@ -4891,7 +4895,7 @@ func main() {
 
 通常，构建 API 调用将一个或多个文件名作为输入。但是，此选项可用于在文件系统上根本不存在模块的情况下运行构建。它被称为“标准输入”，因为它对应于在命令行上将文件通过管道传输到标准输入。
 
-除了指定 stdin 文件的内容之外，您还可以选择指定解析目录（用于确定相对导入的位置）、[源文件](https://esbuild.github.io/api/#sourcefile)（在错误消息和源映射中使用的文件名）和[加载程序](https://esbuild.github.io/api/#loader)（这决定了文件内容的解释方式）。 CLI 无法指定解析目录。相反，它会自动设置为当前工作目录。
+除了指定 stdin 文件的内容之外，您还可以选择指定解析目录（用于确定相对导入的位置）、[源文件](./transform/#sourcefile)（在错误消息和源映射中使用的文件名）和[加载程序](./transform/#loader)（这决定了文件内容的解释方式）。 CLI 无法指定解析目录。相反，它会自动设置为当前工作目录。
 
 以下是如何使用此功能：
 
@@ -5022,13 +5026,13 @@ function one() {
 one();
 ```
 
-这样 esbuild 只会捆绑您实际使用的库的部分，这有时可以节省大量的大小。请注意，esbuild 的摇树实现依赖于 ECMAScript 模块`导入`和`导出`语句的使用。它不适用于 `CommonJS` 模块。 npm 上的许多库都包含这两种格式，而 esbuild 尝试选择默认情况下适用于摇树的格式。您可以使用[主字段选](https://esbuild.github.io/api/#main-fields)项自定义 esbuild 选择的格式。
+这样 esbuild 只会捆绑您实际使用的库的部分，这有时可以节省大量的大小。请注意，esbuild 的摇树实现依赖于 ECMAScript 模块`导入`和`导出`语句的使用。它不适用于 `CommonJS` 模块。 npm 上的许多库都包含这两种格式，而 esbuild 尝试选择默认情况下适用于摇树的格式。您可以使用[主字段选](./transform/#main-fields)项自定义 esbuild 选择的格式。
 
 #### Manual tree shaking annotations(手动摇树注释)
 
 由于 JavaScript 是一种动态语言，有时对于编译器来说识别未使用的代码非常困难，因此社区开发了某些注释来帮助告诉编译器哪些代码应该被视为未使用。目前esbuild支持两种形式的摇树注解：
 
-* 函数调用前的内联 `/* @__PURE__ */` 注释告诉 esbuild 如果不使用结果值，可以删除函数调用。有关更多信息，请参阅[pure API](https://esbuild.github.io/api/#pure) 选项。
+* 函数调用前的内联 `/* @__PURE__ */` 注释告诉 esbuild 如果不使用结果值，可以删除函数调用。有关更多信息，请参阅[pure API](./transform/#pure) 选项。
 
 * `package.json` 中的 `sideEffects` 字段可用于告诉 esbuild 如果来自该文件的所有导入最终都未使用，则可以删除包中的哪些文件。这是来自 Webpack 的约定，许多发布到 npm 的库已经在它们的包定义中包含了这个字段。您可以在该字段的 [Webpack 文档](https://webpack.js.org/guides/tree-shaking/)中了解有关该字段的更多信息。
 
@@ -5089,7 +5093,7 @@ func main() {
 
 支持：Build
 
-通常，[构建 API](https://esbuild.github.io/api/#build-api) 会自动发现 `tsconfig.json` 文件并在构建过程中读取它们的内容。但是，您也可以配置自定义 `tsconfig.json` 文件来代替使用。如果您需要使用不同的设置对同一代码进行多次构建，这会很有用：
+通常，[构建 API](./transform/#build-api) 会自动发现 `tsconfig.json` 文件并在构建过程中读取它们的内容。但是，您也可以配置自定义 `tsconfig.json` 文件来代替使用。如果您需要使用不同的设置对同一代码进行多次构建，这会很有用：
 
 <CodeGroup>
 <CodeGroupItem title="cli">
@@ -5143,7 +5147,7 @@ func main() {
 
 支持：Transform
 
-此选项可用于将您的 `tsconfig.json` 文件传递​​给不访问文件系统的[transform API](https://esbuild.github.io/api/#transform-api)。使用它看起来像这样：
+此选项可用于将您的 `tsconfig.json` 文件传递​​给不访问文件系统的[transform API](./transform/#transform-api)。使用它看起来像这样：
 
 <CodeGroup>
 <CodeGroupItem title="cli">

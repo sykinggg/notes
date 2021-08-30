@@ -97,7 +97,7 @@ require('esbuild').build({
 
 `build` 函数在子进程中运行 esbuild 可执行文件，并返回一个在构建完成时解析的承诺。上面的代码不会打印出捕获的异常，因为默认情况下异常中的任何错误消息也会打印到控制台（尽管您可以根据需要更改日志级别以将其关闭）。
 
-虽然也有一个非异步的 `buildSync` API，但异步 API 更适合构建脚本，因为[插件](https://esbuild.github.io/plugins/)只适用于异步 API。您可以在 [API 文档](https://esbuild.github.io/api/#build-api)中阅读有关构建 API 的配置选项的更多信息。
+虽然也有一个非异步的 `buildSync` API，但异步 API 更适合构建脚本，因为[插件](https://esbuild.github.io/plugins/)只适用于异步 API。您可以在 [API 文档](./transform/#/#build-api)中阅读有关构建 API 的配置选项的更多信息。
 
 ## Bundling for the browser
 
@@ -168,13 +168,13 @@ func main() {
 }
 ```
 
-您要使用的某些 npm 包可能不是设计为在浏览器中运行的。有时您可以使用 esbuild 的配置选项来解决某些问题并成功地捆绑包。未定义的全局变量可以在简单情况下用[定义](https://esbuild.github.io/api/#define)功能替换，在更复杂情况下可以用[注入](https://esbuild.github.io/api/#inject)功能替换。
+您要使用的某些 npm 包可能不是设计为在浏览器中运行的。有时您可以使用 esbuild 的配置选项来解决某些问题并成功地捆绑包。未定义的全局变量可以在简单情况下用[定义](./transform/#/#define)功能替换，在更复杂情况下可以用[注入](./transform/#/#inject)功能替换。
 
 ## Bundling for node
 
 尽管在使用 node 时不需要 bundler，但有时在 node 中运行之前使用 esbuild 处理代码仍然是有益的。 Bundling 可以自动剥离 TypeScript 类型，将 ECMAScript 模块语法转换为 CommonJS，并将新的 JavaScript 语法转换为特定版本节点的旧语法。并且在发布之前捆绑包可能是有益的，这样它的下载量较小，因此在加载时从文件系统读取的时间更少。
 
-如果您正在捆绑将在 node 中运行的代码，您应该通过将 `--platform=node` 传递给 esbuild 来配置[平台](https://esbuild.github.io/api/#platform)设置。这同时将一些不同的设置更改为节点友好的默认值。例如，所有内置于节点的包（如 fs）都会自动标记为外部包，因此 esbuild 不会尝试捆绑它们。此设置还会禁用 `package.json` 中浏览器字段的解释。
+如果您正在捆绑将在 node 中运行的代码，您应该通过将 `--platform=node` 传递给 esbuild 来配置[平台](./transform/#/#platform)设置。这同时将一些不同的设置更改为节点友好的默认值。例如，所有内置于节点的包（如 fs）都会自动标记为外部包，因此 esbuild 不会尝试捆绑它们。此设置还会禁用 `package.json` 中浏览器字段的解释。
 
 如果您的代码使用在您的 node 版本中不起作用的较新 JavaScript 语法，您将需要配置 node 的目标版本：
 
@@ -338,7 +338,7 @@ GOOS=linux GOARCH=386 go build ./cmd/esbuild
 ```
 
 ::: warning
-**为什么不推荐**：本机版本只能通过命令行界面使用，这对于复杂的用例可能不符合人体工程学，并且不支持[插件](https://esbuild.github.io/plugins/)。您需要编写 JavaScript 或 Go 代码并使用 [esbuild 的 API](https://esbuild.github.io/api/) 来使用插件。
+**为什么不推荐**：本机版本只能通过命令行界面使用，这对于复杂的用例可能不符合人体工程学，并且不支持[插件](https://esbuild.github.io/plugins/)。您需要编写 JavaScript 或 Go 代码并使用 [esbuild 的 API](./transform/#/) 来使用插件。
 :::
 
 ### Download a build
