@@ -564,3 +564,897 @@ rollup -c --environment INCLUDE_DEPS,BUILD:production
 
 将设置 `process.env.INCLUDE_DEPS === 'true'` 和 `process.env.BUILD === 'production'`。你可以多次使用这个选项。在这种情况下，随后设置的变量将覆盖之前的定义。这使得你可以在`package.json`脚本中覆盖环境变量。
 
+如果您通过以下方式调用此脚本：
+
+```sh
+npm run build -- --environment BUILD:development
+```
+
+那么配置文件将收到 `process.env.INCLUDE_DEPS === 'true'` 和 `process.env.BUILD === 'development'`。
+
+#### --waitForBundleInput
+
+如果其中一个入口点文件不可用，它不会抛出一个错误。相反，它将等待，直到所有的文件都存在才开始构建。这很有用，特别是在观察模式下，当Rollup正在消耗另一个进程的输出时。
+
+#### --stdin=ext
+
+当从stdin读取内容时，指定一个虚拟文件扩展名。默认情况下，Rollup将使用虚拟文件名--对于从stdin读取的内容没有扩展名。然而，一些插件依靠文件扩展名来决定它们是否应该处理一个文件。请参见[从stdin读取文件](https://rollupjs.org/guide/en/#reading-a-file-from-stdin)。
+
+#### --no-stdin
+
+不要从stdin中读取文件。设置这个标志可以防止向Rollup输送内容，并确保Rollup将-和-.[ext]解释为普通的文件名，而不是将这些解释为stdin的名称。[参见从stdin读取文件](https://rollupjs.org/guide/en/#reading-a-file-from-stdin)。
+
+### Reading a file from stdin
+
+当使用命令行界面时，Rollup也可以从stdin读取内容。
+
+```sh
+echo "export const foo = 42;" | rollup --format cjs --file out.js
+```
+
+当这个文件包含导入时，Rollup会尝试相对于当前工作目录来解决。当使用配置文件时，Rollup只会使用stdin作为入口点，如果入口点的文件名是-。要从stdin读取一个非入口点文件，只需调用-，这是内部用来引用`stdin`的文件名。即
+
+```js
+import foo from '-';
+```
+
+在任何文件中都会提示Rollup尝试从stdin中读取导入的文件，并将默认的出口分配给foo。你可以向Rollup传递[--no-stdin](https://rollupjs.org/guide/en/#--no-stdin) CLI标志，将--作为一个普通的文件名来处理。
+
+由于一些插件依靠文件扩展名来处理文件，你可以通过`-stdin=ext`为stdin指定一个文件扩展名，其中ext是所需的扩展名。在这种情况下，虚拟文件名将是`-.ext`。
+
+```sh
+echo '{"foo": 42, "bar": "ok"}' | rollup --stdin=json -p json
+```
+
+JavaScript API会一直把`-`和`-.ext`当作普通的文件名。
+
+## JavaScript API
+
+Rollup提供了一个可以从Node.js使用的JavaScript API。你很少需要使用它，而应该使用命令行API，除非你正在扩展Rollup本身或使用它做一些深奥的事情，比如以编程方式生成捆绑包。
+
+### rollup.rollup
+
+`rollup.rollup`函数接收一个输入选项对象作为参数，并返回一个Promise，该Promise可解析为一个具有各种属性和方法的bundle对象，如下图所示。在这一步骤中，Rollup将构建模块图并执行树形摇动，但不会产生任何输出。
+
+在一个`bundle`对象上，你可以用不同的输出选项对象多次调用`bundle.generate`来在内存中生成不同的bundle。如果你直接想把它们写到磁盘上，请使用`bundle.write`代替。
+
+一旦你完成了对bundle对象的处理，你应该调用`bundle.close()`，这将让插件通过[closeBundle](https://rollupjs.org/guide/en/#closebundle)钩子清理其外部进程或服务。
+
+```js
+const rollup = require('rollup');
+
+// see below for details on the options
+const inputOptions = {...};
+const outputOptions = {...};
+
+async function build() {
+  // create a bundle
+  const bundle = await rollup.rollup(inputOptions);
+
+  console.log(bundle.watchFiles); // an array of file names this bundle depends on
+
+  // generate output specific code in-memory
+  // you can call this function multiple times on the same bundle object
+  const { output } = await bundle.generate(outputOptions);
+
+  for (const chunkOrAsset of output) {
+    if (chunkOrAsset.type === 'asset') {
+      // For assets, this contains
+      // {
+      //   fileName: string,              // the asset file name
+      //   source: string | Uint8Array    // the asset source
+      //   type: 'asset'                  // signifies that this is an asset
+      // }
+      console.log('Asset', chunkOrAsset);
+    } else {
+      // For chunks, this contains
+      // {
+      //   code: string,                  // the generated JS code
+      //   dynamicImports: string[],      // external modules imported dynamically by the chunk
+      //   exports: string[],             // exported variable names
+      //   facadeModuleId: string | null, // the id of a module that this chunk corresponds to
+      //   fileName: string,              // the chunk file name
+      //   implicitlyLoadedBefore: string[]; // entries that should only be loaded after this chunk
+      //   imports: string[],             // external modules imported statically by the chunk
+      //   importedBindings: {[imported: string]: string[]} // imported bindings per dependency
+      //   isDynamicEntry: boolean,       // is this chunk a dynamic entry point
+      //   isEntry: boolean,              // is this chunk a static entry point
+      //   isImplicitEntry: boolean,      // should this chunk only be loaded after other chunks
+      //   map: string | null,            // sourcemaps if present
+      //   modules: {                     // information about the modules in this chunk
+      //     [id: string]: {
+      //       renderedExports: string[]; // exported variable names that were included
+      //       removedExports: string[];  // exported variable names that were removed
+      //       renderedLength: number;    // the length of the remaining code in this module
+      //       originalLength: number;    // the original length of the code in this module
+      //       code: string | null;       // remaining code in this module
+      //     };
+      //   },
+      //   name: string                   // the name of this chunk as used in naming patterns
+      //   referencedFiles: string[]      // files referenced via import.meta.ROLLUP_FILE_URL_<id>
+      //   type: 'chunk',                 // signifies that this is a chunk
+      // }
+      console.log('Chunk', chunkOrAsset.modules);
+    }
+  }
+
+  // or write the bundle to disk
+  await bundle.write(outputOptions);
+
+  // closes the bundle
+  await bundle.close();
+}
+
+build();
+```
+
+#### inputOptions object
+
+`inputOptions`对象可以包含以下属性（关于这些属性的完整细节，请参见[选项大列表](https://rollupjs.org/guide/en/#big-list-of-options)）。
+
+```js
+const inputOptions = {
+  // core input options
+  external,
+  input, // conditionally required
+  plugins,
+
+  // advanced input options
+  cache,
+  onwarn,
+  preserveEntrySignatures,
+  strictDeprecations,
+
+  // danger zone
+  acorn,
+  acornInjectPlugins,
+  context,
+  moduleContext,
+  preserveSymlinks,
+  shimMissingExports,
+  treeshake,
+
+  // experimental
+  experimentalCacheExpiry,
+  perf
+};
+```
+
+#### outputOptions object
+
+`outputOptions`对象可以包含以下属性（关于这些属性的完整细节，请参见[选项大列表](https://rollupjs.org/guide/en/#big-list-of-options)）。
+
+```js
+const outputOptions = {
+  // core output options
+  dir,
+  file,
+  format, // required
+  globals,
+  name,
+  plugins,
+
+  // advanced output options
+  assetFileNames,
+  banner,
+  chunkFileNames,
+  compact,
+  entryFileNames,
+  extend,
+  externalLiveBindings,
+  footer,
+  hoistTransitiveImports,
+  inlineDynamicImports,
+  interop,
+  intro,
+  manualChunks,
+  minifyInternalExports,
+  outro,
+  paths,
+  preserveModules,
+  preserveModulesRoot,
+  sourcemap,
+  sourcemapExcludeSources,
+  sourcemapFile,
+  sourcemapPathTransform,
+  validate,
+
+  // danger zone
+  amd,
+  esModule,
+  exports,
+  freeze,
+  indent,
+  namespaceToStringTag,
+  noConflict,
+  preferConst,
+  sanitizeFileName,
+  strict,
+  systemNullSetters
+};
+```
+
+### rollup.watch
+
+Rollup还提供了一个`rollup.watch`函数，当它检测到个别模块在磁盘上发生变化时，会重建你的捆绑包。当你从命令行中用`--watch`标志运行Rollup时，它被内部使用。注意，当通过JavaScript API使用观察模式时，你有责任在响应`BUNDLE_END`事件时调用`event.result.close()`，以允许插件清理[closeBundle](https://rollupjs.org/guide/en/#closebundle)钩中的资源，见下文。
+
+```js
+const rollup = require('rollup');
+
+const watchOptions = {...};
+const watcher = rollup.watch(watchOptions);
+
+watcher.on('event', event => {
+  // event.code can be one of:
+  //   START        — the watcher is (re)starting
+  //   BUNDLE_START — building an individual bundle
+  //                  * event.input will be the input options object if present
+  //                  * event.output contains an array of the "file" or
+  //                    "dir" option values of the generated outputs
+  //   BUNDLE_END   — finished building a bundle
+  //                  * event.input will be the input options object if present
+  //                  * event.output contains an array of the "file" or
+  //                    "dir" option values of the generated outputs
+  //                  * event.duration is the build duration in milliseconds
+  //                  * event.result contains the bundle object that can be
+  //                    used to generate additional outputs by calling
+  //                    bundle.generate or bundle.write. This is especially
+  //                    important when the watch.skipWrite option is used.
+  //                  You should call "event.result.close()" once you are done
+  //                  generating outputs, or if you do not generate outputs.
+  //                  This will allow plugins to clean up resources via the
+  //                  "closeBundle" hook.
+  //   END          — finished building all bundles
+  //   ERROR        — encountered an error while bundling
+  //                  * event.error contains the error that was thrown
+  //                  * event.result is null for build errors and contains the
+  //                    bundle object for output generation errors. As with
+  //                    "BUNDLE_END", you should call "event.result.close()" if
+  //                    present once you are done.
+});
+
+// This will make sure that bundles are properly closed after each run
+watcher.on('event', ({ result }) => {
+  if (result) {
+  	result.close();
+  }
+});
+
+// stop watching
+watcher.close();
+```
+
+#### watchOptions
+
+`watchOptions`参数是一个配置（或一个配置数组），你将从一个配置文件中导出。
+
+```js
+const watchOptions = {
+  ...inputOptions,
+  output: [outputOptions],
+  watch: {
+    buildDelay,
+    chokidar,
+    clearScreen,
+    skipWrite,
+    exclude,
+    include
+  }
+};
+```
+
+关于`inputOptions`和`outputOptions`的细节，见上文，或者[查阅大的选项列表](https://rollupjs.org/guide/en/#big-list-of-options)，了解关于`chokidar`、`include`和`exclude`的信息。
+
+#### Programmatically loading a config file
+
+为了帮助生成这样的配置，rollup通过一个单独的入口点公开了它用来在其命令行界面中加载配置文件的帮助器。这个帮助器接收一个已解决的`fileName`和一个包含命令行参数的对象。
+
+```js
+const loadConfigFile = require('rollup/dist/loadConfigFile');
+const path = require('path');
+const rollup = require('rollup');
+
+// load the config file next to the current script;
+// the provided config object has the same effect as passing "--format es"
+// on the command line and will override the format of all outputs
+loadConfigFile(path.resolve(__dirname, 'rollup.config.js'), { format: 'es' }).then(
+  async ({ options, warnings }) => {
+    // "warnings" wraps the default `onwarn` handler passed by the CLI.
+    // This prints all warnings up to this point:
+    console.log(`We currently have ${warnings.count} warnings`);
+
+    // This prints all deferred warnings
+    warnings.flush();
+
+    // options is an array of "inputOptions" objects with an additional "output"
+    // property that contains an array of "outputOptions".
+    // The following will generate all outputs for all inputs, and write them to disk the same
+    // way the CLI does it:
+    for (const optionsObj of options) {
+      const bundle = await rollup.rollup(optionsObj);
+      await Promise.all(optionsObj.output.map(bundle.write));
+    }
+
+    // You can also pass this directly to "rollup.watch"
+    rollup.watch(options);
+  }
+);
+```
+
+## ES Module Syntax
+
+以下是[ES2015规范](https://www.ecma-international.org/ecma-262/6.0/)中定义的模块行为的轻量级参考，因为正确理解导入和导出语句对成功使用Rollup至关重要。
+
+### Importing
+
+导入的值不能被重新分配，尽管导入的对象和数组可以被突变（并且导出模块和任何其他导入者都会受到突变的影响）。在这方面，它们的行为类似于`常量`声明。
+
+#### Named Imports
+
+从源模块导入一个特定的项目，并使用其原始名称。
+
+```js
+import { something } from './module.js';
+```
+
+从源模块导入一个特定的项目，导入时指定一个自定义的名称。
+
+```js
+import { something as somethingElse } from './module.js';
+```
+
+#### Namespace Imports
+
+将源模块的所有内容导入一个对象，该对象将源模块的所有命名出口作为属性和方法公开。
+
+```js
+import * as module from './module.js';
+```
+
+上面的例子中的东西将作为一个属性附加到导入的对象上，例如`module.something`。如果存在，可以通过`module.default`访问默认导出。
+
+#### Default Import
+
+导入源模块的**默认导出**。
+
+```js
+import something from './module.js';
+```
+
+#### Empty Import
+
+加载模块代码，但不要让任何新对象可用。
+
+```js
+import './module.js';
+```
+
+这对polyfills很有用，或者当导入代码的主要目的是为了混用原型时。
+
+#### Dynamic Import
+
+使用[动态导入 API](https://github.com/tc39/proposal-dynamic-import#import) 导入模块。
+
+```js
+import('./modules.js').then(({ default: DefaultExport, NamedExport }) => {
+  // do something with modules.
+});
+```
+
+这对代码拆分应用和即时使用模块很有用。
+
+### Exporting
+
+#### Named exports
+
+导出先前声明的值：
+
+```js
+const something = true;
+export { something };
+```
+
+重命名导出：
+
+```js
+export { something as somethingElse };
+```
+
+声明后立即导出价值：
+
+```js
+// this works with `var`, `let`, `const`, `class`, and `function`
+export const something = true;
+```
+
+#### Default Export
+
+输出一个单一的值作为源模块的默认出口。
+
+```js
+export default something;
+```
+
+只有您的源模块只有一个导出，才会建议使用此操作。
+
+在同一模块中混合默认和命名导出的惯例是不好的，但规范允许。
+
+### How bindings work
+
+ES模块导出的是活的绑定，而不是值，所以值可以在最初导入后按照[这个演示](https://rollupjs.org/repl/?shareable=JTdCJTIybW9kdWxlcyUyMiUzQSU1QiU3QiUyMm5hbWUlMjIlM0ElMjJtYWluLmpzJTIyJTJDJTIyY29kZSUyMiUzQSUyMmltcG9ydCUyMCU3QiUyMGNvdW50JTJDJTIwaW5jcmVtZW50JTIwJTdEJTIwZnJvbSUyMCcuJTJGaW5jcmVtZW50ZXIuanMnJTNCJTVDbiU1Q25jb25zb2xlLmxvZyhjb3VudCklM0IlNUNuaW5jcmVtZW50KCklM0IlNUNuY29uc29sZS5sb2coY291bnQpJTNCJTIyJTdEJTJDJTdCJTIybmFtZSUyMiUzQSUyMmluY3JlbWVudGVyLmpzJTIyJTJDJTIyY29kZSUyMiUzQSUyMmV4cG9ydCUyMGxldCUyMGNvdW50JTIwJTNEJTIwMCUzQiU1Q24lNUNuZXhwb3J0JTIwZnVuY3Rpb24lMjBpbmNyZW1lbnQoKSUyMCU3QiU1Q24lNUN0Y291bnQlMjAlMkIlM0QlMjAxJTNCJTVDbiU3RCUyMiU3RCU1RCUyQyUyMm9wdGlvbnMlMjIlM0ElN0IlMjJmb3JtYXQlMjIlM0ElMjJjanMlMjIlMkMlMjJnbG9iYWxzJTIyJTNBJTdCJTdEJTJDJTIybW9kdWxlSWQlMjIlM0ElMjIlMjIlMkMlMjJuYW1lJTIyJTNBJTIybXlCdW5kbGUlMjIlN0QlMkMlMjJleGFtcGxlJTIyJTNBbnVsbCU3RA==)进行更改。
+
+<CodeGroup>
+<CodeGroupItem title="incrementer.js">
+
+```js
+// incrementer.js
+export let count = 0;
+
+export function increment() {
+  count += 1;
+}
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="main.js">
+
+```js
+// main.js
+import { count, increment } from './incrementer.js';
+
+console.log(count); // 0
+increment();
+console.log(count); // 1
+
+count += 1; // Error — only incrementer.js can change this
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+## Tutorial
+
+* [Creating Your First Bundle]()
+
+* [Using Config Files]()
+
+* [Installing Rollup locally]()
+
+* [Using plugins]()
+
+* [Using output plugins]()
+
+* [Code Splitting]()
+
+### Creating Your First Bundle
+
+在我们开始之前，你需要安装[Node.js](https://nodejs.org/)，以便你可以使用[NPM](https://npmjs.com/)。你还需要知道如何访问你机器上的[命令行](https://www.codecademy.com/learn/learn-the-command-line)。
+
+使用Rollup的最简单方法是通过命令行界面（或CLI）。现在，我们将在全局范围内安装它（稍后我们将学习如何在你的项目中本地安装它，以便你的构建过程是可移植的，但先不要担心这个问题）。在命令行中键入以下内容。
+
+```sh
+npm install rollup --global
+# or `npm i rollup -g` for short
+```
+
+您现在可以运行rollup命令。尝试一下！
+
+```sh
+rollup
+```
+
+由于没有传递参数，Rollup打印出使用说明。这与运行`rollup --help`或`rollup -h`相同。
+
+让我们创建一个简单的项目：
+
+```sh
+mkdir -p my-rollup-project/src
+cd my-rollup-project
+```
+
+首先，我们需要一个入口点。将其粘贴到一个名为 src/main.js 的新文件中。
+
+```js
+// src/main.js
+import foo from './foo.js';
+export default function () {
+  console.log(foo);
+}
+```
+
+然后，让我们创建我们的入口点导入的`foo.js`模块：
+
+```js
+// src/foo.js
+export default 'hello world!';
+```
+
+现在我们已准备好创建一个捆绑包：
+
+```sh
+rollup src/main.js -f cjs
+```
+
+`-f`选项（`--format`的缩写）指定了我们要创建的是哪种捆绑包--在本例中是CommonJS（将在Node.js中运行）。因为我们没有指定输出文件，它将被直接打印到`stdout`。
+
+```js
+'use strict';
+
+const foo = 'hello world!';
+
+const main = function () {
+  console.log(foo);
+};
+
+module.exports = main;
+```
+
+您可以将捆绑包保存为如此：
+
+```sh
+rollup src/main.js -o bundle.js -f cjs
+```
+
+(你也可以做`rollup src/main.js -f cjs > bundle.js`，但正如我们稍后看到的，如果你要生成源代码地图，这就不那么灵活了)。
+
+尝试运行代码：
+
+```bash
+node
+> var myBundle = require('./bundle.js');
+> myBundle();
+'hello world!'
+```
+
+恭喜你！你已经用Rollup创建了你的第一个包。
+
+### Using Config Files
+
+到目前为止，情况还不错，但当我们开始添加更多的选项时，打出命令就变得有点麻烦了。
+
+为了节省重复劳动，我们可以创建一个包含所有我们需要的选项的配置文件。配置文件是用JavaScript编写的，比原始CLI更灵活。
+
+在项目根部创建一个名为`rollup.config.js`的文件，并添加以下代码。
+
+```js
+// rollup.config.js
+export default {
+  input: 'src/main.js',
+  output: {
+    file: 'bundle.js',
+    format: 'cjs'
+  }
+};
+```
+
+(注意，你可以使用CJS模块，因此`module.exports = {/* config */}`)
+
+要使用配置文件，我们使用`--config`或`-c`标志：
+
+```bash
+rm bundle.js # so we can check the command works!
+rollup -c
+```
+
+你可以用相应的命令行选项来覆盖配置文件中的任何选项。
+
+```bash
+rollup -c -o bundle-2.js # `-o` is equivalent to `--file` (formerly "output")
+```
+
+注意：Rollup本身会处理配置文件，这就是为什么我们能够使用`导出的默认语法`--代码没有被Babel或类似的东西转译，所以你只能使用你所运行的Node.js版本所支持的ES2015特性。
+
+如果你愿意，你可以指定一个不同于默认`rollup.config.js`的配置文件。
+
+```bash
+rollup --config rollup.config.dev.js
+rollup --config rollup.config.prod.js
+```
+
+### Installing Rollup locally
+
+当在团队或分布式环境中工作时，将Rollup作为一个本地依赖项添加是明智的。在本地安装Rollup可以避免要求多个贡献者分别安装Rollup的额外步骤，并确保所有贡献者使用相同版本的Rollup。
+
+要使用NPM本地安装汇总：
+
+```bash
+npm install rollup --save-dev
+```
+
+或用yarn：
+
+```sh
+yarn -D add rollup
+```
+
+安装后，Rollup可以在你的项目的根目录下运行。
+
+```sh
+npx rollup --config
+```
+
+或用yarn：
+
+```sh
+yarn rollup --config
+```
+
+一旦安装完毕，通常的做法是在`package.json`中添加一个单一的构建脚本，为所有贡献者提供一个方便的命令。 例如
+
+```json
+{
+  "scripts": {
+    "build": "rollup --config"
+  }
+}
+```
+
+注意：一旦安装到本地，NPM和Yarn都会解析依赖的bin文件，并在从包脚本调用时执行Rollup。
+
+### Using plugins
+
+到目前为止，我们已经从一个入口点和一个通过相对路径导入的模块创建了一个简单的捆绑程序。当你建立更复杂的软件包时，你往往需要更多的灵活性--导入用NPM安装的模块，用Babel编译代码，用JSON文件工作等等。
+
+为此，我们使用插件，在捆绑过程的关键点上改变Rollup的行为。在Rollup Awesome List上[有一个插件列表](https://github.com/rollup/awesome)。
+
+在本教程中，我们将使用[@rollup/plugin-json](https://github.com/rollup/plugins/tree/master/packages/json)，它允许Rollup从JSON文件导入数据。
+
+在项目根部创建一个名为`package.json`的文件，并添加以下内容。
+
+```json
+{
+  "name": "rollup-tutorial",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rollup -c"
+  }
+}
+```
+
+将@rollup/plugin-json安装为开发依赖项。
+
+```sh
+npm install --save-dev @rollup/plugin-json
+```
+
+（我们正在使用`--save-dev`而不是`--save`，因为我们的代码实际上并没有依赖于运行时的插件 - 只有在我们构建捆绑包时才依赖于插件。）
+
+更新你的`src/main.js`文件，使其从`package.json`而不是`src/foo.js`导入。
+
+```js
+// src/main.js
+import { version } from '../package.json';
+
+export default function () {
+  console.log('version ' + version);
+}
+```
+
+编辑您的`Rollup.config.js`文件以包含JSON插件：
+
+```js
+// rollup.config.js
+import json from '@rollup/plugin-json';
+
+export default {
+  input: 'src/main.js',
+  output: {
+    file: 'bundle.js',
+    format: 'cjs'
+  },
+  plugins: [json()]
+};
+```
+
+用`npm run build`运行Rollup。结果应该是这样的。
+
+```js
+'use strict';
+
+var version = '1.0.0';
+
+function main() {
+  console.log('version ' + version);
+}
+
+module.exports = main;
+```
+
+注意：只有我们真正需要的数据被导入`--name`和`devDependencies`以及`package.json`的其他部分被忽略。这就是**树状结构的作用**。
+
+### Using output plugins
+
+一些插件也可以专门应用于某些输出。关于特定输出的插件能做什么的技术细节，请看[插件钩子](https://rollupjs.org/guide/en/#build-hooks)。简而言之，那些插件只能在Rollup的主要分析完成后修改代码。如果一个不兼容的插件被用作输出特定插件，Rollup会发出警告。一个可能的用例是对在浏览器中使用的包进行最小化。
+
+让我们扩展前面的例子，以提供一个减化的构建和非减化的构建。为此，我们安装`rollup-plugin-terser`。
+
+```sh
+npm install --save-dev rollup-plugin-terser
+```
+
+编辑你的`rollup.config.js`文件，添加第二个最小化的输出。作为格式，我们选择`iife`。这种格式包装了代码，以便它可以通过浏览器中的脚本标签来消费，同时避免与其他代码进行不必要的交互。由于我们有一个输出，我们需要提供一个全局变量的名字，这个变量将由我们的bundle创建，这样其他代码就可以通过这个变量访问我们的输出。
+
+```js
+// rollup.config.js
+import json from '@rollup/plugin-json';
+import { terser } from 'rollup-plugin-terser';
+
+export default {
+  input: 'src/main.js',
+  output: [
+    {
+      file: 'bundle.js',
+      format: 'cjs'
+    },
+    {
+      file: 'bundle.min.js',
+      format: 'iife',
+      name: 'version',
+      plugins: [terser()]
+    }
+  ],
+  plugins: [json()]
+};
+```
+
+除了`bundle.js`，Rollup现在会创建第二个文件`bundle.min.js`。
+
+```js
+var version = (function () {
+  'use strict';
+  var n = '1.0.0';
+  return function () {
+    console.log('version ' + n);
+  };
+})();
+```
+
+### Code Splitting
+
+对于代码分割，有些情况下，Rollup会自动将代码分割成几块，比如动态加载或多个入口点，还有一种方法是通过[output.manualChunks](https://rollupjs.org/guide/en/#outputmanualchunks)选项明确告诉Rollup哪些模块要分割成独立的几块。
+
+为了使用代码拆分功能来实现懒惰的动态加载（一些导入的模块只在执行函数后才被加载），我们回到原来的例子，修改 `src/main.js`，动态加载 `src/foo.js` 而不是静态加载。
+
+```js
+// src/main.js
+export default function () {
+  import('./foo.js').then(({ default: foo }) => console.log(foo));
+}
+```
+
+Rollup将使用动态导入来创建一个单独的块，只在需要时加载。为了让Rollup知道在哪里放置第二个数据块，我们没有使用`--file`选项，而是使用`--dir`选项设置了一个要输出的文件夹。
+
+```sh
+rollup src/main.js -f cjs -d dist
+```
+
+这将创建一个文件夹`dist`，包含两个文件，`main.js`和`chunk-[hash].js`，其中`[hash]`是一个基于内容的哈希字符串。你可以通过指定[output.chunkFileNames](https://rollupjs.org/guide/en/#outputchunkfilenames)和[output.entryFileNames](https://rollupjs.org/guide/en/#outputentryfilenames)选项提供你自己的命名模式。
+
+你仍然可以像以前一样运行你的代码，有相同的输出，尽管速度稍慢，因为只有当我们第一次调用导出的函数时，才会开始加载和解析`./foo.js`。
+
+```sh
+node -e "require('./dist/main.js')()"
+```
+
+如果我们不使用`-dir`选项，Rollup会再次将块打印到stdout，并添加注释以突出块的边界。
+
+```js
+//→ main.js:
+'use strict';
+
+function main() {
+  Promise.resolve(require('./chunk-b8774ea3.js')).then(({ default: foo }) => console.log(foo));
+}
+
+module.exports = main;
+
+//→ chunk-b8774ea3.js:
+('use strict');
+
+var foo = 'hello world!';
+
+exports.default = foo;
+```
+
+如果要在使用时才能加载和解析等开销大的功能，这将是有用的。
+
+代码拆分的另一个用途是能够指定几个共享某些依赖关系的入口点。我们再次扩展我们的例子，添加第二个入口点 `src/main2.js`，它静态地导入 `src/foo.js`，就像我们在原始例子中做的那样。
+
+```js
+// src/main2.js
+import foo from './foo.js';
+export default function () {
+  console.log(foo);
+}
+```
+
+如果我们向rollup提供两个入口点，就会创建三个块。
+
+```sh
+rollup src/main.js src/main2.js -f cjs
+```
+
+将输出
+
+```js
+//→ main.js:
+'use strict';
+
+function main() {
+  Promise.resolve(require('./chunk-b8774ea3.js')).then(({ default: foo }) => console.log(foo));
+}
+
+module.exports = main;
+
+//→ main2.js:
+('use strict');
+
+var foo_js = require('./chunk-b8774ea3.js');
+
+function main2() {
+  console.log(foo_js.default);
+}
+
+module.exports = main2;
+
+//→ chunk-b8774ea3.js:
+('use strict');
+
+var foo = 'hello world!';
+
+exports.default = foo;
+```
+
+注意这两个入口点是如何导入同一个共享块的。Rollup不会重复代码，而是创建额外的块，只加载必要的最低限度。同样，通过`-dir`选项将把文件写到磁盘上。
+
+你可以通过本地ES模块、AMD加载器或SystemJS为浏览器构建相同的代码。
+
+例如，使用`-f es`进行本机模块：
+
+<CodeGroup>
+<CodeGroupItem title="cli">
+
+```sh
+rollup src/main.js src/main2.js -f es -d dist
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="html">
+
+```html
+<!DOCTYPE html>
+<script type="module">
+  import main2 from './dist/main2.js';
+  main2();
+</script>
+```
+
+</CodeGroupItem>
+</CodeGroup>
+
+对于SystemJS，用`-f system`。
+
+```sh
+rollup src/main.js src/main2.js -f system -d dist
+```
+
+安装SystemJS Via.
+
+```sh
+npm install --save-dev systemjs
+```
+
+然后根据需要在一个HTML页面中加载任一或两个入口点。
+
+```html
+<!DOCTYPE html>
+<script src="node_modules/systemjs/dist/s.min.js"></script>
+<script>
+  System.import('./dist/main2.js').then(({ default: main }) => main());
+</script>
+```
+
+请参阅[rollup-starter-code-splitting](https://github.com/rollup/rollup-starter-code-splitting)，了解如何在支持本地ES模块的浏览器上设置Web应用，并在必要时回退到SystemJS。
+
+## Plugin Development
+
