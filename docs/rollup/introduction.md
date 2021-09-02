@@ -484,7 +484,7 @@ module.exports = {
 
 打印帮助文档。
 
-#### -p <plugin>, --plugin <plugin>
+#### -p (plugin), --plugin (plugin)
 
 使用指定的插件。有几种方法可以在此指定插件：
 
@@ -526,7 +526,7 @@ rollup -i input.js -f es -p node-resolve -p commonjs,json
 rollup -i input.js -f es -p 'terser={output: {beautify: true, indent_level: 2}}'
 ```
 
-#### --configPlugin <plugin>
+#### --configPlugin (plugin)
 
 允许将RollUp插件指定要转换或以其他方式控制配置文件的解析。主要好处是它允许您使用非JavaScript配置文件。例如，以下内容将允许您在输入的类型中编写配置，只要您安装了`@rollup/plugin-typescript`：
 
@@ -554,7 +554,7 @@ rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript
 
 构建完成后，如果发生任何警告，则以错误退出构建。
 
-#### --environment <values>
+#### --environment (values)
 
 通过`process.ENV`向配置文件传递额外的设置。
 
@@ -1458,3 +1458,243 @@ npm install --save-dev systemjs
 
 ## Plugin Development
 
+
+* [Plugins Overview]()
+
+* [A Simple Example]()
+
+* [Conventions]()
+
+* [Properties]()
+
+  * [name]()
+
+* [Build Hooks]()
+
+  * [buildEnd]()
+
+  * [buildStart]()
+
+  * [closeWatcher]()
+
+  * [load]()
+
+  * [moduleParsed]()
+
+  * [options]()
+
+  * [resolveDynamicImport]()
+
+  * [resolveId]()
+
+  * [transform]()
+
+  * [watchChange]()
+
+* [Output Generation Hooks]()
+
+  * [augmentChunkHash]()
+
+  * [banner]()
+
+  * [closeBundle]()
+
+  * [footer]()
+
+  * [generateBundle]()
+
+  * [intro]()
+
+  * [outputOptions]()
+
+  * [outro]()
+
+  * [renderChunk]()
+
+  * [renderDynamicImport]()
+
+  * [renderError]()
+
+  * [renderStart]()
+
+  * [resolveFileUrl]()
+
+  * [resolveImportMeta]()
+
+  * [writeBundle]()
+
+* [Deprecated Hooks]()
+
+* [Plugin Context]()
+
+  * [this.addWatchFile(id: string) => void]()
+
+  * [this.emitFile(emittedFile: EmittedChunk | EmittedAsset) => string]()
+
+  * [this.error(error: string | Error, position?: number | { column: number; line: number }) => never]()
+
+  * [this.getCombinedSourcemap() => SourceMap]()
+
+  * [this.getFileName(referenceId: string) => string]()
+
+  * [this.getModuleIds() => IterableIterator(string)]()
+
+  * [this.getModuleInfo(moduleId: string) => (ModuleInfo | null)]()
+
+  * [this.getWatchFiles() => string[]]()
+
+  * [this.meta: {rollupVersion: string, watchMode: boolean}]()
+
+  * [this.parse(code: string, acornOptions?: AcornOptions) => ESTree.Program]()
+
+  * [this.resolve(source: string, importer?: string, options?: {skipSelf?: boolean, custom?: {[plugin: string]: any}}) => Promise<{id: string, external: boolean | "absolute", moduleSideEffects: boolean | 'no-treeshake', syntheticNamedExports: boolean | string, meta: {[plugin: string]: any}} | null>]()
+
+  * [this.setAssetSource(referenceId: string, source: string | Uint8Array) => void]()
+
+  * [this.warn(warning: string | RollupWarning, position?: number | { column: number; line: number }) => void]()
+
+* [Deprecated Context Functions]()
+
+* [File URLs]()
+
+* [Transformers]()
+
+  * [Example Transformer]()
+
+  * [Source Code Transformations]()
+
+* [Synthetic named exports]()
+
+* [Inter-plugin communication]()
+
+  * [Custom resolver options]()
+
+  * [Custom module meta-data]()
+
+  * [Direct plugin communication]()
+
+### Plugins Overview
+
+一个Rollup插件是一个具有下面描述的一个或多个[属性](https://rollupjs.org/guide/en/#properties)、[构建钩子](https://rollupjs.org/guide/en/#build-hooks)和[输出生成钩子的对象](https://rollupjs.org/guide/en/#output-generation-hooks)，并遵循我们的惯例。一个插件应该以包的形式[发布](https://rollupjs.org/guide/en/#conventions)，该包导出一个可以用插件特定选项调用的函数，并返回这样一个对象。
+
+插件允许你自定义Rollup的行为，例如，在捆绑前转译代码，或在你的node_modules文件夹中寻找第三方模块。关于如何使用它们的例子，请参阅[使用插件](https://rollupjs.org/guide/en/#using-plugins)。
+
+插件列表可以在[github.com/rollup/awesome](https://github.com/rollup/awesome)找到。如果你想对一个插件提出建议，请提交一个Pull Request。
+
+### A Simple Example
+
+下面的插件将拦截任何`虚拟模块`的导入而不访问文件系统。例如，如果你想在浏览器中使用Rollup，这是必要的。它甚至可以用来替换入口点，如例子中所示。
+
+```js
+// rollup-plugin-my-example.js
+export default function myExample () {
+  return {
+    name: 'my-example', // this name will show up in warnings and errors
+    resolveId ( source ) {
+      if (source === 'virtual-module') {
+        return source; // this signals that rollup should not ask other plugins or check the file system to find this id
+      }
+      return null; // other ids should be handled as usually
+    },
+    load ( id ) {
+      if (id === 'virtual-module') {
+        return 'export default "This is virtual!"'; // the source code for "virtual-module"
+      }
+      return null; // other ids should be handled as usually
+    }
+  };
+}
+
+// rollup.config.js
+import myExample from './rollup-plugin-my-example.js';
+export default ({
+  input: 'virtual-module', // resolved by our plugin
+  plugins: [myExample()],
+  output: [{
+    file: 'bundle.js',
+    format: 'es'
+  }]
+});
+```
+
+### Conventions
+
+::: tip 约定:
+
+* 插件应该有一个明确的名称，并带有rollup-plugin-前缀。
+
+* 在package.json中包括rollup-plugin关键字。
+
+* 插件应该被测试。我们推荐mocha或ava，它们支持开箱即用的承诺。
+
+* 在可能的情况下使用异步方法。
+
+* 用英文记录你的插件。
+
+* 如果合适的话，确保你的插件输出正确的源映射。
+
+* 如果你的插件使用 "虚拟模块"（例如，用于辅助函数），请在模块ID前加上 "0"。这可以防止其他插件试图处理它。
+
+:::
+
+### Properties
+
+`name`
+
+Type: `string`
+
+The name of the plugin, for use in error messages and warnings.
+
+### Build Hooks
+
+为了与构建过程互动，你的插件对象包括 "钩子"。钩子是在构建的不同阶段被调用的函数。钩子可以影响构建的运行方式，提供关于构建的信息，或者在构建完成后对其进行修改。有不同种类的钩子。
+
+* `async`: 钩子也可以返回一个解析为相同类型的值的承诺；否则，钩子被标记为同步。
+
+* `first`: 如果有几个插件实现了这个钩子，那么这些钩子将按顺序运行，直到一个钩子返回一个非空或未定义的值。
+
+* `sequential`: 如果有几个插件实现了这个钩子，所有的钩子将按照指定的插件顺序运行。如果一个钩子是异步的，后续的这种钩子将等待，直到当前钩子被解决。
+
+* `parallel`: 如果有几个插件实现了这个钩子，它们都将按照指定的插件顺序来运行。如果一个钩子是异步的，后续的这类钩子将被平行运行，而不会等待当前的钩子。
+
+构建钩子在构建阶段运行，这是由`rollup.rollup(inputOptions)`触发的。它们主要是在Rollup处理输入文件之前，对其进行定位、提供和转换。构建阶段的第一个钩子是[options](https://rollupjs.org/guide/en/#options)，最后一个钩子总是[buildEnd](https://rollupjs.org/guide/en/#buildend)。如果有一个构建错误，之后将调用[closeBundle](https://rollupjs.org/guide/en/#closebundle)。
+
+```flow
+cond=>condition: Process
+
+process=>operation: Process
+e=>end: End
+
+cond(aaa)->process->e
+cond(no)->e
+
+options=>start: options|buildStart
+buildStart=>condition: buildStart?
+resolveld=>operation: resolveld
+load=>operation: load
+transform=>operation: transform
+moduleParsed=>operation: moduleParsed
+buildEnd=>end: End
+
+options->buildStart
+buildStart(ench entry)->resolveld
+resolveld->load
+load->transform
+transform->moduleParsed
+moduleParsed->buildEnd
+
+st=>start: options|past:>http://www.google.com[blank]
+e=>end: End|future:>http://www.google.com
+op1=>operation: My Operation|past
+op2=>operation: Do something|current
+sub1=>subroutine: My Subroutine|invalid
+cond=>condition: Yes or No?|approved:>http://www.google.com
+c2=>condition: Good idea|rejected
+io=>inputoutput: catch something...|future
+
+st->op1(right)->cond
+cond(yes, right)->c2
+cond(no)->sub1(left)->op1
+c2(yes)->io->e
+c2(no)->op2->e
+```

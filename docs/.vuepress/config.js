@@ -53,7 +53,12 @@ module.exports = config({
         }],
         // "code-switcher",
         "element-ui",
-        '@vuepress/medium-zoom'
+        '@vuepress/medium-zoom',
+        "md-enhance",
+        {
+            // 启用流程图
+            flowchart: true,
+        },
     ],
     head: [
         ['link', {
