@@ -1659,42 +1659,79 @@ The name of the plugin, for use in error messages and warnings.
 
 构建钩子在构建阶段运行，这是由`rollup.rollup(inputOptions)`触发的。它们主要是在Rollup处理输入文件之前，对其进行定位、提供和转换。构建阶段的第一个钩子是[options](https://rollupjs.org/guide/en/#options)，最后一个钩子总是[buildEnd](https://rollupjs.org/guide/en/#buildend)。如果有一个构建错误，之后将调用[closeBundle](https://rollupjs.org/guide/en/#closebundle)。
 
-```flow
-cond=>condition: Process
-
-process=>operation: Process
-e=>end: End
-
-cond(aaa)->process->e
-cond(no)->e
-
+<!-- ```flow
 options=>start: options|buildStart
-buildStart=>condition: buildStart?
-resolveld=>operation: resolveld
+buildStart=>operation: buildStart
+eachEntry=>subroutine: each entry
+resolveld=>parallel: resolveld
+external=>subroutine: external
 load=>operation: load
 transform=>operation: transform
-moduleParsed=>operation: moduleParsed
+moduleParsed=>parallel: moduleParsed
+noImport=>subroutine: no imports
+eachImport=>subroutine: each import()
+resolveDynamicImport=>parallel: resolveDynamicImport
+nonExternal=>subroutine: non-external
+externalOther=>subroutine: external
+unresolved=>subroutine: unresolved
 buildEnd=>end: End
 
 options->buildStart
-buildStart(ench entry)->resolveld
-resolveld->load
+buildStart->eachEntry->resolveld
+resolveld(path1, bottom)->load
 load->transform
 transform->moduleParsed
-moduleParsed->buildEnd
+moduleParsed(path1)->noImport->buildEnd
+moduleParsed(path2)->eachImport->resolveDynamicImport(path1)
+->externalOther->buildEnd
+resolveDynamicImport(path2)->nonExternal->load
+resolveDynamicImport(path3)->unresolved->resolveld
+resolveld(path2)->external->buildEnd
+``` -->
 
-st=>start: options|past:>http://www.google.com[blank]
-e=>end: End|future:>http://www.google.com
-op1=>operation: My Operation|past
-op2=>operation: Do something|current
-sub1=>subroutine: My Subroutine|invalid
-cond=>condition: Yes or No?|approved:>http://www.google.com
-c2=>condition: Good idea|rejected
-io=>inputoutput: catch something...|future
+![demo](/notes/assets/rollup/1630648412252.jpg)
 
-st->op1(right)->cond
-cond(yes, right)->c2
-cond(no)->sub1(left)->op1
-c2(yes)->io->e
-c2(no)->op2->e
-```
+此外，在观察模式下，[watchChange](https://rollupjs.org/guide/en/#watchchange)钩子可以在任何时候被触发，以通知新的运行将在当前运行产生其输出后被触发。另外，当watcher关闭时，[closeWatcher](https://rollupjs.org/guide/en/#closewatcher)钩将被触发。
+
+参见[输出生成钩子](https://rollupjs.org/guide/en/#output-generation-hooks)，了解在输出生成阶段运行的钩子，以修改生成的输出。
+
+#### buildEnd
+
+Type: `(error?: Error) => void`
+Kind: `async`, `parallel`
+Previous Hook: [moduleParsed](https://rollupjs.org/guide/en/#moduleparsed), [resolveId](https://rollupjs.org/guide/en/#resolveid) or [resolveDynamicImport](https://rollupjs.org/guide/en/#resolvedynamicimport).
+Next Hook: 输出生成阶段的[outputOptions](https://rollupjs.org/guide/en/#outputoptions)，因为这是构建阶段的最后一个钩子.
+
+当rollup完成捆绑，但在`generate`或`write`被调用之前被调用；你也可以返回一个Promise。如果在构建过程中发生了错误，它将被传递给这个钩子。
+
+#### buildStart
+
+Type: `(options: InputOptions) => void`
+Kind: `async`, `parallel`
+Previous Hook: [options](https://rollupjs.org/guide/en/#options)
+Next Hook：[resolveId](https://rollupjs.org/guide/en/#resolveid) 并行解析每个入口点。
+
+在每次`rollup.rollup`构建时被调用。当你需要访问传递给`rollup.rollup()`的选项时，推荐使用这个钩子，因为它考虑到了所有[选项](https://rollupjs.org/guide/en/#options)钩子的转换，也包含了未设置选项的正确默认值。
+
+#### closeWatcher
+
+Type: `() => void`
+Kind: `sync`, `sequential`
+Previous/Next Hook: 这个钩子可以在任何时候被触发，无论是在构建阶段还是在输出生成阶段。如果是这种情况，当前的构建仍将继续进行，但不会有新的[watchChange](https://rollupjs.org/guide/en/#watchchange)事件被触发。
+
+当观察者进程关闭时通知一个插件，所有打开的资源也应该关闭。这个钩子不能被输出插件使用。
+
+#### load
+
+Type: `(id: string) => string | null | {code: string, map?: string | SourceMap, ast? : ESTree.Program, moduleSideEffects?: boolean | "no-treeshake" | null, syntheticNamedExports?: boolean | string | null, meta?: {[plugin: string]: any} | null}`
+Kind: `async`, `first`
+Previous Hook: 解析加载的 ID 的 [resolveId](https://rollupjs.org/guide/en/#resolveid) 或 [resolveDynamicImport](https://rollupjs.org/guide/en/#resolvedynamicimport)。
+Next Hook: [transform](https://rollupjs.org/guide/en/#transform) 转换加载的文件。
+
+定义自定义加载器。返回 null 延迟到其他加载函数（以及最终从文件系统加载的默认行为）。为了防止额外的解析开销，例如由于某种原因，这个钩子已经使用 `this.parse` 来生成一个 AST，这个钩子可以选择返回一个 `{ code, ast, map }` 对象。 ast 必须是标准的 ESTree AST，每个节点都有开始和结束属性。如果转换不移动代码，您可以通过将 map 设置为 null 来保留现有的源映射。否则，您可能需要生成源映射。[请参阅有关源代码转换的部分](https://rollupjs.org/#source-code-transformations)。
+
+如果为 `moduleSideEffects` 返回 `false` 并且没有其他模块从该模块导入任何内容，则即使该模块有副作用，该模块也不会包含在包中。如果返回 `true`，Rollup 将使用其默认算法来包含模块中具有副作用（例如修改全局或导出变量）的所有语句。如果返回“`no-treeshake`”，则此模块的 `treeshaking` 将关闭，并且即使它为空，它也会包含在生成的块之一中。如果返回 null 或省略标志，则 `moduleSideEffects` 将由解析此模块的第一个 `resolveId` 钩子、`treeshake.moduleSideEffects` 选项确定，或最终默认为 `true`。变换钩子可以覆盖它。
+
+关于 `syntheticNamedExports` 选项的效果，请参阅 [syntheticNamedExports](https://rollupjs.org/guide/en/#synthetic-named-exports)。如果返回`null`或者省略该标志，那么`syntheticNamedExports`将由解析该模块的第一个`resolveId`钩子决定，或者最终默认为`false`。`transform`钩子可以覆盖这一点。
+
+关于如何使用meta选项，请参阅自定义模块元数据。如果这个钩子返回一个元对象，它将与由 resolveId 钩子返回的任何元对象进行浅层合并。如果没有钩子返回一个元对象，它将默认为一个空对象。transform钩子可以进一步添加或替换这个对象的属性。
