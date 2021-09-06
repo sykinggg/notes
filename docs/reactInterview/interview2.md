@@ -1,24 +1,18 @@
 # 虚拟DOM和DOM-diff
 
-## 神奇的虚拟DOM
-
-首先神奇不神奇的先不去关注，先来简单说说何为虚拟DOM
+## 虚拟DOM
 
 **虚拟DOM**简而言之就是，用JS去按照DOM结构来实现的树形结构对象，你也可以叫做**DOM对象**
-
-好了，一句话就把这么伟大的东西给解释了，那么不再耽误时间了，赶紧进入主环节吧
 
 当然，这里还有整个项目的[地址](https://github.com/chenhongdong/article/tree/develop/%E8%99%9A%E6%8B%9Fdom/dom-diff)方便查看
 
 ### 实现一下虚拟DOM
 
-在亲自上阵之前，让粮草先行，先发个图，来看一下整个目录结构是什么样子的
-
 ![demo](/notes/assets/react/1699a54e3737e10c.png)
 
-这个目录结构是用**create-react-app脚手架**直接生成的，也是为了方便编译调试
+这个目录结构是用**create-react-app**脚手架直接生成的，也是为了方便编译调试
 
-```
+```bash
 // 全局安装
 npm i create-react-app -g
 // 生成项目
@@ -214,7 +208,7 @@ renderDom(el, document.getElementById('root'));
 
 已经了解到`DOM-diff`是干嘛的了，那就没什么好说的了，继续往下写吧
 
-```js
+```jsx
 // diff.js
 
 function diff(oldTree, newTree) {
