@@ -4,7 +4,7 @@
 
 ## 1.基本的使用：通过组件获得input的引用
 
-```jsx
+```tsx
 import React, { Component, createRef, forwardRef } from 'react';
 
 const FocusInput = forwardRef((props, ref) => (
@@ -35,10 +35,10 @@ export default ForwardRef;
 ```
 
 核心方法是`React.forwardRef`,该方法接受一个有额外`ref`参数的react组件函数，不调用该方法，普通的组件函数是不会获得该参数的。
+
 如果子组件中用到了该方法，那么对应的高阶组件中也需要使用`React.forwardRef`方法
 
-```jsx
-
+```tsx
 import React, { Component, createRef } from 'react';
 
 const FocusInput = React.forwardRef((props, ref) => <input type="text" ref={ref} />);
@@ -81,7 +81,7 @@ class ForwardRef extends Component {
 export default ForwardRef;
 ```
 
-Refs 使用场景
+## Refs 使用场景
 
 * 处理焦点、文本选择或者媒体的控制
 

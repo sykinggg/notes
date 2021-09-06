@@ -1734,4 +1734,114 @@ Next Hook: [transform](https://rollupjs.org/guide/en/#transform) 转换加载的
 
 关于 `syntheticNamedExports` 选项的效果，请参阅 [syntheticNamedExports](https://rollupjs.org/guide/en/#synthetic-named-exports)。如果返回`null`或者省略该标志，那么`syntheticNamedExports`将由解析该模块的第一个`resolveId`钩子决定，或者最终默认为`false`。`transform`钩子可以覆盖这一点。
 
-关于如何使用meta选项，请参阅自定义模块元数据。如果这个钩子返回一个元对象，它将与由 resolveId 钩子返回的任何元对象进行浅层合并。如果没有钩子返回一个元对象，它将默认为一个空对象。transform钩子可以进一步添加或替换这个对象的属性。
+关于如何使用meta选项，请参阅[自定义模块元数据](https://rollupjs.org/guide/en/#custom-module-meta-data)。如果这个钩子返回一个元对象，它将与由 resolveId 钩子返回的任何元对象进行浅层合并。如果没有钩子返回一个元对象，它将默认为一个空对象。transform钩子可以进一步添加或替换这个对象的属性。
+
+你可以使用[this.getModuleInfo](https://rollupjs.org/guide/en/#thisgetmoduleinfomoduleid-string--moduleinfo--null)来找出这个钩子里面的moduleSideEffects、syntheticNamedExports和meta的前一个值。
+
+#### moduleParsed
+
+Type: (moduleInfo: ModuleInfo) => void
+Kind: async, parallel
+Previous Hook: [transform](https://rollupjs.org/guide/en/#transform)当前处理的文件的转换位置
+NextHook: [resolveId](https://rollupjs.org/guide/en/#resolveid)和[resolveDynamicImport](https://rollupjs.org/guide/en/#resolvedynamicimport)来解决所有发现的静态和动态导入（如果存在），否则[buildEnd](https://rollupjs.org/guide/en/#buildend)。
+
+每次 Rollup 完全解析模块时都会调用此钩子。有关传递给此钩子的信息，请参阅 [this.getModuleInfo](https://rollupjs.org/guide/en/#thisgetmoduleinfomoduleid-string--moduleinfo--null)。
+
+与[转换](https://rollupjs.org/guide/en/#transform)钩子相反，这个钩子从不被缓存，可以用来获取缓存和其他模块的信息，包括元属性的最终形状、代码和星号。
+
+请注意，这个钩子中还没有关于导入模块的信息，而且关于导入模块的信息可能是不完整的，因为后来可能会发现更多的导入者。如果你需要这些信息，请使用[buildEnd](https://rollupjs.org/guide/en/#buildend)钩子。
+
+#### options
+
+Type: (options: InputOptions) => InputOptions | null
+Kind: async, sequential
+Previous Hook: 这是构建阶段的第一个钩子。
+Next Hook: [buildStart](https://rollupjs.org/guide/en/#buildstart)
+
+替换或操作传递给rollup.rollup的选项对象。返回null不会替换任何东西。如果你只需要读取选项，建议使用[buildStart](https://rollupjs.org/guide/en/#buildstart)钩子，因为该钩子可以在考虑到所有选项钩子的转换后访问选项。
+
+这是唯一不能访问大多数插件上下文[实用功能](https://rollupjs.org/guide/en/#plugin-context)的钩子，因为它是在rollup完全配置之前运行的。
+
+#### resolveDynamicImport
+
+Type: (specifier: string | ESTree.Node, importer: string) => string | false | null | {id: string, external?: boolean}
+Kind: async, first
+Previous Hook: 为导入文件[解析模块](https://rollupjs.org/guide/en/#moduleparsed)。
+Next Hook: 如果钩子解决了一个尚未加载的id，则为[load](https://rollupjs.org/guide/en/#load)；如果动态导入包含一个字符串，且未被钩子解决，则为[resolveId](https://rollupjs.org/guide/en/#resolveid)；否则为[buildEnd](https://rollupjs.org/guide/en/#buildend)。
+
+定义了一个用于动态导入的自定义解析器。返回 false 表示导入应该保持原样，不被传递给其他解析器，从而使其成为外部的。与 [resolveId](https://rollupjs.org/guide/en/#resolveid) 钩子类似，你也可以返回一个对象来将导入解析为一个不同的 id，同时将其标记为外部。
+
+如果一个动态导入被传递一个字符串作为参数，从这个钩子返回的字符串将被解释为一个现有的模块ID，而返回null将推迟到其他解析器并最终到resolveId。
+
+如果动态导入没有传递一个字符串作为参数，这个钩子就会获得原始AST节点的分析权，并在以下方面表现得略有不同。
+
+* 如果所有的插件都返回null，则导入被视为`外部的`，没有警告。
+
+* 如果返回一个字符串，这个字符串不会被解释为模块ID，而是被用作import参数的替代。确保生成的代码是有效的，这是插件的责任。
+
+* 为了解决这样一个导入现有模块的问题，你仍然可以返回一个对象`{id, external}`。
+
+请注意，这个钩子的返回值之后不会传递给 `resolveId`；如果你需要访问静态解析算法，你可以在插件上下文上使用 [this.resolve(source, importer)](https://rollupjs.org/guide/en/#thisresolvesource-string-importer-string-options-skipself-boolean-custom-plugin-string-any--promiseid-string-external-boolean--absolute-modulesideeffects-boolean--no-treeshake-syntheticnamedexports-boolean--string-meta-plugin-string-any--null) 。
+
+#### resolveId
+
+Type: (source: string, importer: string | undefined, options: {custom?: {[plugin: string]: any}) => string | false | null | {id: string, external?: boolean | "relative" | "absolute", moduleSideEffects?: boolean | "no-treeshake" | null, syntheticNamedExports?: boolean | string | null, meta?: {[plugin: string]: any} | null}
+Kind: async, first
+Previous Hook: 如果我们正在解决一个入口点，则使用[buildStart](https://rollupjs.org/guide/en/#buildstart)；如果我们正在解决一个导入，则使用[moduleParsed](https://rollupjs.org/guide/en/#moduleparsed)；或者作为[resolveDynamicImport](https://rollupjs.org/guide/en/#resolvedynamicimport)的回退。此外，这个钩子可以在构建阶段通过调用[this.emitFile](https://rollupjs.org/guide/en/#thisemitfileemittedfile-emittedchunk--emittedasset--string)来触发一个入口点，或者在任何时候通过调用[this.resolve](https://rollupjs.org/guide/en/#thisresolvesource-string-importer-string-options-skipself-boolean-custom-plugin-string-any--promiseid-string-external-boolean--absolute-modulesideeffects-boolean--no-treeshake-syntheticnamedexports-boolean--string-meta-plugin-string-any--null)来手动解析一个id。
+Next Hook: 如果解决了尚未[加载](https://rollupjs.org/guide/en/#load)的id，则加载，否则[buildEnd](https://rollupjs.org/guide/en/#buildend)。
+
+定义了一个自定义的解析器。解析器对于定位第三方的依赖关系等非常有用。这里的source是指导入者，与导入语句中写的完全一样，也就是说，对于
+
+```js
+import { foo } from '../bar.js';
+```
+
+源将是“../bar.js”“。
+
+`importer`是导入模块的完全解析id。当解析入口点时，importer将是未定义的。例如，你可以把它作为一种机制，为入口点定义自定义代理模块。
+
+下面的插件将只从入口点暴露默认的出口，同时仍然保持命名的出口可用于内部使用。
+
+```js
+async resolveId(source,importer) {
+  if (!importer) {
+    // We need to skip this plugin to avoid an infinite loop
+    const resolution = await this.resolve(source, undefined, { skipSelf: true });
+    // If it cannot be resolved, return `null` so that Rollup displays an error
+    if (!resolution) return null;
+    return `${resolution.id}?entry-proxy`;
+  }
+  return null;
+},
+load(id) {
+  if (id.endsWith('?entry-proxy')) {
+    const importee = id.slice(0, -'?entry-proxy'.length);
+    // Note that this will throw if there is no default export
+    return `export {default} from '${importee}';`;
+  }
+  return null;
+}
+```
+
+返回`null`会推迟到其他的`resolveId`函数，最终是默认的解析行为。返回 `false` 表示 `source` 应该被视为外部模块而不包括在捆绑包中。如果这发生在相对导入的情况下，id将被重新规范化，与使用外部选项时的方式相同。
+
+如果你返回一个对象，那么就有可能将一个导入解析为一个不同的id，同时将其从捆绑中排除。这允许你用外部依赖替换依赖，而不需要用户通过外部选项手动将其标记为 "`外部`"。
+
+```js
+resolveId(source) {
+  if (source === 'my-dependency') {
+    return {id: 'my-dependency-develop', external: true};
+  }
+  return null;
+}
+```
+
+如果`external`为真，那么绝对id将根据用户对[makeAbsoluteExternalsRelative](https://rollupjs.org/guide/en/#makeabsoluteexternalsrelative)选项的选择被转换为相对id。这个选择可以通过传递`external: "relative "`来始终将绝对id转换为相对`id`，或者将`external: "absolute "`来保持它是一个绝对id。当返回一个对象时，相对的外部id，即以./或./开头的id，将不会被内部转换为绝对id，并在输出中转换为相对id，而是不变地包含在输出中。如果你想让相对的id被重新规范化和重复利用，请返回一个绝对的文件系统位置作为id并选择`external: "relative"`。
+
+如果在第一个解析模块ID的钩子中，`moduleSideEffects`返回`false`，并且没有其他模块从这个模块导入任何东西，那么即使这个模块会有副作用，也不会被包括在内。如果返回 "true"，Rollup将使用其默认算法，包括该模块中所有有副作用的语句（如修改全局或导出的变量）。如果返回 "no-treeshake"，这个模块的树形处理将被关闭，即使它是空的，也会被包含在一个生成的块中。如果返回null或者省略该标志，那么moduleSideEffects将由`treeshake.moduleSideEffects`选项决定或者默认为true。`加载`和转换钩子可以覆盖这一点。
+
+请参阅[SyntheticnamedExports](https://rollupjs.org/guide/en/#synthetic-named-exports)选项的效果的合成名称导出。如果返回`null`或省略标志，则`SyntheticnamedExports`将默认为`false`。负载和变换钩可以覆盖此。
+
+关于如何[使用meta选项](https://rollupjs.org/guide/en/#custom-module-meta-data)，请参阅自定义模块元数据。如果返回null或者省略了该选项，那么meta将默认为一个空对象。加载和转换钩子可以添加或替换这个对象的属性。
+
+当通过[this.resolve(source, importer, options)](https://rollupjs.org/guide/en/#thisresolvesource-string-importer-string-options-skipself-boolean-custom-plugin-string-any--promiseid-string-external-boolean--absolute-modulesideeffects-boolean--no-treeshake-syntheticnamedexports-boolean--string-meta-plugin-string-any--null)从一个插件触发这个钩子时，可以向这个钩子传递一个自定义选项对象。虽然这个对象将被传递，未经修改，但插件应该遵循惯例，用一个对象添加一个自定义属性，其中的键对应于选项所针对的插件的名称。详情见[自定义解析器选项](https://rollupjs.org/guide/en/#custom-resolver-options)。
