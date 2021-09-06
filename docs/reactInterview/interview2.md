@@ -37,7 +37,7 @@ npm run start
 
 首先实现一下如何创建`虚拟DOM`，看代码：
 
-```js
+```jsx
 // element.js
 
 // 虚拟DOM元素的类，构建实例对象，用来描述DOM
@@ -65,7 +65,7 @@ export {
 
 在主入口文件里，主要做的操作就是来创建一个`DOM`对象，渲染`DOM`以及通过diff后去打补丁更新`DOM`，不啰嗦了，直接看代码：
 
-```js
+```jsx
 // index.js
 
 // 首先引入对应的方法来创建虚拟DOM
@@ -98,7 +98,7 @@ console.log(virtualDom);
 
 ### 渲染虚拟DOM
 
-```js
+```jsx
 // element.js
 
 class Element {
@@ -311,9 +311,9 @@ export default diff;
 
 `walk`方法都做了什么？
 
-* 每个元素都有一个补丁，所以需要创建一个放当前补丁的数组
+  * 每个元素都有一个补丁，所以需要创建一个放当前补丁的数组
 
-* 如果没有`new节点`的话，就直接将`type`为`REMOVE`的类型放到当前补丁里
+  * 如果没有`new节点`的话，就直接将`type`为`REMOVE`的类型放到当前补丁里
 
 ```js
 if (!newNode) {
