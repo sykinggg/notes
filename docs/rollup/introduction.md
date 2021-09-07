@@ -1845,3 +1845,36 @@ resolveId(source) {
 关于如何[使用meta选项](https://rollupjs.org/guide/en/#custom-module-meta-data)，请参阅自定义模块元数据。如果返回null或者省略了该选项，那么meta将默认为一个空对象。加载和转换钩子可以添加或替换这个对象的属性。
 
 当通过[this.resolve(source, importer, options)](https://rollupjs.org/guide/en/#thisresolvesource-string-importer-string-options-skipself-boolean-custom-plugin-string-any--promiseid-string-external-boolean--absolute-modulesideeffects-boolean--no-treeshake-syntheticnamedexports-boolean--string-meta-plugin-string-any--null)从一个插件触发这个钩子时，可以向这个钩子传递一个自定义选项对象。虽然这个对象将被传递，未经修改，但插件应该遵循惯例，用一个对象添加一个自定义属性，其中的键对应于选项所针对的插件的名称。详情见[自定义解析器选项](https://rollupjs.org/guide/en/#custom-resolver-options)。
+
+#### transform
+
+Type: `(code: string, id: string) => string | null | {code?: string, map?: string | SourceMap, ast? : ESTree.Program, moduleSideEffects?: boolean | "no-treeshake" | null, syntheticNamedExports?: boolean | string | null, meta?: {[plugin: string]: any} | null}`
+Kind: `async`, `sequential`
+Previous Hook: [加载](https://rollupjs.org/guide/en/#load)当前处理的文件的加载位置。
+NextHook: [moduleParsed](https://rollupjs.org/guide/en/#moduleparsed) 一旦文件被处理和解析。
+
+可以用来转换单个模块。为了防止额外的解析开销，例如这个钩子已经因为某些原因使用`this.parse`来生成AST，这个钩子可以选择返回一个`{ code, ast, map }`对象。`ast`必须是一个标准的`ESTree AST`，每个节点都有开始和结束属性。如果转换不移动代码，你可以通过将map设置为null来保留现有的源映射。否则你可能需要生成源码图。参见[源代码转换部分](https://rollupjs.org/#source-code-transformations)。
+
+请注意，在监视模式下，此钩子的结果在重建时会被缓存，并且仅当模块的`代码`已更改或上次通过 `this.addWatchFile` 添加的文件已更改时，才会为模块 ID 再次触发此钩子为该模块触发了钩子。
+
+您还可以使用返回值的对象形式来配置模块的附加属性。请注意，可以只返回属性而不返回代码转换。
+
+如果为 `moduleSideEffects` 返回 `false` 并且没有其他模块从该模块导入任何内容，则即使该模块有副作用，也不会包含该模块。
+
+如果返回 `true`，`Rollup` 将使用其默认算法来包含模块中具有副作用（例如修改全局或导出变量）的所有语句。
+
+如果返回`“no-treeshake”`，则此模块的 `treeshaking` 将关闭，并且即使它为空，它也会包含在生成的块之一中。
+
+如果返回`null`或省略标志，则`ModulesIDeeFfects`将由加载此模块的加载钩确定，该挂钩解析此模块的第一个解析挂钩，`treeshake.modulesideefects`选项，或最终默认为`true`。
+
+关于 [synthetic named exports](https://rollupjs.org/guide/en/#synthetic-named-exports) 选项的效果，请看 `syntheticNamedExports`。如果返回`null`或者省略该标志，那么`syntheticNamedExports`将由加载该模块的`load hook`、解析该模块的第一个`resolveId hook`、`treeshake.moduleSideEffects`选项决定，或者最终默认为`false`。
+
+请参阅[自定义模块元数据](https://rollupjs.org/guide/en/#custom-module-meta-data)，了解如何使用`元选项`。如果返回NULL或省略选项，则`META`将由加载此模块的负载挂钩确定，该挂钩解决此模块的第一个解析挂钩或最终默认为空对象。
+
+你可以使用[this.getModuleInfo](https://rollupjs.org/guide/en/#thisgetmoduleinfomoduleid-string--moduleinfo--null)来找出这个钩子里面的`moduleSideEffects`、`syntheticNamedExports`和`meta`的前一个值。
+
+#### watchChange
+
+Type: `watchChange: (id: string, change: {event: 'create' | 'update' | 'delete'}) => void`
+Kind: `sync`, `sequential`
+Previous/Next Hook: 这个钩子可以在构建和输出生成阶段的任何时候被触发。如果是这种情况，当前的构建仍将继续进行，但一旦当前的构建完成，新的构建将被安排开始，从[选项](https://rollupjs.org/guide/en/#options)中重新开始。
