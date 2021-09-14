@@ -1878,3 +1878,6 @@ NextHook: [moduleParsed](https://rollupjs.org/guide/en/#moduleparsed) 一旦文�
 Type: `watchChange: (id: string, change: {event: 'create' | 'update' | 'delete'}) => void`
 Kind: `sync`, `sequential`
 Previous/Next Hook: 这个钩子可以在构建和输出生成阶段的任何时候被触发。如果是这种情况，当前的构建仍将继续进行，但一旦当前的构建完成，新的构建将被安排开始，从[选项](https://rollupjs.org/guide/en/#options)中重新开始。
+
+### Output Generation Hooks
+[rollup](https://rollupjs.org/guide/en/#output-generation-hooks)

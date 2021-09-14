@@ -43,7 +43,8 @@ module.exports = config({
             mermaid: true
         },
         feed: false,
-        hostname: ''
+        hostname: '',
+        displayAllHeaders: true,
     },
     plugins: [
         "@vuepress/nprogress",

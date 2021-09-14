@@ -3,6 +3,7 @@ module.exports = {
     {
       title: '第 1 期：基础面试题',
       children: [
+        '/jsInterview/largeFileResumableUpload.md',
         '/jsInterview/baseInterview.md',
         '/jsInterview/babelCompile.md',
         '/jsInterview/tsBaseInterview.md',
@@ -329,7 +330,8 @@ module.exports = {
         { title: '第一套浏览器综合基础面试题', path: '/browser/interview/baseInterview.md' },
         { title: 'Quirks模式是什么？它和Standards模式有什么区别?', path: '/browser/interview/quirksStandards.md' },
         { title: '获取localStorage和sessionStorage当前已存储大小?', path: '/browser/interview/storageSpace.md' },
-        '/browser/interview/webUrl.md'
+        '/browser/interview/webUrl.md',
+        '/browser/interview/progress.md',
       ]
     }
   ],
