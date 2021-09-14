@@ -44,7 +44,6 @@ module.exports = config({
         },
         feed: false,
         hostname: '',
-        displayAllHeaders: true,
     },
     plugins: [
         "@vuepress/nprogress",
