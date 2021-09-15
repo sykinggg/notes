@@ -390,6 +390,15 @@ module.exports = [
     ]
   },
   {
+    text: '性能优化',
+    items: [
+      {
+        text: 'vue-性能优化',
+        link: '/performance/vue/vue2Base.md'
+      }
+    ]
+  },
+  {
     text: '算法&设计',
     items: [
       {

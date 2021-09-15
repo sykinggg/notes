@@ -934,4 +934,12 @@ module.exports = {
       ]
     },
   ],
+  '/performance/': [
+    {
+      title: 'vue',
+      children: [
+        '/performance/vue/vue2Base.md'
+      ]
+    }
+  ]
 }

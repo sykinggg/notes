@@ -1,0 +1,436 @@
+# Vue.js 九个性能优化技巧
+
+## Functional components
+
+第一个技巧，函数式组件，你可以查看这个在线示例
+
+优化前的组件代码如下：
+
+```html
+<template>
+  <div class="cell">
+    <div v-if="value" class="on"></div>
+    <section v-else class="off"></section>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['value'],
+}
+</script>
+```
+
+优化后的组件代码如下：
+
+```html
+<template functional>
+  <div class="cell">
+    <div v-if="props.value" class="on"></div>
+    <section v-else class="off"></section>
+  </div>
+</template>
+```
+
+然后我们在父组件各渲染优化前后的组件 `800` 个，并在每一帧内部通过修改数据来触发组件的更新，开启 `Chrome` 的 `Performance` 面板记录它们的性能，得到如下结果。
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/640.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/640(1).webp)
+
+对比这两张图我们可以看到优化前执行 `script` 的时间要多于优化后的，而我们知道 JS 引擎是单线程的运行机制，`JS 线程`会阻塞 `UI 线程`，所以当脚本执行时间过长，就会阻塞渲染，导致页面卡顿。而优化后的 `script` 执行时间短，所以它的性能更好。
+
+那么，为什么用函数式组件 `JS` 的执行时间就变短了呢？这要从函数式组件的实现原理说起了，你可以把它理解成一个函数，它可以根据你传递的上下文数据渲染生成一片 `DOM`。
+
+函数式组件和普通的对象类型的组件不同，它不会被看作成一个真正的组件，我们知道在 `patch` 过程中，如果遇到一个节点是组件 `vnode`，会递归执行子组件的初始化过程；而函数式组件的 `render` 生成的是普通的 `vnode`，不会有递归子组件的过程，因此渲染开销会低很多。
+
+因此，函数式组件也不会有状态，不会有响应式数据，生命周期钩子函数这些东西。你可以把它当成把普通组件模板中的一部分 `DOM` 剥离出来，通过函数的方式渲染出来，是一种在 `DOM` 层面的复用。
+
+## Child component splitting
+
+第二个技巧，子组件拆分，你可以查看这个在线示例。
+
+优化前的组件代码如下：
+
+```html
+<template>
+  <div :style="{ opacity: number / 300 }">
+    <div>{{ heavy() }}</div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['number'],
+  methods: {
+    heavy () {
+      const n = 100000
+      let result = 0
+      for (let i = 0; i < n; i++) {
+        result += Math.sqrt(Math.cos(Math.sin(42)))
+      }
+      return result
+    }
+  }
+}
+</script>
+```
+
+优化后的组件代码如下：
+
+```html
+<template>
+  <div :style="{ opacity: number / 300 }">
+    <ChildComp/>
+  </div>
+</template>
+
+<script>
+export default {
+  components: {
+    ChildComp: {
+      methods: {
+        heavy () {
+          const n = 100000
+          let result = 0
+          for (let i = 0; i < n; i++) {
+            result += Math.sqrt(Math.cos(Math.sin(42)))
+          }
+          return result
+        },
+      },
+      render (h) {
+        return h('div', this.heavy())
+      }
+    }
+  },
+  props: ['number']
+}
+</script>
+```
+
+然后我们在父组件各渲染优化前后的组件 300 个，并在每一帧内部通过修改数据来触发组件的更新，开启 `Chrome` 的 `Performance` 面板记录它们的性能，得到如下结果。
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/641.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/642.webp)
+
+对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
+
+那么为什么会有差异呢，我们来看优化前的组件，示例通过一个 `heavy` 函数模拟了一个耗时的任务，且这个函数在每次渲染的时候都会执行一次，所以每次组件的渲染都会消耗较长的时间执行 JavaScript。
+
+而优化后的方式是把这个耗时任务 `heavy` 函数的执行逻辑用子组件 `ChildComp` 封装了，由于 Vue 的更新是组件粒度的，虽然每一帧都通过数据修改导致了父组件的重新渲染，但是 `ChildComp` 却不会重新渲染，因为它的内部也没有任何响应式数据的变化。所以优化后的组件不会在每次渲染都执行耗时任务，自然执行的 JavaScript 时间就变少了。
+
+不过针对这个优化的方式我提出了一些不同的看法，详情可以点开这个 issue，我认为这个场景下的优化用计算属性要比子组件拆分要好。得益于计算属性自身缓存特性，耗时的逻辑也只会在第一次渲染的时候执行，而且使用计算属性也没有额外渲染子组件的开销。
+
+在实际工作中，使用计算属性是优化性能的场景会有很多，毕竟它也体现了一种空间换时间的优化思想。
+
+## Local variables
+
+第三个技巧，局部变量，你可以查看这个在线示例。
+
+优化前的组件代码如下：
+
+```html
+<template>
+  <div :style="{ opacity: start / 300 }">{{ result }}</div>
+</template>
+
+<script>
+export default {
+  props: ['start'],
+  computed: {
+    base () {
+      return 42
+    },
+    result () {
+      let result = this.start
+      for (let i = 0; i < 1000; i++) {
+        result += Math.sqrt(Math.cos(Math.sin(this.base))) + this.base * this.base + this.base + this.base * 2 + this.base * 3
+      }
+      return result
+    },
+  },
+}
+</script>
+```
+
+优化后的组件代码如下：
+
+```html
+<template>
+  <div :style="{ opacity: start / 300 }">{{ result }}</div>
+</template>
+
+<script>
+export default {
+  props: ['start'],
+  computed: {
+    base () {
+      return 42
+    },
+    result ({ base, start }) {
+      let result = start
+      for (let i = 0; i < 1000; i++) {
+        result += Math.sqrt(Math.cos(Math.sin(base))) + base * base + base + base * 2 + base * 3
+      }
+      return result
+    },
+  },
+}
+</script>
+```
+
+然后我们在父组件各渲染优化前后的组件 300 个，并在每一帧内部通过修改数据来触发组件的更新，开启 `Chrome` 的 `Performance` 面板记录它们的性能，得到如下结果。
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/643.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/644.webp)
+
+对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
+
+这里主要是优化前后组件的计算属性 `result` 的实现差异，优化前的组件多次在计算过程中访问 `this.base`，而优化后的组件会在计算前先用局部变量 `base` 缓存 `this.base`，后面则直接访问 `base`变量。
+
+那么为啥这个差异会造成性能上的差异呢，原因是你每次访问 `this.base` 的时候，由于 `this.base` 是一个响应式对象，所以会触发它的 `getter`，进而会执行依赖收集相关逻辑代码。类似的逻辑执行多了，像示例这样，几百次循环更新几百个组件，每个组件触发 `computed` 重新计算，然后又多次执行依赖收集相关逻辑，性能自然就下降了。
+
+从需求上来说，`this.base` 执行一次依赖收集就够了，因此我们只需要把它的 `getter` 求值结果返回给局部变量 `base`，后续再次访问 `base` 的时候就不会触发 `getter`，也不会走依赖收集的逻辑了，性能自然就得到了提升。
+
+这是一个非常实用的性能优化技巧。因为很多人在开发 `Vue.js` 项目的时候，每当取变量的时候就习惯性直接写 `this.xxx` 了，因为大部分人并不会注意到访问 `this.xxx` 背后做的事情。在访问次数不多的时候，性能问题并没有凸显，但是一旦访问次数变多，比如在一个大循环中多次访问，类似示例这种场景，就会产生性能问题了。
+
+我之前给 ZoomUI 的 Table 组件做性能优化的时候，在 `render table body` 的时候就使用了局部变量的优化技巧，并写了 benchmark 做性能对比：渲染 1000 * 10 的表格，ZoomUI Table 的更新数据重新渲染的性能要比 ElementUI 的 Table 性能提升了近一倍。
+
+## Reuse DOM with v-show
+
+第四个技巧，使用 `v-show` 复用 DOM，你可以查看这个在线示例。
+
+优化前的组件代码如下：
+
+```html
+<template functional>
+  <div class="cell">
+    <div v-if="props.value" class="on">
+      <Heavy :n="10000"/>
+    </div>
+    <section v-else class="off">
+      <Heavy :n="10000"/>
+    </section>
+  </div>
+</template>
+```
+
+优化后的组件代码如下：
+
+```html
+<template functional>
+  <div class="cell">
+    <div v-show="props.value" class="on">
+      <Heavy :n="10000"/>
+    </div>
+    <section v-show="!props.value" class="off">
+      <Heavy :n="10000"/>
+    </section>
+  </div>
+</template>
+```
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/645.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/646.webp)
+
+对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
+
+优化前后的主要区别是用 `v-show` 指令替代了 `v-if` 指令来替代组件的显隐，虽然从表现上看，`v-show` 和 `v-if` 类似，都是控制组件的显隐，但内部实现差距还是很大的。
+
+`v-if` 指令在编译阶段就会编译成一个三元运算符，条件渲染，比如优化前的组件模板经过编译后生成如下渲染函数：
+
+```js
+function render() {
+  with(this) {
+    return _c('div', {
+      staticClass: "cell"
+    }, [(props.value) ? _c('div', {
+      staticClass: "on"
+    }, [_c('Heavy', {
+      attrs: {
+        "n": 10000
+      }
+    })], 1) : _c('section', {
+      staticClass: "off"
+    }, [_c('Heavy', {
+      attrs: {
+        "n": 10000
+      }
+    })], 1)])
+  }
+}
+```
+
+当条件 `props.value` 的值变化的时候，会触发对应的组件更新，对于 `v-if` 渲染的节点，由于新旧节点 `vnode` 不一致，在核心 `diff` 算法比对过程中，会移除旧的 `vnode` 节点，创建新的 `vnode` 节点，那么就会创建新的 `Heavy` 组件，又会经历 `Heavy` 组件自身初始化、渲染 `vnode`、`patch` 等过程。
+
+因此使用 `v-if` 每次更新组件都会创建新的 `Heavy` 子组件，当更新的组件多了，自然就会造成性能压力。
+
+而当我们使用 `v-show` 指令，优化后的组件模板经过编译后生成如下渲染函数：
+
+```js
+function render() {
+  with(this) {
+    return _c('div', {
+      staticClass: "cell"
+    }, [_c('div', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (props.value),
+        expression: "props.value"
+      }],
+      staticClass: "on"
+    }, [_c('Heavy', {
+      attrs: {
+        "n": 10000
+      }
+    })], 1), _c('section', {
+      directives: [{
+        name: "show",
+        rawName: "v-show",
+        value: (!props.value),
+        expression: "!props.value"
+      }],
+      staticClass: "off"
+    }, [_c('Heavy', {
+      attrs: {
+        "n": 10000
+      }
+    })], 1)])
+  }
+}
+```
+
+当条件 `props.value` 的值变化的时候，会触发对应的组件更新，对于 `v-show` 渲染的节点，由于新旧 `vnode` 一致，它们只需要一直 `patchVnode` 即可，那么它又是怎么让 `DOM` 节点显示和隐藏的呢？
+
+原来在 `patchVnode` 过程中，内部会对执行 `v-show` 指令对应的钩子函数 `update`，然后它会根据 `v-show` 指令绑定的值来设置它作用的 `DOM` 元素的 `style.display` 的值控制显隐。
+
+因此相比于 `v-if` 不断删除和创建函数新的 `DOM`，`v-show` 仅仅是在更新现有 `DOM` 的显隐值，所以 `v-show` 的开销要比 `v-if` 小的多，当其内部 `DOM` 结构越复杂，性能的差异就会越大。
+
+但是 `v-show` 相比于 `v-if` 的性能优势是在组件的更新阶段，如果仅仅是在初始化阶段，`v-if` 性能还要高于 `v-show`，原因是在于它仅仅会渲染一个分支，而 `v-show` 把两个分支都渲染了，通过 `style.display` 来控制对应 `DOM` 的显隐。
+
+在使用 `v-show` 的时候，所有分支内部的组件都会渲染，对应的生命周期钩子函数都会执行，而使用 `v-if` 的时候，没有命中的分支内部的组件是不会渲染的，对应的生命周期钩子函数都不会执行。
+
+## KeepAlive
+
+第五个技巧，使用 `KeepAlive` 组件缓存 DOM。
+
+优化前的组件代码如下：
+
+```html
+<template>
+  <div id="app">
+    <router-view/>
+  </div>
+</template>
+```
+
+优化后的组件代码如下：
+
+```html
+<template>
+  <div id="app">
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
+  </div>
+</template>
+```
+
+我们点击按钮在 `Simple page` 和 `Heavy Page` 之间切换，会渲染不同的视图，其中 `Heavy Page` 的渲染非常耗时。我们开启 `Chrome` 的 `Performance` 面板记录它们的性能，然后分别在优化前后执行如上的操作，会得到如下结果。
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/647.webp)
+![demo](/notes/assets/performance/vue/647.1.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/648.webp)
+![demo](/notes/assets/performance/vue/648.1.webp)
+
+对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
+
+在非优化场景下，我们每次点击按钮切换路由视图，都会重新渲染一次组件，渲染组件就会经过组件初始化，`render`、`patch` 等过程，如果组件比较复杂，或者嵌套较深，那么整个渲染耗时就会很长。
+
+而在使用 `KeepAlive` 后，被 `KeepAlive` 包裹的组件在经过第一次渲染后，的 `vnode` 以及 DOM 都会被缓存起来，然后再下一次再次渲染该组件的时候，直接从缓存中拿到对应的 `vnode` 和 DOM，然后渲染，并不需要再走一次组件初始化，`render` 和 `patch` 等一系列流程，减少了 `script` 的执行时间，性能更好。
+
+但是使用 `KeepAlive` 组件并非没有成本，因为它会占用更多的内存去做缓存，这是一种典型的空间换时间优化思想的应用。
+
+## Deferred features
+
+第六个技巧，使用 `Deferred` 组件延时分批渲染组件，你可以查看这个在线示例。
+
+优化前的组件代码如下：
+
+```html
+<template>
+  <div class="deferred-off">
+    <VueIcon icon="fitness_center" class="gigantic"/>
+
+    <h2>I'm an heavy page</h2>
+
+    <Heavy v-for="n in 8" :key="n"/>
+
+    <Heavy class="super-heavy" :n="9999999"/>
+  </div>
+</template>
+```
+
+优化后的组件代码如下：
+
+```html
+<template>
+  <div class="deferred-on">
+    <VueIcon icon="fitness_center" class="gigantic"/>
+
+    <h2>I'm an heavy page</h2>
+
+    <template v-if="defer(2)">
+      <Heavy v-for="n in 8" :key="n"/>
+    </template>
+
+    <Heavy v-if="defer(3)" class="super-heavy" :n="9999999"/>
+  </div>
+</template>
+
+<script>
+import Defer from '@/mixins/Defer'
+
+export default {
+  mixins: [
+    Defer(),
+  ],
+}
+</script>
+```
+
+我们点击按钮在 `Simple page` 和 `Heavy Page` 之间切换，会渲染不同的视图，其中 `Heavy Page` 的渲染非常耗时。我们开启 Chrome 的 Performance 面板记录它们的性能，然后分别在优化前后执行如上的操作，会得到如下结果。
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/649.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/650.webp)
