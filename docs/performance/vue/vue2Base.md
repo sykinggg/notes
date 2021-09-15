@@ -434,3 +434,219 @@ export default {
 * 优化后：
 
 ![demo](/notes/assets/performance/vue/650.webp)
+
+对比这两张图我们可以发现，优化前当我们从 Simple Page 切到 Heavy Page 的时候，在一次 Render 接近结尾的时候，页面渲染的仍然是 Simple Page，会给人一种页面卡顿的感觉。而优化后当我们从 Simple Page 切到 Heavy Page 的时候，在一次 `Render` 靠前的位置页面就已经渲染了 Heavy Page 了，并且 Heavy Page 是渐进式渲染出来的。
+
+优化前后的差距主要是后者使用了 `Defer` 这个 `mixin`，那么它具体是怎么工作的，我们来一探究竟：
+
+```js
+export default function (count = 10) {
+  return {
+    data () {
+      return {
+        displayPriority: 0
+      }
+    },
+
+    mounted () {
+      this.runDisplayPriority()
+    },
+
+    methods: {
+      runDisplayPriority () {
+        const step = () => {
+          requestAnimationFrame(() => {
+            this.displayPriority++
+            if (this.displayPriority < count) {
+              step()
+            }
+          })
+        }
+        step()
+      },
+
+      defer (priority) {
+        return this.displayPriority >= priority
+      }
+    }
+  }
+}
+```
+
+`Defer` 的主要思想就是把一个组件的一次渲染拆成多次，它内部维护了 `displayPriority` 变量，然后在通过 `requestAnimationFrame` 在每一帧渲染的时候自增，最多加到 `count`。然后使用 `Defer mixin` 的组件内部就可以通过 `v-if="defer(xxx)"` 的方式来控制在 `displayPriority` 增加到 `xxx` 的时候渲染某些区块了。
+
+当你有渲染耗时的组件，使用 `Deferred` 做渐进式渲染是不错的注意，它能避免一次 `render` 由于 JS 执行时间过长导致渲染卡住的现象。
+
+## Time slicing
+
+第七个技巧，使用 `Time slicing` 时间片切割技术，你可以查看这个在线示例。
+
+优化前的代码如下：
+
+```js
+fetchItems ({ commit }, { items }) {
+  commit('clearItems')
+  commit('addItems', items)
+}
+```
+
+优化后的代码如下：
+
+```js
+fetchItems ({ commit }, { items, splitCount }) {
+  commit('clearItems')
+  const queue = new JobQueue()
+  splitArray(items, splitCount).forEach(
+    chunk => queue.addJob(done => {
+      // 分时间片提交数据
+      requestAnimationFrame(() => {
+        commit('addItems', chunk)
+        done()
+      })
+    })
+  )
+  await queue.start()
+}
+```
+
+我们先通过点击 `Genterate items` 按钮创建 10000 条假数据，然后分别在开启和关闭 `Time-slicing` 的情况下点击 `Commit items` 按钮提交数据，开启 Chrome 的 Performance 面板记录它们的性能，会得到如下结果。
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/651.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/652.webp)
+
+对比这两张图我们可以发现，优化前总的 `script` 执行时间要比优化后的还要少一些，但是从实际的观感上看，优化前点击提交按钮，页面会卡死 1.2 秒左右，在优化后，页面不会完全卡死，但仍然会有渲染卡顿的感觉。
+
+那么为什么在优化前页面会卡死呢？因为一次性提交的数据过多，内部 JS 执行时间过长，阻塞了 UI 线程，导致页面卡死。
+
+优化后，页面仍有卡顿，是因为我们拆分数据的粒度是 1000 条，这种情况下，重新渲染组件仍然有压力，我们观察 fps 只有十几，会有卡顿感。通常只要让页面的 fps 达到 60，页面就会非常流畅，如果我们把数据拆分粒度变成 100 条，基本上 fps 能达到 50 以上，虽然页面渲染变流畅了，但是完成 10000 条数据总的提交时间还是变长了。
+
+使用 `Time slicing`技术可以避免页面卡死，通常我们在这种耗时任务处理的时候会加一个 `loading` 效果，在这个示例中，我们可以开启 `loading animation`，然后提交数据。对比发现，优化前由于一次性提交数据过多，JS 一直长时间运行，阻塞 UI 线程，这个 `loading` 动画是不会展示的，而优化后，由于我们拆成多个时间片去提交数据，单次 JS 运行时间变短了，这样 `loading` 动画就有机会展示了。
+
+::: tip
+这里要注意的一点，虽然我们拆时间片使用了 `requestAnimationFrame` API，但是使用 `requestAnimationFrame` 本身是不能保证满帧运行的，`requestAnimationFrame` 保证的是在浏览器每一次重绘后会执行对应传入的回调函数，想要保证满帧，只能让 JS 在一个 Tick 内的运行时间不超过 17ms。
+:::
+
+## Non-reactive data
+
+第八个技巧，使用 `Non-reactive data` ，你可以查看这个在线示例。
+
+优化前代码如下：
+
+```js
+const data = items.map(
+  item => ({
+    id: uid++,
+    data: item,
+    vote: 0
+  })
+)
+```
+
+优化后代码如下：
+
+```js
+const data = items.map(
+  item => optimizeItem(item)
+)
+
+function optimizeItem (item) {
+  const itemData = {
+    id: uid++,
+    vote: 0
+  }
+  Object.defineProperty(itemData, 'data', {
+    // Mark as non-reactive
+    configurable: false,
+    value: item
+  })
+  return itemData
+}
+```
+
+还是前面的示例，我们先通过点击 `Genterate items` 按钮创建 10000 条假数据，然后分别在开启和关闭 `Partial reactivity` 的情况下点击 `Commit items` 按钮提交数据，开启 Chrome 的 Performance 面板记录它们的性能，会得到如下结果。
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/653.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/654.webp)
+
+对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
+
+之所以有这种差异，是因为内部提交的数据的时候，会默认把新提交的数据也定义成响应式，如果数据的子属性是对象形式，还会递归让子属性也变成响应式，因此当提交数据很多的时候，这个过程就变成了一个耗时过程。
+
+而优化后我们把新提交的数据中的对象属性 `data` 手动变成了 `configurable` 为 `false`，这样内部在 `walk` 时通过 `Object.keys(obj)` 获取对象属性数组会忽略 `data`，也就不会为 `data` 这个属性 `defineReactive`，由于 `data` 指向的是一个对象，这样也就会减少递归响应式的逻辑，相当于减少了这部分的性能损耗。数据量越大，这种优化的效果就会更明显。
+
+其实类似这种优化的方式还有很多，比如我们在组件中定义的一些数据，也不一定都要在 `data` 中定义。有些数据我们并不是用在模板中，也不需要监听它的变化，只是想在组件的上下文中共享这个数据，这个时候我们可以仅仅把这个数据挂载到组件实例 `this` 上，例如：
+
+```js
+export default {
+  created() {
+    this.scroll = null
+  },
+  mounted() {
+    this.scroll = new BScroll(this.$el)
+  }
+}
+```
+
+这样我们就可以在组件上下文中共享 `scroll` 对象了，即使它不是一个响应式对象。
+
+## Virtual scrolling
+
+第九个技巧，使用 `Virtual scrolling` ，你可以查看这个在线示例。
+
+优化前组件的代码如下：
+
+```html
+<div class="items no-v">
+  <FetchItemViewFunctional
+    v-for="item of items"
+    :key="item.id"
+    :item="item"
+    @vote="voteItem(item)"
+  />
+</div>
+```
+
+优化后代码如下：
+
+```html
+<recycle-scroller
+  class="items"
+  :items="items"
+  :item-size="24"
+>
+  <template v-slot="{ item }">
+    <FetchItemView
+      :item="item"
+      @vote="voteItem(item)"
+    />
+  </template>
+</recycle-scroller>
+```
+
+还是前面的示例，我们需要开启 `View list`，然后点击 `Genterate items` 按钮创建 10000 条假数据（注意，线上示例最多只能创建 1000 条数据，实际上 1000 条数据并不能很好地体现优化的效果，所以我修改了源码的限制，本地运行，创建了 10000 条数据），然后分别在 `Unoptimized` 和 `RecycleScroller` 的情况下点击 `Commit items` 按钮提交数据，滚动页面，开启 Chrome 的 Performance 面板记录它们的性能，会得到如下结果。
+
+* 优化前：
+
+![demo](/notes/assets/performance/vue/655.webp)
+
+* 优化后：
+
+![demo](/notes/assets/performance/vue/656.webp)
+
+对比这两张图我们发现，在非优化的情况下，10000 条数据在滚动情况下 fps 只有个位数，在非滚动情况下也就十几，原因是非优化场景下渲染的 DOM 太多，渲染本身的压力很大。优化后，即使 10000 条数据，在滚动情况下的 fps 也能有 30 多，在非滚动情况下可以达到 60 满帧。
+
+之所以有这个差异，是因为虚拟滚动的实现方式：是只渲染视口内的 DOM。这样总共渲染的 DOM 数量就很少了，自然性能就会好很多。
+
+虚拟滚动组件也是 Guillaume Chau 写的，感兴趣的同学可以去研究它的源码实现。它的基本原理就是监听滚动事件，动态更新需要显示的 DOM 元素，计算出它们在视图中的位移。
+
+虚拟滚动组件也并非没有成本，因为它需要在滚动的过程中实时去计算，所以会有一定的 `script` 执行的成本。因此如果列表的数据量不是很大的情况，我们使用普通的滚动就足够了。
