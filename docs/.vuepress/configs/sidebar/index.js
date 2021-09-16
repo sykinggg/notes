@@ -938,7 +938,8 @@ module.exports = {
     {
       title: 'vue',
       children: [
-        '/performance/vue/vue2Base.md'
+        '/performance/vue/vue2Base.md',
+        '/performance/vue/vue2Table.md',
       ]
     }
   ]
