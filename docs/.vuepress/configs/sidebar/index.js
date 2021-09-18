@@ -3,6 +3,7 @@ module.exports = {
     {
       title: '第 1 期：基础面试题',
       children: [
+        '/jsInterview/asyncAwait.md',
         '/jsInterview/cycle.md',
         '/jsInterview/largeFileResumableUpload.md',
         '/jsInterview/baseInterview.md',
