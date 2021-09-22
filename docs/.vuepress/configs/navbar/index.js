@@ -227,6 +227,10 @@ module.exports = [
         // items: [
         //     { text: 'git基础面试', link: '/git/index.md' }
         // ]
+      },
+      {
+        text: 'nginx',
+        link: '/nginx/base.md',
       }
     ]
   },
@@ -261,6 +265,10 @@ module.exports = [
         //     { text: '第 9 期：基础概念', link: '/react/principle/basePrinciple.md' },
         //     { text: '第 10 期：基础面试题', link: '/react/interview/50/interview1.md' },
         // ]
+      },
+      {
+        text: '图解React源码',
+        link: '/react-illustration-series/main/macro-structure.md'
       },
       {
         text: 'umi',

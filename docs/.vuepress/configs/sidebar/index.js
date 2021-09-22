@@ -17,7 +17,6 @@ module.exports = {
         '/jsInterview/webpackPublic.md',
         '/jsInterview/codeSeparation.md',
         '/jsInterview/performance.md',
-        '/jsInterview/baseServer.md',
         '/jsInterview/spa.md',
         '/jsInterview/promise.md',
         '/jsInterview/executionMechanism.md',
@@ -942,6 +941,24 @@ module.exports = {
       children: [
         '/performance/vue/vue2Base.md',
         '/performance/vue/vue2Table.md',
+      ]
+    }
+  ],
+  '/nginx': [
+    {
+      title: '基础',
+      children: [
+        '/nginx/base.md',
+        '/nginx/nginxComprehensiveScene.md',
+      ]
+    }
+  ],
+  '/react-illustration-series': [
+    {
+      title: '基础概念',
+      children: [
+        '/react-illustration-series/main/macro-structure.md',
+        '/react-illustration-series/main/workloop.md',
       ]
     }
   ]
