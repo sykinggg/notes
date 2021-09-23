@@ -944,7 +944,7 @@ module.exports = {
       ]
     }
   ],
-  '/nginx': [
+  '/nginx/': [
     {
       title: '基础',
       children: [
@@ -953,13 +953,23 @@ module.exports = {
       ]
     }
   ],
-  '/react-illustration-series': [
+  '/react-illustration-series/': [
     {
       title: '基础概念',
       children: [
-        '/react-illustration-series/main/macro-structure.md',
-        '/react-illustration-series/main/workloop.md',
-      ]
-    }
+        '/react-illustration-series/macro-structure.md',
+        '/react-illustration-series/workloop.md',
+        '/react-illustration-series/object-structure.md',
+      ],
+    },
+    {
+      title: '运行核心',
+      children: [
+        '/react-illustration-series/reconciler-workflow.md',
+        '/react-illustration-series/bootstrap.md',
+        '/react-illustration-series/priority.md',
+        '/react-illustration-series/scheduler.md',
+      ],
+    },
   ]
 }
