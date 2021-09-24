@@ -969,6 +969,9 @@ module.exports = {
         '/react-illustration-series/bootstrap.md',
         '/react-illustration-series/priority.md',
         '/react-illustration-series/scheduler.md',
+        '/react-illustration-series/fibertree-prepare.md',
+        '/react-illustration-series/fibertree-create.md',
+        '/react-illustration-series/fibertree-update.md',
       ],
     },
   ]
