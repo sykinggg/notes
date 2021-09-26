@@ -957,22 +957,45 @@ module.exports = {
     {
       title: '基础概念',
       children: [
-        '/react-illustration-series/macro-structure.md',
-        '/react-illustration-series/workloop.md',
-        '/react-illustration-series/object-structure.md',
+        '/react-illustration-series/main/macro-structure.md',
+        '/react-illustration-series/main/workloop.md',
+        '/react-illustration-series/main/object-structure.md',
       ],
     },
     {
       title: '运行核心',
       children: [
-        '/react-illustration-series/reconciler-workflow.md',
-        '/react-illustration-series/bootstrap.md',
-        '/react-illustration-series/priority.md',
-        '/react-illustration-series/scheduler.md',
-        '/react-illustration-series/fibertree-prepare.md',
-        '/react-illustration-series/fibertree-create.md',
-        '/react-illustration-series/fibertree-update.md',
+        '/react-illustration-series/main/reconciler-workflow.md',
+        '/react-illustration-series/main/bootstrap.md',
+        '/react-illustration-series/main/priority.md',
+        '/react-illustration-series/main/scheduler.md',
+        '/react-illustration-series/main/fibertree-prepare.md',
+        '/react-illustration-series/main/fibertree-create.md',
+        '/react-illustration-series/main/fibertree-update.md',
+        '/react-illustration-series/main/fibertree-commit.md',
       ],
     },
+    {
+      title: '数据管理',
+      children: [
+        '/react-illustration-series/main/state-effects.md',
+        '/react-illustration-series/main/hook-summary.md',
+        '/react-illustration-series/main/hook-state.md',
+        '/react-illustration-series/main/hook-effect.md',
+        '/react-illustration-series/main/context.md',
+      ]
+    },
+    {
+      title: '交互',
+      children: [
+        '/react-illustration-series/main/synthetic-event.md',
+      ],
+    },
+    {
+      title: '高频算法',
+      children: [
+        '/react-illustration-series/algorithm/bitfiled.md',
+      ],
+    }
   ]
 }

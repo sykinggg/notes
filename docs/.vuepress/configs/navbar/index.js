@@ -268,7 +268,7 @@ module.exports = [
       },
       {
         text: '图解React源码',
-        link: '/react-illustration-series/macro-structure.md'
+        link: '/react-illustration-series/main/macro-structure.md'
       },
       {
         text: 'umi',
