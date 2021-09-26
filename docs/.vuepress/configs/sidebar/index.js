@@ -995,6 +995,7 @@ module.exports = {
       title: '高频算法',
       children: [
         '/react-illustration-series/algorithm/bitfiled.md',
+        '/react-illustration-series/algorithm/heapsort.md',
       ],
     }
   ]

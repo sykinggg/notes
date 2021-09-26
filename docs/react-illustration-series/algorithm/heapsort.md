@@ -18,18 +18,18 @@
 1. 构造二叉堆
    - 需要从最后一个非叶子节点开始, 向下调整堆结构
 
-![](../../snapshots/data-structure/minheap.png)
+<!-- ![](/notes/assets/react-illustration-series/minheap.png) -->
 
 2. 插入节点, 重新向上调整堆(`sift-up`)
    - 将新元素插入到数组末尾之后, 要重新调整数组结构, 保证数组任然是最小(或最大)堆.
 
-![](../../snapshots/data-structure/minheap-insert.png)
+<!-- ![](../../snapshots/data-structure/minheap-insert.png) -->
 
 3. 提取或删除根节点(顶端节点), 重新向下调整堆(`sift-down`)
    - 对于最大堆, 提取的是最大值. 对于最小堆, 提取的是最小值.
    - 顶点被提取之后, 要重新调整数组结构, 保证数组任然是最小(或最大)堆.
 
-![](../../snapshots/data-structure/minheap-remove.png)
+<!-- ![](../../snapshots/data-structure/minheap-remove.png) -->
 
 4. 排序过程
 
