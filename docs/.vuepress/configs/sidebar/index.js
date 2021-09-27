@@ -941,8 +941,14 @@ module.exports = {
       children: [
         '/performance/vue/vue2Base.md',
         '/performance/vue/vue2Table.md',
-      ]
-    }
+      ],
+    },
+    {
+      title: 'react',
+      children: [
+        '/performance/react/reactBase.md',
+      ],
+    },
   ],
   '/nginx/': [
     {
@@ -996,6 +1002,10 @@ module.exports = {
       children: [
         '/react-illustration-series/algorithm/bitfiled.md',
         '/react-illustration-series/algorithm/heapsort.md',
+        '/react-illustration-series/algorithm/dfs.md',
+        '/react-illustration-series/algorithm/linkedlist.md',
+        '/react-illustration-series/algorithm/stack.md',
+        '/react-illustration-series/algorithm/diff.md',
       ],
     }
   ]

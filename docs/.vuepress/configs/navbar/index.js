@@ -403,7 +403,11 @@ module.exports = [
       {
         text: 'vue-性能优化',
         link: '/performance/vue/vue2Base.md'
-      }
+      },
+      {
+        text: 'react-性能优化',
+        link: '/performance/react/reactBase.md'
+      },
     ]
   },
   {
