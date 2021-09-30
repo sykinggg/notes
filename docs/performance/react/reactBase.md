@@ -733,3 +733,22 @@ const [isPending, startTransition] = useTransition();
 在图中我们可以看到 ，用户输入已经不会有卡顿的感觉了。
 
 ![](/notes/assets/performance/react/36910231dd864e5ab669ec2246532b3f_tplv-k3u1fbpfcp-watermark.awebp)
+
+那么它跟我们手动实现的防抖有啥区别呢？
+
+防抖的主要问题是，不管我们的电脑渲染的有多快，它都会有一个固定的延迟，而 `useDeferredValue` 呢，只会在渲染比较耗时的情况下把优先级滞后，在多数情况下是不会有不必要的延迟的。
+
+### SSR 下的懒加载支持
+
+最后呢，就是 `Suspense` 了，在 React 18 以前， SSR 模式下是不支持使用 `Suspense` 组件的，而在 React 18 中，服务端渲染的组件也支持使用 `<Suspense>` 了：如果你把组件包裹在了`<Suspense>`中，服务端首先会把 `fallback` 中的组件作为 `HTML` 流式传输，一旦主组件加载完成，`React` 会发送新的 `HTML` 来替换整个组件。
+
+```tsx
+<Layout> 
+< Article /> 
+<Suspense fallback={<Spinner />}>
+   <Comments /> 
+</Suspense>
+</Layout>
+```
+
+比如上面的代码，`<Article>` 组件首先会被渲染，`<Comments>` 组件将被 `fallback` 替换为 `<Spinner>` 。一旦 `<Comments>` 组件加载完成后，`React` 会才将其发送到浏览器，替换 `<Spinner>` 组件。
