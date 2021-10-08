@@ -5,6 +5,7 @@ module.exports = {
       children: [
         '/jsInterview/asyncAwait.md',
         '/jsInterview/cycle.md',
+        '/jsInterview/cycleOtherWay.md',
         '/jsInterview/largeFileResumableUpload.md',
         '/jsInterview/baseInterview.md',
         '/jsInterview/babelCompile.md',
