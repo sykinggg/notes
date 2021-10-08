@@ -333,6 +333,7 @@ module.exports = {
         { title: '获取localStorage和sessionStorage当前已存储大小?', path: '/browser/interview/storageSpace.md' },
         '/browser/interview/webUrl.md',
         '/browser/interview/progress.md',
+        '/browser/interview/redrawReflow.md',
       ]
     }
   ],
