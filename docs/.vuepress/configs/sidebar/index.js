@@ -3,6 +3,7 @@ module.exports = {
     {
       title: '第 1 期：基础面试题',
       children: [
+        '/jsInterview/jsHandwriting.md',
         '/jsInterview/jsonStringify.md',
         '/jsInterview/useEs6.md',
         '/jsInterview/asyncAwait.md',
