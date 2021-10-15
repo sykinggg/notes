@@ -720,3 +720,91 @@ Number([,]); // -> 0
 ```js
 -0 + 1 * 0 - 0; // -> 0
 ```
+
+## [\"1\", \"2\", \"3\"].map(parseInt)
+
+### 知识点:
+
+* [Array/map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+
+* [Number/parseInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt)
+
+* [Global_Objects/parseInt](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt)
+
+* [JavaScript parseInt](http://www.w3school.com.cn/jsref/jsref_parseInt.asp)
+
+首先, map接受两个参数, 一个回调函数 callback, 一个回调函数的this值
+
+其中回调函数接受三个参数 currentValue, index, arrary;
+
+而题目中, map只传入了回调函数--parseInt.
+
+其次, parseInt 只接受两个两个参数 string, radix(基数).
+
+> 在没有指定基数，或者基数为 0 的情况下，JavaScript 作如下处理：
+>
+> * 如果字符串 string 以"0x"或者"0X"开头, 则基数是16 (16进制).
+> * 如果字符串 string 以"0"开头, 基数是8（八进制）或者10（十进制），那么具体是哪个基数由实现环境决- 定。ECMAScript 5 规定使用10，但是并不是所有的浏览器都遵循这个规定。因此，永远都要明确给出radix>参数的值。
+> * 如果字符串 string 以其它任何值开头，则基数是10 (十进制)。
+
+所以本题即问
+
+```js
+parseInt('1', 0);
+parseInt('2', 1);
+parseInt('3', 2);
+```
+
+首先后两者参数不合法.
+
+所以答案是 `[1, NaN, NaN]`
+
+## [typeof null, null instanceof Object]
+
+### 知识点:
+
+* [Operators/typeof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
+
+* [Operators/instanceof](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof)
+
+* [Operators/instanceof(中)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof)
+
+typeof 返回一个表示类型的字符串.
+
+instanceof 运算符用来检测 constructor.prototype 是否存在于参数 object 的原型链上.
+
+这个题可以直接看链接... 因为 `typeof null === 'object'` 自语言之初就是这样....
+
+typeof 的结果请看下表:
+
+| type | result |
+| ---- | ---- |
+| Undefined | "undefined" |
+| Null | "object" |
+| Boolean | "boolean" |
+| Number | "number" |
+| String | "string" |
+| Symbol | "symbol" |
+| Host object | Implementation-dependent |
+| Function | "function" |
+| Object | "object" |
+
+所以答案 `[object, false]`
+
+## [ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
+
+### 知识点:
+
+* [Array/Reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+
+`arr.reduce(callback[, initialValue])`
+
+reduce接受两个参数, 一个回调, 一个初始值.
+
+回调函数接受四个参数 `previousValue`, `currentValue`, `currentIndex`, `array`
+
+需要注意的是 `If the array is empty and no initialValue was provided, TypeError would be thrown.`
+
+所以第二个表达式会报异常. 第一个表达式等价于 `Math.pow(3, 2) => 9`; `Math.pow(9, 1) =>9`
+
+答案 `an error`
