@@ -152,6 +152,7 @@ module.exports = {
         '/js/stack/memorySpace.md',
         '/js/stack/memoryMechanism.md',
         '/js/stack/memoryLeak.md',
+        '/js/stack/precompiled.md',
       ]
     },
     {
