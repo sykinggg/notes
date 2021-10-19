@@ -231,7 +231,11 @@ module.exports = [
       {
         text: 'nginx',
         link: '/nginx/base.md',
-      }
+      },
+      {
+        text: 'cli',
+        link: '/cli/base.md',
+      },
     ]
   },
   {

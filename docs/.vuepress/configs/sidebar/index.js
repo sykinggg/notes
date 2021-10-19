@@ -1016,5 +1016,8 @@ module.exports = {
         '/react-illustration-series/algorithm/diff.md',
       ],
     }
+  ],
+  '/cli/': [
+    '/cli/base.md',
   ]
 }
