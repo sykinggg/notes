@@ -406,12 +406,16 @@ module.exports = [
     items: [
       {
         text: 'vue-性能优化',
-        link: '/performance/vue/vue2Base.md'
+        link: '/performance/vue/vue2Base.md',
       },
       {
         text: 'react-性能优化',
-        link: '/performance/react/reactBase.md'
+        link: '/performance/react/reactBase.md',
       },
+      {
+        text: '组件设计',
+        link: '/performance/base/drag1.md',
+      }
     ]
   },
   {

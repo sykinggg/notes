@@ -949,6 +949,7 @@ module.exports = {
       children: [
         '/performance/vue/vue2Base.md',
         '/performance/vue/vue2Table.md',
+        '/performance/vue/vue2offsetTop.md',
       ],
     },
     {
@@ -957,6 +958,12 @@ module.exports = {
         '/performance/react/reactBase.md',
       ],
     },
+    {
+      title: '组件设计',
+      children: [
+        '/performance/base/drag1.md',
+      ]
+    }
   ],
   '/nginx/': [
     {
@@ -1019,5 +1026,6 @@ module.exports = {
   ],
   '/cli/': [
     '/cli/base.md',
+    '/cli/customCli.md',
   ]
 }
