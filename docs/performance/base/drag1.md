@@ -2469,3 +2469,241 @@ export const commonAttr = {
 ```
 
 ![](/notes/assets/performance/base/40e9da0cb1e54c3a8a4d682304a544fc_tplv-k3u1fbpfcp-watermark.awebp)
+
+## 22. 快捷键
+
+支持快捷键主要是为了提升开发效率，用鼠标点点点毕竟没有按键盘快。目前快捷键支持的功能如下：
+
+```js
+const ctrlKey = 17, 
+    vKey = 86, // 粘贴
+    cKey = 67, // 复制
+    xKey = 88, // 剪切
+
+    yKey = 89, // 重做
+    zKey = 90, // 撤销
+
+    gKey = 71, // 组合
+    bKey = 66, // 拆分
+
+    lKey = 76, // 锁定
+    uKey = 85, // 解锁
+
+    sKey = 83, // 保存
+    pKey = 80, // 预览
+    dKey = 68, // 删除
+    deleteKey = 46, // 删除
+    eKey = 69 // 清空画布
+```
+
+实现原理主要是利用 `window` 全局监听按键事件，在符合条件的按键触发时执行对应的操作：
+
+```js
+// 与组件状态无关的操作
+const basemap = {
+    [vKey]: paste,
+    [yKey]: redo,
+    [zKey]: undo,
+    [sKey]: save,
+    [pKey]: preview,
+    [eKey]: clearCanvas,
+}
+
+// 组件锁定状态下可以执行的操作
+const lockMap = {
+    ...basemap,
+    [uKey]: unlock,
+}
+
+// 组件未锁定状态下可以执行的操作
+const unlockMap = {
+    ...basemap,
+    [cKey]: copy,
+    [xKey]: cut,
+    [gKey]: compose,
+    [bKey]: decompose,
+    [dKey]: deleteComponent,
+    [deleteKey]: deleteComponent,
+    [lKey]: lock,
+}
+
+let isCtrlDown = false
+// 全局监听按键操作并执行相应命令
+export function listenGlobalKeyDown() {
+    window.onkeydown = (e) => {
+        const { curComponent } = store.state
+        if (e.keyCode == ctrlKey) {
+            isCtrlDown = true
+        } else if (e.keyCode == deleteKey && curComponent) {
+            store.commit('deleteComponent')
+            store.commit('recordSnapshot')
+        } else if (isCtrlDown) {
+            if (!curComponent || !curComponent.isLock) {
+                e.preventDefault()
+                unlockMap[e.keyCode] && unlockMap[e.keyCode]()
+            } else if (curComponent && curComponent.isLock) {
+                e.preventDefault()
+                lockMap[e.keyCode] && lockMap[e.keyCode]()
+            }
+        }
+    }
+
+    window.onkeyup = (e) => {
+        if (e.keyCode == ctrlKey) {
+            isCtrlDown = false
+        }
+    }
+}
+```
+
+为了防止和浏览器默认快捷键冲突，所以需要加上 `e.preventDefault()`。
+
+## 23. 网格线
+
+网格线功能使用 SVG 来实现：
+
+```html
+<template>
+    <svg class="grid" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="smallGrid" width="7.236328125" height="7.236328125" patternUnits="userSpaceOnUse">
+                <path 
+                    d="M 7.236328125 0 L 0 0 0 7.236328125" 
+                    fill="none" 
+                    stroke="rgba(207, 207, 207, 0.3)" 
+                    stroke-width="1">
+                </path>
+            </pattern>
+            <pattern id="grid" width="36.181640625" height="36.181640625" patternUnits="userSpaceOnUse">
+                <rect width="36.181640625" height="36.181640625" fill="url(#smallGrid)"></rect>
+                <path 
+                    d="M 36.181640625 0 L 0 0 0 36.181640625" 
+                    fill="none" 
+                    stroke="rgba(186, 186, 186, 0.5)" 
+                    stroke-width="1">
+                </path>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"></rect>
+    </svg>
+</template>
+
+<style lang="scss" scoped>
+.grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+</style>
+```
+
+MDN 的[教程](https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FSVG)。
+
+## 24. 编辑器快照的另一种实现方式
+
+```js
+snapshotData: [], // 编辑器快照数据
+snapshotIndex: -1, // 快照索引
+        
+undo(state) {
+    if (state.snapshotIndex >= 0) {
+        state.snapshotIndex--
+        store.commit('setComponentData', deepCopy(state.snapshotData[state.snapshotIndex]))
+    }
+},
+
+redo(state) {
+    if (state.snapshotIndex < state.snapshotData.length - 1) {
+        state.snapshotIndex++
+        store.commit('setComponentData', deepCopy(state.snapshotData[state.snapshotIndex]))
+    }
+},
+
+setComponentData(state, componentData = []) {
+    Vue.set(state, 'componentData', componentData)
+},
+
+recordSnapshot(state) {
+    // 添加新的快照
+    state.snapshotData[++state.snapshotIndex] = deepCopy(state.componentData)
+    // 在 undo 过程中，添加新的快照时，要将它后面的快照清理掉
+    if (state.snapshotIndex < state.snapshotData.length - 1) {
+        state.snapshotData = state.snapshotData.slice(0, state.snapshotIndex + 1)
+    }
+},
+```
+
+用一个数组来保存编辑器的快照数据。保存快照就是不停地执行 `push()` 操作，将当前的编辑器数据推入 `snapshotData` 数组，并增加快照索引 `snapshotIndex`。
+
+由于每一次添加快照都是将当前编辑器的所有组件数据推入 `snapshotData`，保存的快照数据越多占用的内存就越多。对此有两个解决方案：
+
+1. 限制快照步数，例如只能保存 50 步的快照数据。
+
+2. 保存快照只保存差异部分。
+
+**现在详细描述一下第二个解决方案。**
+
+假设依次往画布上添加 a b c d 四个组件，在原来的实现中，对应的 `snapshotData` 数据为：
+
+```js
+// snapshotData
+[
+  [a],
+  [a, b],
+  [a, b, c],
+  [a, b, c, d],
+]
+```
+
+从上面的代码可以发现，每一相邻的快照中，只有一个数据是不同的。所以我们可以为每一步的快照添加一个类型字段，用来表示此次操作是添加还是删除。
+
+那么上面添加四个组件的操作，所对应的 `snapshotData` 数据为：
+
+```js
+// snapshotData
+[
+  [{ type: 'add', value: a }],
+  [{ type: 'add', value: b }],
+  [{ type: 'add', value: c }],
+  [{ type: 'add', value: d }],
+]
+```
+
+如果我们要删除 c 组件，那么 `snapshotData` 数据将变为：
+
+```js
+// snapshotData
+[
+  [{ type: 'add', value: a }],
+  [{ type: 'add', value: b }],
+  [{ type: 'add', value: c }],
+  [{ type: 'add', value: d }],
+  [{ type: 'remove', value: c }],
+]
+```
+
+**那如何使用现在的快照数据呢？**
+
+我们需要遍历一遍快照数据，来生成编辑器的组件数据 `componentData`。假设在上面的数据基础上执行了 `undo` 撤销操作：
+
+```js
+// snapshotData
+// 快照索引 snapshotIndex 此时为 3
+[
+  [{ type: 'add', value: a }],
+  [{ type: 'add', value: b }],
+  [{ type: 'add', value: c }],
+  [{ type: 'add', value: d }],
+  [{ type: 'remove', value: c }],
+]
+```
+
+1. `snapshotData[0]` 类型为 `add`，将组件 `a` 添加到 `componentData` 中，此时 `componentData` 为 `[a]`
+
+2. 依次类推 `[a, b]`
+
+3. `[a, b, c]`
+
+4. `[a, b, c, d]`
+
+如果这时执行 `redo` 重做操作，快照索引 `snapshotIndex` 变为 4。对应的快照数据类型为 `type: 'remove'`， 移除组件 c。则数组数据为 `[a, b, d]`。
