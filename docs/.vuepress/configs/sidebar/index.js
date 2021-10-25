@@ -825,6 +825,7 @@ module.exports = {
     {
       title: 'TypeScript 项目',
       children: [
+        '/ts/project/unknownAny.md',
         '/ts/project/inDepthTs.md',
         '/ts/project/compilationContext',
         '/ts/project/declarationspaces',
@@ -959,9 +960,10 @@ module.exports = {
       ],
     },
     {
-      title: '组件设计',
+      title: '基础优化',
       children: [
         '/performance/base/drag1.md',
+        '/performance/base/cache.md',
       ]
     }
   ],
