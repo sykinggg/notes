@@ -957,6 +957,7 @@ module.exports = {
       title: 'react',
       children: [
         '/performance/react/reactBase.md',
+        '/performance/react/reactTypescript.md',
       ],
     },
     {
