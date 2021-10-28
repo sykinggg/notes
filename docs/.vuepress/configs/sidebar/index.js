@@ -263,6 +263,7 @@ module.exports = {
     {
       title: '零散记录',
       children: [
+        '/html/interview/regular.md',
         { title: '第1天使用link和@import有什么区别？', path: '/html/interview/linkImport.md' },
         { title: '第2天html的元素？', path: '/html/interview/htmlElement.md' },
         { title: '第3天HTML全局属性(globalattribute)？', path: '/html/interview/globalAttr.md' },
