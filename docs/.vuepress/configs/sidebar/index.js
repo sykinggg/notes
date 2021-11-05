@@ -967,6 +967,8 @@ module.exports = {
       children: [
         '/performance/base/drag1.md',
         '/performance/base/cache.md',
+        '/performance/base/oneLineCode.md',
+        '/performance/base/typeScriptCache.md',
       ]
     }
   ],
