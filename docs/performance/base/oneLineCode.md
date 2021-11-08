@@ -1707,6 +1707,8 @@ Does it look like a zipper?
 */
 ```
 
+## Date Time
+
 ### Add AM PM suffix to an hour
 
 <CodeGroup>
@@ -1740,4 +1742,994 @@ suffixAmPm(15); // '3pm'
 suffixAmPm(23); // '11pm'
 ```
 
-[学到这里](https://1loc.dev/date-time/add-am-pm-suffix-to-an-hour/)
+### Calculate the number of difference days between two dates
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const diffDays = (date, otherDate) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 24));
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const diffDays = (date: Date, otherDate: Date): number => Math.ceil(Math.abs(date.valueOf() - otherDate.valueOf()) / (1000 * 60 * 60 * 24));
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Examples
+
+```ts
+diffDays(new Date('2014-12-19'), new Date('2020-01-01')); // 1839
+```
+
+### Calculate the number of months between two dates
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const monthDiff = (startDate, endDate) => Math.max(0, (endDate.getFullYear() - startDate.getFullYear()) * 12 - startDate.getMonth() + endDate.getMonth());
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const monthDiff = (startDate: Date, endDate: Date): number => Math.max(0, (endDate.getFullYear() - startDate.getFullYear()) * 12 - startDate.getMonth() + endDate.getMonth());
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Example
+
+```ts
+monthDiff(new Date('2020-01-01'), new Date('2021-01-01')); // 12
+```
+
+### Compare two dates
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `a` and `b` are `Date` instances
+const compare = (a, b) => a.getTime() > b.getTime();
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const compare = (a: Date, b: Date): boolean => a.getTime() > b.getTime();
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Example
+
+```ts
+compare(new Date('2020-03-30'), new Date('2020-01-01')); // true
+```
+
+### Convert a date to YYYY-MM-DD format
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `date` is a `Date` object
+const formatYmd = (date) => date.toISOString().slice(0, 10);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const formatYmd = (date: Date): string => date.toISOString().slice(0, 10);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Example
+
+```ts
+formatYmd(new Date()); // 2020-05-06
+```
+
+### Convert seconds to hh:mm:ss format
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `s` is number of seconds
+const formatSeconds = (s) => new Date(s * 1000).toISOString().substr(11, 8);
+
+// Or
+const formatSeconds = (s) => new Date(s * 1000).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
+
+// Or
+const formatSeconds = (s) => [parseInt(s / 60 / 60), parseInt((s / 60) % 60), parseInt(s % 60)].join(':').replace(/\b(\d)\b/g, '0$1');
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const formatSeconds = (s: number): string => new Date(s * 1000).toISOString().substr(11, 8);
+
+// Or
+const formatSeconds = (s: number): string => (new Date(s * 1000).toUTCString().match(/(\d\d:\d\d:\d\d)/) as string[])[0];
+
+// Or
+const formatSeconds = (s: number): string => (
+    [parseInt(`${s / 3600}`), parseInt(`${(s / 60) % 60}`), parseInt(`${s % 60}`)].join(':').replace(/\b(\d)\b/g, '0$1')
+);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Examples
+
+```ts
+formatSeconds(200); // 00:03:20
+formatSeconds(500); // 00:08:20
+```
+
+### Extract year, month, day, hour, minute, second and millisecond from a date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `date` is a `Date` object
+const extract = (date) =>
+    date
+        .toISOString()
+        .split(/[^0-9]/)
+        .slice(0, -1);
+
+// `extract` is an array of [year, month, day, hour, minute, second, millisecond]
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const extract = (date: Date): string[] =>
+    date
+        .toISOString()
+        .split(/[^0-9]/)
+        .slice(0, -1);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Format a date for the given locale
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `date` is a `Date` object
+// `locale` is a locale (en-US, pt-BR, for example)
+const format = (date, locale) => new Intl.DateTimeFormat(locale).format(date);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const format = (date: Date, locale: string): string => new Intl.DateTimeFormat(locale).format(date);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Example
+
+```ts
+format(new Date(), 'pt-BR'); // 06/05/2020
+```
+
+### Get the current quarter of a date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const getQuarter = (d = new Date()) => Math.ceil((d.getMonth() + 1) / 3);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const getQuarter = (d = new Date()): number => Math.ceil((d.getMonth() + 1) / 3);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the current timestamp in seconds
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const ts = () => Math.floor(new Date().getTime() / 1000);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const ts = (): number => Math.floor(new Date().getTime() / 1000);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the day of the year from a date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `date` is a Date object
+const dayOfYear = (date) => Math.floor((date - new Date(date.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const dayOfYear = (date: Date): number => Math.floor((date.valueOf() - new Date(date.getFullYear(), 0, 0).valueOf()) / (1000 * 60 * 60 * 24));
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Example
+
+```ts
+dayOfYear(new Date(2020, 04, 16)); // 137
+```
+
+### Get the first date in the month of a date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const getFirstDate = (d = new Date()) => new Date(d.getFullYear(), d.getMonth(), 1);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const getFirstDate = (d = new Date()): Date => new Date(d.getFullYear(), d.getMonth(), 1);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the last date in the month of a date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const getLastDate = (d = new Date()) => new Date(d.getFullYear(), d.getMonth() + 1, 0);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const getLastDate = (d = new Date()): Date => new Date(d.getFullYear(), d.getMonth() + 1, 0);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the month name of a date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `date` is a Date object
+const getMonthName = (date) => ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', ' November', 'December'][date.getMonth()];
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const getMonthName = (date: Date): string => ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', ' November', 'December'][date.getMonth()];
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the number of days in given month
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `month` is zero-based index
+const daysInMonth = (month, year) => new Date(year, month, 0).getDate();
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const daysInMonth = (month: number, year: number): number => new Date(year, month, 0).getDate();
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the timezone string
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const getTimezone = () => Intl.DateTimeFormat().resolvedOptions().timeZone;
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const getTimezone = (): string => Intl.DateTimeFormat().resolvedOptions().timeZone;
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Example
+
+```ts
+getTimezone(); // 'Asia/Saigon'
+```
+
+### Get the tomorrow date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const tomorrow = ((d) => new Date(d.setDate(d.getDate() + 1)))(new Date());
+
+// Or
+const tomorrow = new Date(new Date().valueOf() + 1000 * 60 * 60 * 24);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const tomorrow: Date = ((d) => new Date(d.setDate(d.getDate() + 1)))(new Date());
+
+// Or
+const tomorrow: Date = new Date(new Date().valueOf() + 1000 * 60 * 60 * 24);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the total number of days in a year
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const numberOfDays = (year) => ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0 ? 366 : 365);
+
+// Or
+const numberOfDays = (year) => (new Date(year, 1, 29).getDate() === 29 ? 366 : 365);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const numberOfDays = (year: number): number => ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0 ? 366 : 365);
+
+// Or
+const numberOfDays = (year: number): number => (new Date(year, 1, 29).getDate() === 29 ? 366 : 365);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the weekday of a date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `date` is a Date object
+const getWeekday = (date) => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date.getDay()];
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const getWeekday = (date: Date): string => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date.getDay()];
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the yesterday date
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const yesterday = ((d) => new Date(d.setDate(d.getDate() - 1)))(new Date());
+
+// Or
+const yesterday = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const yesterday: Date = ((d) => new Date(d.setDate(d.getDate() - 1)))(new Date());
+
+// Or
+const yesterday: Date = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Initialize the current date but set time to midnight
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const midnightOfToday = () => new Date(new Date().setHours(0, 0, 0, 0));
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const midnightOfToday = (): Date => new Date(new Date().setHours(0, 0, 0, 0));
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Sort an array of dates
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// `arr` is an array of `Date` items
+const sortDescending = (arr) => arr.sort((a, b) => a.getTime() > b.getTime());
+
+const sortAscending = (arr) => arr.sort((a, b) => a.getTime() < b.getTime());
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const sortDescending = (arr: Date[]): Date[] => arr.sort((a, b) => a.getTime() - b.getTime());
+
+const sortAscending = (arr: Date[]): Date[] => arr.sort((a, b) => b.getTime() - a.getTime());
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+## DOM
+
+### Check if an element is a descendant of another
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const isDescendant = (child, parent) => parent.contains(child);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const isDescendant = (child: Node, parent: Node): boolean => parent.contains(child);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Check if an element is focused
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const hasFocus = (ele) => ele === document.activeElement;
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const hasFocus = (ele: Node): boolean => ele === document.activeElement;
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Check if the touch events are supported
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const touchSupported = () => 'ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const touchSupported = (): boolean => (
+    'ontouchstart' in window || (window as any)['DocumentTouch'] && document instanceof (window as any)['DocumentTouch']
+);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Check if user scrolls to the bottom of the page
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const isAtBottom = () => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight;
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const isAtBottom = (): boolean => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight;
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Detect Internet Explorer browser
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const isIE = !!document.documentMode;
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const isIE = !!(document as any).documentMode;
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Detect macOS browser
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const isMacBrowser = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const isMacBrowser: boolean = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get all siblings of an element
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const siblings = (ele) => [].slice.call(ele.parentNode.children).filter((child) => child !== ele);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const siblings = (ele: Node): Node[] => (ele.parentNode ? [].slice.call(ele.parentNode.children).filter((child) => child !== ele) : []);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Get the position of an element relative to the document
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const getPosition = (ele) => ((r = ele.getBoundingClientRect()), { left: r.left + window.scrollX, top: r.top + window.scrollY });
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+> Example
+
+```js
+getPosition(document.body); // { left: 0, top: 0 }
+```
+
+### Get the selected text
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const getSelectedText = () => window.getSelection().toString();
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Go back to the previous page
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+history.back();
+
+// Or
+history.go(-1);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Hide an element
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+// Pick the method that is suitable for your use case
+const hide = (ele) => (ele.style.display = 'none');
+
+// Or
+const hide = (ele) => (ele.style.visibility = 'hidden');
+
+// Or
+const hide = (ele) => (ele.hidden = true);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const hide = (ele: HTMLElement): string => (ele.style.display = 'none');
+
+// Or
+const hide = (ele: HTMLElement): string => (ele.style.visibility = 'hidden');
+
+// Or
+const hide = (ele: HTMLElement): boolean => (ele.hidden = true);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Insert an element after other one
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const insertAfter = (ele, anotherEle) => anotherEle.parentNode.insertBefore(ele, anotherEle.nextSibling);
+
+// Or
+const insertAfter = (ele, anotherEle) => anotherEle.insertAdjacentElement('afterend', ele);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const insertAfter = (ele: Element, anotherEle: Element): Element | null => (anotherEle.parentNode ? anotherEle.parentNode.insertBefore(ele, anotherEle.nextSibling) : null);
+
+// Or
+const insertAfter = (ele: Element, anotherEle: Element): Element | null => anotherEle.insertAdjacentElement('afterend', ele);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Insert given HTML after an element
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const insertHtmlAfter = (html, ele) => ele.insertAdjacentHTML('afterend', html);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const insertHtmlAfter = (html: string, ele: Element): void => ele.insertAdjacentHTML('afterend', html);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Insert given HTML before an element
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const insertHtmlBefore = (html, ele) => ele.insertAdjacentHTML('beforebegin', html);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const insertHtmlBefore = (html: string, ele: Element): void => ele.insertAdjacentHTML('beforebegin', html);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Redirect to another page
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const goTo = (url) => (location.href = url);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const goTo = (url: string): string => (location.href = url);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Reload the current page
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const reload = () => location.reload();
+
+// Or
+const reload = () => (location.href = location.href);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const reload = (): void => location.reload();
+
+// Or
+const reload = (): string => (location.href = location.href);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Replace an element
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const replace = (ele, newEle) => ele.parentNode.replaceChild(newEle, ele);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const replace = (ele: Element, newEle: Element): Element | null => (ele.parentNode ? ele.parentNode.replaceChild(newEle, ele) : null);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Scroll to top of the page
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const goToTop = () => window.scrollTo(0, 0);
+```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="ts">
+
+```ts
+const goToTop = (): void => window.scrollTo(0, 0);
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
+
+### Serialize form data
+
+<CodeGroup>
+
+<CodeGroupItem title="js">
+
+```js
+const serialize = (formEle) => Array.from(new FormData(formEle)).reduce((p, [k, v]) => Object.assign({}, p, { [k]: p[k] ? (Array.isArray(p[k]) ? p[k] : [p[k]]).concat(v) : v }), {});
+```
+
+</CodeGroupItem>
+
+</CodeGroup>
