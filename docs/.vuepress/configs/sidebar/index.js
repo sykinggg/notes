@@ -968,6 +968,17 @@ module.exports = {
         '/performance/base/drag1.md',
         '/performance/base/cache.md',
         '/performance/base/oneLineCode.md',
+        '/performance/base/oneLineCodeArray.md',
+        '/performance/base/oneLineCodeDateTime.md',
+        '/performance/base/oneLineCodeDOM.md',
+        '/performance/base/oneLineCodeFunction.md',
+        '/performance/base/oneLineCodeMath.md',
+        '/performance/base/oneLineCodeMisc.md',
+        '/performance/base/oneLineCodeNumber.md',
+        '/performance/base/oneLineCodeObject.md',
+        '/performance/base/oneLineCodeRandom.md',
+        '/performance/base/oneLineCodeString.md',
+        '/performance/base/oneLineCodeValidator.md',
         '/performance/base/typeScriptCache.md',
       ]
     }
