@@ -431,6 +431,10 @@ module.exports = [
       {
         text: '设计模式',
         link: '/design/overview.md'
+      },
+      {
+        text: '设计应用',
+        link: '/designFrame/jquery.md'
       }
     ]
   }

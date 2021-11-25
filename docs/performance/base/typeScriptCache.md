@@ -101,19 +101,19 @@ start();
 
 官方文档中介绍了很多 API，具体可以从[文档](https://github.com/grischaerbe/cacheables)中获取，比较常用的如 `cache.cacheable()`，用来包装一个方法进行缓存。 所有 API 如下：
 
-* new Cacheables(options?): Cacheables
+* `new Cacheables(options?): Cacheables`
 
-* cache.cacheable(resource, key, options?): Promise<T>
+* `cache.cacheable(resource, key, options?): Promise<T>`
 
-* cache.delete(key: string): void
+* `cache.delete(key: string): void`
 
-* cache.clear(): void
+* `cache.clear(): void`
 
-* cache.keys(): string[]
+* `cache.keys(): string[]`
 
-* cache.isCached(key: string): boolean
+* `cache.isCached(key: string): boolean`
 
-* Cacheables.key(...args: (string | number)[]): string
+* `Cacheables.key(...args: (string | number)[]): string`
 
 可以通过下图加深理解： 
 
@@ -313,38 +313,3 @@ async #fetchNonConcurrent(resource: () => Promise<T>): Promise<T> {
 这边先判断当前是否是【发送中】状态，如果则直接调用 `this.#promise`，并返回缓存的值，结束调用。否则将 `resource` 传入 `#fetch`执行。
 
 `#fetch`私有方法定义如下：
-
-```ts
-// 执行请求发送
-async #fetch(resource: () => Promise<T>): Promise<T> {
-  this.#lastFetch = Date.now()
-  this.#promise = resource() // 定义守卫变量，表示当前有任务在执行
-  this.#value = await this.#promise
-  if (!this.#initialized) this.#initialized = true
-  this.#promise = undefined  // 执行完成，清空守卫变量
-  return this.#value
-}
-```
-
-`#fetch` 私有方法接收前面的需要包装的函数，并通过对**守卫变量**赋值，控制任务的执行，在刚开始执行时进行赋值，任务执行完成以后，清空**守卫变量**。
-​
-这也是我们实际业务开发经常用到的方法，比如发请求前，通过一个变量赋值，表示当前有任务执行，不能在发其他请求，在请求结束后，将该变量清空，继续执行其他任务。
-​
-完成任务。「cacheables」执行过程大致是这样，接下来我们总结一个通用的缓存方案，便于理解和拓展。
-
-## 四、通用缓存库设计方案
-
-在 Cacheables 中支持五种缓存策略，上面只介绍其中的 `max-age`：
-
-![](/notes/assets/performance/base/ed04346735e448e78bb9aa1d97a082e9_tplv-k3u1fbpfcp-watermark.awebp)
-
-这里总结一套通用缓存库设计方案，大致如下图：
-
-![](/notes/assets/performance/base/de292464ac354befb99c280ee1fa4d0b_tplv-k3u1fbpfcp-watermark.awebp)
-
-该缓存库支持实例化是传入 `options`参数，将用户传入的 `options.key`作为 key，调用`CachePolicyHandler`对象中获取用户指定的缓存策略（Cache Policy）。
-然后将用户传入的 `options.resource`作为实际要执行的方法，通过 `CachePlicyHandler()`方法传入并执行。
-​
-上图中，我们需要定义各种缓存库操作方法（如读取、设置缓存的方法）和各种缓存策略的处理方法。
-​
-当然也可以集成如 `Logger`等辅助工具，方便用户使用和开发。本文就不在赘述，核心还是介绍这个方案。

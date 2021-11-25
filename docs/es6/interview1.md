@@ -529,3 +529,67 @@ console.log(a); // 输出10
 
 console.log(a); //-1 or Error“ReferenceError: a is not defined”
 ```
+
+## 11.变量提升
+
+### 证明var声明存在变量提升
+
+```js
+function fn(){
+    console.log(a) // undefined
+    var a = 12
+}
+fn()
+```
+
+js在创建执行上下文时，会检查代码，找出变量声明和函数声明，并将函数声明完全存储在环境中，而将通过var声明的变量设定为undefined，这就是所谓的变量提升。从字面上理解就是变量和函数声明会被移动到函数或者全局代码的开头位置。
+
+> 当将var替换为let时
+
+```js
+function fn(){
+    console.log(a) // Uncaught ReferenceError: a is not defined
+    let a = 12
+}
+fn()
+```
+
+### 证明let声明存在变量提升
+
+```js
+var x = 'parent value';
+(function() {
+  console.log(x); // parent value
+}())
+```
+
+代码会输出parent value，原因很简单，涉及到了**作用域链**的知识。在匿名函数作用域中没有找到x变量，便会沿着作用域链，找到父级作用域，然后便再父级作用域中找到了x变量，并输出。
+
+```js
+var x = 'parent value';
+(function() {
+  console.log(x); // Uncaught ReferenceError: x is not defined
+  let x = 'child value'
+}())
+```
+
+此时的代码又会报错了，从这里其实可以看出let也是存在**变量提升**的，知识在变量显式赋值之前不能对变量进行读写，否则就会报错，这也就是所谓的let和const的**暂时性死区**。
+
+[暂时性死区（Temporal Dead Zone ）](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let?retiredLocale=he)
+
+引用MDN上的定义
+
+> let bindings are created at the top of the (block) scope containing the declaration, commonly referred to as “hoisting”. Unlike variables declared with var, which will start with the value undefined, let variables are not initialized until their definition is evaluated. Accessing the variable before the initialization results in a ReferenceError. The variable is in a “temporal dead zone” from the start of the block until the initialization is processed.
+
+let同样存在变量提示（hoisting），只是形式与var不同，var定义的变量将会被赋予undefined的初始值，而let在被显式赋值之前不会被赋予初始值，并且在赋值之前读写变量都会导致 ReferenceError 的报错。从代码块(block)起始到变量求值(包括赋值)以前的这块区域，称为该变量的暂时性死区。
+
+```js
+var x = 'parent value';
+(function() {
+  // let x 此时暂时性死区开始
+  console.log(x); // Uncaught ReferenceError: x is not defined
+  //暂时性死区结束
+  let x = 'child value' 
+}())
+```
+

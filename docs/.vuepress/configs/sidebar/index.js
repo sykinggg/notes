@@ -105,6 +105,7 @@ module.exports = {
     {
       title: '第 1 期：基本对象',
       children: [
+        '/mozillajs/baseObject/intersectionObserver.md',
         '/mozillajs/baseObject/fileReader.md',
         '/mozillajs/baseObject/symbol.md',
         '/mozillajs/baseObject/promise.md',
@@ -343,6 +344,7 @@ module.exports = {
         '/browser/interview/webUrl.md',
         '/browser/interview/progress.md',
         '/browser/interview/redrawReflow.md',
+        '/browser/interview/bigDataRender.md',
       ]
     }
   ],
@@ -822,6 +824,14 @@ module.exports = {
     '/design/amd.md',
     '/design/commonJS.md',
     '/design/esHarmony.md',
+  ],
+  '/designFrame/': [
+    {
+      title: '库设计模式',
+      children: [
+        '/designFrame/jquery.md'
+      ]
+    }
   ],
   '/ts/': [
     {
