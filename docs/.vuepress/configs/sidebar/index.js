@@ -223,6 +223,7 @@ module.exports = {
         { title: 'event loop', path: '/js/interview/eventLoop.md' },
         { title: 'Object.is', path: '/js/interview/interview1.md' },
         { title: 'js 细节整理', path: '/js/interview/baseInterview.md' },
+        '/js/interview/iife.md',
       ]
     },
     {
@@ -829,7 +830,9 @@ module.exports = {
     {
       title: '库设计模式',
       children: [
-        '/designFrame/jquery.md'
+        '/designFrame/jquery.md',
+        '/designFrame/underscore.md',
+        '/designFrame/createUnderscore.md',
       ]
     }
   ],

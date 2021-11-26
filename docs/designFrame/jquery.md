@@ -1,5 +1,7 @@
 # jQuery 源码整体架构
 
+`v3.4.1`版本。 `unpkg.com`源码地址：https://unpkg.com/jquery@3.4.1/dist/jquery.js
+
 ## 自执行匿名函数
 
 ```js
