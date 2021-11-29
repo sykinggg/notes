@@ -833,6 +833,9 @@ module.exports = {
         '/designFrame/jquery.md',
         '/designFrame/underscore.md',
         '/designFrame/createUnderscore.md',
+        '/designFrame/lodash.md',
+        '/designFrame/sentry.md',
+        '/designFrame/vuex.md',
       ]
     }
   ],
