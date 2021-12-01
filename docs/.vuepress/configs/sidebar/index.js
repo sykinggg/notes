@@ -836,6 +836,7 @@ module.exports = {
         '/designFrame/lodash.md',
         '/designFrame/sentry.md',
         '/designFrame/vuex.md',
+        '/designFrame/axios.md',
       ]
     }
   ],
