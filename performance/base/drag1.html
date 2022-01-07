@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress 2.0.0-beta.32">
     <title>可视化拖拽组件库原理分析 | 你好， VuePress ！</title><meta name="description" content="这是我的第一个 VuePress 站点">
-    <link rel="modulepreload" href="/notes/assets/app.32e15244.js"><link rel="modulepreload" href="/notes/assets/drag1.html.813b2cbd.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/drag1.html.f54e48b0.js">
+    <link rel="modulepreload" href="/notes/assets/app.f4829677.js"><link rel="modulepreload" href="/notes/assets/drag1.html.fd06f01c.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/drag1.html.64aee6ca.js">
     <link rel="stylesheet" href="/notes/assets/style.969bf946.css">
   </head>
   <body>
@@ -1628,6 +1628,6 @@ componentList.forEach(component =&gt; {
   <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">&#39;remove&#39;</span><span class="token punctuation">,</span> <span class="token literal-property property">value</span><span class="token operator">:</span> c <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">]</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><ol><li><p><code>snapshotData[0]</code> 类型为 <code>add</code>，将组件 <code>a</code> 添加到 <code>componentData</code> 中，此时 <code>componentData</code> 为 <code>[a]</code></p></li><li><p>依次类推 <code>[a, b]</code></p></li><li><p><code>[a, b, c]</code></p></li><li><p><code>[a, b, c, d]</code></p></li></ol><p>如果这时执行 <code>redo</code> 重做操作，快照索引 <code>snapshotIndex</code> 变为 4。对应的快照数据类型为 <code>type: &#39;remove&#39;</code>， 移除组件 c。则数组数据为 <code>[a, b, d]</code>。</p><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><nav class="page-nav"><p class="inner"><!----><span class="next"><a href="/notes/performance/base/cache.html" class="" aria-label="前端缓存"><!--[--><!--]--> 前端缓存 <!--[--><!--]--></a></span></p></nav><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.32e15244.js" defer></script>
+    <script type="module" src="/notes/assets/app.f4829677.js" defer></script>
   </body>
 </html>

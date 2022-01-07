@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress 2.0.0-beta.32">
     <title>Vue.js 源码构建 | 你好， VuePress ！</title><meta name="description" content="这是我的第一个 VuePress 站点">
-    <link rel="modulepreload" href="/notes/assets/app.32e15244.js"><link rel="modulepreload" href="/notes/assets/build.html.63be85a6.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/build.html.a7948bff.js">
+    <link rel="modulepreload" href="/notes/assets/app.f4829677.js"><link rel="modulepreload" href="/notes/assets/build.html.6eeaeb5c.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/build.html.51fb69e5.js">
     <link rel="stylesheet" href="/notes/assets/style.969bf946.css">
   </head>
   <body>
@@ -135,6 +135,6 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>因为在 Vue.js 2.0 中，最终渲染都是通过 <code>render</code> 函数，如果写 <code>template</code> 属性，则需要编译成 <code>render</code> 函数，那么这个编译过程会发生运行时，所以需要带有编译器的版本。</p><p>很显然，这个编译过程对性能会有一定损耗，所以通常更推荐使用 Runtime-Only 的 Vue.js。</p><h2 id="总结" tabindex="-1"><a class="header-anchor" href="#总结" aria-hidden="true">#</a> 总结</h2><p>通过这一节的分析，可以了解到 Vue.js 的构建打包过程，也知道了不同作用和功能的 Vue.js 它们对应的入口以及最终编译生成的 JS 文件。尽管在实际开发过程中会用 Runtime Only 版本开发比较多，但为了分析 Vue 的编译过程，这门课重点分析的源码是 Runtime + Compiler 的 Vue.js。</p><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.32e15244.js" defer></script>
+    <script type="module" src="/notes/assets/app.f4829677.js" defer></script>
   </body>
 </html>

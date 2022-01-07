@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress 2.0.0-beta.32">
     <title>你好， VuePress ！</title><meta name="description" content="这是我的第一个 VuePress 站点">
-    <link rel="modulepreload" href="/notes/assets/app.32e15244.js"><link rel="modulepreload" href="/notes/assets/commpontDiff.html.8d96c3ee.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/commpontDiff.html.b18e1af3.js">
+    <link rel="modulepreload" href="/notes/assets/app.f4829677.js"><link rel="modulepreload" href="/notes/assets/commpontDiff.html.664e205a.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/commpontDiff.html.c4646292.js">
     <link rel="stylesheet" href="/notes/assets/style.969bf946.css">
   </head>
   <body>
@@ -63,6 +63,6 @@
     <span class="token number">2</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>在遍历的过程中会寻找新的节点的 <code>key</code> 是否存在于这个 <code>map</code> 中，存在即可复用，不存在就只能创建一个新的了。其实这部分的复用及创建的逻辑和第一轮中的是一模一样的，所以也就不再赘述了。</p><p>那么如果复用成功，就应该把复用的 <code>key</code> 从 <code>map</code> 中删掉，并且给复用的节点移动位置。这里的移动依旧不涉及 <code>DOM</code> 操作，而是给 <code>effectTag</code> 赋值为 <code>Placement</code>。</p><p>此轮遍历结束后，就把还存在于 <code>map</code> 中的所有老节点删除。</p><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.32e15244.js" defer></script>
+    <script type="module" src="/notes/assets/app.f4829677.js" defer></script>
   </body>
 </html>
