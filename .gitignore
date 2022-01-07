@@ -7,5 +7,3 @@ node_modules
 example/
 .DS_Store
 yarn.lock
-.dist
-.dist/
