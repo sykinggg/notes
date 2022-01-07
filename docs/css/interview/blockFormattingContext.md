@@ -109,7 +109,7 @@
 }
 ```
 
-![结果](/notes/assets/css/1616572894(1).jpg)
+<img :src="$withBase('/assets/css/1616572894(1).jpg')" alt="demo" />
 
 > HTML
 
@@ -139,7 +139,7 @@
 }
 ```
 
-![结果](/notes/assets/css/1616572977(1).jpg)
+<img :src="$withBase('/assets/css/1616572977(1).jpg')" alt="demo" />
 
 > HTML
 
@@ -167,7 +167,7 @@
 }
 ```
 
-![结果](/notes/assets/css/1616573057(1).jpg)
+<img :src="$withBase('/assets/css/1616573057(1).jpg')" alt="demo" />
 
 ## 外边距塌陷
 

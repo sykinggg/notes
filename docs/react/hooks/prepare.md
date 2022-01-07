@@ -13,7 +13,7 @@ warning 注意
 ## 从LOGO聊起
 
 <!-- <img :src="$withBase('/img/logo.png')" alt="LOGO"> -->
-![LOGO](/notes/assets/react/logo.png)
+<img :src="$withBase('/assets/react/logo.png')" alt="LOGO">
 
 `React` `LOGO`的图案是代表`原子`（`atom`）的符号。世间万物由`原子`组成，`原子`的`类型`与`属性`决定了事物的外观与表现。
 
@@ -65,14 +65,14 @@ warning 注意
 
 <!-- <img :src="$withBase('/img/hooks-mental.png')" alt="hooks设计理念"> -->
 
-![hooks设计理念](/notes/assets/react/hooks-mental.png)
+<img :src="$withBase('/assets/react/hooks-mental.png')" alt="hooks设计理念">
 
 > [React Core Team Sebastian谈Hooks设计动机](https://twitter.com/sebmarkbage/status/1084539728743956481)
 
 `fiber`可以直译为`光纤`。
 
 <!-- <img :src="$withBase('/img/lightfiber.jpg')" alt="fiber"> -->
-![fiber](/notes/assets/react/lightfiber.jpg)
+<img :src="$withBase('/assets/react/lightfiber.jpg')" alt="fiber">
 
 可以看到，一束`光纤`内部存在多束同时工作的玻璃芯。在`React`中，每条玻璃芯代表一个`Component`的时间线。
 

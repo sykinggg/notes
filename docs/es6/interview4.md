@@ -320,7 +320,7 @@ require.ensure([], (require) => {
 
 这是 `babel6` 的变更，在 `babel5` 的时候可不是这样的。
 
-![demo](/notes/assets/es6/1604523294af87eb.png)
+<img :src="$withBase('/assets/es6/1604523294af87eb.png')" alt="demo" />
 
 [babeljs.io/docs/plugin…](http://babeljs.io/docs/plugins/transform-es2015-modules-commonjs/#strict)
 
@@ -376,7 +376,7 @@ var foo = require('./a.js');
 
 所以 `element-ui` 的构建方式采用 `commonjs2` ，导出的组件的`js` 最后都会赋值给 `module.exports`，供其他模块引用。
 
-![demo](/notes/assets/es6/16045232ed25900c.png)
+<img :src="$withBase('/assets/es6/16045232ed25900c.png')" alt="demo" />
 
 **这里解释了问题4**
 

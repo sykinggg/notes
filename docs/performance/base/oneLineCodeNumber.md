@@ -2,9 +2,9 @@
 
 ### Add an ordinal suffix to a number
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // `n` is a position number
@@ -20,9 +20,9 @@ const addOrdinal = (n) => `${n}${[, 'st', 'nd', 'rd'][(n % 100 >> 3) ^ 1 && n % 
 const addOrdinal = (n) => `${n}${{ one: 'st', two: 'nd', few: 'rd', other: 'th' }[new Intl.PluralRules('en', { type: 'ordinal' }).select(n)]}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const addOrdinal = (n: number): string => `${n}${['st', 'nd', 'rd'][((((n + 90) % 100) - 10) % 10) - 1] || 'th'}`;
@@ -37,9 +37,9 @@ const addOrdinal = (n: number): string => `${n}${[, 'st', 'nd', 'rd'][(n % 100 >
 const addOrdinal = (n: number): string => `${n}${{ one: 'st', two: 'nd', few: 'rd', other: 'th' }[new Intl.PluralRules('en', { type: 'ordinal' }).select(n)]}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -54,25 +54,25 @@ addOrdinal(13); // '13th'
 
 ### Calculate Fibonacci numbers
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const fibo = (n, memo = {}) => memo[n] || (n <= 2 ? 1 : (memo[n] = fibo(n - 1, memo) + fibo(n - 2, memo)));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const fibo = (n: number, memo: Record<string, number> = {}): number => memo[n] || (n <= 2 ? 1 : (memo[n] = fibo(n - 1, memo) + fibo(n - 2, memo)));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -87,25 +87,25 @@ fibo(6); // 8
 
 ### Calculate the average of arguments
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const average = (...args) => args.reduce((a, b) => a + b) / args.length;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const average = (...args: number[]): number => args.reduce((a, b) => a + b) / args.length;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -115,25 +115,25 @@ average(1, 2, 3, 4); // 2.5
 
 ### Calculate the division of arguments
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const division = (...args) => args.reduce((a, b) => a / b);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const division = (...args: number): number => args.reduce((a, b) => a / b);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -143,25 +143,25 @@ division(1, 2, 3, 4); // 0.04166666666666666
 
 ### Calculate the factorial of a number
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const factorial = (n) => (n <= 1 ? 1 : n * factorial(n - 1));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const factorial = (n: number): number => (n <= 1 ? 1 : n * factorial(n - 1));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -175,25 +175,25 @@ factorial(6); // 720
 
 ### Calculate the mod of collection index
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const mod = (a, b) => ((a % b) + b) % b;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const mod = (a: number, b: number): number => ((a % b) + b) % b;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -205,25 +205,25 @@ mod(6, 5); // 1
 
 ### Calculate the remainder of division of arguments
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const remainder = (...args) => args.reduce((a, b) => a % b);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const remainder = (...args: number[]): number => args.reduce((a, b) => a % b);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -233,25 +233,25 @@ remainder(1, 2, 3, 4); // 1
 
 ### Calculate the sum of arguments
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const sum = (...args) => args.reduce((a, b) => a + b);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const sum = (...args: number[]): number => args.reduce((a, b) => a + b);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -261,25 +261,25 @@ sum(1, 2, 3, 4); // 10
 
 ### Clamp a number between two values
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const clamp = (val, min = 0, max = 1) => Math.max(min, Math.min(max, val));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const clamp = (val: number, min: number = 0, max: number = 1): number => Math.max(min, Math.min(max, val));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -289,25 +289,25 @@ clamp(199, 10, 25); // 25
 
 ### Compute the greatest common divisor between two numbers
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -317,25 +317,25 @@ gcd(10, 15); // 5
 
 ### Convert a number to equivalent characters
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const toChars = (n) => `${n >= 26 ? toChars(Math.floor(n / 26) - 1) : ''}${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[n % 26]}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const toChars = (n: number): string => `${n >= 26 ? toChars(Math.floor(n / 26) - 1) : ''}${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[n % 26]}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -355,25 +355,25 @@ toChars(703); // AAB
 
 ### Convert a string to number
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const toNumber = (str) => +str;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const toNumber = (str: string): number => +str;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -383,25 +383,25 @@ toNumber('42'); // 42
 
 ### Convert decimal to binary recursively
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const decToBi = (num) => (num === 0 ? 0 : (num % 2) + 10 * decToBi(~~(num / 2)));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const decToBi = (num: number): number => (num === 0 ? 0 : (num % 2) + 10 * decToBi(~~(num / 2)));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -411,9 +411,9 @@ decToBi(10); //1010
 
 ### Get the arrays of digits from a number
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const digitize = (n) => `${n}`.split('').map((v) => parseInt(v, 10));
@@ -422,9 +422,9 @@ const digitize = (n) => `${n}`.split('').map((v) => parseInt(v, 10));
 const digitize = (n) => [...`${n}`].map((v) => parseInt(v, 10));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const digitize = (n: number): number[] => `${n}`.split('').map((v) => parseInt(v, 10));
@@ -433,9 +433,9 @@ const digitize = (n: number): number[] => `${n}`.split('').map((v) => parseInt(v
 const digitize = (n: number): number[] => [...`${n}`].map((v) => parseInt(v, 10));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -445,25 +445,25 @@ digitize(123); // [1, 2, 3]
 
 ### Multiply arguments
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const mul = (...args) => args.reduce((a, b) => a * b);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const mul = (...args: number[]): number => args.reduce((a, b) => a * b);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -473,9 +473,9 @@ mul(1, 2, 3, 4); // 24
 
 ### Prefix an integer with zeros
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const prefixWithZeros = (n, length) => (n / Math.pow(10, length)).toFixed(length).substr(2);
@@ -487,9 +487,9 @@ const prefixWithZeros = (n, length) => `${Array(length).join('0')}${n}`.slice(-l
 const prefixWithZeros = (n, length) => String(n).padStart(length, '0');
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const prefixWithZeros = (n: number, length: number): string => (n / Math.pow(10, length)).toFixed(length).substr(2);
@@ -501,9 +501,9 @@ const prefixWithZeros = (n: number, length: number): string => `${Array(length).
 const prefixWithZeros = (n: number, length: number): string => String(n).padStart(length, '0');
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -513,25 +513,25 @@ prefixWithZeros(42, 5); // '00042'
 
 ### Round a number to a given number of digits
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const round = (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const round = (n: number, decimals: number = 0): number => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -542,25 +542,25 @@ round(1.234567, 4); // 1.2346
 
 ### Subtract arguments
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const subtract = (...args) => args.reduce((a, b) => a - b);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const subtract = (...args: number[]): number => args.reduce((a, b) => a - b);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -570,25 +570,25 @@ subtract(1, 2, 3, 4); // -8
 
 ### Truncate a number at decimal
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const truncate = (n) => ~~n;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const truncate = (n: number): number => ~~n;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -599,9 +599,9 @@ truncate(-25.198726354); // -25
 
 ### Truncate a number to a given number of decimal places without rounding
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const toFixed = (n, fixed) => `${n}`.match(new RegExp(`^-?\\d+(?:\.\\d{0,${fixed}})?`))[0];
@@ -610,9 +610,9 @@ const toFixed = (n, fixed) => `${n}`.match(new RegExp(`^-?\\d+(?:\.\\d{0,${fixed
 const toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const toFixed = (n: number, fixed: number): number => +(`${n}`.match(new RegExp(`^-?\\d+(?:\.\\d{0,${fixed}})?`)) as string[])[0];
@@ -621,9 +621,9 @@ const toFixed = (n: number, fixed: number): number => +(`${n}`.match(new RegExp(
 const toFixed = (n: number, fixed: number): number => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 

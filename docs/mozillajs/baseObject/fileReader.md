@@ -88,4 +88,4 @@
 
 ## 浏览器兼容性
 
-![demo](/notes/assets/mozillaJs/1625131709(1).jpg)
+<img :src="$withBase('/assets/mozillaJs/1625131709(1).jpg')" alt="demo" />

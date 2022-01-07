@@ -28,13 +28,13 @@
 
 在 ElementUI 实现中，左侧 `fixed` 表格和右侧 `fixed` 表格从 DOM 上都渲染了完整的列，然后从样式上控制它们的显隐：
 
-![demo](/notes/assets/performance/vue/a1b235eccb5445f092d8e63c87ea87d4_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/a1b235eccb5445f092d8e63c87ea87d4_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
-![demo](/notes/assets/performance/vue/5b33014be51047fcb6676ca6dab6cbd5_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/5b33014be51047fcb6676ca6dab6cbd5_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 但这么实现是有性能浪费的，因为完全不需要渲染这么多列，实际上只需要渲染固定展示的列的 DOM，然后做好高度同步即可。ZoomUI 就是这么实现的，效果如下：
 
-![demo](/notes/assets/performance/vue/df05c5b3d1e040ad8b41aea6321a02a0_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/df05c5b3d1e040ad8b41aea6321a02a0_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 当然，仅仅减少 `fixed` 表格渲染的列，性能的提升还不够明显，有没有办法在列的渲染这个维度继续优化呢？
 
@@ -42,7 +42,7 @@
 
 根据上述需求，我给 `Table` 组件添加了如下功能：
 
-![demo](/notes/assets/performance/vue/2ae48c175413470e82d899f4509dc88a_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/2ae48c175413470e82d899f4509dc88a_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 `Table` 组件新增一个 `initDisplayedColumn` 属性，通过它可以配置初次渲染的列，同时当用户修改了初次渲染的列，会在前端存储下来，便于下一次的渲染。
 
@@ -56,15 +56,15 @@
 
 在经过几次 `checkbox` 选择框的点选后，可以看到如下火焰图：
 
-![demo](/notes/assets/performance/vue/4d6000e5754c4f448849dd492f0e5653_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/4d6000e5754c4f448849dd492f0e5653_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 其中黄色部分是 `Scripting` 脚本的执行时间，紫色部分是 `Rendering` 所占的时间。我们再截取一次更新的过程：
 
-![demo](/notes/assets/performance/vue/3a7b143b1d564a90827be22365596bbf_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/3a7b143b1d564a90827be22365596bbf_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 然后观察 JS 脚本执行的 Call Tree，发现时间主要花在了 `Table` **组件的更新渲染上**：
 
-![demo](/notes/assets/performance/vue/11f036ade77d41a7b32658bec208fa4f_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/11f036ade77d41a7b32658bec208fa4f_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 我们发现组件的 `render to vnode` 花费的时间约 600ms；`vnode patch to DOM` 花费的时间约 160ms。
 
@@ -115,11 +115,11 @@ rowRender({store, context, /* ...其它变量 */}) {
 
 来看一下优化后的火焰图：
 
-![demo](/notes/assets/performance/vue/dd6c8cc4673d4793924dbf614598ee32_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/dd6c8cc4673d4793924dbf614598ee32_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 从面积上看似乎 `Scripting` 的执行时间变少了，我们再来看它一次更新所需要的 JS 执行时间：
 
-![demo](/notes/assets/performance/vue/1d29bb4002c14f6799c2db0e1f6b1546_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/1d29bb4002c14f6799c2db0e1f6b1546_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 我们发现组件的 `render to vnode` 花费的时间约 240ms；`vnode patch to DOM` 花费的时间约 127ms。
 
@@ -166,11 +166,11 @@ methods: {
 
 基于手写的 benchmark 得到如下测试结果：
 
-![demo](/notes/assets/performance/vue/e2e34241028d49e6abe5dbb514ad63c9_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/e2e34241028d49e6abe5dbb514ad63c9_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ElementUI `Table` 组件一次更新的时间约为 900ms。
 
-![demo](/notes/assets/performance/vue/4dfd96ab0bfb4b54886df73220f0bde1_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/4dfd96ab0bfb4b54886df73220f0bde1_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ZoomUI `Table` 组件一次更新的时间约为 280ms，相比于 ElementUI 的 `Table` 组件，**性能提升了约三倍**。
 
@@ -431,17 +431,17 @@ watch:{
 
 以上实现就是基于 `v-memo` 的思路实现表格组件的性能优化。我们从火焰图上看一下它的效果：
 
-![demo](/notes/assets/performance/vue/cab421ba40f64fa3af0bea5f40ca7c48_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/cab421ba40f64fa3af0bea5f40ca7c48_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 我们发现黄色的 `Scripting` 时间几乎没有了，再来看它一次更新所需要的 JS 执行时间：
 
-![demo](/notes/assets/performance/vue/4bfd1e1a0e59422faf6a4eed7b986822_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/4bfd1e1a0e59422faf6a4eed7b986822_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 我们发现组件的 `render to vnode` 花费的时间约 20ms；`vnode patch to DOM` 花费的时间约 1ms，整个更新渲染过程，JS 的执行时间大幅减少。
 
 另外，我们通过 `benchmark` 测试，得到如下结果：
 
-![demo](/notes/assets/performance/vue/746bb5c194a146c4b46638bba41ed7b7_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/performance/vue/746bb5c194a146c4b46638bba41ed7b7_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 优化后，ZoomUI `Table` 组件一次更新的时间约为 80ms，相比于 ElementUI 的 `Table` 组件，**性能提升了约十倍**。
 

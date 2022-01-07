@@ -147,7 +147,7 @@ console.timeEnd('Obnject.keys')
 
 **结果**
 
-![demo](/notes/assets/js/1618194838(1).jpg)
+<img :src="$withBase('/assets/js/1618194838(1).jpg')" alt="demo" />
 
 [Array.prototype.includes](https://www.ecma-international.org/ecma-262/7.0/#sec-array.prototype.includes) 规范，可以看出 includes 是通过遍历去查询是否存在 searchElement 元素的，这也是其速度不及 对象索引 快的原因了
 

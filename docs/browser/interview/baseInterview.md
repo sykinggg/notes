@@ -35,9 +35,7 @@ window.addEventListener("storage", function (e) {
 });
 ```
 
-<center>
-<img src="/notes/assets/browser/1616484269(1).jpg" width="100%"/>
-</center>
+<img :src="$withBase('/assets/browser/1616484269(1).jpg')" alt="demo"/>
 
 ```js
 var orignalSetItem = localStorage.setItem;
@@ -52,9 +50,8 @@ window.addEventListener("setItemEvent", function (e) {
 });
 localStorage.setItem("name","wang");
 ```
-<center>
-<img src="/notes/assets/browser/1616484377(1).jpg" width="100%"/>
-</center>
+
+<img :src="$withBase('/assets/browser/1616484377(1).jpg')" alt="demo"/>
 
 1. 在同一个页面中，对 `localStorage` 的 `setItem` 方法进行重写
 

@@ -129,7 +129,7 @@ let a = {
 
 ### == 操作符
 
-![demo](/notes/assets/js/2019-06-01-043719.png)
+<img :src="$withBase('/assets/js/2019-06-01-043719.png')" alt="demo" />
 
 上图中的 `toPrimitive` 就是对象转基本类型。
 
@@ -221,7 +221,7 @@ new Foo.getName();   // -> 1
 new Foo().getName(); // -> 2
 ```
 
-![demo](/notes/assets/js/2019-06-01-043723.png)
+<img :src="$withBase('/assets/js/2019-06-01-043723.png')" alt="demo" />
 
 从上图可以看出，`new Foo()` 的优先级大于 `new Foo` ，所以对于上述代码来说可以这样划分执行顺序
 
@@ -608,7 +608,7 @@ console.log(newObj)
 
 如果你有这么一个循环引用对象，你会发现你不能通过该方法深拷贝
 
-![demo](/notes/assets/js/2019-06-01-043724.png)
+<img :src="$withBase('/assets/js/2019-06-01-043724.png')" alt="demo" />
 
 在遇到函数、 `undefined` 或者 `symbol` 的时候，该对象也不能正常的序列化
 
@@ -940,7 +940,7 @@ myDate.test()
 
 如果你使用编译过得代码调用 `myDate.test()` 你会惊奇地发现出现了报错
 
-![demo](/notes/assets/js/2019-06-01-043725.png)
+<img :src="$withBase('/assets/js/2019-06-01-043725.png')" alt="demo" />
 
 因为在 JS 底层有限制，如果不是由 `Date` 构造出来的实例的话，是不能调用 `Date` 里的函数的。所以这也侧面的说明了：**ES6 中的 `class` 继承与 ES5 中的一般继承写法是不同的**。
 
@@ -1234,7 +1234,7 @@ function resolutionProcedure(promise2, x, resolve, reject) {
 
 以上就是根据 Promise / A+ 规范来实现的代码，可以通过 `promises-aplus-tests` 的完整测试
 
-![demo](/notes/assets/js/2019-06-01-043726.png)
+<img :src="$withBase('/assets/js/2019-06-01-043726.png')" alt="demo" />
 
 ## Generator 实现
 
@@ -1465,7 +1465,7 @@ p.a // -> Get 'a' = 2
 
 那么如何得到这个二进制的呢，可以来演算下
 
-![demo](/notes/assets/js/2019-06-01-43727.png)
+<img :src="$withBase('/assets/js/2019-06-01-43727.png')" alt="demo" />
 
 小数算二进制和整数不同。乘法计算时，只计算小数位，整数位用作每一位的二进制，并且得到的第一位为最高位。所以得出 `0.1 = 2^-4 * 1.10011(0011)`，那么 `0.2` 的演算也基本如上所示，只需要去掉第一步乘法，所以得出 `0.2 = 2^-3 * 1.10011(0011)`。
 

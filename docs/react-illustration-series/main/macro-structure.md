@@ -71,7 +71,7 @@
 
 现将内核 3 个包的主要职责和调用关系, 绘制到一张概览图上:
 
-![demo](/notes/assets/react-illustration-series/core-packages.png)
+<img :src="$withBase('/assets/react-illustration-series/core-packages.png')" alt="demo" />
 
 注意:
 

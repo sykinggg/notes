@@ -238,7 +238,7 @@ const renderList = async () => {
 
 至于怎么判断`blank`出现在视图上，可以使用`getBoundingClientRect`方法获取`top`属性
 
-![](/notes/assets/browser/af9e2974b1d84d3c852c0e7f606794cd_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/browser/af9e2974b1d84d3c852c0e7f606794cd_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ```html
 <script setup lang="ts">

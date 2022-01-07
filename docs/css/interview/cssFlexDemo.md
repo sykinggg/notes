@@ -1,15 +1,15 @@
 #
 # Flex 布局教程：实例篇
 
-![demo](/notes/assets/css/bg2015071327.png)
+<img :src="$withBase('/assets/css/bg2015071327.png')" alt="demo" />
 
 ## 一、骰子的布局
 
 骰子的一面，最多可以放置9个点。
 
-![demo](/notes/assets/css/bg2015071328.png)
+<img :src="$withBase('/assets/css/bg2015071328.png')" alt="demo" />
 
-![demo](/notes/assets/css/bg2015071329.png)
+<img :src="$withBase('/assets/css/bg2015071329.png')" alt="demo" />
 
 如果不加说明，本节的HTML模板一律如下。
 
@@ -26,7 +26,7 @@
 
 首先，只有左上角1个点的情况。`Flex`布局默认就是首行左对齐，所以一行代码就够了。
 
-![demo](/notes/assets/css/bg2015071301.png)
+<img :src="$withBase('/assets/css/bg2015071301.png')" alt="demo" />
 
 ```css
 .box {
@@ -36,7 +36,7 @@
 
 > 设置项目的对齐方式，就能实现居中对齐和右对齐。
 
-![demo](/notes/assets/css/bg2015071302.png)
+<img :src="$withBase('/assets/css/bg2015071302.png')" alt="demo" />
 
 ```css
 .box {
@@ -45,7 +45,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071303.png)
+<img :src="$withBase('/assets/css/bg2015071303.png')" alt="demo" />
 
 ```css
 .box {
@@ -56,7 +56,7 @@
 
 > 设置交叉轴对齐方式，可以垂直移动主轴。
 
-![demo](/notes/assets/css/bg2015071304.png)
+<img :src="$withBase('/assets/css/bg2015071304.png')" alt="demo" />
 
 ```css
 .box {
@@ -65,7 +65,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071305.png)
+<img :src="$withBase('/assets/css/bg2015071305.png')" alt="demo" />
 
 ```css
 .box {
@@ -75,7 +75,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071306.png)
+<img :src="$withBase('/assets/css/bg2015071306.png')" alt="demo" />
 
 ```css
 .box {
@@ -85,7 +85,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071307.png)
+<img :src="$withBase('/assets/css/bg2015071307.png')" alt="demo" />
 
 ```css
 .box {
@@ -98,7 +98,7 @@
 1.2 双项目
 ---
 
-![demo](/notes/assets/css/bg2015071308.png)
+<img :src="$withBase('/assets/css/bg2015071308.png')" alt="demo" />
 
 ```css
 .box {
@@ -106,8 +106,7 @@
   justify-content: space-between;
 }
 ```
-
-![demo](/notes/assets/css/bg2015071309.png)
+<img :src="$withBase('/assets/css/bg2015071309.png')" alt="demo" />
 
 ```css
 .box {
@@ -117,7 +116,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071310.png)
+<img :src="$withBase('/assets/css/bg2015071310.png')" alt="demo" />
 
 ```css
 .box {
@@ -128,7 +127,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071311.png)
+<img :src="$withBase('/assets/css/bg2015071311.png')" alt="demo" />
 
 ```css
 .box {
@@ -139,7 +138,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071312.png)
+<img :src="$withBase('/assets/css/bg2015071312.png')" alt="demo" />
 
 ```css
 .box {
@@ -151,7 +150,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071313.png)
+<img :src="$withBase('/assets/css/bg2015071313.png')" alt="demo" />
 
 ```css
 .box {
@@ -167,7 +166,7 @@
 1.3 三项目
 ---
 
-![demo](/notes/assets/css/bg2015071314.png)
+<img :src="$withBase('/assets/css/bg2015071314.png')" alt="demo" />
 
 ```css
 .box {
@@ -186,7 +185,7 @@
 1.4 四项目
 ---
 
-![demo](/notes/assets/css/bg2015071315.png)
+<img :src="$withBase('/assets/css/bg2015071315.png')" alt="demo" />
 
 ```css
 .box {
@@ -197,7 +196,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071316.png)
+<img :src="$withBase('/assets/css/bg2015071316.png')" alt="demo" />
 
 > HTML代码如下。
 
@@ -233,7 +232,7 @@
 1.5 六项目
 ---
 
-![demo](/notes/assets/css/bg2015071317.png)
+<img :src="$withBase('/assets/css/bg2015071317.png')" alt="demo" />
 
 ```css
 .box {
@@ -243,7 +242,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071318.png)
+<img :src="$withBase('/assets/css/bg2015071318.png')" alt="demo" />
 
 ```css
 .box {
@@ -254,7 +253,7 @@
 }
 ```
 
-![demo](/notes/assets/css/bg2015071319.png)
+<img :src="$withBase('/assets/css/bg2015071319.png')" alt="demo" />
 
 > HTML代码如下。
 
@@ -300,7 +299,7 @@
 1.6 九项目
 ---
 
-![demo](/notes/assets/css/bg2015071320.png)
+<img :src="$withBase('/assets/css/bg2015071320.png')" alt="demo" />
 
 ```css
 .box {
@@ -317,7 +316,7 @@
 
 最简单的网格布局，就是平均分布。在容器里面平均分配空间，跟上面的骰子布局很像，但是需要设置项目的自动缩放。
 
-![demo](/notes/assets/css/bg2015071321.png)
+<img :src="$withBase('/assets/css/bg2015071321.png')" alt="demo" />
 
 > HTML代码如下。
 
@@ -346,7 +345,7 @@
 
 某个网格的宽度为固定的百分比，其余网格平均分配剩余的空间。
 
-![demo](/notes/assets/css/bg2015071322.png)
+<img :src="$withBase('/assets/css/bg2015071322.png')" alt="demo" />
 
 > HTML代码如下。
 
@@ -391,7 +390,7 @@
 
 `圣杯布局（Holy Grail Layout）`指的是一种最常见的网站布局。页面从上到下，分成三个部分：`头部（header）`，`躯干（body）`，`尾部（footer）`。其中躯干又水平分成三栏，从左到右为：`导航`、`主栏`、`副栏`。
 
-![demo](/notes/assets/css/bg2015071323.png)
+<img :src="$withBase('/assets/css/bg2015071323.png')" alt="demo" />
 
 > HTML代码如下。
 
@@ -462,7 +461,7 @@ footer {
 
 常常需要在输入框的前方添加提示，后方添加按钮。
 
-![demo](/notes/assets/css/bg2015071324.png)
+<img :src="$withBase('/assets/css/bg2015071324.png')" alt="demo" />
 
 > HTML代码如下。
 
@@ -491,7 +490,7 @@ footer {
 
 有时，主栏的左侧或右侧，需要添加一个图片栏。
 
-![demo](/notes/assets/css/bg2015071325.png)
+<img :src="$withBase('/assets/css/bg2015071325.png')" alt="demo" />
 
 > HTML代码如下。
 
@@ -524,7 +523,7 @@ footer {
 
 有时，页面内容太少，无法占满一屏的高度，底栏就会抬高到页面的中间。这时可以采用`Flex`布局，让底栏总是出现在页面的底部。
 
-![demo](/notes/assets/css/bg2015071326.png)
+<img :src="$withBase('/assets/css/bg2015071326.png')" alt="demo" />
 
 > HTML代码如下。
 
@@ -555,7 +554,7 @@ footer {
 
 每行的项目数固定，会自动分行。
 
-![demo](/notes/assets/css/bg2015071330.png)
+<img :src="$withBase('/assets/css/bg2015071330.png')" alt="demo" />
 
 > CSS的写法。
 

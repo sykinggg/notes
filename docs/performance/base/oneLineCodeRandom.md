@@ -2,53 +2,53 @@
 
 ### Generate a random boolean
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomBoolean = () => Math.random() >= 0.5;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomBoolean = (): boolean => Math.random() >= 0.5;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate a random floating point number in given range
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomFloat = (min, max) => Math.random() * (max - min) + min;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomFloat = (min: number, max: number): number => Math.random() * (max - min) + min;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate a random hex color
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomColor = () => `#${Math.random().toString(16).slice(2, 8).padEnd(6, '0')}`;
@@ -57,9 +57,9 @@ const randomColor = () => `#${Math.random().toString(16).slice(2, 8).padEnd(6, '
 const randomColor = () => `#${(~~(Math.random() * (1 << 24))).toString(16)}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomColor = (): string => `#${Math.random().toString(16).slice(2, 8).padEnd(6, '0')}`;
@@ -68,37 +68,37 @@ const randomColor = (): string => `#${Math.random().toString(16).slice(2, 8).pad
 const randomColor = (): string => `#${(~~(Math.random() * (1 << 24))).toString(16)}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate a random integer in given range
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomInteger = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomInteger = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1)) + min;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate a random IP address
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomIp = () =>
@@ -108,9 +108,9 @@ const randomIp = () =>
         .join('.');
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomIp = (): number =>
@@ -120,9 +120,9 @@ const randomIp = (): number =>
         .join('.');
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -132,31 +132,31 @@ randomIp(); // 175.89.174.131
 
 ### Generate a random sign
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomSign = () => (Math.random() >= 0.5 ? 1 : -1);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomSign = (): number => (Math.random() >= 0.5 ? 1 : -1);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate a random string from given characters
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const generateString = (length, chars) =>
@@ -166,9 +166,9 @@ const generateString = (length, chars) =>
         .join('');
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const generateString = (length: number, chars: string) =>
@@ -178,9 +178,9 @@ const generateString = (length: number, chars: string) =>
         .join('');
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -190,31 +190,31 @@ generateString(10, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX
 
 ### Generate a random string using Node crypto module
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomStr = () => require('crypto').randomBytes(32).toString('hex');
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomStr = (): string => require('crypto').randomBytes(32).toString('hex');
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate a random string with given length
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const generateString = (length) =>
@@ -224,9 +224,9 @@ const generateString = (length) =>
         .join('');
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const generateString = (length: number): string =>
@@ -236,45 +236,45 @@ const generateString = (length: number): string =>
         .join('');
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate a random UUID
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const uuid = (a) => (a ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16) : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, uuid));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate an array of random integers in a given range
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomArrayInRange = (min, max, n) => Array.from({ length: n }, () => Math.floor(Math.random() * (max - min + 1)) + min);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomArrayInRange = (min: number, max: number, n: number): number[] => Array.from({ length: n }, () => Math.floor(Math.random() * (max - min + 1)) + min);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -284,25 +284,25 @@ randomArrayInRange(1, 100, 10); // [11, 82, 41, 35, 76, 83, 43, 15, 60, 54]
 
 ### Get a random item and remove it from an array
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomItem = (arr) => arr.splice((Math.random() * arr.length) | 0, 1);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomItem = <T,>(arr: T[]): T => arr.splice((Math.random() * arr.length) | 0, 1) as unknown as T;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -314,17 +314,17 @@ randomItem(arr); // 7
 
 ### Get a random item from an array
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomItems = (arr, count) => arr.concat().reduce((p, _, __, arr) => (p[0] < count ? [p[0] + 1, p[1].concat(arr.splice((Math.random() * arr.length) | 0, 1))] : p), [0, []])[1];
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -335,25 +335,25 @@ randomItems(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'], 4); // ['e', 'c'
 
 ### Pick a random property of an object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomProp = (obj) => Object.keys(obj)[(Math.random() * Object.keys(obj).length) | 0];
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const randomProp = (obj: object): any => Object.keys(obj)[(Math.random() * Object.keys(obj).length) | 0];
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -408,17 +408,17 @@ randomProp(colors); // 'red'
 
 ### Pick random lines from a text document
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const randomLines = (str, count) => str.split(/\r?\n/).reduce((p, _, __, arr) => (p[0] < count ? [p[0] + 1, p[1].concat(arr.splice((Math.random() * arr.length) | 0, 1))] : p), [0, []])[1];
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 

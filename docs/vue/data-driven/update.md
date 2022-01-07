@@ -438,9 +438,7 @@ export function appendChild (node: Node, child: Node) {
 
 那么至此从主线上把模板和数据如何渲染成最终的 DOM 的过程分析完毕了，可以通过下图更直观地看到从初始化 Vue 到最终渲染的整个过程。 
 
-<!-- <img :src="$withBase('/notes/assets/new-vue.png')"/> -->
-
-![new vue](/notes/assets/vue/new-vue.png)
+<img :src="$withBase('/assets/vue/new-vue.png')" alt="demo" />
 
 这里只是分析了最简单和最基础的场景，在实际项目中，是把页面拆成很多组件的，Vue 另一个核心思想就是组件化。那么下一章就来分析 Vue 的组件化过程。
 

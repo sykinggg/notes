@@ -16,7 +16,7 @@
 
 因为 [Promise.prototype.then](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) 和  [Promise.prototype.catch](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) 方法返回的是 `promise`， 所以它们可以被链式调用。
 
-![demo](/notes/assets/promises.png)
+<img :src="$withBase('/assets/promises.png')" alt="demo" />
 
 > **不要和惰性求值混淆：** 有一些语言中有惰性求值和延时计算的特性，它们也被称为“promises”，例如 Scheme。JavaScript 中的 promise 代表的是已经正在发生的进程， 而且可以通过回调函数实现链式调用。 如果您想对一个表达式进行惰性求值，就考虑一下使用无参数的"箭头函数":  `f = () =>表达式` 来创建惰性求值的表达式，使用 `f()` 求值。
 

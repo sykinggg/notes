@@ -9,7 +9,7 @@
 `//然后可以`
 `<p onClick={``this``.handleClick}>`
 2. 使用时绑定 
-`<``p` `onClick={this.handleClick.bind(this)}>`
+`<p onClick={this.handleClick.bind(this)}>`
 3. 使用箭头函数 这种最简单 不用考虑this的指向问题 (但是会造成额外的渲染)
 
 以上三种方法，第一种最优。

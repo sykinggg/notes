@@ -66,13 +66,13 @@ ExecutionContext = {
 }
 ```
 
-<font size=1>**是尺寸**</font>
+<div size=1>**是尺寸**</div>
 
 * **全局**执行上下文中，this 的值指向全局对象，在浏览器中this 的值指向 window 对象，而在nodejs中指向这个文件的module对象。
 
 * **函数**执行上下文中，this 的值取决于函数的调用方式。具体有：默认绑定、隐式绑定、显式绑定（硬绑定）、new绑定、箭头函数，具体内容会在【this全面解析】部分详解。
 
-<font size=1>**词法环境（Lexical Environment）**</font>
+<div size=1>**词法环境（Lexical Environment）**</div>
 
 词法环境有两个**组成部分**
 
@@ -110,7 +110,7 @@ FunctionExectionContext = { // 函数执行上下文
 }
 ```
 
-<font size=1>**变量环境**</font>
+<div size=1>**变量环境**</div>
 
 变量环境也是一个词法环境，因此它具有上面定义的词法环境的所有属性。
 

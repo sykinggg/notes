@@ -59,13 +59,13 @@ utils.scrollTop = function(callback){
 }
 ```
 
-![](/notes/assets/cli/17013dfdf76aa8c2_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/cli/17013dfdf76aa8c2_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 可以看到该元素的距离顶部595px，正常显示
 当我先滚动一段距离后，然后再次刷新，滚动条位置还会记录之前的位置，这是top为195px，这也是正常的，因为`getBoundingClientRect`是根据浏览器窗口进行定位置的
 而我想要的是想要不管浏览器滚动条位置在何处时刷新浏览器，我所绑定的dom元素都是根据文档左上角进行定位的
 
-![](/notes/assets/performance/vue/17013dfe141e75c3_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/performance/vue/17013dfe141e75c3_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ### offsetTop
 
@@ -107,7 +107,7 @@ if(this.$refs.subnav.getBoundingClientRect){
 
 效果如下，不管滚动条何处位置都是一个相对文档最上面的左上角
 
-![](/notes/assets/performance/vue/17013dfe05de5eab_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/performance/vue/17013dfe05de5eab_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ## 阮一峰
 
@@ -148,7 +148,7 @@ if(this.$refs.subnav.getBoundingClientRect){
 
 效果如下
 
-![](/notes/assets/performance/vue/17013dfe0422450c_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/performance/vue/17013dfe0422450c_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ## 总结三种方法获取元素距离文档顶部位置
 

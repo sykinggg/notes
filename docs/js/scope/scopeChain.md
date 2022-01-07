@@ -71,7 +71,7 @@ Javascript中有一个执行上下文(execution context)的概念，它定义了
 **全局环境**
 ---
 
-<font size=1>**无嵌套的函数**</font>
+<div size=1>**无嵌套的函数**</div>
 
 ```javascript
 // my_script.js
@@ -105,7 +105,7 @@ myFunc所引用的函数对象，其本身不仅仅含有函数的代码，并�
 
 ![执行示例](https://camo.githubusercontent.com/74f0b304b1940aab6f4e96949a4708f088e1ed82/687474703a2f2f646d697472796672616e6b2e636f6d2f5f6d656469612f61727469636c65732f6a735f636c6f737572655f332e706e67)
 
-<font size=1>**有嵌套的函数**</font>
+<div size=1>**有嵌套的函数**</div>
 
 当函数返回没有被引用的时候，就会被垃圾回收器回收。但是对于闭包，即使外部函数返回了，函数对象仍会引用它**被创建时**的作用域对象。
 

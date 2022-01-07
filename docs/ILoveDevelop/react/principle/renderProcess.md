@@ -9,13 +9,13 @@ React 应用想在容器中渲染出一个组件，这通常也是一个 React �
 
 先定位到 **ReactDOM.js** 文件的第 702 行代码
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-032240.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032240.png')" alt="demo" />
 
 这部分代码其实没啥好说的，唯一需要注意的是在调用 `legacyRenderSubtreeIntoContainer` 函数时写死了第四个参数 `forceHydrate` 为 `false`。这个参数为 `true` 时表明了是服务端渲染，因为分析的是客户端渲染，因此后面有关这部分的内容也不会再展开。
 
 接下来进入 `legacyRenderSubtreeIntoContainer` 函数中，这部分代码分为两块来讲。第一部分是没有 `root` 之前首先需要创建一个 `root` 第二部分是有 `root` 之后的渲染流程
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-032241.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032241.png')" alt="demo" />
 
 一开始进来函数的时候肯定是没有 `root` 的，因此需要去创建一个 `root`，大家可以发现这个 `root` 对象同样也被挂载在了 `container._reactRootContainer` 上，也就是的 DOM 容器上。 如果你手边有 React 项目的话，在控制台键入如下代码就可以看到这个 `root` 对象了。
 
@@ -23,11 +23,11 @@ React 应用想在容器中渲染出一个组件，这通常也是一个 React �
 document.querySelector('#root')._reactRootContainer
 ```
 
-![root 对象实例](/notes/assets/reactIloveDeveplo/2019-06-01-032244.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032244.png')" alt="root 对象实例">
 
 可以看到 `root` 是 `ReactRoot` 构造函数构造出来的，并且内部有一个 `_internalRoot` 对象，这个对象是本文接下来要重点介绍的 `fiber` 对象。
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-032245.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032245.png')" alt="源代码">
 
 首先还是和上文中提到的 `forceHydrate` 属性相关的内容，不需要管这部分，反正 `shouldHydrate` 肯定为 `false`。
 
@@ -41,11 +41,11 @@ document.querySelector('#root')._reactRootContainer
 
 最后就是创建了一个 `ReactRoot` 对象并返回。接下来的内容中会看到好几个 `root`，可能会有点绕。
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-032247.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032247.png')" alt="源代码">
 
 在 `ReactRoot` 构造函数内部就进行了一步操作，那就是创建了一个 `FiberRoot` 对象，并挂载到了 `_internalRoot` 上。**和 DOM `树一样，fiber` 也会构建出一个树结构（每个 DOM 节点一定对应着一个 `fiber` 对象），`FiberRoot` 就是整个 `fiber` 树的根节点**，接下来的内容里将学习到关于 `fiber` 相关的内容。这里提及一点，`fiber` 和 Fiber 是两个不一样的东西，前者代表着数据结构，后者代表着新的架构。
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-032249.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032249.png')" alt="源代码">
 
 在 `createFiberRoot` 函数内部，分别创建了两个 `root`，一个 `root` 叫做 `FiberRoot`，另一个 `root` 叫做 `RootFiber`，并且它们两者还是相互引用的。
 
@@ -87,7 +87,7 @@ ReactDom.render(<APP/>, document.querySelector('#root'))
 
 假如说需要渲染出以上组件，那么它们对应的 `fiber` 树应该长这样
 
-![流程图](/notes/assets/reactIloveDeveplo/2019-06-01-32250.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-32250.png')" alt="流程图">
 
 从图中可以看到，每个组件或者 DOM 节点都会对应着一个 `fiber` 对象。另外你手边有 React 项目的话，也可以在控制台输入如下代码，查看 `fiber` 树的整个结构。
 
@@ -109,7 +109,7 @@ const fiber = document.querySelector('#root')._reactRootContainer._internalRoot
 **总结**
 ---
 
-![示例图](/notes/assets/reactIloveDeveplo/2019-06-01-032252.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032252.png')" alt="流程图">
 
 **ReactRoot.prototype.render**
 ---
@@ -118,7 +118,7 @@ const fiber = document.querySelector('#root')._reactRootContainer._internalRoot
 
 > 先定位到代码的第 592 行
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-031954.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-031954.png')" alt="流程图">
 
 在上述的代码中调用了 `unbatchedUpdates` 函数，这个函数涉及到的知识其实在 React 中相当重要。
 
@@ -137,13 +137,13 @@ this.setState({ age: 3 })
 
 然后在 `unbatchedUpdates` 回调内部判断是否存在 `parentComponent`。这一步可以假定不会存在 `parentComponent`，因为很少有人会在 `root` 外部加上 `context` 组件。不存在 `parentComponent` 的话就会执行 `root.render(children, callback)`，这里的 `render` 指的是 `ReactRoot.prototype.render`。
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-031956.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-031956.png')" alt="源代码">
 
 在 `render` 函数内部首先取出 `root`，这里的 `root` 指的是 `FiberRoot`。然后创建了 `ReactWork` 的实例，这块内容没有必要深究，功能就是为了在组件渲染或更新后把所有传入 `ReactDom.render` 中的回调函数全部执行一遍。
 
 接下来来看 `updateContainer` 内部是怎么样的。
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-031958.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-031958.png')" alt="源代码">
 
 先从 FiberRoot 的 `current` 属性中取出它的 fiber 对象，然后计算了两个时间。这两个时间在 React 中相当重要，因此需要单独用一小节去学习它们。
 
@@ -163,7 +163,7 @@ function recomputeCurrentRendererTime() {
 
 然后需要把计算出来的值再通过一个公式算一遍，这里的` | 0 `作用是取整数，也就是说` 11 / 10 | 0 = 1`
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-031959.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-031959.png')" alt="源代码">
 
 假如 `originalStartTimeMs` 为 `2500`，当前时间为 `5000`，那么算出来的差值就是 `2500`，也就是说当前距离 React 应用初始化已经过去了 2500 毫秒，最后通过公式得出的结果为：
 
@@ -186,7 +186,7 @@ expirationTime = computeAsyncExpiration(currentTime)
 
 接下来就来分析 `computeInteractiveExpiration` 函数内部是如何计算时间的，当然 `computeAsyncExpiration` 计算时间的方式也是相同的，无非更换了两个变量。
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-032001.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032001.png')" alt="源代码">
 
 以上这些代码其实就是公式，把具体的值代入就能算出结果了。
 
@@ -221,7 +221,7 @@ export function expirationTimeToMs(expirationTime: ExpirationTime): number {
 
 当计算出时间以后就会调用 `updateContainerAtExpirationTime`，这个函数其实没有什么好解析的，直接进入 `scheduleRootUpdate` 函数就好。
 
-![源代码](/notes/assets/reactIloveDeveplo/2019-06-01-032002.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032002.png')" alt="源代码">
 
 首先会创建一个 `update`，**这个对象和 `setState` 息息相关**
 
@@ -250,4 +250,4 @@ nextEffect: null,
 **总结**
 ---
 
-![总结流程图](/notes/assets/reactIloveDeveplo/2019-06-01-032003.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032003.png')" alt="总结流程图">

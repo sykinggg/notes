@@ -49,7 +49,7 @@ export function createFiberRoot(
 
 <!-- <img :src="$withBase('/img/fiberroot.png')" alt="fiberRoot"> -->
 
-![fiberRoot](/notes/assets/react/fiberroot.png)
+<img :src="$withBase('/assets/react/fiberroot.png')" alt="fiberRoot">
 
 > 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberRoot.new.js#L97)看到这一步的代码
 

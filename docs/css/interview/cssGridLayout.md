@@ -7,7 +7,7 @@
 
 网格布局（Grid）是最强大的 CSS 布局方案。
 
-![示例](/notes/assets/css/1_bg2019032501.png)
+<img :src="$withBase('/assets/css/1_bg2019032501.png')" alt="demo" />
 
 * `Flex` 布局是轴线布局，只能指定"项目"针对轴线的位置，可以看作是一维布局。
 
@@ -38,7 +38,7 @@
 
 容器里面的水平区域称为`"行"（row）`，垂直区域称为`"列"（column）`。
 
-![示例](/notes/assets/css/1_bg2019032502.png)
+<img :src="$withBase('/assets/css/1_bg2019032502.png')" alt="demo" />
 
 > 上图中，水平的深色区域就是"行"，垂直的深色区域就是"列"。
 
@@ -56,7 +56,7 @@
 
 正常情况下，`n`行有`n + 1`根水平网格线，`m`列有`m + 1`根垂直网格线，比如三行就有四根水平网格线。
 
-![示例](/notes/assets/css/1_bg2019032503.png)
+<img :src="$withBase('/assets/css/1_bg2019032503.png')" alt="demo" />
 
 > 上图是一个 4 x 4 的网格，共有5根水平网格线和5根垂直网格线。
 
@@ -80,7 +80,7 @@ div {
 }
 ```
 
-![示例](/notes/assets/css/bg2019032504.png)
+<img :src="$withBase('/assets/css/bg2019032504.png')" alt="demo" />
 
 上图是`display: grid`的效果。
 
@@ -94,7 +94,7 @@ div {
 
 上面代码指定`div`是一个行内元素，该元素内部采用网格布局。
 
-![示例](/notes/assets/css/bg2019032505.png)
+<img :src="$withBase('/assets/css/bg2019032505.png')" alt="demo" />
 
 上图是`display: inline-grid`的效果。
 
@@ -115,7 +115,7 @@ div {
 
 > 上面代码指定了一个三行三列的网格，列宽和行高都是`100px`。
 
-![示例](/notes/assets/css/bg2019032506.png)
+<img :src="$withBase('/assets/css/bg2019032506.png')" alt="demo" />
 
 > 除了使用绝对单位，也可以使用百分比。
 
@@ -151,7 +151,7 @@ div {
 
 上面代码定义了6列，第一列和第四列的宽度为`100px`，第二列和第五列为`20px`，第三列和第六列为`80px`。
 
-![示例](/notes/assets/css/bg2019032507.png)
+<img :src="$withBase('/assets/css/bg2019032507.png')" alt="demo" />
 
 **（2）auto-fill 关键字**
 
@@ -166,7 +166,7 @@ div {
 
 上面代码表示每列宽度`100px`，然后自动填充，直到容器不能放置更多的列。
 
-![示例](/notes/assets/css/bg2019032508.png)
+<img :src="$withBase('/assets/css/bg2019032508.png')" alt="demo" />
 
 **（3）fr 关键字**
 
@@ -181,7 +181,7 @@ div {
 
 > 上面代码表示两个相同宽度的列。
 
-![示例](/notes/assets/css/1_bg2019032509.png)
+<img :src="$withBase('/assets/css/1_bg2019032509.png')" alt="demo" />
 
 `fr`可以与绝对长度的单位结合使用，这时会非常方便。
 
@@ -194,7 +194,7 @@ div {
 
 上面代码表示，第一列的宽度为`150px`，第二列的宽度是第三列的一半。
 
-![示例](/notes/assets/css/bg2019032510.png)
+<img :src="$withBase('/assets/css/bg2019032510.png')" alt="demo" />
 
 **（4）minmax()**
 
@@ -271,7 +271,7 @@ div {
 
 `grid-row-gap`用于设置行间距，`grid-column-gap`用于设置列间距。
 
-![示例](/notes/assets/css/bg2019032511.png)
+<img :src="$withBase('/assets/css/bg2019032511.png')" alt="demo" />
 
 `grid-gap`属性是`grid-column-gap`和`grid-row-gap`的合并简写形式，语法如下。
 
@@ -350,7 +350,7 @@ grid-template-areas: 'a . c'
 
 划分网格以后，容器的子元素会按照顺序，自动放置在每一个网格。默认的放置顺序是"先行后列"，即先填满第一行，再开始放入第二行，即下图数字的顺序。
 
-![示例](/notes/assets/css/1_bg2019032503.png)
+<img :src="$withBase('/assets/css/1_bg2019032503.png')" alt="demo" />
 
 这个顺序由`grid-auto-flow`属性决定，默认值是`row`，即"先行后列"。也可以将它设成`column`，变成"先列后行"。
 
@@ -362,13 +362,13 @@ grid-template-areas: 'a . c'
 
 上面代码设置了`column`以后，放置顺序就变成了下图。
 
-![示例](/notes/assets/css/bg2019032512.png)
+<img :src="$withBase('/assets/css/bg2019032512.png')" alt="demo" />
 
 `grid-auto-flow`属性除了设置成`row`和`column`，还可以设成`row dense`和`column dense`。这两个值主要用于，某些项目指定位置以后，剩下的项目怎么自动放置。
 
 下面的例子让1号项目和2号项目各占据两个单元格，然后在默认的`grid-auto-flow: row`情况下，会产生下面这样的布局。
 
-![示例](/notes/assets/css/bg2019032513.png)
+<img :src="$withBase('/assets/css/bg2019032513.png')" alt="demo" />
 
 上图中，1号项目后面的位置是空的，这是因为3号项目默认跟着2号项目，所以会排在2号项目后面。
 
@@ -382,7 +382,7 @@ grid-template-areas: 'a . c'
 
 > 上面代码的效果如下。
 
-![示例](/notes/assets/css/bg2019032514.png)
+<img :src="$withBase('/assets/css/bg2019032514.png')" alt="demo" />
 
 上图会先填满第一行，再填满第二行，所以3号项目就会紧跟在1号项目的后面。8号项目和9号项目就会排到第四行。
 
@@ -394,7 +394,7 @@ grid-template-areas: 'a . c'
 }
 ```
 
-![示例](/notes/assets/css/bg2019032515.png)
+<img :src="$withBase('/assets/css/bg2019032515.png')" alt="demo" />
 
 上图会先填满第一列，再填满第2列，所以3号项目在第一列，4号项目在第二列。8号项目和9号项目被挤到了第四列。
 
@@ -428,7 +428,7 @@ grid-template-areas: 'a . c'
 
 > 上面代码表示，单元格的内容左对齐，效果如下图。
 
-![示例](/notes/assets/css/bg2019032516.png)
+<img :src="$withBase('/assets/css/bg2019032516.png')" alt="demo" />
 
 ```css
 .container {
@@ -438,7 +438,7 @@ grid-template-areas: 'a . c'
 
 > 上面代码表示，单元格的内容头部对齐，效果如下图。
 
-![示例](/notes/assets/css/bg2019032517.png)
+<img :src="$withBase('/assets/css/bg2019032517.png')" alt="demo" />
 
 `place-items`属性是`align-items`属性和`justify-items`属性的合并简写形式。
 
@@ -470,31 +470,31 @@ place-items: start end;
 
 * **`start` - 对齐容器的起始边框。**
 
-![示例](/notes/assets/css/bg2019032519.png)
+<img :src="$withBase('/assets/css/bg2019032519.png')" alt="demo" />
 
 * **`end` - 对齐容器的结束边框。**
 
-![示例](/notes/assets/css/bg2019032518.png)
+<img :src="$withBase('/assets/css/bg2019032518.png')" alt="demo" />
 
 * **`center` - 容器内部居中。**
 
-![示例](/notes/assets/css/bg2019032520.png)
+<img :src="$withBase('/assets/css/bg2019032520.png')" alt="demo" />
 
 * **`stretch` - 项目大小没有指定时，拉伸占据整个网格容器。**
 
-![示例](/notes/assets/css/bg2019032521.png)
+<img :src="$withBase('/assets/css/bg2019032521.png')" alt="demo" />
 
 * **`space-around` - 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与容器边框的间隔大一倍。**
 
-![示例](/notes/assets/css/bg2019032522.png)
+<img :src="$withBase('/assets/css/bg2019032522.png')" alt="demo" />
 
 * **`space-between` - 项目与项目的间隔相等，项目与容器边框之间没有间隔。**
 
-![示例](/notes/assets/css/bg2019032523.png)
+<img :src="$withBase('/assets/css/bg2019032523.png')" alt="demo" />
 
 * **`space-evenly` - 项目与项目的间隔相等，项目与容器边框之间也是同样长度的间隔。**
 
-![示例](/notes/assets/css/bg2019032524.png)
+<img :src="$withBase('/assets/css/bg2019032524.png')" alt="demo" />
 
 `place-content`属性是`align-content`属性和`justify-content`属性的合并简写形式。
 
@@ -530,7 +530,7 @@ place-content: space-around space-evenly;
 
 > 上面代码指定新增的行高统一为50px（原始的行高为100px）。
 
-![示例](/notes/assets/css/bg2019032525.png)
+<img :src="$withBase('/assets/css/bg2019032525.png')" alt="demo" />
 
 **3.9 grid-template 属性，grid 属性**
 ---
@@ -566,7 +566,7 @@ place-content: space-around space-evenly;
 
  上面代码指定，1号项目的左边框是第二根垂直网格线，右边框是第四根垂直网格线。
 
- ![示例](/notes/assets/css/bg2019032526.png)
+<img :src="$withBase('/assets/css/bg2019032526.png')" alt="demo" />
 
  上图中，只指定了1号项目的左右边框，没有指定上下边框，所以会采用默认位置，即上边框是第一根水平网格线，下边框是第二根水平网格线。
 
@@ -583,7 +583,7 @@ place-content: space-around space-evenly;
 }
 ```
 
-![示例](/notes/assets/css/bg2019032527.png)
+<img :src="$withBase('/assets/css/bg2019032527.png')" alt="demo" />
 
 这四个属性的值，除了指定为第几个网格线，还可以指定为网格线的名字。
 
@@ -606,7 +606,7 @@ place-content: space-around space-evenly;
 
 上面代码表示，1号项目的左边框距离右边框跨越2个网格。
 
-![示例](/notes/assets/css/bg2019032528.png)
+<img :src="$withBase('/assets/css/bg2019032528.png')" alt="demo" />
 
 这与下面的代码效果完全一样。
 
@@ -666,7 +666,7 @@ place-content: space-around space-evenly;
 
 上面代码中，项目`item-1`占据的区域，包括第一行 + 第二行、第一列 + 第二列。
 
-![示例](/notes/assets/css/bg2019032529.png)
+<img :src="$withBase('/assets/css/bg2019032529.png')" alt="demo" />
 
 斜杠以及后面的部分可以省略，默认跨越一个网格。
 
@@ -692,7 +692,7 @@ place-content: space-around space-evenly;
 
 上面代码中，1号项目位于`e`区域，效果如下图。
 
-![示例](/notes/assets/css/bg2019032530.png)
+<img :src="$withBase('/assets/css/bg2019032530.png')" alt="demo" />
 
 `grid-area`属性还可用作`grid-row-start`、`grid-column-start`、`grid-row-end`、`grid-column-end`的合并简写形式，直接指定项目的位置。
 
@@ -742,7 +742,7 @@ place-content: space-around space-evenly;
 }
 ```
 
-![示例](/notes/assets/css/bg2019032532.png)
+<img :src="$withBase('/assets/css/bg2019032532.png')" alt="demo" />
 
 `place-self`属性是`align-self`属性和`justify-self`属性的合并简写形式。
 

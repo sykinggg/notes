@@ -235,7 +235,7 @@ html {
 }
 ```
 
-![demo](/notes/assets/css/60ccc6bfb0764cfe953792eef68a79ab_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/css/60ccc6bfb0764cfe953792eef68a79ab_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ### demo
 
@@ -339,7 +339,7 @@ body {
 }
 ```
 
-![demo](/notes/assets/css/35cab35c6ad345e09cf9ea8c3cec8021_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/css/35cab35c6ad345e09cf9ea8c3cec8021_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ### demo
 

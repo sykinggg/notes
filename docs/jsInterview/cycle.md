@@ -2,7 +2,7 @@
 
 今天我们来看点基础知识，看看JavaScript中的那些循环遍历方法：
 
-![demo](/notes/assets/jsInterview/2e86fb772f6646d089bf65872c2dd086_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/2e86fb772f6646d089bf65872c2dd086_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 一、数组遍历方法
 
@@ -659,4 +659,4 @@ test()
 
 输出结果：
 
-![demo](/notes/assets/jsInterview/5d4f2a5dcccc4d8686ba3e417d1f61de_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/5d4f2a5dcccc4d8686ba3e417d1f61de_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />

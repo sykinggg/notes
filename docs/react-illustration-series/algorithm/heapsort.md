@@ -18,20 +18,20 @@
 1. 构造二叉堆
    - 需要从最后一个非叶子节点开始, 向下调整堆结构
 
-![](/notes/assets/react-illustration-series/minheap.png)
+<img :src="$withBase('/assets/react-illustration-series/minheap.png')" alt="demo" />
 
-2. 插入节点, 重新向上调整堆(`sift-up`)
+1. 插入节点, 重新向上调整堆(`sift-up`)
    - 将新元素插入到数组末尾之后, 要重新调整数组结构, 保证数组任然是最小(或最大)堆.
 
-![](/notes/assets/react-illustration-series/minheap-insert.png)
+<img :src="$withBase('/assets/react-illustration-series/minheap-insert.png')" alt="demo" />
 
-3. 提取或删除根节点(顶端节点), 重新向下调整堆(`sift-down`)
+1. 提取或删除根节点(顶端节点), 重新向下调整堆(`sift-down`)
    - 对于最大堆, 提取的是最大值. 对于最小堆, 提取的是最小值.
    - 顶点被提取之后, 要重新调整数组结构, 保证数组任然是最小(或最大)堆.
 
-![](/notes/assets/react-illustration-series/minheap-remove.png)
+<img :src="$withBase('/assets/react-illustration-series/minheap-remove.png')" alt="demo" />
 
-4. 排序过程
+1. 排序过程
 
 利用二叉堆的特性, 排序就是循环提取根节点的过程. 循环执行步骤 3, 直到将所有的节点都提取完成, 被提取的节点构成的数组就是一个有序数组.
 

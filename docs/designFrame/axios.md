@@ -106,7 +106,7 @@ console.log({axios: axios});
 
 层层点开来看，`axios` 的结构是怎样的，先有一个大概印象。
 
-![](/notes/assets/designFrame/16efe5acd92aaa7f_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16efe5acd92aaa7f_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 看完结构图，如果看过`jQuery`、`underscore`和`lodash`源码，会发现其实跟`axios`源码设计类似。
 
@@ -739,7 +739,7 @@ node ./examples/server.js -p 5000
 
 `promise = promise.then(chain.shift(), chain.shift());`这段代码打个断点。
 
-![](/notes/assets/designFrame/16efe5beaa35ac54_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16efe5beaa35ac54_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 > 特别关注下，右侧，`local`中的`chain`数组。也就是这样的结构。
 
@@ -872,7 +872,7 @@ p1.catch(err => {
 
 最后画个图总结下 `Promise` 链式调用。
 
-![](/notes/assets/designFrame/16f0f56a048b5c7d_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16f0f56a048b5c7d_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ::: tip 小结
 1. 请求和响应的拦截器可以写Promise。
@@ -1420,11 +1420,11 @@ CancelToken.prototype.throwIfRequested = function throwIfRequested() {
 
 `umi-request` 与 `fetch`, `axios` 异同。
 
-![](/notes/assets/designFrame/16efe5c696a5e5f7_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16efe5c696a5e5f7_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ## 总结
 
-![](/notes/assets/designFrame/16f0f5560e4aa850_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16f0f5560e4aa850_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 > 1. 为什么 `axios` 既可以当函数调用，也可以当对象使用，比如`axios({})`、`axios.get`。
 

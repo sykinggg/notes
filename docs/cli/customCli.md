@@ -4,7 +4,7 @@
 
 基本思路其实很简单，就是通过命令调取定义好的模板，然后生成代码文件：
 
-![](/notes/assets/cli/cab3081dda3242cc85a639a27ae8efc0_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/cab3081dda3242cc85a639a27ae8efc0_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 项目结构
 
@@ -96,8 +96,7 @@ if (!program.args.length) {
 ```shell
 xmant -v
 ```
-
-![](/notes/assets/cli/7bdce7b0bfaf4447a64c1c99b9e71e00_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/7bdce7b0bfaf4447a64c1c99b9e71e00_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 通过命令快速创建单个代码模板
 
@@ -351,11 +350,11 @@ program
 
 > 在当前项目文件夹下执行 `npm link --force` , 然后随便找个文件下执行 `xmant c`:
 
-![](/notes/assets/cli/0135f12ca96e40e48b73b88c548f13d2_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/0135f12ca96e40e48b73b88c548f13d2_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 > 打开我们新创建的文件看看：
 
-![](/notes/assets/cli/523b7ad34059498093b4658c3851208f_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/523b7ad34059498093b4658c3851208f_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 也可以选择其他模板创建试试。
 
@@ -503,8 +502,8 @@ program
 
 > 在当前项目文件夹下执行 `npm link --force` , 然后随便找个文件下执行 `xmant cm`:
 
-![](/notes/assets/cli/e82626560e5c4bfe8485ff3c2664cc2e_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/e82626560e5c4bfe8485ff3c2664cc2e_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 看一下我们批量创建的文件和文件夹：
 
-![](/notes/assets/cli/b9d58f8ab5db46858b41c3c8ff0e09ed_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/b9d58f8ab5db46858b41c3c8ff0e09ed_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />

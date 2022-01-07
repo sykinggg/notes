@@ -112,7 +112,7 @@ jQuery.fn.init.prototype === jQuery.fn;  // true
 jQuery.fn.init.prototype === jQuery.prototype;  // true
 ```
 
-![](/notes/assets/designFrame/16c3d14eb4c48e84_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16c3d14eb4c48e84_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ```js
 <sciprt src="https://unpkg.com/jquery@3.4.1/dist/jquery.js">

@@ -139,4 +139,5 @@ const arr5 = [1, 2, , 4, 5];
 arr5.flat();
 // [1, 2, 4, 5]
 ```
-![demo](/notes/assets/mozillaJs/1622629430(1).jpg)
+
+<img :src="$withBase('/assets/mozillaJs/1622629430(1).jpg')" alt="demo" />

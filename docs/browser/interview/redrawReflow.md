@@ -6,7 +6,7 @@
 
 ### WebKit 渲染引擎的主流程
 
-![](/notes/assets/browser/12885aa2adeb4e2d81a15bb06b880bb1_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/12885aa2adeb4e2d81a15bb06b880bb1_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 从上面这个图上，我们可以看到，浏览器渲染流程如下：
 
@@ -22,7 +22,7 @@
 
 ### 渲染树
 
-![](/notes/assets/browser/5be05f02ba9140a49e74ef6b1707fad5_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/5be05f02ba9140a49e74ef6b1707fad5_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 * 构建渲染树流程：
 
@@ -135,7 +135,7 @@ btn.addEventListener('click', () => {
 })
 ```
 
-![](/notes/assets/browser/ac51305ce07d4477a4e0c034261f6618_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/ac51305ce07d4477a4e0c034261f6618_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 截图可以看是一条完整的渲染流程 JS / CSS > 样式 > 布局 > 绘制 > 合成
 
@@ -145,13 +145,13 @@ btn.addEventListener('click', () => {
 box.style.background = '#fof'
 ```
 
-![](/notes/assets/browser/b8b8b2d082c3415f94754ed77a95b074_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/b8b8b2d082c3415f94754ed77a95b074_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 通过上图发现修改背景颜色，渲染流程跳过了 `Layout`（布局）这一环节，继续走绘制以及后面的流程。
 
 ## 像素管道
 
-![](/notes/assets/browser/e8eb9c27f3114a7293a16e1e7eb7736e_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/e8eb9c27f3114a7293a16e1e7eb7736e_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 **上图是一张很经典的流程图，是浏览器运行的单个帧的渲染流水线，称为像素管道**
 
@@ -169,19 +169,19 @@ box.style.background = '#fof'
 
 1. JS / CSS > 样式 > 布局 > 绘制 > 合成
 
-![](/notes/assets/browser/7b1195b9bb5c4768a4a28a09cbb25ea6_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/7b1195b9bb5c4768a4a28a09cbb25ea6_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 如果修改元素的 layout 属性，也就是触发了回流。例如改变元素的宽度、高度等，那么浏览器会触发重新布局，解析之后的一系列子阶段，这个过程就叫回流。回流需要更新完整的渲染流水线，所以开销也是最大的。
 
-2. JS / CSS > 样式 > 绘制 > 合成
+1. JS / CSS > 样式 > 绘制 > 合成
 
-![](/notes/assets/browser/4d027fe8cb704bf59741962feb1b10ec_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/4d027fe8cb704bf59741962feb1b10ec_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 如果修改了背景图片、文字颜色或阴影等不会影响页面布局的属性，则浏览器会跳过布局，但是后面的绘制以及后面的流程还是会执行的。
 
-3. JS / CSS > 样式 > 合成
+1. JS / CSS > 样式 > 合成
 
-![](/notes/assets/browser/65fa2eff94aa4a91bca2fc5d616e0516_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/65fa2eff94aa4a91bca2fc5d616e0516_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 有些属性可以使渲染流水线跳过布局和绘制环节，只需要做合成层的合并即可，例如：`transform` 和 `opacity` 属性。
 
@@ -253,13 +253,13 @@ container.appendChild(content)
 </script>
 ```
 
-![](/notes/assets/browser/96a4f610b02147769747d593eba10526_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/96a4f610b02147769747d593eba10526_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 有些文章有写到 `transform` 和 `opacity` 属性不会引起回流和重绘，但是上述例子（只截取动画开始部分）实际效果是在动画开始和结束的时候都有一次重绘（`Paint`。动画过程中只会发生 `**composite **`合成。那这里为什么会有重绘呢？是因为对 `transform` 和 `opacity` 应用了 `animation` 或者 `transition`属性是需要这两个属性是在过程中的，如果 `animation` 或者 `transition` 未开始或者已结束，那么提升合成层也会失效。所以动画开始前创建合成层发生一次重绘，动画结束后独立的合成层被移除，移除后会引发重绘。
 
 在控制台的 Layers 工具可以看到合成层：
 
-![](/notes/assets/browser/c3e98d1e6e644818abe84833a4b01377_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/c3e98d1e6e644818abe84833a4b01377_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ::: tip 注意
 `WebKit` 内核的浏览器中，CSS3 的 `transform`、`opacity`、`filter` 这些属性就可以实现合成的效果，浏览器会将渲染层提升为合成层
@@ -322,7 +322,7 @@ container.appendChild(content)
 </html>
 ```
 
-![](/notes/assets/browser/0372a570c10c4b6f9e983e8085debc12_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/0372a570c10c4b6f9e983e8085debc12_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 上图中 a 提升到合成层 ，因为 a 层级低，为了保持原有的层级关系 会把b也提成为合成层。
 
@@ -334,7 +334,7 @@ container.appendChild(content)
 }
 ```
 
-![](/notes/assets/browser/1434e6b2b2214eb688f2de25e1aff488_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/browser/1434e6b2b2214eb688f2de25e1aff488_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 试想一下如果我们不小把层级较低的元素提成为合成层 ，有可能造成大量的无意义的提升的合成层，虽然浏览器有层压缩机制，但是也有很多情况无法压缩，合成过多导致层爆炸浏览器崩溃，卡顿等等情况。
 

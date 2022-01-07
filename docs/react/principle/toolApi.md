@@ -5,7 +5,7 @@
 
 接下来一起来探究一下`react`工具类函数的用法。
 
-![demo](/notes/assets/react/4a55db52d97845b2bc29d9078680ef82_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/4a55db52d97845b2bc29d9078680ef82_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## createElement
 ---
@@ -93,7 +93,7 @@ class Index extends React.Component{
 
 **打印：**
 
-![demo](/notes/assets/react/8d4b0529cbea4e25bfcf1168d6e6d7b6_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/8d4b0529cbea4e25bfcf1168d6e6d7b6_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## createContext
 ---
@@ -139,7 +139,7 @@ function index(){
 
 **打印结果：**
 
-![demo](/notes/assets/react/4393bac1d6b2428d9365b0f3ff480419_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/4393bac1d6b2428d9365b0f3ff480419_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 `Provider`和`Consumer`的良好的特性，可以做数据的**存**和**取**，`Consumer`一方面传递`value`,另一方面可以订阅`value`的改变。
 
@@ -167,7 +167,7 @@ function Index(){
 
 **效果**
 
-![demo](/notes/assets/react/9984deb7d57d42fd8661c4c14ea19d72_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/9984deb7d57d42fd8661c4c14ea19d72_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 报出警告，这个`api`将要被废弃，这里就不多讲了，如果想要达到同样的效果，请用`React.createElement`
 
@@ -253,7 +253,7 @@ function Index(){
 
 **过滤之前的效果**
 
-![demo](/notes/assets/react/dfad646de7b3453bbb2c3d66c635f13b_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/dfad646de7b3453bbb2c3d66c635f13b_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 > **用`isValidElement`进行`react element`验证:**
 
@@ -271,7 +271,7 @@ class WarpComponent extends React.Component{
 
 **过滤之后效果**
 
-![demo](/notes/assets/react/b7ef80c8874c4a509c74fefd8b1e4e05_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/b7ef80c8874c4a509c74fefd8b1e4e05_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 过滤掉了非`react element` 的 `Let's learn react together!`。
 
@@ -308,7 +308,7 @@ function Index(){
 
 **打印**
 
-![demo](/notes/assets/react/4247073612eb4b609a1ca7528a1a07f1_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/4247073612eb4b609a1ca7528a1a07f1_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 但是把`Index`结构改变一下：
 
@@ -325,7 +325,7 @@ function Index(){
 
 **打印**
 
-![demo](/notes/assets/react/b8e1630e79f54b54b4291b7f4130aebe_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/b8e1630e79f54b54b4291b7f4130aebe_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 这个数据结构，不能正常的遍历了，即使遍历也不能遍历，每一个子元素。此时就需要 `react.Chidren` 来帮忙了。
 
@@ -341,7 +341,7 @@ function WarpComponent(props){
 
 > 此时就能正常遍历了，达到了预期效果。
 
-![demo](/notes/assets/react/0158172495a648df8e804a0707f993bc_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/0158172495a648df8e804a0707f993bc_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 **注意** 如果 `children` 是一个 `Fragment` 对象，它将被视为单一子节点的情况处理，而不会被遍历。
 
@@ -384,7 +384,7 @@ function Index(){
 
 **效果:**
 
-![demo](/notes/assets/react/04f10179d259460884beb8f035fa15e4_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/04f10179d259460884beb8f035fa15e4_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## Children.toArray
 ---
@@ -409,7 +409,7 @@ function Index(){
 
 **效果：**
 
-![demo](/notes/assets/react/64a4a789f44747ba93fa54bc94fa7f8b_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/64a4a789f44747ba93fa54bc94fa7f8b_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 `newChidrenArray` ,就是扁平化的数组结构。`React.Children.toArray()` 在拉平展开子节点列表时，更改 `key` 值以保留嵌套数组的语义。也就是说， `toArray` 会为返回数组中的每个 `key` 添加前缀，以使得每个元素 `key` 的范围都限定在此函数入参数组的对象内。
 
@@ -437,7 +437,7 @@ function Index(){
 
 **效果**
 
-![demo](/notes/assets/react/a16924238b9042739100e51034e5f810_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/a16924238b9042739100e51034e5f810_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 **唯一**
 
@@ -457,6 +457,6 @@ function Index(){
 
 **效果**
 
-![demo](/notes/assets/react/05aa09a275e6472a8ce50ec58e29a8ab_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/05aa09a275e6472a8ce50ec58e29a8ab_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 `React.Children.only()` 不接受 `React.Children.map()` 的返回值，因为它是一个数组而并不是 `React` 元素。

@@ -170,7 +170,7 @@ export default Child1;
 
 我们在Child1组件中打印了children属性，它的值是一个数组，包含Child2对象和后面的文本：
 
-![](/notes/assets/performance/react/7e833cb140aa41c7a0c38f4216ff5902_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/7e833cb140aa41c7a0c38f4216ff5902_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 使用 React.FC 声明函数组件和普通声明的区别如下：
 
@@ -364,7 +364,7 @@ style?: CSSProperties | undefined;
 
 默认情况下，React会为根据设置的state的初始值来自动推导state以及更新函数的类型：
 
-![](/notes/assets/performance/react/aec80bdbd1a64ad3b2da185657869bdf_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/aec80bdbd1a64ad3b2da185657869bdf_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 如果已知`state` 的类型，可以通过以下形式来自定义`state`的类型：
 
@@ -436,7 +436,7 @@ useEffect(
 
 `TypeScript`就会报错：
 
-![](/notes/assets/performance/react/439c3eeb15a54a47aea7ccaa6d687e21_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/439c3eeb15a54a47aea7ccaa6d687e21_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 来看看`useEffect`在类型声明文件中的定义：
 
@@ -601,7 +601,7 @@ const memoizedCallback = useCallback(
 
 这时候如果再给回调函数传入字符串就会报错了：
 
-![](/notes/assets/performance/react/aa6f409391494f51bfb5c3e905f9fc1f_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/aa6f409391494f51bfb5c3e905f9fc1f_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 所以，需要注意，在使用`useCallback`时需要给回调函数的参数指定类型。
 
@@ -749,7 +749,7 @@ const reducer: React.Reducer<State, ActionType> = (state, action) => {
 
 其实`dispatch`方法也是有类型的：
 
-![](/notes/assets/performance/react/10417c4c14704f3eabde9e658535fbc7_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/10417c4c14704f3eabde9e658535fbc7_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 可以看到，`dispatch`的类型是：`React.Dispatch`，上面示例的完整代码如下：
 
@@ -914,7 +914,7 @@ const onSourceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 这里定义了一个`input`输入框，当触发`onChange`事件时，会调用`onSourceChange`方法，该方法的参数e的类型就是：`React.ChangeEvent`，而`e.target`的类型就是`EventTarget`：
 
-![](/notes/assets/performance/react/be7d97e6011a4e61bc1d18c141a4c4bd_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/be7d97e6011a4e61bc1d18c141a4c4bd_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在来看一个例子：
 
@@ -1049,7 +1049,7 @@ const App: React.FC = () => {
 
 在项目的依赖文件中可以找到HTML标签相关的类型声明文件：
 
-![](/notes/assets/performacne/react/c1dbae29dbaa45fc96da354807199b6f_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c1dbae29dbaa45fc96da354807199b6f_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 所有的`HTML`标签的类型都被定义在 `intrinsicElements` 接口中，常见的标签及其类型如下：
 
@@ -1812,7 +1812,7 @@ const getStrLength = (target: string | number): number => {
 
 再来看一个例子，在调用一个方法时传入参数：  这里就提示我们这个参数可能是undefined，而通过业务知道这个值是一定存在的，所以就可以将它断言成数字：`data?.subjectId as number​`
 
-![](/notes/assets/performance/react/c1b4f7d1031e43c2a8194eae2aa15640_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c1b4f7d1031e43c2a8194eae2aa15640_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 除此之外，上面所说的标签类型、组件类型、时间类型都可以使用断言来指定给一些数据，还是要根据实际的业务场景来使用。​
 

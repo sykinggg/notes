@@ -54,7 +54,7 @@ foo();
 **问题考察**
 ---
 
-<font size=1>**问题1：**</font>
+<div size=1>**问题1：**</div>
 
 ```javascript
 var a = 20;
@@ -64,7 +64,7 @@ b = 30;
 // 这时a的值是多少？
 ```
 
-<font size=1>**问题2：**</font>
+<div size=1>**问题2：**</div>
 
 ```javascript
 var a = { name: '前端开发' }
@@ -74,7 +74,7 @@ b.name = '进阶';
 // 这时a.name的值是多少
 ```
 
-<font size=1>**问题3：**</font>
+<div size=1>**问题3：**</div>
 
 ```javascript
 var a = { name: '前端开发' }

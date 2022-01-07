@@ -106,7 +106,7 @@ a[href$=".org"] {
 
 **`结果`**
 
-![demo](/notes/assets/mozillaCss/1617673832(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617673832(1).jpg')" alt="demo" />
 
 **`多语言`**
 
@@ -153,7 +153,7 @@ div[data-lang="zh-TW"] {
 
 **`结果`**
 
-![demo](/notes/assets/mozillaCss/1617673970(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617673970(1).jpg')" alt="demo" />
 
 **`HTML 有序列表`**
 
@@ -189,8 +189,8 @@ ol[type="A" s] {
 
 **`结果`**
 
-![demo](/notes/assets/mozillaCss/1617674240(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617674240(1).jpg')" alt="demo" />
 
 **`浏览器兼容性`**
 
-![demo](/notes/assets/mozillaCss/1617674311(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617674311(1).jpg')" alt="demo" />

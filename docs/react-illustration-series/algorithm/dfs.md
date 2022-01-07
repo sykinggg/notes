@@ -155,7 +155,7 @@ export default App;
 ```
 
 则可以绘制出遍历路径如下:
-![](/notes/assets/react-illustration-series/dfs-reactelement.png)
+<img :src="$withBase('/assets/react-illustration-series/dfs-reactelement.png')" alt="demo">
 <!-- <img src="../../snapshots/dfs/dfs-reactelement.png" width="500"/> -->
 
 注意:
@@ -170,7 +170,7 @@ export default App;
 
 绘制出遍历路径如下:
 
-![](/notes/assets/react-illustration-series/dfs-fibertree.png)
+<img :src="$withBase('/assets/react-illustration-series/dfs-fibertree.png')" alt="demo">
 
 ### 查找 context 的消费节点
 

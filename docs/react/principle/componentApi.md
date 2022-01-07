@@ -5,7 +5,7 @@
 
 组件类，详细分的话有三种类，第一类说白了就是平时用于继承的基类组件`Component`,`PureComponent`,还有就是`react`提供的内置的组件，比如`Fragment`,`StrictMode`,另一部分就是高阶组件`forwardRef`,`memo`等。
 
-![demo](/notes/assets/react/5b4241cc9e044c608c5ca9c2648bcd48_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/5b4241cc9e044c608c5ca9c2648bcd48_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## Component
 ---
@@ -91,7 +91,7 @@ class Index extends React.PureComponent{
 
 **效果**
 
-![demo](/notes/assets/react/030e96abf31d46ab8dd9f4f72389127c_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/030e96abf31d46ab8dd9f4f72389127c_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 **点击按钮，没有任何反应**，因为`PureComponent`会比较两次data对象，都指向同一个`data`,没有发生改变，所以不更新视图。
 
@@ -174,7 +174,7 @@ class Index extends React.Component{
 
 **效果**
 
-![demo](/notes/assets/react/823787ff6ac5492c9da013b1acb4dfbc_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/823787ff6ac5492c9da013b1acb4dfbc_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 完美达到了效果，`React.memo`一定程度上，可以等价于组件外部使用`shouldComponentUpdate` ，用于拦截新老`props`，确定组件是否更新。
 
@@ -227,7 +227,7 @@ class GrandFather extends React.Component{
 
 **效果**
 
-![demo](/notes/assets/react/4a2cd13003af4b5880b0bee19973fd44_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/4a2cd13003af4b5880b0bee19973fd44_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 `react`不允许`ref`通过`props`传递，因为组件上已经有 `ref` 这个属性,在组件调和过程中，已经被特殊处理，`forwardRef`出现就是解决这个问题，把`ref`转发到自定义的`forwardRef`定义的属性上，让`ref`，可以通过`props`传递。
 
@@ -319,7 +319,7 @@ class Test extends React.Component{
 
 **效果**
 
-![demo](/notes/assets/react/bf576c3e03714c1594bfddf2467fe877_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/bf576c3e03714c1594bfddf2467fe877_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## Suspense
 ---
@@ -437,7 +437,7 @@ const index = () => {
 
 **结果**
 
-![demo](/notes/assets/react/229b794fe0f2449e9a18dc7f3733a395_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/229b794fe0f2449e9a18dc7f3733a395_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 **onRender**
 
@@ -507,4 +507,4 @@ class Index extends React.Component{
 
 > `效果：`
 
-![demo](/notes/assets/react/5c84f768c1d440ccb4523d51a7065b79_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/5c84f768c1d440ccb4523d51a7065b79_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />

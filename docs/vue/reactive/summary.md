@@ -1,5 +1,3 @@
 # 原理图
 
-<img :src="$withBase('/notes/assets/reactive.png')">
-
-<!-- ![原理](/notes/assets/vue/reactive.png) -->
+<img :src="$withBase('/assets/vue/reactive.png')" alt="原理图">

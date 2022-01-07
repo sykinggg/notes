@@ -34,4 +34,4 @@ div > span {
 
 # 结果
 
-![demo](/notes/assets/mozillaCss/1617679332(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617679332(1).jpg')" alt="demo" />

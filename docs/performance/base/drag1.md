@@ -32,7 +32,7 @@
 
 先来看一下页面的整体结构。
 
-![](/notes/assets/performance/base/efe303bcc3a649d3a758eb94ccc38e0e_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/efe303bcc3a649d3a758eb94ccc38e0e_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 这一节要讲的编辑器其实就是中间的画布。它的作用是：当从左边组件列表拖拽出一个组件放到画布中时，画布要把这个组件渲染出来。
 
@@ -226,7 +226,7 @@ handleDrop(e) {
 
 触发 `drop` 事件时，使用 `dataTransfer.getData()` 接收传输过来的索引数据，然后根据索引找到对应的组件数据，再添加到画布，从而渲染组件。
 
-![](/notes/assets/performance/base/c9083ec57c6c4b51bb4af50f3818d2a0_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/c9083ec57c6c4b51bb4af50f3818d2a0_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 组件在画布中移动
 
@@ -269,7 +269,7 @@ handleMouseDown(e) {
 }
 ```
 
-![](/notes/assets/performance/base/66fd70a8b2064e4f81c2e4be6c7d3328_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/66fd70a8b2064e4f81c2e4be6c7d3328_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 4. 删除组件、调整图层层级
 
@@ -303,13 +303,13 @@ componentData[0] = componentData[componentData.lenght - 1]
 componentData[componentData.lenght - 1] = temp
 ```
 
-![](/notes/assets/performance/base/42ca7d8c64f840aeb60f3a5c4f3c7ba8_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/42ca7d8c64f840aeb60f3a5c4f3c7ba8_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 删除组件
 
 删除组件非常简单，一行代码搞定：`componentData.splice(index, 1)`。
 
-![](/notes/assets/performance/base/53a43ff0c23a4287833006c3985533ba_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/53a43ff0c23a4287833006c3985533ba_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 5. 放大缩小
 
@@ -424,11 +424,11 @@ getPointStyle(point) {
 
 4. 右下角的小圆点，坐标 `left: width, top: height`
 
-![](/notes/assets/performance/base/aa848fc6227849ad80b4ce21f0eaec59_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/aa848fc6227849ad80b4ce21f0eaec59_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 另外的四个小圆点需要通过计算间接算出来。例如左边中间的小圆点，计算公式为 `left: 0, top: height / 2`，其他小圆点同理。
 
-![](/notes/assets/performance/base/0cf2bbe521f343cda67a542263e61d57_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/0cf2bbe521f343cda67a542263e61d57_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 第四步
 
@@ -492,7 +492,7 @@ handleMouseDownOnPoint(point) {
 
 5. 如果是正数，说明是往下拉，组件的高度在增加。如果是负数，说明是往上拉，组件的高度在减少。
 
-![](/notes/assets/performance/base/0d92a3d0097943df97d0ebfe0285dd1f_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/0d92a3d0097943df97d0ebfe0285dd1f_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 6. 撤消、重做
 
@@ -558,13 +558,13 @@ recordSnapshot(state) {
 
 我采用的是第一种方案。
 
-![](/notes/assets/performance/base/62bedf9d3e6441b3ad75ffcceb415d63_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/62bedf9d3e6441b3ad75ffcceb415d63_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 7. 吸附
 
 什么是吸附？就是在拖拽组件时，如果它和另一个组件的距离比较接近，就会自动吸附在一起。
 
-![](/notes/assets/performance/base/b88c059157874d7f951ead234d6b27ce_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/b88c059157874d7f951ead234d6b27ce_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 吸附的代码大概在 300 行左右，建议自己打开源码文件看（文件路径：`src\components\Editor\MarkLine.vue`）。这里不贴代码了，主要说说原理是怎么实现的。
 
@@ -602,7 +602,7 @@ diff: 3, // 相距 dff 像素将自动吸附
 
 假设现在有 ab 组件，a 组件坐标 xy 都是 0，宽高都是 100。现在假设 a 组件不动，我们正在拖拽 b 组件。当把 b 组件拖到坐标为 `x: 0, y: 103` 时，由于 `103 - 100 <= 3(diff)`，所以可以判定它们已经接近得足够近。这时需要手动将 b 组件的 y 坐标值设为 100，这样就将 ab 组件吸附在一起了。
 
-![](/notes/assets/performance/base/fa6c061224f4453db980b8a0b35bef26_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/fa6c061224f4453db980b8a0b35bef26_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 优化
 
@@ -628,7 +628,7 @@ diff: 3, // 相距 dff 像素将自动吸附
 eventBus.$emit('move', this.$el, currY - startY > 0, currX - startX > 0)
 ```
 
-![](/notes/assets/performance/base/2508cf9cc943444f901d266afdc7f3d2_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/2508cf9cc943444f901d266afdc7f3d2_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 8. 组件属性设置
 
@@ -656,7 +656,7 @@ eventBus.$emit('move', this.$el, currY - startY > 0, currX - startX > 0)
 }
 ```
 
-![](/notes/assets/performance/base/27b2819fe4e3492ebd82af58569ff1b1_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/27b2819fe4e3492ebd82af58569ff1b1_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 我定义了一个 `AttrList` 组件，用于显示每个组件的属性。
 
@@ -690,7 +690,7 @@ eventBus.$emit('move', this.$el, currY - startY > 0, currX - startX > 0)
 
 为了方便用户修改属性值，我使用 `v-model` 将组件和值绑定在一起。
 
-![](/notes/assets/performance/base/3bf1645c633b4090bf52d942796014aa_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/3bf1645c633b4090bf52d942796014aa_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 9. 预览、保存代码
 
@@ -737,7 +737,7 @@ eventBus.$emit('move', this.$el, currY - startY > 0, currX - startX > 0)
 
 在 DEMO 上我使用的 `localStorage` 保存在本地。
 
-![](/notes/assets/performance/base/3b5d7b6b2e7148ba8468b68d734b89c2_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/3b5d7b6b2e7148ba8468b68d734b89c2_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 10. 绑定事件
 
@@ -791,7 +791,7 @@ export {
 
 不过不能在编辑的时候触发，可以在预览的时候触发。
 
-![](/notes/assets/performance/base/81c3d2722b7a4069bd76476b5b320934_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/81c3d2722b7a4069bd76476b5b320934_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 添加事件
 
@@ -948,7 +948,7 @@ export default [
 
 然后用 `v-for` 指令渲染出来动画列表。
 
-![](/notes/assets/performance/base/7a8937f86e9c4b0489357e0c3e871cc8_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/7a8937f86e9c4b0489357e0c3e871cc8_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 添加动画
 
@@ -1066,7 +1066,7 @@ export default async function runAnimation($el, animations = []) {
 
 由于画布是可以调整大小的，我们可以使用 iphone6 的分辨率来开发手机页面。
 
-![](/notes/assets/performance/base/645bcbb6740f472a921e8b29f236402c_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/645bcbb6740f472a921e8b29f236402c_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 这样开发出来的页面也可以在手机下正常浏览，但可能会有样式偏差。因为我自定义的三个组件是没有做适配的，如果你需要开发手机页面，那自定义组件必须使用移动端的 UI 组件库。或者自己开发移动端专用的自定义组件。
 
@@ -1092,7 +1092,7 @@ Math.atan2() 返回从原点(0,0)到(x,y)点的线段与x轴正方向之间的�
 
 简单的说就是以组件中心点为原点 `(centerX,centerY)`，用户按下鼠标时的坐标设为 `(startX,startY)`，鼠标移动时的坐标设为 `(curX,curY)`。旋转角度可以通过 `(startX,startY)` 和 `(curX,curY)` 计算得出。
 
-![](/notes/assets/performance/base/b8e325e225904a5ab273ff03716ba4f9_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/b8e325e225904a5ab273ff03716ba4f9_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 那我们如何得到从点 `(startX,startY)` 到点 `(curX,curY)` 之间的旋转角度呢？
 
@@ -1130,27 +1130,27 @@ const rotateDegreeAfter = Math.atan2(curY - centerY, curX - centerX) / (Math.PI 
 pos.rotate = startRotate + rotateDegreeAfter - rotateDegreeBefore
 ```
 
-![](/notes/assets/performance/base/8e0757a022d847908ca0564a63cf9a5c_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/8e0757a022d847908ca0564a63cf9a5c_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 放大缩小
 
 组件旋转后的放大缩小会有 BUG。
 
-![](/notes/assets/performance/base/9018348db9eb47de924babb7214eb3d9_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/9018348db9eb47de924babb7214eb3d9_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 从上图可以看到，放大缩小时会发生移位。另外伸缩的方向和我们拖动的方向也不对。造成这一 BUG 的原因是：当初设计放大缩小功能没有考虑到旋转的场景。所以无论旋转多少角度，放大缩小仍然是按没旋转时计算的。
 
 下面再看一个具体的示例：
 
-![](/notes/assets/performance/base/e91838cfb5d14659ba94c2d0eaefc66c_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/e91838cfb5d14659ba94c2d0eaefc66c_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 从上图可以看出，在没有旋转时，按住顶点往上拖动，只需用 `y2 - y1` 就可以得出拖动距离 `s`。这时将组件原来的高度加上 `s` 就能得出新的高度，同时将组件的 `top`、`left` 属性更新。
 
-![](/notes/assets/performance/base/99dc83bff7404910b4b5bf7f0a21ed19_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/99dc83bff7404910b4b5bf7f0a21ed19_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 现在旋转 180 度，如果这时拖住顶点往下拖动，我们期待的结果是组件高度增加。但这时计算的方式和原来没旋转时是一样的，所以结果和我们期待的相反，组件的高度将会变小（如果不理解这个现象，可以想像一下没有旋转的那张图，按住顶点往下拖动）。
 
-![](/notes/assets/performance/base/ea760305cb254f26bd8312ea37536b8e_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/ea760305cb254f26bd8312ea37536b8e_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 如何解决这个问题呢？我从 github 上的一个项目 [snapping-demo](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fshenhudong%2Fsnapping-demo%2Fwiki%2Fcorner-handle) 找到了解决方案：将放大缩小和旋转角度关联起来。
 
@@ -1158,7 +1158,7 @@ pos.rotate = startRotate + rotateDegreeAfter - rotateDegreeBefore
 
 下面是一个已旋转一定角度的矩形，假设现在拖动它左上方的点进行拉伸。
 
-![](/notes/assets/performance/base/3f4c1071b2a0484294552ce0bfcd67c3_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/3f4c1071b2a0484294552ce0bfcd67c3_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 现在我们将一步步分析如何得出拉伸后的组件的正确大小和位移。
 
@@ -1211,7 +1211,7 @@ function getCenterPoint(p1, p2) {
 
 由于组件处于旋转状态，即使你知道了拉伸时移动的 `xy` 距离，也不能直接对组件进行计算。否则就会出现 BUG，移位或者放大缩小方向不正确。因此，我们需要在组件未旋转的情况下对其进行计算。
 
-![](/notes/assets/performance/base/53e1d2636ca744d5a732de828ef71789_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/53e1d2636ca744d5a732de828ef71789_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 **第四步**，根据已知的旋转角度、新的组件中心点、当前鼠标实时坐标可以算出**当前鼠标实时坐标** `currentPosition` 在未旋转时的坐标 `newTopLeftPoint`。同时也能根据已知的旋转角度、新的组件中心点、对称点算出**组件对称点** `sPoint` 在未旋转时的坐标 `newBottomRightPoint`。
 
@@ -1246,7 +1246,7 @@ export function calculateRotatedPointCoordinate(point, center, rotate) {
 
 上面的公式涉及到线性代数中旋转矩阵的知识，对于一个没上过大学的人来说，实在太难了。还好我从知乎上的一个[回答](https://link.juejin.cn/?target=https%3A%2F%2Fwww.zhihu.com%2Fquestion%2F67425734%2Fanswer%2F252724399)中找到了这一公式的推理过程，下面是回答的原文：
 
-![](/notes/assets/performance/base/c7642af219464d1ab244d3cebd9e10cf_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/c7642af219464d1ab244d3cebd9e10cf_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 通过以上几个计算值，就可以得到组件新的位移值 `top` `left` 以及新的组件大小。对应的完整代码如下：
 
@@ -1270,23 +1270,23 @@ function calculateLeftTop(style, curPositon, pointInfo) {
 
 现在再来看一下旋转后的放大缩小：
 
-![](/notes/assets/performance/base/e2180e27188b4dfcbe97500faf330dd6_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/e2180e27188b4dfcbe97500faf330dd6_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 自动吸附
 
 自动吸附是根据组件的四个属性 `top` `left` `width` `height` 计算的，在将组件进行旋转后，这些属性的值是不会变的。所以无论组件旋转多少度，吸附时仍然按未旋转时计算。这样就会有一个问题，虽然实际上组件的 `top` `left` `width` `height` 属性没有变化。但在外观上却发生了变化。下面是两个同样的组件：一个没旋转，一个旋转了 45 度。
 
-![](/notes/assets/performance/base/97b6da46c19b49bbbb54ce1be0b468cf_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/97b6da46c19b49bbbb54ce1be0b468cf_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 可以看出来旋转后按钮的 `height` 属性和我们从外观上看到的高度是不一样的，所以在这种情况下就出现了吸附不正确的 BUG。
 
-![](/notes/assets/performance/base/d722ae0c1ff440f99c8b04cc788e3049_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/d722ae0c1ff440f99c8b04cc788e3049_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 解决方案
 
 如何解决这个问题？我们需要拿组件旋转后的大小及位移来做吸附对比。也就是说不要拿组件实际的属性来对比，而是拿我们看到的大小和位移做对比。
 
-![](/notes/assets/performance/base/49d0b11e874347f487bfce88972b5297_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/49d0b11e874347f487bfce88972b5297_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 从上图可以看出，旋转后的组件在 `x` 轴上的投射长度为两条红线长度之和。这两条红线的长度可以通过正弦和余弦算出，左边的红线用正弦计算，右边的红线用余弦计算：
 
@@ -1329,19 +1329,19 @@ translateComponentStyle(style) {
 
 经过修复后，吸附也可以正常显示了。
 
-![](/notes/assets/performance/base/979c53d0c3034e1e9e0cb91b6693d694_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/979c53d0c3034e1e9e0cb91b6693d694_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 光标
 
 光标和可拖动的方向不对，是因为八个点的光标是固定设置的，没有随着角度变化而变化。
 
-![](/notes/assets/performance/base/2af5d35bcb5d4bf5b2e1b4ce633037f6_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/2af5d35bcb5d4bf5b2e1b4ce633037f6_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 解决方案
 
 由于 `360 / 8 = 45`，所以可以为每一个方向分配 45 度的范围，每个范围对应一个光标。同时为每个方向设置一个初始角度，也就是未旋转时组件每个方向对应的角度。
 
-![](/notes/assets/performance/base/92c4f8a3c3444316a662a79f0f44af63_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/92c4f8a3c3444316a662a79f0f44af63_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ```js
 pointList: ['lt', 't', 'rt', 'r', 'rb', 'b', 'lb', 'l'], // 八个方向
@@ -1406,7 +1406,7 @@ getCursor() {
 },
 ```
 
-![](/notes/assets/performance/base/9343e68731d14e74b9a1361a5584958b_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/9343e68731d14e74b9a1361a5584958b_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 从上面的动图可以看出来，现在八个方向上的光标是可以正确显示的。
 
@@ -1697,13 +1697,13 @@ componentList.forEach(component => {
 
 在将多个组件组合之前，需要先选中它们。利用鼠标事件可以很方便的将选中区域展示出来：
 
-![](/notes/assets/performance/base/94c0f8c072494b4f917bb8a315371632_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/94c0f8c072494b4f917bb8a315371632_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 1. `mousedown` 记录起点坐标
 
-1. `mousemove` 将当前坐标和起点坐标进行计算得出移动区域
+2. `mousemove` 将当前坐标和起点坐标进行计算得出移动区域
 
-1. 如果按下鼠标后往左上方移动，类似于这种操作则需要将当前坐标设为起点坐标，再计算出移动区域
+3. 如果按下鼠标后往左上方移动，类似于这种操作则需要将当前坐标设为起点坐标，再计算出移动区域
 
 ```js
 // 获取编辑器的位移信息
@@ -1733,7 +1733,7 @@ const move = (moveEvent) => {
 
 在 `mouseup` 事件触发时，需要对选中区域内的所有组件的位移大小信息进行计算，得出一个能包含区域内所有组件的最小区域。这个效果如下图所示：
 
-![](/notes/assets/performance/base/a8ceeb3266b2498590f47183c58215f8_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/a8ceeb3266b2498590f47183c58215f8_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 这个计算过程的代码：
 
@@ -1923,31 +1923,31 @@ methods: {
 
 如果使用绝对数值，那么在移动 `Group` 组件时，除了对 `Group` 组件的属性进行计算外，还需要对它的每个子组件进行计算。并且 `Group` 包含子组件太多的话，在进行移动、放大缩小时，计算量会非常大，有可能会造成页面卡顿。如果改成相对数值，则只需要在 `Group` 创建时计算一次。然后在 `Group` 组件进行移动、旋转时也不用管 `Group` 的子组件，只对它自己计算即可。
 
-![](/notes/assets/performance/base/27d0a749d4e14609bb6cf31eb76eeb93_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/27d0a749d4e14609bb6cf31eb76eeb93_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 组合后的放大缩小
 
 组合后的放大缩小是个大问题，主要是因为有旋转角度的存在。首先来看一下各个子组件没旋转时的放大缩小：
 
-![](/notes/assets/performance/base/46c7278e99a246ad801cd81ba83d52c3_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/46c7278e99a246ad801cd81ba83d52c3_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 从动图可以看出，效果非常完美。各个子组件的大小是跟随 `Group` 组件的大小而改变的。
 
 现在试着给子组件加上旋转角度，再看一下效果：
 
-![](/notes/assets/performance/base/de1db52cd2254f8aae6da99c61b7adcf_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/de1db52cd2254f8aae6da99c61b7adcf_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 **为什么会出现这个问题？**
 
 主要是因为一个组件无论旋不旋转，它的 `top` `left` 属性都是不变的。这样就会有一个问题，虽然实际上组件的 `top` `left` `width` `height` 属性没有变化。但在外观上却发生了变化。下面是两个同样的组件：一个没旋转，一个旋转了 45 度。
 
-![](/notes/assets/performance/base/97b6da46c19b49bbbb54ce1be0b468cf_tplv-k3u1fbpfcp-watermark(1).awebp)
+<img :src="$withBase('/assets/performance/base/97b6da46c19b49bbbb54ce1be0b468cf_tplv-k3u1fbpfcp-watermark(1).awebp')" alt="demo" />
 
 可以看出来旋转后按钮的 `top` `left` `width` `height` 属性和我们从外观上看到的是不一样的。
 
 接下来再看一个具体的示例：
 
-![](/notes/assets/performance/base/f5bb6d7e2c754eb28406400eb4972ee5_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/f5bb6d7e2c754eb28406400eb4972ee5_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 上面是一个 `Group` 组件，它左边的子组件属性为：
 
@@ -1967,7 +1967,7 @@ left: -10.6496%;
 
 但是这有个问题，通过 `getBoundingClientRect()` API 只能获取组件外观上的 `top` `left` `right` `bottom` `width` `height` 属性。再加上一个角度，参数还是不够，所以无法计算出组件实际的 `top` `left` `width` `height` 属性。
 
-![](/notes/assets/performance/base/17b76fd2d8f04aba8abaabedb1fed5ac_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/17b76fd2d8f04aba8abaabedb1fed5ac_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 就像上面的这张图，只知道原点 `O(x,y)` `w` `h` 和旋转角度，无法算出按钮的宽高。
 
@@ -1977,7 +1977,7 @@ left: -10.6496%;
 
 现在我尝试简单描述一下如何保持宽高比对一个旋转组件进行放大缩小（建议还是看看原文）。下面是一个已旋转一定角度的矩形，假设现在拖动它左上方的点进行拉伸。
 
-![](/notes/assets/performance/base/3f4c1071b2a0484294552ce0bfcd67c3_tplv-k3u1fbpfcp-watermark(1).awebp)
+<img :src="$withBase('/assets/performance/base/3f4c1071b2a0484294552ce0bfcd67c3_tplv-k3u1fbpfcp-watermark(1).awebp')" alt="demo" />
 
 **第一步**，算出组件宽高比，以及按下鼠标时通过组件的坐标（无论旋转多少度，组件的 `top` `left` 属性不变）和大小算出组件中心点：
 
@@ -2031,7 +2031,7 @@ function getCenterPoint(p1, p2) {
 
 由于组件处于旋转状态，即使你知道了拉伸时移动的 `xy` 距离，也不能直接对组件进行计算。否则就会出现 BUG，移位或者放大缩小方向不正确。因此，我们需要在组件未旋转的情况下对其进行计算。
 
-![](/notes/assets/performance/base/53e1d2636ca744d5a732de828ef71789_tplv-k3u1fbpfcp-watermark(1).awebp)
+<img :src="$withBase('/assets/performance/base/53e1d2636ca744d5a732de828ef71789_tplv-k3u1fbpfcp-watermark(1).awebp')" alt="demo" />
 
 **第四步**，根据已知的旋转角度、新的组件中心点、当前鼠标实时坐标可以算出**当前鼠标实时坐标** `currentPosition` 在未旋转时的坐标 `newTopLeftPoint`。同时也能根据已知的旋转角度、新的组件中心点、对称点算出**组件对称点** `sPoint` 在未旋转时的坐标 `newBottomRightPoint`。
 
@@ -2066,7 +2066,7 @@ export function calculateRotatedPointCoordinate(point, center, rotate) {
 
 上面的公式涉及到线性代数中旋转矩阵的知识，对于一个没上过大学的人来说，实在太难了。还好我从知乎上的一个[回答](https://link.juejin.cn/?target=https%3A%2F%2Fwww.zhihu.com%2Fquestion%2F67425734%2Fanswer%2F252724399)中找到了这一公式的推理过程，下面是回答的原文：
 
-![](/notes/assets/performance/base/c7642af219464d1ab244d3cebd9e10cf_tplv-k3u1fbpfcp-watermark(1).awebp)
+<img :src="$withBase('/assets/performance/base/c7642af219464d1ab244d3cebd9e10cf_tplv-k3u1fbpfcp-watermark(1).awebp')" alt="demo" />
 
 通过以上几个计算值，就可以得到组件新的位移值 `top` `left` 以及新的组件大小。对应的完整代码如下：
 
@@ -2090,7 +2090,7 @@ function calculateLeftTop(style, curPositon, pointInfo) {
 
 现在再来看一下旋转后的放大缩小：
 
-![](/notes/assets/performance/base/e2180e27188b4dfcbe97500faf330dd6_tplv-k3u1fbpfcp-watermark(1).awebp)
+<img :src="$withBase('/assets/performance/base/e2180e27188b4dfcbe97500faf330dd6_tplv-k3u1fbpfcp-watermark(1).awebp')" alt="demo" />
 
 **第五步**，由于我们现在需要的是锁定宽高比来进行放大缩小，所以需要重新计算拉伸后的图形的左上角坐标。
 
@@ -2102,11 +2102,11 @@ function calculateLeftTop(style, curPositon, pointInfo) {
 
 * 修正图形: 绿色部分，即加上宽高比锁定规则的修正图形
 
-![](/notes/assets/performance/base/a7719e5339494723bcdd00663895acc7_tplv-k3u1fbpfcp-watermark(1).awebp)
+<img :src="$withBase('/assets/performance/base/a7719e5339494723bcdd00663895acc7_tplv-k3u1fbpfcp-watermark(1).awebp')" alt="demo" />
 
 在第四步中算出组件未旋转前的 `newTopLeftPoint` `newBottomRightPoint` `newWidth` `newHeight` 后，需要根据宽高比 `proportion` 来算出新的宽度或高度。
 
-![](/notes/assets/performance/base/141d080347e8408d8272141738a8a7e4_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/141d080347e8408d8272141738a8a7e4_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 上图就是一个需要改变高度的示例，计算过程如下：
 
@@ -2122,9 +2122,9 @@ if (newWidth / newHeight > proportion) {
 
 由于现在求的未旋转前的坐标是以没按比例缩减宽高前的坐标来计算的，所以缩减宽高后，需要按照原来的中心点旋转回去，获得缩减宽高并旋转后对应的坐标。然后以这个坐标和对称点获得新的中心点，并重新计算未旋转前的坐标。
 
-![](/notes/assets/performance/base/c1a42618920b44eb8ee7da1f5194c0f2_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/c1a42618920b44eb8ee7da1f5194c0f2_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
-![](/notes/assets/performance/base/6a818d694b3941f3bd847d65570b2782_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/6a818d694b3941f3bd847d65570b2782_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 经过修改后的完整代码如下：
 
@@ -2170,7 +2170,7 @@ function calculateLeftTop(style, curPositon, proportion, needLockProportion, poi
 
 保持宽高比进行放大缩小的效果如下：
 
-![](/notes/assets/performance/base/e1f12dc0c05f4639be0795b8576eff19_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/e1f12dc0c05f4639be0795b8576eff19_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 当 `Group` 组件有旋转的子组件时，才需要保持宽高比进行放大缩小。所以在创建 `Group` 组件时可以判断一下子组件是否有旋转角度。如果没有，就不需要保持宽度比进行放大缩小。
 
@@ -2375,7 +2375,7 @@ export default {
 
 4. 换行时自动扩充文本框的高度。
 
-![](/notes/assets/performance/base/bf877636139048d58f2dc5be99cca15b_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/bf877636139048d58f2dc5be99cca15b_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 20. 矩形组件
 
@@ -2409,7 +2409,7 @@ export default {
 
 `VText` 文本组件有的功能它都有，并且可以任意放大缩小。
 
-![](/notes/assets/performance/base/4b9865747fb4481aa3fc36d092653232_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/4b9865747fb4481aa3fc36d092653232_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 21. 锁定组件
 
@@ -2468,7 +2468,7 @@ export const commonAttr = {
 </template>
 ```
 
-![](/notes/assets/performance/base/40e9da0cb1e54c3a8a4d682304a544fc_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/40e9da0cb1e54c3a8a4d682304a544fc_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 22. 快捷键
 

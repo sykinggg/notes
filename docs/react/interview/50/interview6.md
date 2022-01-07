@@ -34,7 +34,7 @@ export default connect(mapStateToProps,mapActionCreators)(injectIntl(App))
 
 ```js
 const {intl} = this.props;
-　　
+　
 let demo = intl.formatMessage({id: 'intl.name'});
 ```
 
@@ -88,12 +88,12 @@ const demo = defineMessages({
 
 **React-intl**提供的**React组件**有如下几种：
 
-`<IntlProvider />`包裹在需要语言国际化的组建的最外层，为包含在其中的所有组建提供包含id和字符串的键值对。
+```<IntlProvider />```包裹在需要语言国际化的组建的最外层，为包含在其中的所有组建提供包含id和字符串的键值对。
 
 **日期时间**
 ---
 
-1. `<FormattedDate />` 用于格式化日期，能够将一个时间戳格式化成不同语言中的日期格式。
+1. ```<FormattedDate />``` 用于格式化日期，能够将一个时间戳格式化成不同语言中的日期格式。
 
 传入时间戳作为参数：
 
@@ -109,7 +109,7 @@ const demo = defineMessages({
 <span>4/5/2016</span>
 ```
 
-2. `<FormattedTime>` 用于格式化时间，效果与`<FormattedDate />`相似。
+2. ```<FormattedTime>``` 用于格式化时间，效果与```<FormattedDate />```相似。
 
 传入时间戳作为参数：
 
@@ -125,7 +125,7 @@ const demo = defineMessages({
 <span>1:09 AM</span>
 ```
 
-3.`<FormattedRelative />` 通过这个组件可以显示传入组件的某个时间戳和当前时间的关系，比如 "10 minutes ago" 。
+3.```<FormattedRelative />``` 通过这个组件可以显示传入组件的某个时间戳和当前时间的关系，比如 "10 minutes ago" 。
 
 传入时间戳作为参数：
 
@@ -144,7 +144,7 @@ const demo = defineMessages({
 **数字量词**
 ---
 
-1. `<FormattedNumber />`这个组件最主要的用途是用来给一串数字标逗号，比如10000这个数字，在中文的语言环境中应该是1,0000，是每隔4位加一个逗号，而在英语的环境中是10,000，每隔3位加一个逗号。
+1. ```<FormattedNumber />```这个组件最主要的用途是用来给一串数字标逗号，比如10000这个数字，在中文的语言环境中应该是1,0000，是每隔4位加一个逗号，而在英语的环境中是10,000，每隔3位加一个逗号。
 
 传入数字作为参数：
 
@@ -160,7 +160,7 @@ const demo = defineMessages({
 <span>1,000</span>
 ```
 
-2. `<FormattedPlural />` 这个组件可用于格式化量词，在中文的语境中，其实不太会用得到，比如说一个鸡腿，那么量词就是‘个’，说两个鸡腿，量词还是‘个’，不会发生变化。但是在英文的语言环境中，描述一个苹果的时候，量词是apple，当苹果数量为两个时，就会变成apples，这个组件的作用就在于此。
+2. ```<FormattedPlural />``` 这个组件可用于格式化量词，在中文的语境中，其实不太会用得到，比如说一个鸡腿，那么量词就是‘个’，说两个鸡腿，量词还是‘个’，不会发生变化。但是在英文的语言环境中，描述一个苹果的时候，量词是apple，当苹果数量为两个时，就会变成apples，这个组件的作用就在于此。
 
 传入组件的参数中，value为数量，其他的为不同数量时对应的量词，在下面的例子中，一个的时候量词为message，两个的时候量词为messages。实际上可以传入组件的量词包括 zero, one, two, few, many, other 已经涵盖了所有的情况。
 
@@ -171,7 +171,7 @@ const demo = defineMessages({
     other='messages'/>
 ```
 
-传入组件的量词参数可以是一个字符串，也可以是一个组件，可以选择传入`<FormattedMessage />`组件，就可以实现量词的不同语言的切换。
+传入组件的量词参数可以是一个字符串，也可以是一个组件，可以选择传入```<FormattedMessage />```组件，就可以实现量词的不同语言的切换。
 
 输出结果：
 
@@ -182,7 +182,7 @@ const demo = defineMessages({
 **字符串的格式化**
 ---
 
-1. `<FormattedMessage />` 这个组件用于格式化字符串，是所有的组件中使用频率最高的组件，因为基本上，UI上面的每一个字符串都应该用这个组件替代。
+1. ```<FormattedMessage />``` 这个组件用于格式化字符串，是所有的组件中使用频率最高的组件，因为基本上，UI上面的每一个字符串都应该用这个组件替代。
 
 比如在locale配置文件中写了如下内容：
 
@@ -211,7 +211,7 @@ id指代的是这个字符串在`locale`配置文件中的属性名，`descripti
 <span>好，世界!</span>
 ```
 
-2. `<FormattedHTMLMessage />`这个组件的用法和`<FormattedMessage />`完全相同，唯一的不同就是输出的字符串可以包含HTML标签，但是官方不太推荐使用这个方法，这个组件的用法就不举例了。
+2. ```<FormattedHTMLMessage />```这个组件的用法和```<FormattedMessage />```完全相同，唯一的不同就是输出的字符串可以包含HTML标签，但是官方不太推荐使用这个方法，这个组件的用法就不举例了。
 
 **1. 安装**
 ---
@@ -260,10 +260,10 @@ const enUs = {
 export default enUs;
 ```
 
-**4. 使用<IntlProvider />**
+**4. 使用 IntlProvider**
 ---
 
-使用`<IntlProvider />`组件包裹住需要您需要进行语言国际化的组件，用法和React-redux的`<Provider />`差不多，当`<IntlProvider />`包裹住某个组件的时候，这个组件本身和组件内部包含的子组件就可以获得所有React-intl提供的接口以及在`<IntlProvider />`中引入的locale配置文件的内容。
+使用```<IntlProvider />```组件包裹住需要您需要进行语言国际化的组件，用法和React-redux的```<Provider />```差不多，当```<IntlProvider />```包裹住某个组件的时候，这个组件本身和组件内部包含的子组件就可以获得所有React-intl提供的接口以及在```<IntlProvider />```中引入的locale配置文件的内容。
 
 * `addLocaleData`：引入本地的 localedata
 * `IntlProvider`：包裹需要翻译的组件，用来传递给子类语言信息

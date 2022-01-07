@@ -2,13 +2,13 @@
 
 ## 几大 JS 框架的设计思路
 
-![](/notes/assets/performance/react/ab64f152daea4ac7b135f65cb1ed180e_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/ab64f152daea4ac7b135f65cb1ed180e_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 首先，是 `React`，`React` 是一个重运行时的框架，在数据发生变化后，并没有直接去操作 `dom`，而是生成一个新的所谓的虚拟 `dom`，它可以帮助我们解决跨平台和兼容性问题，并且通过 `diff` 算法得出最小的操作行为，这些全部都是在运行时来做的。
 
 最近很火的 `Svelte` ，就是一个典型的重编译的框架，作为开发者我们只需要去写模版和数据，经过 `Svelte` 的编译和预处理，代码基本全部会解析成原生的 `DOM` 操作，`Svelte` 的性能也是最接近原生 `js` 的。
 
-![](/notes/assets/performance/react/981d005ce5c349ba873894cd7947e57b_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/981d005ce5c349ba873894cd7947e57b_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 那么，`Vue` 这个框架，在运行时和预编译取了一个很好地权衡，它保留了虚拟 `dom`，但是会通过响应式去控制虚拟 `dom` 的颗粒度，在预编译里面，又做了足够多的性能优化，做到了按需更新。
 
@@ -16,31 +16,31 @@
 
 `Vue` 使用的是模版语法，模版 的特点，就是语法受限，我们可以使用 `v-if` `v-for` 这些指定的语法去编码，虽然这不够动态，但是由于语法是可枚举的，所以它可以在预编译层面做更多的预判，让 `Vue` 在运行时有更好的性能。下面我们可以看一个 `Vue 3.0` 具体在编译时所做的优化。
 
-![](/notes/assets/performance/react/7097ad04c8c34b369780fa4d5a7d6980_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/7097ad04c8c34b369780fa4d5a7d6980_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 传统 `vdom` 的 `Diff` 算法总归要按照 `vdom` 树的层级结构一层一层的遍历，所以 `diff` 性能会和模版的大小正相关，跟动态节点的数量无关。在一些组件整个模版内只有少量动态节点的情况下，这些遍历都是性能的浪费。
 
-![](/notes/assets/performance/react/ba0b551523ad4ac39bb814bd2b87f283_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/ba0b551523ad4ac39bb814bd2b87f283_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 比如说，上面的这个代码示例，这几个静态的节点在组件更新阶段，是不可能发生变化的。如果能在 `diff` 阶段跳过静态内容，那我们就可以避免无用的 dom 树的遍历和比对。
 
-![](/notes/assets/performance/react/c78481a690bf426bbaf3f5efad3423be_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c78481a690bf426bbaf3f5efad3423be_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在 `Vue3.0` 里面，就有这样一条类似的优化策略，它的 `compiler` 可以根据节点的动态属性，为每个 虚拟 `dom` 创建不同的 `patchflag`，比如说，节点具有动态的 `text`，或者具有动态的 `class`，都会被打上不同的 `patchflag`。
 
-![](/notes/assets/performance/react/7ce4f6ed6ec9494491698a13392531b8_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/7ce4f6ed6ec9494491698a13392531b8_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 然后 `patchflag` 再配合 `block tree`，就可以做到对不同节点的靶向更新。
 
 ## 死磕运行时
 
-![](/notes/assets/performance/react/4278c601cfad453eaf3afedd209b1cd5_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/4278c601cfad453eaf3afedd209b1cd5_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 我们再回来看 `React` ，它本身的思路是纯 `JS` 写法，这种方式非常灵活，但是，这也使它在编译时很难做太多的事情，像上面这样的编译时优化是很难实现的。所以，我们可以看到 `React` 几个大版本的的优化主要都在运行时。
 
 那么，运行时我们主要关注什么问题呢？
 
-![](/notes/assets/performance/react/c71fb7966f8e43348cb8f79735063425_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c71fb7966f8e43348cb8f79735063425_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 首先，就是 CPU 的问题，主流浏览器的刷新频率一般是 `60Hz`，也就是每秒刷新 `60` 次，大概 `16.6ms` 浏览器刷新一次。由于 `GUI` 渲染线程和 `JS` 线程是互斥的，所以 `JS` 脚本执行和浏览器布局、绘制不能同时执行。
 
@@ -58,7 +58,7 @@
 
 这一版的架构，还比较简单，主要就是分 `Reconciler` 和 `Renderer` 两个部分。
 
-![/notes/assets/performance/react/1d1558020ccf4de7a3505f32be45fddd_tplv-k3u1fbpfcp-watermark.awebp]
+<img :src="$withBase('/assets/performance/react/1d1558020ccf4de7a3505f32be45fddd_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 * `Reconciler`（协调器）—— 负责调用 `render` 生成虚拟 Dom 进行 Diff，找出变化后的虚拟 Dom
 
@@ -178,11 +178,11 @@ export function batchedUpdates<A, R>(fn: A => R, a: A): R {
 
 ### React 15 的缺陷
 
-![](/notes/assets/performance/react/c5593d41ca9c4ca4b5c5fb0dc24c0e33_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c5593d41ca9c4ca4b5c5fb0dc24c0e33_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 虽然在 `React 15` 中引入批处理这样的优化逻辑，但是由于 `React 15` 本身的架构是递归同步更新的，如果节点非常多，即使只有一次 `state` 变更，`React` 也需要进行复杂的递归更新，更新一旦开始，中途就无法中断，直到遍历完整颗树，才能释放主线程。
 
-![](/notes/assets/performance/react/780b09e9503346eaa39dad7146917879_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/780b09e9503346eaa39dad7146917879_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 我们可以参考图中的这个例子，当层级很深时，递归更新时间超过了 `16ms` ，如果这时有用户操作或动画渲染等，就会表现为卡顿。
 
@@ -192,7 +192,7 @@ export function batchedUpdates<A, R>(fn: A => R, a: A): R {
 
 下面，我们再来看看 `React 16` 这个版本，相比 `React 15`，我们可以看到新的架构中多了一层 `Scheduler`，也就是调度器，然后在 `Reconciler` 这一层，使用 `Fiber` 架构进行了重构。具体的细节我们会在后面的章节进介绍。
 
-![](/notes/assets/performance/react/a8434bf032094c1aaba7af6e8f2f24ed_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/a8434bf032094c1aaba7af6e8f2f24ed_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 * `Scheduler`（调度器）—— 调度任务的优先级，高优任务优先进入 `Reconciler`
 
@@ -230,7 +230,7 @@ Concurrent 模式是一组 React 的新功能，可帮助应用保持响应，�
 
 所以，`React` 花费2年时间重构完成了Fiber架构，`React16` 的 `Reconciler` 基于 `Fiber` 节点实现。每个 `Fiber` 节点对应一个 `React elemen`t，注意一下，这里是对应，而不是等于。我们调用 `render` 函数产生的结果是 `React element`，而 `Fiber` 节点，由 `React Element` 创建而来。
 
-![](/notes/assets/performance/react/d581d9b5a3f74050a600d24c528c3e3b_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/d581d9b5a3f74050a600d24c528c3e3b_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 下面是一个 `Fiber` 节点的示例，除了包含 组件的类型，组件对应的 `DOM` 信息之外，`Fiber` 节点还保存了本次更新中该组件改变的状态、要执行的工作，需要被删除，被插入页面中，还是被更新。
 
@@ -281,7 +281,7 @@ function FiberNode(
 
 #### 双缓存
 
-![](/notes/assets/performance/react/97ccd97a30fa422fa7ffa1efc71326bd_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/97ccd97a30fa422fa7ffa1efc71326bd_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在 `React` 中最多会同时存在两棵Fiber树。当前屏幕上显示内容对应的Fiber树叫做 `current Fiber` 树，正在内存中构建的Fiber树叫做 `workInProgress Fiber`树，他们通过一个 `alternate` 属性连接。
 
@@ -298,29 +298,29 @@ React应用的根节点会使用一个 `current` 指针指向当前的 `current 
 
 如果我们，还是用 `ReactDOM.render` 去同步运行 `Fiber` 架构，则 `Fiber` 架构与重构前并无区别。但是当我们配合上面提到的时间切片，就可以根据当前的宿主环境性能，为每个工作单元分配一个可运行时间，从而实现“异步可中断的更新”。
 
-![](/notes/assets/performance/react/c736e1c6dde14fe1a8674988708f753e_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c736e1c6dde14fe1a8674988708f753e_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 `Scheduler` 就可以帮我们完成这件事情，我们可以看到，我们一次耗时很长的更新任务被拆分成一小段一小段的。这样浏览器就有剩余时间执行样式布局和样式绘制，减少掉帧的可能性。
 
-![](/notes/assets/performance/react/a5b310f4723c457c9b91ed109cd5fc10_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/a5b310f4723c457c9b91ed109cd5fc10_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 图中的动画效果，也变得非常丝滑。
 
 #### requestIdelCallback
 
-![](/notes/assets/performance/react/a8bad5b667a04119be0a9e3f5ccb4fd6_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/a8bad5b667a04119be0a9e3f5ccb4fd6_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 上面的图中，是浏览器一帧中做的一些事情，这里我们可以看到，当所有事情都做完了之后，会调用一个 `requestIdleCallback` 函数，在这个函数里我们可以拿到浏览器当前一祯的剩余时间。
 
 那这个 `API` 可以用来干啥呢？ 我们来看一个例子：
 
-![](/notes/assets/performance/react/278b21324f784234a8443e830beacb0b_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/278b21324f784234a8443e830beacb0b_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 假如我们有左侧代码中这样非常长的耗时任务需要执行，不再经过其他额外处理的情况下，执行整个任务的执行时间肯定是超过 `16.6ms` 的。
 
 这里我们借助 `requestIdleCallback` 这个函数，可以将一个大任务分割成多个个小任务，在每一帧有空余时间情况下，逐步去执行小任务。
 
-![](/notes/assets/performance/react/90fcd33e759845f8b3bd249fa3b1fc4c_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/90fcd33e759845f8b3bd249fa3b1fc4c_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 借助这个 `API` ，我们就可以让浏览器仅在空闲时期的时候执行脚本。时间切片的本质，也就是模拟实现 `requestIdleCallback` 这个函数。
 
@@ -374,17 +374,17 @@ if (fps > 0) {
 
 #### isInputPending
 
-![](/notes/assets/performance/react/c9ed74922f9748f9abf87fa3b89780ab_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c9ed74922f9748f9abf87fa3b89780ab_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 那么，现在，其实我们不仅仅是在使用 `React` 的时候才能享受到这个优化策略。
 
 在 `Chrome 87` 版本，`React` 团队和 Chrome 团队合作，在浏览器上加入了一个新的 API `isInputPending`。这也是第一个将中断这个操作系统概念用于网页开发的API。
 
-![](/notes/assets/performance/react/c90ff37baa134901a3bc0064e4037d87_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c90ff37baa134901a3bc0064e4037d87_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 即便不使用 `React`，我们也可以利用这个 `API`，来平衡 `JS` 执行、页面渲染及用户输入之间的优先级。
 
-![](/notes/assets/performance/react/59f06fd3b48e408d8dffd27ad49634fb_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/59f06fd3b48e408d8dffd27ad49634fb_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 我们可以看上面的代码示例，通过合理使用 `isInputPending` 方法，我们可以在页面渲染的时候及时响应用户输入，并且，当有长耗时的JS任务要执行时，可以通过 `isInputPending` 来中断JS的执行，将控制权交还给浏览器来执行用户响应。
 
@@ -404,7 +404,7 @@ if (fps > 0) {
 
 * 其他：比如数据请求，或者使用了 `suspense`、`transition` 这样的更新，是低优先级执行的。
 
-![](/notes/assets/performance/react/5bb1243eb8924d7bbc3bfd96f64adb96_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/5bb1243eb8924d7bbc3bfd96f64adb96_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 比如，我们来看一下图中的这两次更新：首先，我们有一个改变当前主题的这样一个更新，这个更新呢，优先级比较低，而且比较耗时。那么，在主题改变这个状态更新的 `render` 阶段还没完成的时候，这时用户在 `Input` 框输入了一个新的字符。
 
@@ -425,13 +425,13 @@ if (fps > 0) {
 
 * `IdlePriority`：优先级最低，表示任务是可以闲置的
 
-![](/notes/assets/performance/react/85440c18537b495b867dd2d660dc168d_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/85440c18537b495b867dd2d660dc168d_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在 `React` 内部，只要是涉及到优先级调度的地方，都会使用 `runWithPriority` 这个函数，这个函数接受一个优先级还有一个回调函数，在这个回调函数的内部调用中，获取优先级的方法都会取到第一个参数传入的优先级。
 
 那么，这几种不同的优先级变量，怎么影响到具体的更新任务呢？
 
-![](/notes/assets/performance/react/be143f7265984167b407fa8254357b07_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/be143f7265984167b407fa8254357b07_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 我们可以看一下上面的代码，通过不同的优先级变量，我们会计算得出不同时长的过期时间 `expirationTime`。每个更新任务都会有一个 `expirationTime`， 任务的过期时间离当前时间越近，说明这个任务的优先级越高。
 
@@ -439,7 +439,7 @@ if (fps > 0) {
 
 那么，我们一整个 `React` 应用呢，在同一时间可能会产生不同的任务，我们的 `Scheduler` 呢，就会优先帮我们找到最高优先级的任务，去调度它的更新。那么，怎么才能最快的找到高优先级的任务呢？
 
-![](/notes/assets/performance/react/2e324f27850241c29b0a7deb02014e02_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/2e324f27850241c29b0a7deb02014e02_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 实际上，`Scheduler` 将所有已经准备就绪，可以执行的任务，都存在了一个叫 `taskQueue` 的队列中，而这个队列使用了小顶堆这种数据结构。在小顶堆中，所有的任务按照任务的过期时间，从小到大进行排列，这样 `Scheduler` 就可以只花费O(1)复杂度找到队列中最早过期，或者说最高优先级的那个任务。
 
@@ -458,7 +458,7 @@ if (fps > 0) {
 
 第二个阶段叫做 `commit` 阶段，一旦开始就不能中断，也就是说第二个阶段的工作会直接做到这个组件的渲染结束。
 
-![](/notes/assets/performance/react/3d1cf760ebe44eb2a17e85b08b82f7d2_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/3d1cf760ebe44eb2a17e85b08b82f7d2_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 两个阶段的分界点，就是 `render` 函数。`render` 函数之前的所有生命周期函数（包括 `render`)都属于第一阶段，之后的都属于第二阶段。开启 `Concurrent Mode` 之后， `render` 之前的所有生命周期都有可能会被打断，或者重复调用：
 
@@ -470,7 +470,7 @@ if (fps > 0) {
 
 如果我们在这些生命中期中引入了副作用，被重复执行，就可能会给我们的程序带来不可预知的问题，所以到了 `React v16.3`，`React` 干脆引入了一个新的生命周期函数 `getDerivedStateFromProps`，这个生命周期是一个 静态方法，在里面根本不能通过 `this` 访问到当前组件，输入只能通过参数，对组件渲染的影响只能通过返回值。
 
-![](/notes/assets/performance/react/20082c3c52e3420289744a59bdfff7d0_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/20082c3c52e3420289744a59bdfff7d0_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 所以，`getDerivedStateFromProps` 一定是一个纯函数，`React` 就是通过要求这种纯函数，强制开发者们必须适应 `Concurrent Mode` 。
 
@@ -527,7 +527,7 @@ const MonacoEditor = React.lazy(() => import('react-monaco-editor'));
 
 但是如果页面上有多个 `React` 版本，它们都会在 `document` 上注册事件。这会破坏 事件冒泡这些机制，外部的树仍然会接收到这个事件，这就使嵌套不同版本的 `React` 难以实现。
 
-![](/notes/assets/performance/react/a304da8dd87649c6b8a33413c89e203a_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/a304da8dd87649c6b8a33413c89e203a_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 这就是 `React` 要改变 `attach` 事件到 `DOM` 的底层实现方式的原因。
 
@@ -550,7 +550,7 @@ ReactDOM.render(<App />, rootNode);
 
 那么使用 `expirationTime` ，它是以某一优先级作为整棵树的优先级更新标准，而并不是某一个具体的组件，这时我们的需求是需要把 任务B 从 一批任务 中分离出来，先处理 `cpu` 任务 A 和 C ，如果通过 `expirationTime` 实现呢，是比较困难的，它很难表示批的概念，也很难从一批任务里抽离单个任务，这时呢，我们就需要一种更细粒度的优先级。
 
-![](/notes/assets/performance/react/34dd5cc5d42443ad9e7818420effc8b2_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/34dd5cc5d42443ad9e7818420effc8b2_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 于是呢，`Lanes` 就出现了。以前使用 `expirationTime` 表示的字段，都改为了 `lane`。比如：
 
@@ -594,7 +594,7 @@ root.render(<App />);
 
 在下面，我们也可以看到不同模式支持的特性对比。
 
-![](/notes/assets/performance/react/86695189e31248a690d5bb1894c92437_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/86695189e31248a690d5bb1894c92437_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 批处理的优化
 
@@ -639,7 +639,7 @@ class Example extends React.Component {
 
 在组件对应 `fiber` 挂载 `update` 后，就会进入「调度流程」。上面我们也讲到了 `Scheduler` 调度的作用就是，选出不同优先级的 `update` 中优先级最高的那个，以该优先级进入更新流程。进入调度后的流程大概如下：
 
-![](/notes/assets/performance/react/8f7842f48340415b99cdf485eb0bbc1b_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/8f7842f48340415b99cdf485eb0bbc1b_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 首先我们取出当前所有优先级中最高优先级的 `Lane`，然后根据 `Lane` 获取本次需要调度的优先级。
 
@@ -659,7 +659,7 @@ class Example extends React.Component {
 
 这个 `API` 可以让我们手动区分非紧急的状态更新，本质上还是对组件渲染优先级的控制。比如现在有这样一个场景：我们要去 `Input` 框输入一个值，然后下面需要同时给出通过我们输入后的值过滤出来的一些数据。
 
-![](/notes/assets/performance/react/405b1e898a4645c5a17d3ec41f5f3d1b_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/405b1e898a4645c5a17d3ec41f5f3d1b_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 因为你每次需要动态渲染出过滤后的值，所以你可能会将输入的值存储在一个 `state` 中，你的代码可能是下面这样的：
 
@@ -706,13 +706,13 @@ const [isPending, startTransition] = useTransition();
 
 下面，还有一个更典型的例子：
 
-![](/notes/assets/performance/react/c60e80a17cac4e068fa9504232729564_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/c60e80a17cac4e068fa9504232729564_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
  拖动左边滑块会改变树渲染的节点数量。拖动顶部滑块会改变树的倾斜角度。最顶上有个帧雷达，可以实时显示更新过程中的掉帧情况。当不点击 `Use startTransition` 按钮，拖动顶上的滑块。可以看到：拖动并不流畅，顶上的帧雷达显示掉帧。
 
 这时，我们把 `tree` 的 `render` 放到 `startTransition` 中，虽然 `tree` 的更新还是很卡顿，但是雷达不会掉帧了。
 
-![](/notes/assets/performance/react/2109bca777b446c79bb148efabe32355_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/2109bca777b446c79bb148efabe32355_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 `startTransition` 的实现其实也很简单，所有 在 `startTransition` 回调中执行的操作都会拿到一个 `isTransition` 标记，根据这个标记， React 会把更新赋予更低的优先级。
 
@@ -724,15 +724,15 @@ const [isPending, startTransition] = useTransition();
 
 实际上，我们希望的是用户的输入能得到快速的响应，但是下面详情的渲染多等待一会其实无所谓。
 
-![](/notes/assets/performance/react/b0f42b7cb9364f71a2addc878b589a03_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/b0f42b7cb9364f71a2addc878b589a03_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 这时，我们可以通过 `useDeferredValue` 创建一个 `deferredText`，真正的意思是 `deferredText` 的渲染被标记为了低优先级，它还有另一个参数，这个渲染的最大延迟时间。我们可以大概猜测到，`useDeferredValue` 的实现机制应该和 `expairedTime` 是类似的。
 
-![](/notes/assets/performance/react/ddcf2eb122a44406a4eb669955275ad0_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/ddcf2eb122a44406a4eb669955275ad0_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在图中我们可以看到 ，用户输入已经不会有卡顿的感觉了。
 
-![](/notes/assets/performance/react/36910231dd864e5ab669ec2246532b3f_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/react/36910231dd864e5ab669ec2246532b3f_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 那么它跟我们手动实现的防抖有啥区别呢？
 

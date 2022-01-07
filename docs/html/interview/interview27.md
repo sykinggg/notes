@@ -7,7 +7,7 @@ Browser Object Model 的缩写。即浏览器对象模型，这并没有一套�
 **常用的Bom属性**
 ---
 
-![示例](/notes/assets/html/2020102414322631.png)
+<img :src="$withBase('/assets/html/2020102414322631.png')" alt="demo" />
 
 **navigator（浏览器对象）**
 
@@ -21,7 +21,7 @@ var isChrome =ua.indexOf('Chrome');
 console.log(isChrome); // true为是，false为不是
 ```
 
-![示例](/notes/assets/html/2020102414370328.png)
+<img :src="$withBase('/assets/html/2020102414370328.png')" alt="demo" />
 
 **screen（屏幕对象）**
 
@@ -90,7 +90,7 @@ DOM 是针对 HTML 的基于树的 API。描述了处理网页内容的方法和
 > 
 > 有了树模型，就有了层级结构，层级结构是指元素和元素之间的关系父子，兄弟。
 
-![示例](/notes/assets/html/20201024140711640.png)
+<img :src="$withBase('/assets/html/20201024140711640.png')" alt="demo" />
 
 **DOM 节点操作**
 ---
@@ -140,19 +140,14 @@ nextElementSibling 获取当前节点的后一个兄弟元素
 **Dom节点的Attribute和Property区别**
 ---
 
-<!-- ![demo](/notes/assets/html/20201024141424441.png) -->
-![示例](/notes/assets/html/20201024141424441.png)
+<img :src="$withBase('/assets/html/20201024141424441.png')" alt="demo" />
 
-<!-- ![demo](/notes/assets/html/20201024141451942.png) -->
-![示例](/notes/assets/html/20201024141451942.png)
+<img :src="$withBase('/assets/html/20201024141451942.png')" alt="demo" />
 
-<!-- ![demo](/notes/assets/html/20201024141514206.png) -->
-![示例](/notes/assets/html/20201024141514206.png)
+<img :src="$withBase('/assets/html/20201024141514206.png')" alt="demo" />
 
-<!-- ![demo](/notes/assets/html/20201024141631577.png) -->
-![示例](/notes/assets/html/20201024141631577.png)
+<img :src="$withBase('/assets/html/20201024141631577.png')" alt="demo" />
 
 优化流程
 
-<!-- ![demo](/notes/assets/html/20201024141702164.png) -->
-![示例](/notes/assets/html/20201024141702164.png)
+<img :src="$withBase('/assets/html/20201024141702164.png')" alt="demo" />

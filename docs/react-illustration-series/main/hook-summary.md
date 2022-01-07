@@ -82,7 +82,7 @@ export type Hook = {|
 
 所以`Hook`是一个链表, 单个`Hook`拥有自己的状态`hook.memoizedState`和自己的更新队列`hook.queue`(有关 Hook 状态的分析, 在`Hook原理(状态)`章节中解读).
 
-![](/notes/assets/react-illustration-series/hook-linkedlist.png)
+<img :src="$withBase('/assets/react-illustration-series/hook-linkedlist.png')" alt="demo" />
 
 注意: 其中`hook.queue`与`fiber.updateQueue`虽然都是`update环形链表`, 尽管`update对象`的数据结构与处理方式都高度相似, 但是这 2 个队列中的`update对象`是完全独立的. `hook.queue`只作用于`hook对象`的状态维护, 切勿与`fiber.updateQueue`混淆.
 
@@ -356,7 +356,7 @@ export default function App() {
 
 初次渲染时, 逻辑执行到`performUnitOfWork->beginWork->updateFunctionComponent->renderWithHooks`前, 内存结构如下(本节重点是`Hook`, 有关`fiber树构造`过程可回顾前文):
 
-![](/notes/assets/react-illustration-series/mount-before-renderwithhooks.png)
+<img :src="$withBase('/assets/react-illustration-series/mount-before-renderwithhooks.png')" alt="demo" />
 
 当执行`renderWithHooks`时, 开始调用`function`. 本例中, 在`function`内部, 共使用了 4 次`Hook api`, 依次调用`useState, useEffect, useState, useEffect`.
 
@@ -410,17 +410,17 @@ function mountWorkInProgressHook(): Hook {
 
 本示例中, `function`调用之后则会创建 4 个`hook`, 这时的内存结构如下:
 
-![](/notes/assets/react-illustration-series/mount-after-renderwithhooks.png)
+<img :src="$withBase('/assets/react-illustration-series/mount-after-renderwithhooks.png')" alt="demo" />
 
 可以看到: 无论`状态Hook`或`副作用Hook`都按照调用顺序存储在`fiber.memoizedState`链表中.
 
-![](/notes/assets/react-illustration-series/mount-fiber-memoizedstate.png)
+<img :src="$withBase('/assets/react-illustration-series/mount-fiber-memoizedstate.png')" alt="demo" />
 
 ### 顺序克隆
 
 `fiber树构造(对比更新)`阶段, 执行`updateFunctionComponent->renderWithHooks`时再次调用`function`, `调用function前`的内存结构如下:
 
-![](/notes/assets/react-illustration-series/update-before-renderwithhooks.png)
+<img :src="$withBase('/assets/react-illustration-series/update-before-renderwithhooks.png')" alt="demo" />
 
 注意: 在`renderWithHooks`函数中已经设置了`workInProgress.memoizedState = null`, 等待调用`function`时重新设置.
 
@@ -501,14 +501,14 @@ function updateWorkInProgressHook(): Hook {
 
 所以`function`执行完成之后, 有关`Hook`的内存结构如下:
 
-![](/notes/assets/react-illustration-series/update-after-renderwithhooks.png)
+<img :src="$withBase('/assets/react-illustration-series/update-after-renderwithhooks.png')" alt="demo" />
 
 可以看到:
 
 1. 以双缓冲技术为基础, 将`current.memoizedState`按照顺序克隆到了`workInProgress.memoizedState`中.
 2. `Hook`经过了一次克隆, 内部的属性(`hook.memoizedState`等)都没有变动, 所以其状态并不会丢失.
 
-![](/notes/assets/react-illustration-series/update-fiber-memoizedstate.png)
+<img :src="$withBase('/assets/react-illustration-series/update-fiber-memoizedstate.png')" alt="demo" />
 
 ## 总结
 

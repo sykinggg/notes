@@ -2,25 +2,25 @@
 
 ### Check if multiple objects are equal
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isEqual = (...objects) => objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const isEqual = (...objects: object[]): boolean => objects.every((obj) => JSON.stringify(obj) === JSON.stringify(objects[0]));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -31,9 +31,9 @@ isEqual({ foo: 'bar' }, { bar: 'foo' }); // false
 
 ### Create an empty map that does not have properties
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // `map` doesn't have any properties
@@ -43,15 +43,15 @@ const map = Object.create(null);
 // const map = {};
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Create an object from the pairs of key and value
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const toObj = (arr) => Object.fromEntries(arr);
@@ -60,9 +60,9 @@ const toObj = (arr) => Object.fromEntries(arr);
 const toObj = (arr) => arr.reduce((a, c) => ((a[c[0]] = c[1]), a), {});
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -76,17 +76,17 @@ toObj([
 
 ### Extract values of a property from an array of objects
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const pluck = (objs, property) => objs.map((obj) => obj[property]);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -103,17 +103,17 @@ pluck(
 
 ### Get the value at given path of an object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const getValue = (path, obj) => path.split('.').reduce((acc, c) => acc && acc[c], obj);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -123,17 +123,17 @@ getValue('a.b', { a: { b: 'Hello World' } }); // 'Hello World';
 
 ### Immutably rename object keys
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const renameKeys = (keysMap, obj) => Object.keys(obj).reduce((acc, key) => ({ ...acc, ...{ [keysMap[key] || key]: obj[key] } }), {});
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -145,9 +145,9 @@ renameKeys(keysMap, obj); // { d: 1, e: 2, f: 3 }
 
 ### Invert keys and values of an object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const invert = (obj) => Object.keys(obj).reduce((res, k) => Object.assign(res, { [obj[k]]: k }), {});
@@ -156,9 +156,9 @@ const invert = (obj) => Object.keys(obj).reduce((res, k) => Object.assign(res, {
 const invert = (obj) => Object.fromEntries(Object.entries(obj).map(([k, v]) => [v, k]));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -168,9 +168,9 @@ invert({ a: '1', b: '2', c: '3' }); // { 1: 'a', 2: 'b', 3: 'c' }
 
 ### Omit a subset of properties from an object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const omit = (obj, keys) =>
@@ -179,9 +179,9 @@ const omit = (obj, keys) =>
         .reduce((res, k) => Object.assign(res, { [k]: obj[k] }), {});
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -191,9 +191,9 @@ omit({ a: '1', b: '2', c: '3' }, ['a', 'b']); // { c: '3' }
 
 ### Pick a subset of properties of an object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const pick = (obj, keys) =>
@@ -202,9 +202,9 @@ const pick = (obj, keys) =>
         .reduce((res, k) => Object.assign(res, { [k]: obj[k] }), {});
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -214,9 +214,9 @@ pick({ a: '1', b: '2', c: '3' }, ['a', 'b']); // { a: '1', b: '2' }
 
 ### Remove all null and undefined properties from an object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const removeNullUndefined = (obj) => Object.entries(obj).reduce((a, [k, v]) => (v == null ? a : ((a[k] = v), a)), {});
@@ -231,9 +231,9 @@ const removeNullUndefined = (obj) =>
 const removeNullUndefined = (obj) => Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -247,9 +247,9 @@ removeNullUndefined({
 
 ### Shallow copy an object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const shallowCopy = obj => Object.assign({}, obj);
@@ -258,15 +258,15 @@ const shallowCopy = obj => Object.assign({}, obj);
 const shallowCopy = obj => {...obj};
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Sort an object by its properties
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const sort = (obj) =>
@@ -275,9 +275,9 @@ const sort = (obj) =>
         .reduce((p, c) => ((p[c] = obj[c]), p), {});
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 

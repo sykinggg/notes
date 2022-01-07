@@ -33,4 +33,4 @@ span.classy {
 
 > 则会产生这样的效果:
 
-![demo](/notes/assets/mozillaCss/1617673047(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617673047(1).jpg')" alt="demo" />

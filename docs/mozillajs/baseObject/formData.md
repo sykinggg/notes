@@ -4,7 +4,7 @@
 
 该`FormData`接口提供了一种轻松构造一组表示表单字段及其值的键/值对的[XMLHttpRequest.send()](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send)方法，然后可以使用该方法轻松发送这些键/值对。如果编码类型设置为"`multipart/form-data`".
 
-[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)如果您想以 a[<form>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)使用简单`GET`提交的方式生成查询参数，也可以将其直接传递给构造函数。
+[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)如果您想以 a[form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)使用简单`GET`提交的方式生成查询参数，也可以将其直接传递给构造函数。
 
 一个对象实现`FormData`可以直接在[for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)结构中使用，而不是[entries()](https://developer.mozilla.org/en-US/docs/Web/API/FormData/entries):`for (var p of myFormData)`等价于`for (var p of myFormData.entries())`.
 
@@ -56,4 +56,4 @@
 
 ## 浏览器兼容性
 
-![demo](/notes/assets/mozillaJs/1625192257(1).jpg)
+<img :src="$withBase('/assets/mozillaJs/1625192257(1).jpg')" alt="demo" />

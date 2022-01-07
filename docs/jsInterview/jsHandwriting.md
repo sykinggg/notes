@@ -644,7 +644,7 @@ const result1 = deepClone(target);
 console.log(result1)
 ```
 
-![](/notes/assets/js/523de06ab4fe457ca804053f4265ceb9_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/js/523de06ab4fe457ca804053f4265ceb9_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 6. 实现new操作符
 
@@ -1311,7 +1311,7 @@ me.showName() // demo test
 
 可以看到`person`作为`me`实例的原型存在,原型上有`showName`方法
 
-![](/notes/assets/js/1634172151785.jpg)
+<img :src="$withBase('/assets/js/1634172151785.jpg')" alt="demo" />
 
 ### 2. 创建原型为null的对象
 
@@ -1321,7 +1321,7 @@ const emptyObj = Object.create(null)
 console.log(emptyObj)
 ```
 
-![](/notes/assets/js/1634172243291.jpg)
+<img :src="$withBase('/assets/js/1634172243291.jpg')" alt="demo" />
 
 ### 3. 第二个 propertiesObject参数
 
@@ -1421,7 +1421,7 @@ console.log(o2.foo) // hello
 console.log(o2.bar) // 10
 ```
 
-![](/notes/assets/js/1634172505328.jpg)
+<img :src="$withBase('/assets/js/1634172505328.jpg')" alt="demo" />
 
 ## 16.快速排序
 
@@ -1581,7 +1581,7 @@ setTimeout(() => {
 
 可以看到1被打印出了3次，第1000毫秒的时候定时器被关闭，1也就没有继续打印了。
 
-![](/notes/assets/js/1634172723686.jpg)
+<img :src="$withBase('/assets/js/1634172723686.jpg')" alt="demo" />
 
 ## 21. setInterval模拟setTimeout
 

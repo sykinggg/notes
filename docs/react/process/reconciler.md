@@ -68,7 +68,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 对应的`Fiber树`结构：
 <!-- <img :src="$withBase('/img/fiber.png')" alt="Fiber架构"> -->
 
-![Fiber架构](/notes/assets/react/fiber.png)
+<img :src="$withBase('/assets/react/fiber.png')" alt="Fiber架构">
 
 `render阶段`会依次执行：
 

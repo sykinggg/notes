@@ -2,7 +2,7 @@
 
 在正式分析`fiber树渲染`之前, 再次回顾一下[reconciler 运作流程](./reconciler-workflow.md)的 4 个阶段:
 
-![](/notes/assets/react-illustration-series/reactfiberworkloop.png)
+<img :src="$withBase('/assets/react-illustration-series/reactfiberworkloop.png')" alt="demo" />
 
 1. 输入阶段: 衔接`react-dom`包, 承接`fiber更新`请求(参考[React 应用的启动过程](./bootstrap.md)).
 2. 注册调度任务: 与调度中心(`scheduler`包)交互, 注册调度任务`task`, 等待任务回调(参考[React 调度原理(scheduler)](./scheduler.md)).
@@ -26,11 +26,11 @@
 
 1. 初次构造
 
-![](/notes/assets/react-illustration-series/fibertree-beforecommit.png)
+<img :src="$withBase('/assets/react-illustration-series/fibertree-beforecommit.png')" alt="demo" />
 
-2. 对比更新
+1. 对比更新
 
-![](/notes/assets/react-illustration-series/fibertree-beforecommit.1.png)
+<img :src="$withBase('/assets/react-illustration-series/fibertree-beforecommit.1.png')" alt="demo" />
 
 ## commitRoot
 
@@ -156,7 +156,7 @@ function commitRootImpl(root, renderPriorityLevel) {
    - 注意只是延长了副作用队列, 但是`fiberRoot.lastEffect`指针并没有改变.
      比如首次构造时, 根节点拥有`Snapshot`标记:
 
-![](/notes/assets/react-illustration-series/fiber-effectlist.png)
+<img :src="$withBase('/assets/react-illustration-series/fiber-effectlist.png')" alt="demo" />
 
 ### 渲染
 
@@ -187,7 +187,7 @@ function commitRootImpl(root, renderPriorityLevel) {
 
 下图为了清晰, 省略了一些无关引用, 只留下`commitRoot`阶段实际会用到的`fiber`节点:
 
-![](/notes/assets/react-illustration-series/fiber-noredundant.png)
+<img :src="$withBase('/assets/react-illustration-series/fiber-noredundant.png')" alt="demo" />
 
 #### commitBeforeMutationEffects
 
@@ -362,7 +362,7 @@ function commitMutationEffects(
 
 注意: `commitMutationEffects`执行之后, 在`commitRootImpl`函数中切换当前`fiber`树(`root.current = finishedWork`),保证`fiberRoot.current`指向代表当前界面的`fiber树`.
 
-![](/notes/assets/react-illustration-series/fiber-switch.png)
+<img :src="$withBase('/assets/react-illustration-series/fiber-switch.png')" alt="demo" />
 
 #### commitLayoutEffects
 
@@ -455,9 +455,9 @@ function commitLifeCycles(
    - 由于副作用队列是一个链表, 由于单个`fiber`对象的引用关系, 无法被`gc回收`.
    - 将链表全部拆开, 当`fiber`对象不再使用的时候, 可以被`gc回收`.
 
-![](/notes/assets/react-illustration-series/clear-effectlist.png)
+<img :src="$withBase('/assets/react-illustration-series/clear-effectlist.png')" alt="demo" />
 
-2. 检测更新
+1. 检测更新
    - 在整个渲染过程中, 有可能产生新的`update`(比如在`componentDidMount`函数中, 再次调用`setState()`).
    - 如果是常规(异步)任务, 不用特殊处理, 调用`ensureRootIsScheduled`确保任务已经注册到调度中心即可.
    - 如果是同步任务, 则主动调用`flushSyncCallbackQueue`(无需再次等待 scheduler 调度), 再次进入 fiber 树构造循环

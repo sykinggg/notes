@@ -2,17 +2,17 @@
 
 ### Box handler
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const boxHandler = (x) => ({ next: (f) => boxHandler(f(x)), done: (f) => f(x) });
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -40,17 +40,17 @@ getDiscountPrice('$6.00', '20%'); // 4.8
 
 ### Check if a value is a function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isFunction = (v) => ['[object Function]', '[object GeneratorFunction]', '[object AsyncFunction]', '[object Promise]'].includes(Object.prototype.toString.call(v));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -62,17 +62,17 @@ isFunction(async function () {}); // true
 
 ### Check if a value is a generator function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isGeneratorFunction = (v) => Object.prototype.toString.call(v) === '[object GeneratorFunction]';
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -83,17 +83,17 @@ isGeneratorFunction(function* () {}); // true
 
 ### Check if a value is an async function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isAsyncFunction = (v) => Object.prototype.toString.call(v) === '[object AsyncFunction]';
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -105,9 +105,9 @@ isAsyncFunction(async function () {}); // true
 
 ### Compose functions from left to right
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // Compose functions from left to right
@@ -117,9 +117,9 @@ const pipe =
         fns.reduce((y, f) => f(y), x);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -136,9 +136,9 @@ fn('Hello World') === 'dlrow olleH';
 
 ### Compose functions
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // Compose functions from right to left
@@ -148,9 +148,9 @@ const compose =
         fns.reduceRight((y, f) => f(y), x);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -167,17 +167,17 @@ fn('Hello World') === 'dlrow olleH';
 
 ### Create a function that accepts a single argument
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const unary = (fn) => (arg) => fn(arg);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -187,9 +187,9 @@ const unary = (fn) => (arg) => fn(arg);
 
 ### Create an empty function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const noop = () => {};
@@ -199,23 +199,23 @@ const noop = Function();
 // calling Function() might be detected as using eval by some security tools
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Curry a function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const curry = (fn, ...args) => (fn.length <= args.length ? fn(...args) : curry.bind(null, fn, ...args));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -231,9 +231,9 @@ curry(sum, 1, 2, 3); // 6
 
 ### Delay the evaluation of a function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // returns a new version of `fn` that returns values as lazy evaluable
@@ -244,9 +244,9 @@ const thunkfy =
         fn(...args);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -258,9 +258,9 @@ const probablyFaster = manyThings.map(thunkfy(heavyComputation)).find((thunk) =>
 
 ### Execute a function once
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const once = (fn) =>
@@ -271,9 +271,9 @@ const once = (fn) =>
     )();
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -287,9 +287,9 @@ incOnce(); // n = 1
 
 ### Flip the arguments of a function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // Reverse the order of arguments
@@ -305,9 +305,9 @@ const flip = (fn) => (b, a) => fn(a, b);
 const flip = (fn) => (b) => (a) => fn(a)(b);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Examples
 
@@ -318,23 +318,23 @@ const isChild = flip(isParent);
 
 ### Identity function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const identity = (x) => x;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Logical xor operator
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // returns `true` if one of the arguments is truthy and the other is falsy
@@ -348,9 +348,9 @@ const xor = (a, b) => !(!a && !b) && !(a && b);
 const xor = (a, b) => Boolean(!a ^ !b);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -363,9 +363,9 @@ xor(false, true); // true
 
 ### Memoize a function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const memoize = (fn) =>
@@ -376,9 +376,9 @@ const memoize = (fn) =>
     )();
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -396,9 +396,9 @@ fibo(6); // 8
 
 ### Partially apply a function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const partial =
@@ -407,9 +407,9 @@ const partial =
         fn(...a, ...b);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -421,9 +421,9 @@ inc(9); // 10
 
 ### Uncurry a function
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // `fn` is a curried function
@@ -437,9 +437,9 @@ const uncurry =
         )(fn)(args.slice(0, n));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 

@@ -97,7 +97,7 @@
 
 * 7. 最终将各个节点`绘制`在屏幕上
 
-![demo](/notes/assets/browser/0f72241cf7af4da3923254405ac086c4_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/browser/0f72241cf7af4da3923254405ac086c4_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 6. CSS阻塞情况以及优化
 
@@ -109,7 +109,7 @@
 
 注意：看下图，`HTML`和`CSS`是并行解析的，所以CSS`不会阻塞HTML解析`，但是，`会阻塞整体页面的渲染`(因为最后要渲染必须CSS和HTML一起解析完并合成一处)
 
-![demo](/notes/assets/browser/0f72241cf7af4da3923254405ac086c4_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/browser/0f72241cf7af4da3923254405ac086c4_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 7. JS阻塞问题
 
@@ -135,7 +135,7 @@
 
 如果三次都匹配不到的话，那至少也得走三次：`爷节点 -> 子节点 -> 孙节点`，这就做了很多无用功啊。
 
-![demo](/notes/assets/browser/ec27806c5dec40ea81c422821d8b1185_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/browser/ec27806c5dec40ea81c422821d8b1185_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 如果是`从右到左`的话：
 
@@ -145,7 +145,7 @@
 
 这样的话，尽早发现找不到，尽早停止，可以少了很多无用功。
 
-![demo](/notes/assets/browser/b44eb01261704363ab9a21641661715d_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/browser/b44eb01261704363ab9a21641661715d_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 10. 什么是重绘回流
 
@@ -235,7 +235,7 @@
 
 ## 15. 浏览器缓存分类
 
-![dome](/notes/assets/browser/3f3a31bc463b40578c1d6bbc6c79758a_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/browser/3f3a31bc463b40578c1d6bbc6c79758a_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 * 强缓存
 

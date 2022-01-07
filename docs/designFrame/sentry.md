@@ -441,7 +441,7 @@ function initAndBind(clientClass, options) {
 
 最终输出得到这样的数据。我画了一张图表示。重点关注的原型链用颜色标注了，其他部分收缩了。
 
-![](/notes/assets/designFrame/16e20329b5d66adf_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16e20329b5d66adf_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ## initAndBind 函数之 getCurrentHub().bindClient()
 
@@ -546,7 +546,7 @@ function initAndBind(clientClass, options) {
 }
 ```
 
-![](/notes/assets/designFrame/16e21d4ca331836a_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16e21d4ca331836a_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 > 初始化完成后，再来看具体例子。 具体 `captureMessage` 函数的实现。
 
@@ -558,7 +558,7 @@ Sentry.captureMessage('Hello, 若川!');
 
 通过之前的阅读代码，知道会最终会调用`Fetch`接口，所以直接断点调试即可，得出如下调用栈。 接下来描述调用栈的主要流程。
 
-![captureMessage 断点调试图](/notes/assets/designFrame/16e20352d61b71e2_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16e20352d61b71e2_tplv-t2oaga2asx-watermark.awebp')" alt="captureMessage 断点调试图">
 
 ### 调用栈主要流程：
 

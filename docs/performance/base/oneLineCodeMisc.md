@@ -2,69 +2,69 @@
 
 ### Check if the code is running in NodeJS
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isNode = typeof process !== 'undefined' && process.versions != null && process.versions.node != null;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const isNode: boolean = typeof process !== 'undefined' && process.versions != null && process.versions.node != null;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Check if the code is running in the browser
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isBrowser = typeof window === 'object' && typeof document === 'object';
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const isBrowser: boolean = typeof window === 'object' && typeof document === 'object';
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Clear all cookies
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const clearCookies = () => document.cookie.split(';').forEach((c) => (document.cookie = c.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`)));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const clearCookies = (): void => document.cookie.split(';').forEach((c) => (document.cookie = c.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`)));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -74,9 +74,9 @@ clearCookies();
 
 ### Convert 3 digits color to 6 digits color
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const toFullHexColor = (color) =>
@@ -86,9 +86,9 @@ const toFullHexColor = (color) =>
         .join('')}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const toFullHexColor = (color: string): string =>
@@ -98,9 +98,9 @@ const toFullHexColor = (color: string): string =>
         .join('')}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -112,25 +112,25 @@ toFullHexColor('#abc'); // '#aabbcc'
 
 ### Convert Celsius to Fahrenheit
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const celsiusToFahrenheit = (celsius) => (celsius * 9) / 5 + 32;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const celsiusToFahrenheit = (celsius: number): number => (celsius * 9) / 5 + 32;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -142,9 +142,9 @@ celsiusToFahrenheit(-20); // -4
 
 ### Convert cookie to object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const cookies = document.cookie
@@ -153,31 +153,31 @@ const cookies = document.cookie
     .reduce((acc, [k, v]) => (acc[k.trim().replace('"', '')] = v) && acc, {});
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Convert Fahrenheit to Celsius
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const fahrenheitToCelsius = (fahrenheit) => ((fahrenheit - 32) * 5) / 9;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const fahrenheitToCelsius = (fahrenheit: number): number => ((fahrenheit - 32) * 5) / 9;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -188,9 +188,9 @@ fahrenheitToCelsius(32); // 0
 
 ### Convert hex to rgb
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const hexToRgb = (hex) =>
@@ -201,9 +201,9 @@ const hexToRgb = (hex) =>
         .map((x) => parseInt(x, 16));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const hexToRgb = (hex: string): string =>
@@ -214,9 +214,9 @@ const hexToRgb = (hex: string): string =>
         .map((x) => parseInt(x, 16));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -227,9 +227,9 @@ hexToRgb('#0ff'); // [0, 255, 255]
 
 ### Convert rgb color to hex
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const rgbToHex = (red, green, blue) => `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;
@@ -238,9 +238,9 @@ const rgbToHex = (red, green, blue) => `#${((1 << 24) + (red << 16) + (green << 
 const rgbToHex = (red, green, blue) => `#${[red, green, blue].map((v) => v.toString(16).padStart(2, '0')).join('')}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const rgbToHex = (red: number, green: number, blue: number): string => `#${((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1)}`;
@@ -249,9 +249,9 @@ const rgbToHex = (red: number, green: number, blue: number): string => `#${((1 <
 const rgbToHex = (red: number, green: number, blue: number): string => `#${[red, green, blue].map((v) => v.toString(16).padStart(2, '0')).join('')}`;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -261,17 +261,17 @@ rgbToHex(0, 255, 255); // '#00ffff'
 
 ### Convert URL parameters to object
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const getUrlParams = (query) => Array.from(new URLSearchParams(query)).reduce((p, [k, v]) => Object.assign({}, p, { [k]: p[k] ? (Array.isArray(p[k]) ? p[k] : [p[k]]).concat(v) : v }), {});
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const getUrlParams = (query: string): Record<string, string> => (
@@ -279,9 +279,9 @@ const getUrlParams = (query: string): Record<string, string> => (
 );
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -296,9 +296,9 @@ getUrlParams('foo=Foo&foo=Fuzz&bar=Bar'); // { foo: ["Foo", "Fuzz"], bar: "Bar" 
 
 ### Decode a JWT token
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const decode = (token) =>
@@ -310,9 +310,9 @@ const decode = (token) =>
     );
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const decode = (token: string): string =>
@@ -324,9 +324,9 @@ const decode = (token: string): string =>
     );
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -342,31 +342,31 @@ decode(`
 
 ### Detect dark mode
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const isDarkMode: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Easing functions
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // Some easing functions
@@ -399,9 +399,9 @@ const easeOutElastic = (t) => ((0.04 * t) / --t) * Math.sin(25 * t);
 const easeInOutElastic = (t) => ((t -= 0.5) < 0 ? (0.02 + 0.01 / t) * Math.sin(50 * t) : (0.02 - 0.01 / t) * Math.sin(50 * t) + 1);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const linear = (t: number): number => t;
@@ -431,31 +431,31 @@ const easeOutElastic = (t: number): number => ((0.04 * t) / --t) * Math.sin(25 *
 const easeInOutElastic = (t: number): number => ((t -= 0.5) < 0 ? (0.02 + 0.01 / t) * Math.sin(50 * t) : (0.02 - 0.01 / t) * Math.sin(50 * t) + 1);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Emulate a dice throw
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const throwdice = () => ~~(Math.random() * 6) + 1;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const throwdice = (): number => ~~(Math.random() * 6) + 1;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -467,41 +467,41 @@ throwdice(); // 6
 
 ### Encode a URL
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // `encodeURIComponent` doesn't encode -_.!~*'()
 const encode = (url) => encodeURIComponent(url).replace(/!/g, '%21').replace(/~/g, '%7E').replace(/\*/g, '%2A').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/%20/g, '+');
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const encode = (url: string): string =>
     encodeURIComponent(url).replace(/!/g, '%21').replace(/~/g, '%7E').replace(/\*/g, '%2A').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/%20/g, '+');
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Generate an unique and increment id
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const uid = (() => ((id = 0), () => id++))();
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -514,9 +514,9 @@ uid(); // 3
 
 ### Get the first defined and non null argument
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const coalesce = (...args) => args.find((item) => item !== undefined && item !== null);
@@ -525,9 +525,9 @@ const coalesce = (...args) => args.find((item) => item !== undefined && item !==
 const coalesce = (...args) => args.find((item) => ![undefined, null].includes(item));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const coalesce = (...args: any[]): any[] => args.find((item) => item !== undefined && item !== null);
@@ -536,9 +536,9 @@ const coalesce = (...args: any[]): any[] => args.find((item) => item !== undefin
 const coalesce = (...args: any[]): any[] => args.find((item) => ![undefined, null].includes(item));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -548,17 +548,17 @@ coalesce(undefined, null, 'helloworld', NaN); // 'helloworld'
 
 ### Get the value of a cookie
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const cookie = (name) => `; ${document.cookie}`.split(`; ${name}=`).pop().split(';').shift();
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -568,25 +568,25 @@ cookie('_ga'); // GA1.2.825309271.1581874719
 
 ### Get the value of a param from a URL
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const getParam = (url, param) => new URLSearchParams(new URL(url).search).get(param);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const getParam = (url: string, param: string): string | null => new URLSearchParams(new URL(url).search).get(param);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -596,25 +596,25 @@ getParam('http://domain.com?message=hello', 'message'); // 'hello'
 
 ### Get type of a variable in string
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const getTypeOf = (obj) => Object.prototype.toString.call(obj).match(/\[object (.*)\]/)[1];
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const getTypeOf = (obj: any): string => (Object.prototype.toString.call(obj).match(/\[object (.*)\]/) as string[])[1];
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -639,9 +639,9 @@ getTypeOf(document); // HTMLDocument
 
 ### Redirect the page to HTTPS if it is in HTTP
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const redirectHttps = () => (location.protocol === 'https:' ? {} : location.replace(`https://${location.href.split('//')[1]}`));
@@ -650,9 +650,9 @@ const redirectHttps = () => (location.protocol === 'https:' ? {} : location.repl
 const redirectHttps = () => (location.protocol === 'https:' ? {} : (location.protocol = 'https:'));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const redirectHttps = (): void => (location.protocol === 'https:' ? void 0 : location.replace(`https://${location.href.split('//')[1]}`));
@@ -661,32 +661,32 @@ const redirectHttps = (): void => (location.protocol === 'https:' ? void 0 : loc
 const redirectHttps = (): string => (location.protocol === 'https:' ? '' : (location.protocol = 'https:'));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Run Promises in sequence
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // `promises` is an array of `Promise`
 const run = (promises) => promises.reduce((p, c) => p.then((rp) => c.then((rc) => [...rp, rc])), Promise.resolve([]));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const run = (promises: Promise<any>[]): Promise<any> => promises.reduce((p, c) => p.then((rp) => c.then((rc) => [...rp, rc])), Promise.resolve([]));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Examples
 
@@ -698,9 +698,9 @@ run(promises).then((results) => {
 
 ### Swap two variables
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 [a, b] = [b, a];
@@ -718,28 +718,28 @@ a = b + ((b = a), 0);
 a = b * ((b = a), 1);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Wait for an amount of time
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const wait = async (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const wait = async (milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>

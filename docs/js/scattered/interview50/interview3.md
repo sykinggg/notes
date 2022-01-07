@@ -16,7 +16,7 @@
 
 ### 双向链表的结构：
 
-![demo](/notes/assets/js/1.png)
+<img :src="$withBase('/assets/js/1.png')" alt="demo" />
 
 * 双向链表不仅有**head**指针指向第一个节点，而且有**tail**指针指向最后一个节点；
 
@@ -106,7 +106,7 @@ DoubleLinklist.prototype.append = data => {
 
 * 情况1：添加的是第一个节点：只需要让head和tail都指向新节点即可；
 
-![demo](/notes/assets/js/2.png)
+<img :src="$withBase('/assets/js/2.png')" alt="demo" />
 
 * 情况2：添加的不是第一个节点，如下图所示：只需要改变相关引用的指向即可。
     
@@ -118,9 +118,9 @@ DoubleLinklist.prototype.append = data => {
 
 要注意改变变量指向的顺序，最后修改`tail`指向，这样未修改前`tail`始终指向原链表的最后一个节点。
 
-![demo](/notes/assets/js/3.png)
+<img :src="$withBase('/assets/js/3.png')" alt="demo" />
 
-![demo](/notes/assets/js/4.png)
+<img :src="$withBase('/assets/js/4.png')" alt="demo" />
 
 **测试代码：**
 
@@ -140,11 +140,11 @@ console.log(list);
 
 * next方向：
 
-![demo](/notes/assets/js/5.png)
+<img :src="$withBase('/assets/js/5.png')" alt="demo" />
 
 * prev方向：
 
-![demo](/notes/assets/js/6.png)
+<img :src="$withBase('/assets/js/6.png')" alt="demo" />
 
 ### 2.2.toString()汇总
 
@@ -192,7 +192,7 @@ DoubleLinklist.prototype.backwardString = () => {
 
 * 定义`current`变量记录当前指向的节点。首先让`current`指向第一个节点，然后通过 `current = current.next` 依次向后遍历。在`while`循环中以(`current`)作为条件遍历链表，只要`current ！= null`就一直遍历，由此可获取链表所有节点的数据。
 
-![demo](/notes/assets/js/7.png)
+<img :src="$withBase('/assets/js/7.png')" alt="demo" />
 
 **测试代码：**
 
@@ -212,7 +212,7 @@ console.log(list.backwardString());
 
 **测试结果：**
 
-![demo](/notes/assets/js/8.png)
+<img :src="$withBase('/assets/js/8.png')" alt="demo" />
 
 ### 2.3.insert(position,element)
 
@@ -273,13 +273,13 @@ DoubleLinklist.prototype.insert = (position, data) => {
 
 * 情况1：插入的新节点是链表的第一个节点；只需要让`head`和`tail`都指向`newNode`即可。
 
-![demo](/notes/assets/js/9.png)
+<img :src="$withBase('/assets/js/9.png')" alt="demo" />
 
 **当原链表不为空时：**
 
 * 情况2：当`position == 0`，即在链表的首部添加节点：如下图所示：
 
-    ![demo](/notes/assets/js/10.png)
+    <img :src="$withBase('/assets/js/10.png')" alt="demo" />
 
     * 首先，通过：`this.head.prev = newNode`，改变指向1；
 
@@ -287,11 +287,11 @@ DoubleLinklist.prototype.insert = (position, data) => {
 
     * 最后，通过：`this.head = newNode`，改变指向3；
 
-    ![demo](/notes/assets/js/11.png)
+    <img :src="$withBase('/assets/js/11.png')" alt="demo" />
 
 * 情况3：`position == this.length`，即在链表的尾部添加节点，如下图所示：
 
-    ![demo](/notes/assets/js/12.png)
+    <img :src="$withBase('/assets/js/12.png')" alt="demo" />
 
     * 首先，通过：`this.tail.next = newNode`，改变指向1；（注意这里使用this.tail指向原链表最后一个节点，而不是this.head。因为**当length>1时，this.head != this.tail**。）
     
@@ -299,19 +299,19 @@ DoubleLinklist.prototype.insert = (position, data) => {
     
     * 最后，通过：`this.tail = newNode`，改变指向3；
 
-    ![demo](/notes/assets/js/13.png)
+    <img :src="$withBase('/assets/js/13.png')" alt="demo" />
 
 * 情况4：`0 < position < this.length`，即在链表的中间插入新节点，假设在`position = 1`的位置插入，如下图所示：
 
-    ![demo](/notes/assets/js/14.png)
+    <img :src="$withBase('/assets/js/14.png')" alt="demo" />
 
 首先，需要定义变量`current`按照之前的思路，通过`while`循环找到`position`位置的后一个节点，循环结束后`index = position`
 
-![demo](/notes/assets/js/15.png)
+<img :src="$withBase('/assets/js/15.png')" alt="demo" />
 
 如下图所示：当`position = 1`时，`current`就指向了`Node2`。这样操作`current`就等同于间接地操作`Node2`，还可以通过`current.prev`间接获取`Node1`。得到了`newNode`的前一个节点和后一个节点就可以通过改变它们的`prev`和`next`变量的指向来插入`newNode`了。
 
-![demo](/notes/assets/js/16.png)
+<img :src="$withBase('/assets/js/16.png')" alt="demo" />
 
 * 通过：`newNode.next = current`，改变指向1；
 
@@ -323,7 +323,7 @@ DoubleLinklist.prototype.insert = (position, data) => {
 
 * 通过：`current.prev = current`，改变指向4；
 
-![demo](/notes/assets/js/17.png)
+<img :src="$withBase('/assets/js/17.png')" alt="demo" />
 
 **测试代码：**
 
@@ -343,9 +343,9 @@ alert(list)
 
 **测试结果：**
 
-![demo](/notes/assets/js/18.png)
+<img :src="$withBase('/assets/js/18.png')" alt="demo" />
 
-![demo](/notes/assets/js/19.png)
+<img :src="$withBase('/assets/js/19.png')" alt="demo" />
 
 ### 2.4.get(position)
 
@@ -392,7 +392,7 @@ DoubleLinklist.prototype.get = position => {
 
 * 当`this.length / 2 < position`：从尾（tail）开始遍历；
 
-![demo](/notes/assets/js/20.png)
+<img :src="$withBase('/assets/js/20.png')" alt="demo" />
 
 **测试代码：**
 
@@ -417,7 +417,7 @@ console.log(list.get(7));
 
 **测试结果：**
 
-![demo](/notes/assets/js/21.png)
+<img :src="$withBase('/assets/js/21.png')" alt="demo" />
 
 ### 2.5.indexOf(element)
 
@@ -446,7 +446,7 @@ DoubleLinklist.prototype.indexOf = data => {
 
 以（`current`）作为条件，通过while循环遍历链表中的所有节点（停止条件为`current = null`）。在遍历每个节点时将`current`指向的当前节点的`data`和传入的`data`进行比较即可。
 
-![demo](/notes/assets/js/22.png)
+<img :src="$withBase('/assets/js/22.png')" alt="demo" />
 
 **测试代码：**
 
@@ -465,7 +465,7 @@ console.log(list.indexOf('c'));
 
 **测试结果：**
 
-![demo](/notes/assets/js/23.png)
+<img :src="$withBase('/assets/js/23.png')" alt="demo" />
 
 ### 2.7.update(position,element)
 
@@ -506,7 +506,7 @@ DoubleLinklist.prototype.update = (position, newData) => {
 
 以（`index++ < position`）为条件，通过while循环遍历链表中的节点（停止条件为`index = position`）。循环结束后，`current`指向需要修改的节点。
 
-![demo](/notes/assets/js/24.png)
+<img :src="$withBase('/assets/js/24.png')" alt="demo" />
 
 **测试代码：**
 
@@ -524,7 +524,7 @@ console.log(list);
 
 **测试结果：**
 
-![demo](/notes/assets/js/25.png)
+<img :src="$withBase('/assets/js/25.png')" alt="demo" />
 
 ### 2.8.removeAt(position)
 
@@ -581,7 +581,7 @@ DoubleLinklist.prototype.removeAt = position => {
 
 * 情况1：删除链表中的所有节点：只需要让链表的head和tail指向null即可。
 
-    ![demo](/notes/assets/js/26.png)
+    <img :src="$withBase('/assets/js/26.png')" alt="demo" />
 
 **当链表的length > 1时：**
 
@@ -593,7 +593,7 @@ DoubleLinklist.prototype.removeAt = position => {
 
     * 虽然`Node1`有引用指向其它节点，但是没有引用指向`Node1`，那么`Node1`会被自动回收
 
-    ![demo](/notes/assets/js/27.png)
+    <img :src="$withBase('/assets/js/27.png')" alt="demo" />
 
 * 情况3：删除链表中的最后一个节点：
 
@@ -601,13 +601,13 @@ DoubleLinklist.prototype.removeAt = position => {
 
     * 通过：`this.tail = this.tail.prev`，修改指向2；
 
-    ![demo](/notes/assets/js/28.png)
+    <img :src="$withBase('/assets/js/28.png')" alt="demo" />
 
 * 情况4：删除链表中间的节点：
 
     * 通过`while`循环找到需要删除的节点，比如`position = x`，那么需要删除的节点就是`Node(x+1)`，如下图所示：
 
-    ![demo](/notes/assets/js/29.png)
+    <img :src="$withBase('/assets/js/29.png')" alt="demo" />
     
     * 通过：`current.next.prev = current.prev`，修改指向1；
     
@@ -615,7 +615,7 @@ DoubleLinklist.prototype.removeAt = position => {
     
     * 这样就没有引用指向`Node(x+1)`了（`current`虽指向`Node(x+1)`，但`current`时临时变量，该方法执行完就会被销毁），随后`Node(x+1)`就会被自动删除。
 
-    ![demo](/notes/assets/js/30.png)
+    <img :src="$withBase('/assets/js/30.png')" alt="demo" />
 
 **测试代码：**
 
@@ -634,7 +634,7 @@ console.log(list);
 
 **测试结果：**
 
-![demo](/notes/assets/js/31.png)
+<img :src="$withBase('/assets/js/31.png')" alt="demo" />
 
 ### 2.9.其他方法
 
@@ -701,7 +701,7 @@ console.log(list.getTail());
 
 **测试结果：**
 
-![demo](/notes/assets/js/32.png)
+<img :src="$withBase('/assets/js/32.png')" alt="demo" />
 
 ### 2.10.完整实现
 
@@ -988,11 +988,11 @@ function DoubleLinklist(){
 
 * **情况二**：不能靠`tail`和`head`来获取到需要操作的变量时，可采用while循环遍历的方式，找到需要操作的节点：
 
-![demo](/notes/assets/js/33.png)
+<img :src="$withBase('/assets/js/33.png')" alt="demo" />
 
 在这种情况下，如果想要在链表的position = x的位置插入新节点，那么可以通过current获取position的后一个节点Node(x+1)，通过current.prev获取position位置的前一个节点Node(x)；之后修改Node(x+1)和Node(x)中的prev和next两个变量的指向即可在pos=x 的位置插入新节点。
 
-![demo](/notes/assets/js/34.png)
+<img :src="$withBase('/assets/js/34.png')" alt="demo" />
 
 ### 3.3.修改链表引用指向
 
@@ -1002,7 +1002,7 @@ function DoubleLinklist(){
 
 * **情况2：**使用current获取到需要操作的节点时，最后更改curren.next或current.prev的指向。因为current.next和current.prev表示的是Node(x+2)和Node(x)这两个节点，如下图所示，一旦变更它们的指向就无法获取Node(x)或Node(x+2)了，
 
-![demo](/notes/assets/js/35.png)
+<img :src="$withBase('/assets/js/35.png')" alt="demo" />
 
 
 ### 3.4.遍历链表
@@ -1011,16 +1011,16 @@ function DoubleLinklist(){
 
 * 获取指定的position = x 位置的后一个节点和索引值：
 
-    ![demo](/notes/assets/js/36.png)
+    <img :src="$withBase('/assets/js/36.png')" alt="demo" />
 
-    ![demo](/notes/assets/js/37.png)
+    <img :src="$withBase('/assets/js/37.png')" alt="demo" />
 
     循环结束后`index = position = x`，变量`current`就指向了`Node(x+1)`，变量`index`的值为`Node(x+1)`的索引值x。
 
 * 遍历链表中的所有节点：
 
-    ![demo](/notes/assets/js/38.png)
+    <img :src="$withBase('/assets/js/38.png')" alt="demo" />
 
-    ![demo](/notes/assets/js/39.png)
+    <img :src="$withBase('/assets/js/39.png')" alt="demo" />
 
     当`current.next = null`时停止循环，此时`current`指向链表的最后一个节点。

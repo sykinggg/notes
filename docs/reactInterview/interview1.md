@@ -199,7 +199,7 @@ ReactUpdatesFlushTransaction.release(transaction);
 
 * 示意图(`Transaction.js`)：
 
-![demo](/notes/assets/react/v2-e1dc82ada4fbbf5c366558532a6f6fca_720w.png)
+<img :src="$withBase('/assets/react/v2-e1dc82ada4fbbf5c366558532a6f6fca_720w.png')" alt="demo" />
 
 * 代码(`Transaction.js`)：
 
@@ -255,7 +255,7 @@ module.exports = TransactionImpl;
 
 * 框图(`ReactBrowserEventEmitter.js`)
 
-![demo](/notes/assets/react/v2-35d1c1174231dd45f3fda05516ed0239_720w.png)
+<img :src="$withBase('/assets/react/v2-35d1c1174231dd45f3fda05516ed0239_720w.png')" alt="demo" />
 
 * 组件上声明的事件最终绑定到了 `document` 上，而不是 `React` 组件对应的 `DOM` 节点，这样简化了 `DOM` 原生事件，减少了内存开销
 
@@ -279,7 +279,7 @@ module.exports = TransactionImpl;
 
 * 整体流程:
 
-![demo](/notes/assets/react/v2-203bfc5510eb197d8117e53f75dbbae5_720w.png)
+<img :src="$withBase('/assets/react/v2-203bfc5510eb197d8117e53f75dbbae5_720w.png')" alt="demo" />
 
 * 主要讲述`mount`和`update`，里面也有很多相类似的操作
 
@@ -661,7 +661,7 @@ function mountOrderComparator(c1, c2) {
 
   * 上文的代码中，除了关心 type，还关心 key，这也是 diff 算法的关键，如图
 
-  ![demo](/notes/assets/react/v2-57807dd3d41b61ac6c7b3b3686df381b_720w.png)
+  <img :src="$withBase('/assets/react/v2-57807dd3d41b61ac6c7b3b3686df381b_720w.png')" alt="demo" />
 
 * 首先对新集合的节点进行循环遍历，`for (name in nextChildren)`，如果存在相同节点，则进行操作，是否移动是通过比较 `child._mountIndex < lastIndex`，符合则进行节点移动操作(即在老集合中的位置和 `lastIndex` 比较)，`lastIndex` 表示访问过的节点在老集合中最右的位置（即最大的位置）。这是一种顺序优化手段，`lastIndex` 一直在更新，表示访问过的节点在老集合中最右的位置，如果新集合中当前访问的节点比 `lastIndex` 大，说明当前访问节点在老集合中就比上一个节点位置靠后，则该节点不会影响其他节点的位置，因此不用添加到差异队列中，即不执行移动操作，只有当访问的节点比 `lastIndex` 小时，才需要进行移动操作。来看具体过程：
 

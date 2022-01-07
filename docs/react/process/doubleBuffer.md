@@ -58,7 +58,7 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 
 <!-- <img :src="$withBase('/img/rootfiber.png')" alt="rootFiber"> -->
 
-![rootFiber](/notes/assets/react/rootfiber.png)
+<img :src="$withBase('/assets/react/rootfiber.png')" alt="rootFiber">
 
 ```js
 fiberRootNode.current = rootFiber;
@@ -67,21 +67,21 @@ fiberRootNode.current = rootFiber;
 由于是首屏渲染，页面中还没有挂载任何`DOM`，所以`fiberRootNode.current`指向的`rootFiber`没有任何`子Fiber节点`（即`current Fiber树`为空）。
 
 
-2. 接下来进入`render阶段`，根据组件返回的`JSX`在内存中依次创建`Fiber节点`并连接在一起构建`Fiber树`，被称为`workInProgress Fiber树`。（下图中右侧为内存中构建的树，左侧为页面显示的树）
+1. 接下来进入`render阶段`，根据组件返回的`JSX`在内存中依次创建`Fiber节点`并连接在一起构建`Fiber树`，被称为`workInProgress Fiber树`。（下图中右侧为内存中构建的树，左侧为页面显示的树）
 
 在构建`workInProgress Fiber树`时会尝试复用`current Fiber树`中已有的`Fiber节点`内的属性，在`首屏渲染`时只有`rootFiber`存在对应的`current fiber`（即`rootFiber.alternate`）。
 
 <!-- <img :src="$withBase('/img/workInProgressFiber.png')" alt="workInProgressFiber"> -->
 
-![workInProgressFiber](/notes/assets/react/workInProgressFiber.png)
+<img :src="$withBase('/assets/react/workInProgressFiber.png')" alt="workInProgressFiber">
 
-3. 图中右侧已构建完的`workInProgress Fiber树`在`commit阶段`渲染到页面。
+1. 图中右侧已构建完的`workInProgress Fiber树`在`commit阶段`渲染到页面。
 
 此时`DOM`更新为右侧树对应的样子。`fiberRootNode`的`current`指针指向`workInProgress Fiber树`使其变为`current Fiber 树`。
 
 <!-- <img :src="$withBase('/img/wipTreeFinish.png')" alt="workInProgressFiberFinish"> -->
 
-![workInProgressFiberFinish](/notes/assets/react/wipTreeFinish.png)
+<img :src="$withBase('/assets/react/wipTreeFinish.png')" alt="workInProgressFiberFinish">
 
 ## update时
 
@@ -89,17 +89,17 @@ fiberRootNode.current = rootFiber;
 
 <!-- <img :src="$withBase('/img/wipTreeUpdate.png')" alt="wipTreeUpdate"> -->
 
-![wipTreeUpdate](/notes/assets/react/wipTreeUpdate.png)
+<img :src="$withBase('/assets/react/wipTreeUpdate.png')" alt="wipTreeUpdate">
 
 和`mount`时一样，`workInProgress fiber`的创建可以复用`current Fiber树`对应的节点数据。
 
 > 这个决定是否复用的过程就是Diff算法，后面章节会详细讲解
 
-2. `workInProgress Fiber 树`在`render阶段`完成构建后进入`commit阶段`渲染到页面上。渲染完毕后，`workInProgress Fiber 树`变为`current Fiber 树`。
+1. `workInProgress Fiber 树`在`render阶段`完成构建后进入`commit阶段`渲染到页面上。渲染完毕后，`workInProgress Fiber 树`变为`current Fiber 树`。
 
 <!-- <img :src="$withBase('/img/currentTreeUpdate.png')" alt="currentTreeUpdate"> -->
 
-![currentTreeUpdate](/notes/assets/react/currentTreeUpdate.png)
+<img :src="$withBase('/assets/react/currentTreeUpdate.png')" alt="currentTreeUpdate">
 
 ## 总结
 

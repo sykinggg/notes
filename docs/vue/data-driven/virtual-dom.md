@@ -2,9 +2,7 @@
 
 Virtual DOM 这个概念相信大部分人都不会陌生，它产生的前提是浏览器中的 DOM 是很“昂贵"的，为了更直观的感受，可以简单的把一个简单的 div 元素的属性都打印出来，如图所示：
 
-<img :src="$withBase('/notes/assets/dom.png')">
-
-![dom](/notes/assets/vue/dom.png)
+<img :src="$withBase('/assets/vue/dom.png')" alt="demo" />
 
 可以看到，真正的 DOM 元素是非常庞大的，因为浏览器的标准就把 DOM 设计的非常复杂。当频繁的去做 DOM 更新，会产生一定的性能问题。
 

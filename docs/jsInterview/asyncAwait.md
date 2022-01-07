@@ -73,7 +73,7 @@ async function fn () {
 fn()
 ```
 
-![demo](/notes/assets/jsInterview/c63ae650b71144e2a1ba8dc2bdaceed3_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/c63ae650b71144e2a1ba8dc2bdaceed3_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在a`sync`函数中，`await`规定了异步操作只能一个一个排队执行，从而达到**用同步方式，执行异步操作的效果**，这里注意了：**await只能在async函数中使用，不然会报错**
 
@@ -165,7 +165,7 @@ console.log(g.next()) // { value: 3, done: false }
 console.log(g.next()) // { value: 4, done: true }
 ```
 
-![demo](/notes/assets/jsInterview/d56e8dea0f204cc18a2d86d1ffcf51ef_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/d56e8dea0f204cc18a2d86d1ffcf51ef_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### yield && 函数
 
@@ -215,7 +215,7 @@ console.log(g.next()) // { value: Promise { <pending> }, done: false }
 console.log(g.next()) // { value: 3, done: true }
 ```
 
-![demo](/notes/assets/jsInterview/39a4a3ec5ecc4e9e88a9515be0bc7bb1_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/39a4a3ec5ecc4e9e88a9515be0bc7bb1_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 其实我们想要的结果是，两个Promise的结果`1 和 2`，那怎么做呢？很简单，使用Promise的then方法就行了
 
@@ -235,7 +235,7 @@ next1.value.then(res1 => {
 })
 ```
 
-![demo](/notes/assets/jsInterview/56134335085443e9a86da9c3a9c139b6_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/56134335085443e9a86da9c3a9c139b6_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### next函数传参
 
@@ -263,7 +263,7 @@ console.log(g.next(22222))
 // { value: 3, done: true }
 ```
 
-![demo](/notes/assets/jsInterview/c49ec193e19249d2876fba7909f89acc_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/c49ec193e19249d2876fba7909f89acc_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### Promise+next传参
 
@@ -312,7 +312,7 @@ next1.value.then(res1 => {
 })
 ```
 
-![demo](/notes/assets/jsInterview/8db7c759079a404ebab41b9aacc90c77_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/8db7c759079a404ebab41b9aacc90c77_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 实现async/await
 
@@ -324,7 +324,7 @@ next1.value.then(res1 => {
 
 * gen函数执行的操作是不完善的，因为并不确定有几个yield，不确定会嵌套几次
 
-![demo](/notes/assets/jsInterview/2465072c79684ecabd9b0377e22b05f8_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/2465072c79684ecabd9b0377e22b05f8_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 `高阶函数`的特点是：**参数是函数，返回值也是函数**。下方的`highorderFn`就是一个`高阶函数`
 

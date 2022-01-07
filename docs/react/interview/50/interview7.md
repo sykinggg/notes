@@ -89,7 +89,7 @@ Context 主要应用场景在于很多不同层级的组件需要访问同样一
 // ... 渲染出 ...
 <PageLayout user={user} avatarSize={avatarSize} />
 // ... 渲染出 ...
-<NavigationBar user={user} avatarSize={avatarSize} />
+<divigationBar user={user} avatarSize={avatarSize} />
 // ... 渲染出 ...
 <Link href={user.permalink}>
   <Avatar user={user} size={avatarSize} />
@@ -119,7 +119,7 @@ function Page(props) {
 // ... 渲染出 ...
 <PageLayout userLink={...} />
 // ... 渲染出 ...
-<NavigationBar userLink={...} />
+<divigationBar userLink={...} />
 // ... 渲染出 ...
 {props.userLink}
 ```
@@ -141,7 +141,7 @@ function Page(props) {
   const user = props.user;
   const content = <Feed user={user} />;
   const topBar = (
-    <NavigationBar>
+    <divigationBar>
       <Link href={user.permalink}>
         <Avatar user={user} size={props.avatarSize} />
       </Link>

@@ -5,7 +5,7 @@
 **作用域**
 ---
 
-<font size=1>**变量提升**</font>
+<div size=1>**变量提升**</div>
 
 ```javascript
 var scope="global";
@@ -30,7 +30,7 @@ scopeTest(); //undefined
 
 **注意**，如果在局部作用域中忘记var，那么变量就被声明为全局变量。
 
-<font size=1>**没有块级作用域**</font>
+<div size=1>**没有块级作用域**</div>
 
 ```javascript
 var data = [];
@@ -46,13 +46,13 @@ data[1]();	// 3
 data[2]();	// 3
 ```
 
-<font size=1>**作用域链**</font>
+<div size=1>**作用域链**</div>
 
 每个函数都有自己的执行上下文环境，当代码在这个环境中执行时，会创建变量对象的作用域链，作用域链是一个对象列表或对象链，它保证了变量对象的有序访问。
 
 作用域链的开始是当前代码执行环境的变量对象，常被称之为“活跃对象”（AO），变量的查找会从第一个链的对象开始，如果对象中包含变量属性，那么就停止查找，如果没有就会继续向上级作用域链查找，直到找到全局对象中
 
-<font size=1>**闭包**</font>
+<div size=1>**闭包**</div>
 
 ```javascript
 function createClosure(){
@@ -92,7 +92,7 @@ data[1]();	// 3
 data[2]();	// 3
 ```
 
-<font size=1>**方法1：立即执行函数**</font>
+<div size=1>**方法1：立即执行函数**</div>
 
 ```javascript
 for (var i = 0; i < 3; i++) {
@@ -107,7 +107,7 @@ for (var i = 0; i < 3; i++) {
 // 2
 ```
 
-<font size=1>**方法2：返回一个匿名函数赋值**</font>
+<div size=1>**方法2：返回一个匿名函数赋值**</div>
 
 ```javascript
 var data = [];
@@ -127,7 +127,7 @@ data[2]();	// 2
 
 无论是**立即执行函数**还是**返回一个匿名函数赋值**，原理上都是因为变量的按值传递，所以会将变量`i`的值复制给实参`num`，在匿名函数的内部又创建了一个用于访问`num`的匿名函数，这样每个函数都有了一个`num`的副本，互不影响了。
 
-<font size=1>**方法3：使用ES6中的let**</font>
+<div size=1>**方法3：使用ES6中的let**</div>
 
 ```javascript
 var data = [];

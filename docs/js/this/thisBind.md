@@ -58,7 +58,7 @@ baz(); // <-- baz的调用位置
 **2 绑定规则**
 ---
 
-<font size=1>**2.1 默认绑定**</font>
+<div size=1>**2.1 默认绑定**</div>
 
 * **独立函数调用**，可以把默认绑定看作是无法应用其他规则时的默认规则，**this指向全局对象**。
 
@@ -91,7 +91,7 @@ var a = 2;
 })();
 ```
 
-<font size=1>**2.2 隐式绑定**</font>
+<div size=1>**2.2 隐式绑定**</div>
 
 当函数引用有**上下文对象**时，隐式绑定规则会把函数中的this绑定到这个上下文对象。对象属性引用链中只有上一层或者说最后一层在调用中起作用。
 
@@ -162,7 +162,7 @@ function setTimeout(fn, delay) {
 }
 ```
 
-<font size=1>**2.3 显式绑定**</font>
+<div size=1>**2.3 显式绑定**</div>
 
 通过`call(..)` 或者 `apply(..)`方法。第一个参数是一个对象，在调用函数时将这个对象绑定到this。因为直接指定this的绑定对象，称之为显示绑定。
 
@@ -286,7 +286,7 @@ myArray.forEach( foo, obj );
 // 1 awesome 2 awesome 3 awesome
 ```
 
-<font size=1>**2.4 new绑定**</font>
+<div size=1>**2.4 new绑定**</div>
 
 * 在JS中，`构造函数`只是使用`new`操作符时被调用的`普通`函数，他们不属于某个类，也不会实例化一个类。
 
@@ -408,7 +408,7 @@ baz.val; // p1p2
 **4 绑定例外**
 ---
 
-<font size=1>**4.1 被忽略的this**</font>
+<div size=1>**4.1 被忽略的this**</div>
 
 把`null`或者`undefined`作为`this`的绑定对象传入`call`、`apply`或者`bind`，这些值在调用时会被忽略，实际应用的是默认规则。
 
@@ -455,7 +455,7 @@ var bar = foo.bind( ø, 2 );
 bar( 3 ); // a:2，b:3 
 ```
 
-<font size=1>**4.2 间接引用**</font>
+<div size=1>**4.2 间接引用**</div>
 
 间接引用下，调用这个函数会应用**默认绑定规则**。间接引用最容易在**赋值**时发生。
 
@@ -473,7 +473,7 @@ o.foo(); // 3
 (p.foo = o.foo)(); // 2
 ```
 
-<font size=1>**4.3 软绑定**</font>
+<div size=1>**4.3 软绑定**</div>
 
 * 硬绑定可以把this强制绑定到指定的对象（new除外），防止函数调用应用默认绑定规则。但是会降低函数的灵活性，使用**硬绑定之后就无法使用隐式绑定或者显式绑定来修改this**。
 
@@ -580,7 +580,7 @@ foo.call(obj); // 2
 **上期思考题解**
 ---
 
-<font size=1>**代码1：**</font>
+<div size=1>**代码1：**</div>
 
 ```javascript
 var scope = "global scope";
@@ -595,7 +595,7 @@ function checkscope(){
 checkscope()(); 
 ```
 
-<font size=1>**代码2：**</font>
+<div size=1>**代码2：**</div>
 
 ```javascript
 var scope = "global scope";

@@ -47,7 +47,7 @@
 
 ## 示例
 
-![示例](/notes/assets/css/understanding_zindex_04.png)
+<img :src="$withBase('/assets/css/understanding_zindex_04.png')" alt="demo" />
 
 在这个例子中，每个被定位的元素都创建了独自的层叠上下文，因为他们被指定了定位属性和 `z-index` 值。把层叠上下文的层级列在下面：
 
@@ -92,37 +92,37 @@
 ```html
 <div id="div1">
   <h1>Division Element #1</h1>
-  <code>position: relative;<br/>
-  z-index: 5;</code>
+  <div>position: relative;<br/>
+  z-index: 5;</div>
 </div>
 
 <div id="div2">
   <h1>Division Element #2</h1>
-  <code>position: relative;<br/>
-  z-index: 2;</code>
+  <div>position: relative;<br/>
+  z-index: 2;</div>
 </div>
 
 <div id="div3">
   <div id="div4">
     <h1>Division Element #4</h1>
-    <code>position: relative;<br/>
-    z-index: 6;</code>
+    <div>position: relative;<br/>
+    z-index: 6;</div>
   </div>
 
   <h1>Division Element #3</h1>
-  <code>position: absolute;<br/>
-  z-index: 4;</code>
+  <div>position: absolute;<br/>
+  z-index: 4;</div>
 
   <div id="div5">
     <h1>Division Element #5</h1>
-    <code>position: relative;<br/>
-    z-index: 1;</code>
+    <div>position: relative;<br/>
+    z-index: 1;</div>
   </div>
 
   <div id="div6">
     <h1>Division Element #6</h1>
-    <code>position: absolute;<br/>
-    z-index: 3;</code>
+    <div>position: absolute;<br/>
+    z-index: 3;</div>
   </div>
 </div>
 ```

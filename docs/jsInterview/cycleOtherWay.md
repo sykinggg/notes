@@ -1,6 +1,6 @@
 # 数组方法另一个角度总结
 
-![](/notes/assets/jsInterview/dd1a1e965fa94bdd8e84d81152bb852d_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/jsInterview/dd1a1e965fa94bdd8e84d81152bb852d_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 遍历类
 
@@ -197,7 +197,7 @@ let arr2 = arr.map2(function (it, i, array) {
 console.log(arr2)
 ```
 
-![](/notes/assets/jsInterview/1633740470721.jpg)
+<img :src="$withBase('/assets/jsInterview/1633740470721.jpg')" alt="demo" />
 
 ### 3. every
 
@@ -673,7 +673,7 @@ let index = arr.find2(function (it, i, array) {
 console.log(index) // 4
 ```
 
-![](/notes/assets/jsInterview/1633741755029.jpg)
+<img :src="$withBase('/assets/jsInterview/1633741755029.jpg')" alt="demo" />
 
 ### 9. findIndex
 
@@ -745,7 +745,7 @@ let index = arr.findIndex2(function (it, i, array) {
 console.log(index) // 3
 ```
 
-![](/notes/assets/jsInterview/1633741996410.jpg)
+<img :src="$withBase('/assets/jsInterview/1633741996410.jpg')" alt="demo" />
 
 ### 10. indexOf
 

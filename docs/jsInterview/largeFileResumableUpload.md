@@ -66,7 +66,7 @@ export default {
 </script>
 ```
 
-![demo](/notes/assets/jsInterview/16f7ff98adb6bcdd_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f7ff98adb6bcdd_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ### 请求逻辑
 
@@ -308,13 +308,13 @@ server.on("request", async (req, res) => {
 server.listen(3000, () => console.log("正在监听 3000 端口"));
 ```
 
-![demo](/notes/assets/jsInterview/16f905fb6a626f47_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f905fb6a626f47_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 查看 multiparty 处理后的 chunk 对象，path 是存储临时文件的路径，size 是临时文件大小，在 multiparty 文档中提到可以使用 fs.rename(由于我用的是 fs-extra，它的 rename 方法 windows 平台权限问题，所以换成了 fse.move) 移动临时文件，即移动文件切片
 
 在接受文件切片时，需要先创建存储切片的文件夹，由于前端在发送每个切片时额外携带了唯一值 hash，所以以 hash 作为文件名，将切片从临时路径移动切片文件夹中，最后的结果如下
 
-![demo](/notes/assets/jsInterview/16f83c3caac8eb65_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f83c3caac8eb65_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ### 合并切片
 
@@ -421,11 +421,11 @@ server.listen(3000, () => console.log("正在监听 3000 端口"));
     },
 ```
 
-![demo](/notes/asstes/jsInterview/16fccc5d950c2275_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16fccc5d950c2275_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 其实也可以等上一个切片合并完后再合并下个切片，这样就不需要指定位置，但传输速度会降低，所以使用了并发合并的手段，接着只要保证每次合并完成后删除这个切片，等所有切片都合并完毕后最后删除切片文件夹即可
 
-![demo](/notes/assets/jsInterview/16f8414c7fae1c1f_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f8414c7fae1c1f_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 至此一个简单的大文件上传就完成了，接下来我们再此基础上扩展一些额外的功能
 
@@ -528,7 +528,7 @@ server.listen(3000, () => console.log("正在监听 3000 端口"));
 
 最终视图如下
 
-![demo](/notes/assets/jsInterview/16f84ad6b4848423_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f84ad6b4848423_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ## 断点续传
 
@@ -628,17 +628,17 @@ spark-md5 需要根据所有切片才能算出一个 hash 值，不能直接将�
 
 加上显示计算 `hash` 的进度条，看起来像这样
 
-![demo](/notes/assets/jsInterview/16f84ae4f233e891_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f84ae4f233e891_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 至此前端需要将之前用文件名作为 `hash` 的地方改写为 `workder` 返回的这个 `hash`
 
-![demo](/notes/assets/jsInterview/16f84b3bba953304_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f84b3bba953304_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 服务端则使用 `hash` 作为切片文件夹名，`hash + 下标作为切片名`，`hash + 扩展名作为文件名`，没有新增的逻辑
 
-![demo](/notes/assets/jsInterview/16f84b50117e4db2_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f84b50117e4db2_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
-![demo](/notes/assets/jsInterview/16f84b33bbceaa48_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f84b33bbceaa48_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ## 文件秒传
 
@@ -772,7 +772,7 @@ server.listen(3000, () => console.log("正在监听 3000 端口"));
 
 这样在上传切片时传入 `requestList` 数组作为参数，`request` 方法就会将所有的 `xhr` 保存在数组中了
 
-![demo](/notes/assets/jsInterview/16f8563491ea7793_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f8563491ea7793_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 每当一个切片上传成功时，将对应的 xhr 从 requestList 中删除，所以 requestList 中只保存`正在上传切片的 xhr`
 
@@ -785,11 +785,11 @@ handlePause() {
 }
 ```
 
-![demo](/notes/assets/jsInterview/16f890e598dd6afb_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f890e598dd6afb_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 点击暂停按钮可以看到 `xhr` 都被取消了
 
-![demo](/notes/assets/jsInterview/16f85644dc27459e_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f85644dc27459e_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ## 恢复上传
 
@@ -934,7 +934,7 @@ server.listen(3000, () => console.log("正在监听 3000 端口"));
     }
 ```
 
-![demo](/notes/assets/jsInterview/16f890e598de0946_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f890e598de0946_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 这里给原来上传切片的函数新增 `uploadedList` 参数，即上图中服务端返回的切片名列表，通过 `filter` 过滤掉已上传的切片，并且由于新增了已上传的部分，所以之前合并接口的触发条件做了一些改动
 
@@ -978,11 +978,11 @@ server.listen(3000, () => console.log("正在监听 3000 端口"));
 
 之前说到文件进度条是一个计算属性，根据所有切片的上传进度计算而来，这就遇到了一个问题
 
-![demo](/notes/assets/jsInterview/16f8845dcca1427c_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f8845dcca1427c_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 点击暂停会取消并清空切片的 `xhr` 请求，此时如果已经上传了一部分，就会发现文件进度条有`倒退`的现象
 
-![demo](/notes/assets/jsInterview/16f884633f3acfd9_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/16f884633f3acfd9_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 当点击恢复时，由于重新创建了 `xhr` 导致切片进度清零，所以总进度条就会倒退
 

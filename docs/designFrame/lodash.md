@@ -119,7 +119,7 @@ LodashWrapper.prototype = baseCreate(baseLodash.prototype);
 LodashWrapper.prototype.constructor = LodashWrapper;
 ```
 
-![lodash 原型关系图](/notes/assets/designFrame/16d19648b052f4cb_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16d19648b052f4cb_tplv-t2oaga2asx-watermark.awebp')" alt="lodash 原型关系图">
 
 ### 衍生的 isObject 函数
 
@@ -463,7 +463,7 @@ console.log(prototypeMethods); // ["after", "all", "allKeys", "any", "assign", .
 
 支持链式调用的方法最后返回是实例对象，获取最后的处理的结果值，最后需要调用`value`方法。
 
-![lodash的方法和属性挂载关系](/notes/assets/designFrame/16d2fe47c4bd70d6_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16d2fe47c4bd70d6_tplv-t2oaga2asx-watermark.awebp')" alt="lodash的方法和属性挂载关系">
 
 ## 请出贯穿下文的简单的例子
 
@@ -613,11 +613,11 @@ baseForOwn(LazyWrapper.prototype, function(func, methodName) {
 
 ### 例子的chain和map执行后的debugger截图
 
-![](/notes/assets/designFrame/16d1965d6ddb9fad_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16d1965d6ddb9fad_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ### 例子的chain和map执行后的结果截图
 
-![](/notes/assets/designFrame/16d19661e13803e4_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16d19661e13803e4_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 链式调用最后都是返回实例对象，实际的处理数据的函数都没有调用，而是被存储存储下来了，最后调用`value`方法，才执行这些函数。
 
@@ -752,7 +752,7 @@ LazyWrapper.prototype.constructor = LazyWrapper;
 LazyWrapper.prototype.value = lazyValue;
 ```
 
-![lodash和LazyWrapper的关系图](/notes/assets/designFrame/16d1966cbe76d7c9_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16d1966cbe76d7c9_tplv-t2oaga2asx-watermark.awebp')" alt="lodash和LazyWrapper的关系图">
 
 ::: tip 小结
 `lazyValue`简单说实现的功能就是把之前记录的需要执行几次，把记录存储的函数执行几次，不会有多少项数据就执行多少次，而是根据需要几项，执行几项。 也就是说以下这个例子中，`map`函数只会执行`3`次。如果没有用惰性求值，那么`map`函数会执行`5`次。

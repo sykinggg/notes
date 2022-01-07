@@ -110,4 +110,4 @@ function removeSpace (str, type) {
 }
 ```
 
-![demo](/notes/assets/js/1618196824(1).jpg)
+<img :src="$withBase('/assets/js/1618196824(1).jpg')" alt="demo" />

@@ -2,7 +2,8 @@
 
 ## 编译速度
 
-![demo](/notes/assets/design/1629444255384.jpg)
+<img :src="$withBase('/assets/design/1629444255384.jpg')" alt="demo" />
+
 
 ### 1.它是用Go语言编写的，编译成可执行代码
 
@@ -46,22 +47,17 @@ npm install esbuild
 
 这应该在本地`Node_modules`文件夹中安装了eSbuild。您可以运行eSbuild可执行文件以验证所有内容是否正常工作：
 
-<CodeGroup>
-<CodeGroupItem title="Unix">
+> Unix
 
 ```sh
 ./node_modules/.bin/esbuild --version
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="Windows">
+> Windows
 
 ```sh
 .\node_modules\.bin\esbuild --version
 ```
-
-</CodeGroupItem>
-</CodeGroup>
 
 建议的安装eSBuild的方法是使用NPM安装本机可执行文件。但如果你不想这样做，还有一些[其他方法可以安装](https://esbuild.github.io/getting-started/#other-ways-to-install)。
 
@@ -103,15 +99,13 @@ require('esbuild').build({
 
 捆绑器默认为浏览器输出代码，因此无需额外配置即可开始使用。对于开发构建，您可能希望使用 `--sourcemap` 启用源映射，而对于生产构建，您可能希望使用 `--minify` 启用缩小。您可能还想为您支持的浏览器配置目标环境。所有这些可能看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+> cli
 
 ```sh
 esbuild app.jsx --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+> js
 
 ```js
 require('esbuild').buildSync({
@@ -124,8 +118,7 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+> go
 
 ```go
 package main
@@ -155,9 +148,6 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
-
 有时候一个你想使用的包可能会导入另一个只有node才有的包，比如内置的`路径`包。发生这种情况时，您可以使用 `package.json` 文件中的[浏览器字段](https://github.com/defunctzombie/package-browser-field-spec)，将包替换为浏览器友好的替代方案，如下所示：
 
 ```json
@@ -178,15 +168,13 @@ func main() {
 
 如果您的代码使用在您的 node 版本中不起作用的较新 JavaScript 语法，您将需要配置 node 的目标版本：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+> cli
 
 ```sh
 esbuild app.js --bundle --platform=node --target=node10.4
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+> 
 
 ```js
 require('esbuild').buildSync({
@@ -198,8 +186,7 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+> go
 
 ```go
 package main
@@ -224,20 +211,15 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
-
 有时，您要使用的包包含由于某种原因无法捆绑的代码。这方面的一个示例是带有本机扩展（如 `fsevents`）的包。或者，您可能出于其他原因希望从捆绑包中排除一个包。这可以通过将包标记为外部来完成：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+> cli
 
 ```sh
 esbuild app.jsx --bundle --platform=node --external:fsevents
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+> js
 
 ```js
 require('esbuild').buildSync({
@@ -249,8 +231,7 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+> go
 
 ```go
 package main
@@ -272,9 +253,6 @@ func main() {
   }
 }
 ```
-
-</CodeGroupItem>
-</CodeGroup>
 
 ## Other ways to install
 
@@ -360,12 +338,3 @@ Usage:
 ::: warning
 **为什么不推荐这样做**：这取决于 esbuild 的本机可执行安装程序的内部实现细节。这些细节可能会在某些时候发生变化，在这种情况下，这种方法将不再适用于新的 esbuild 版本。这只是一个小缺点，因为该方法应该仍然适用于现有的 esbuild 版本，因为发布到 npm 的包是不可变的。另一个缺点是您不能在本机版本中使用插件。
 :::
-
-<CodeGroup>
-<CodeGroupItem title="cli">
-</CodeGroupItem>
-<CodeGroupItem title="js">
-</CodeGroupItem>
-<CodeGroupItem title="go">
-</CodeGroupItem>
-</CodeGroup>

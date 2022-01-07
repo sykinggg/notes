@@ -630,34 +630,22 @@ function updateChildren (parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly
 当点击 `change` 按钮去改变数据，最终会执行到 `updateChildren` 去更新 `li` 部分的列表数据，通过图的方式来描述一下它的更新过程：
 
 第一步：
-<!-- <img :src="$withBase('/notes/assets/update-children-1.png')"> -->
-
-![第一步](/notes/assets/vue/update-children-1.png)
+<img :src="$withBase('/assets/vue/update-children-1.png')" alt="第一步">
 
 第二步：
-<!-- <img :src="$withBase('/notes/assets/update-children-2.png')"> -->
-
-![第二步](/notes/assets/vue/update-children-2.png)
+<img :src="$withBase('/assets/vue/update-children-2.png')" alt="第二步">
 
 第三步：
-<!-- <img :src="$withBase('/notes/assets/update-children-3.png')"> -->
-
-![第三步](/notes/assets/vue/update-children-3.png)
+<img :src="$withBase('/assets/vue/update-children-3.png')" alt="第三步">
 
 第四步：
-<!-- <img :src="$withBase('/notes/assets/update-children-4.png')"> -->
-
-![第四步](/notes/assets/vue/update-children-4.png)
+<img :src="$withBase('/assets/vue/update-children-4.png')" alt="第四步">
 
 第五步：
-<!-- <img :src="$withBase('/notes/assets/update-children-5.png')"> -->
-
-![第五步](/notes/assets/vue/update-children-5.png)
+<img :src="$withBase('/assets/vue/update-children-5.png')" alt="第五步">
 
 第六步：
-<!-- <img :src="$withBase('/notes/assets/update-children-6.png')"> -->
-
-![第六步](/notes/assets/vue/update-children-6.png)
+<img :src="$withBase('/assets/vue/update-children-6.png')" alt="第六步">
 
 ## 总结
 

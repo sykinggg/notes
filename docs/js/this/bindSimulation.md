@@ -81,7 +81,7 @@ person.distractedGreeting();
 
 解决方案有下面两种。
 
-<font size=1>**解决方案1：**</font> 缓存 `this`值
+<div size=1>**解决方案1：**</div> 缓存 `this`值
 
 ```javascript
 var nickname = "Kitty";
@@ -101,7 +101,7 @@ person.distractedGreeting();
 // Hello, my name is jawil
 ```
 
-<font size=1>**解决方案2：**</font> 使用 `bind`
+<div size=1>**解决方案2：**</div> 使用 `bind`
 
 ```javascript
 var nickname = "Kitty";

@@ -181,11 +181,11 @@ function reconcileChildrenArray(
 
 假设有如下图所示 2 个初始化序列:
 
-![](/notes/assets/react-illustration-series/before-traverse.png)
+<img :src="$withBase('/assets/react-illustration-series/before-traverse.png')" alt="demo" />
 
 接下来第一次循环, 会遍历公共序列`A,B`, 生成的 fiber 节点`fiber(A), fiber(B)`可以复用.
 
-![](/notes/assets/react-illustration-series/traverse1.png)
+<img :src="$withBase('/assets/react-illustration-series/traverse1.png')" alt="demo" />
 
 最后第二次循环, 会遍历剩余序列`E,C,X,Y`:
 
@@ -193,7 +193,7 @@ function reconcileChildrenArray(
 - `fiber(X), fiber(Y)`是新增(打上`Placement`标记).
 - 同时`oldFiber`序列中的`fiber(D)`节点确定被删除(打上`Deletion`标记).
 
-![](/notes/assets/react-illustration-series/traverse2.png)
+<img :src="$withBase('/assets/react-illustration-series/traverse2.png')" alt="demo" />
 
 整个主杆逻辑就介绍完了, 接下来贴上完整源码
 

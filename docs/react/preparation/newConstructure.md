@@ -76,7 +76,7 @@ details 乘法小Demo
 
 <!-- <img :src="$withBase('/img/process.png')" alt="更新流程"> -->
 
-![更新流程](/notes/assets/react/process.png)
+<img :src="$withBase('/assets/react/process.png')" alt="更新流程">
 
 其中红框中的步骤随时可能由于以下原因被中断：
 

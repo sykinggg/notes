@@ -18,7 +18,7 @@
 - 直接在img标签内部src中使用
 
 ```jsx
-< img src={require('图片路径')} />
+<img src={require('图片路径')} />
 ```
 
 - import导入
@@ -26,7 +26,7 @@
 ```jsx
 import imgSrc from '图片路径'
 
-< img src={imgSrc} />
+<img src={imgSrc} />
 ```
 
 ## 方式二、图片作为背景引入

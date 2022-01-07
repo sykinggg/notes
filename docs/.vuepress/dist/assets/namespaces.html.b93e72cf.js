@@ -1,0 +1,1 @@
+const t={key:"v-7da52494",path:"/ts/project/namespaces.html",title:"\u547D\u540D\u7A7A\u95F4",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1628967689e3,contributors:[{name:"suiyi",email:"suiyi19920228@qq.com",commits:2}]},filePathRelative:"ts/project/namespaces.md"};export{t as data};

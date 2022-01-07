@@ -114,7 +114,7 @@ xman -v
 
 就能看到我们定义的版本号了，也证明脚手架工具初步搭建成功。
 
-![](/notes/assets/cli/f89aa9bdd932493081db48287db6287d_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/f89aa9bdd932493081db48287db6287d_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 利用脚手架工具初始化搭建项目
 
@@ -259,11 +259,11 @@ module.exports = removeDir;
 xman i
 ```
 
-![](/notes/assets/cli/fcdcfe642d2741b097f09baf04c03f19_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/fcdcfe642d2741b097f09baf04c03f19_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 打开我们下载好的模板项目看看：
 
-![](/notes/assets/cli/0a9c4dba4bba4df691c19307903a3cea_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/0a9c4dba4bba4df691c19307903a3cea_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 通过命令添加项目模板配置
 
@@ -365,7 +365,7 @@ program
 
 执行 `npm link --force` ，然后再执行配置好的命令 `xman a`:
 
-![](/notes/assets/cli/9feb1f6d80eb4c2baef04a1b73c72db0_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/9feb1f6d80eb4c2baef04a1b73c72db0_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 可以看到 `templates.json` 中，新的模板信息已经被添加上了。
 
@@ -488,7 +488,7 @@ program
 
 执行 `npm link --force` ，然后再执行配置好的命令 `xman l`:
 
-![](/notes/assets/cli/00b5bbcd368942f1996c2bc053699330_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/00b5bbcd368942f1996c2bc053699330_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 通过命令检查CLI版本是否是最新版本
 
@@ -540,7 +540,7 @@ program
 
 执行 `npm link --force` ，然后再执行配置好的命令 `xman u`:
 
-![](/notes/assets/cli/b56215e733d04dcf860ec6ee4de67399_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/cli/b56215e733d04dcf860ec6ee4de67399_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 总结
 

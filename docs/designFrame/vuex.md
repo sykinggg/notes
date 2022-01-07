@@ -110,7 +110,7 @@ function resetStoreVM (store, state, hot) {
 
 ## Vue.use 安装
 
-![](/notes/assets/designFrame/16e87a60e2edae64_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16e87a60e2edae64_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 [文档 Vue.use](https://cn.vuejs.org/v2/api/#Vue-use)
 
@@ -226,7 +226,7 @@ console.log('vm.$store === vm.$children[0].$children[1].$store', vm.$store === v
 
 最终 `new Vuex.Store` 之后的 `Store` 实例对象关系图
 
-![](/notes/assets/designFrame/16e87a749ab7cd47_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16e87a749ab7cd47_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ```js
 export class Store {
@@ -457,7 +457,7 @@ export default class Module {
 
 > 经过一系列的注册后，最后 `this._modules = new ModuleCollection(options) this._modules` 的值是这样的
 
-![](/notes/assets/designFrame/16e87a8dab965816_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16e87a8dab965816_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 ### installModule 函数
 

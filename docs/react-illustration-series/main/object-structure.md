@@ -156,7 +156,7 @@ class App_Content extends react_default.a.Component {
 
 通过前文对`ReactElement`的介绍, 可以比较容易的画出`<App/>`这个`ReactElement`对象在内存中的结构(`reconciler`阶段完成之后才会形成完整的结构).
 
-![](/notes/assets/react-illustration-series/reactelement-tree.png)
+<img :src="$withBase('/assets/react-illustration-series/reactelement-tree.png')" alt="demo" />
 
 注意:
 
@@ -227,7 +227,7 @@ export type Fiber = {|
 |};
 ```
 
-属性解释:
+属性解释
 
 - `fiber.tag`: 表示 fiber 类型, 根据`ReactElement`组件的 type 进行生成, 在 react 内部共定义了[25 种 tag](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactWorkTags.js#L10-L35).
 - `fiber.key`: 和`ReactElement`组件的 key 一致.
@@ -261,7 +261,7 @@ export type Fiber = {|
 
 |`ReactElement`树|`fiber`树|
 |--|--|
-| <img src="/notes/assets/react-illustration-series/reactelement-tree.png" alt="reactelement"> | <img src="/notes/assets/react-illustration-series/fiber-tree.png" alt="fiber"> |
+| <img :src="$withBase('/assets/react-illustration-series/reactelement-tree.png')" alt="reactelement" /> | <img :src="$withBase('/assets/react-illustration-series/fiber-tree.png')" alt="fiber" /> |
 
 注意:
 
@@ -325,7 +325,7 @@ export type UpdateQueue<State> = {|
 
 `updateQueue`是`fiber`对象的一个属性, 所以不能脱离`fiber`存在. 它们之间数据结构和引用关系如下:
 
-![](/notes/assets/react-illustration-series/updatequeue.png)
+<img :src="$withBase('/assets/react-illustration-series/updatequeue.png')" alt="demo" />
 
 注意:
 
@@ -381,7 +381,7 @@ type UpdateQueue<S, A> = {|
 
 所以`Hook`也不能脱离`fiber`而存在, 它们之间的引用关系如下:
 
-![](/notes/assets/react-illustration-series/fiber-hook.png)
+<img :src="$withBase('/assets/react-illustration-series/fiber-hook.png')" alt="demo" />
 
 注意:
 
@@ -417,4 +417,4 @@ var newTask = {
 
 注意`task`中没有`next`属性, 它不是一个链表, 其顺序是通过堆排序来实现的(小顶堆数组, 始终保证数组中的第一个`task`对象优先级最高).
 
-![](/notes/assets/react-illustration-series/taskqueue.png)
+<img :src="$withBase('/assets/react-illustration-series/taskqueue.png')" alt="demo" />

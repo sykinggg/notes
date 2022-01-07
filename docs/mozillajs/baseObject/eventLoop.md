@@ -8,7 +8,7 @@ JavaScript有一个基于**事件循环**的并发模型，事件循环负责执
 
 ## 可视化描述
 
-![demo](/notes/assets/mozillaJs/The_Javascript_Runtime_Environment_Example.svg)
+<img :src="$withBase('/assets/mozillaJs/The_Javascript_Runtime_Environment_Example.svg')" alt="demo" />
 
 ## 栈
 

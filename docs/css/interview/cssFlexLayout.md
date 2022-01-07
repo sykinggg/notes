@@ -3,7 +3,7 @@
 
 网页布局（layout）是 CSS 的一个重点应用。
 
-![示例](/notes/assets/css/bg2015071001.gif)
+<img :src="$withBase('/assets/css/bg2015071001.gif')" alt="demo" />
 
 布局的传统解决方案，基于盒状模型，依赖 `display` 属性 + `position`属性 + `float`属性
 
@@ -44,7 +44,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 
 采用 Flex 布局的元素，称为 Flex 容器（`flex container`），简称"容器"。它的所有子元素自动成为容器成员，称为 Flex 项目（`flex item`），简称"项目"。
 
-![示例](/notes/assets/css/bg2015071004.png)
+<img :src="$withBase('/assets/css/bg2015071004.png')" alt="demo" />
 
 容器默认存在两根轴：水平的`主轴（main axis）`和垂直的`交叉轴（cross axis）`。主轴的开始位置（与边框的交叉点）叫做`main start`，结束位置叫做`main end`；交叉轴的开始位置叫做`cross start`，结束位置叫做`cross end`。
 
@@ -78,7 +78,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 }
 ```
 
-![示例](/notes/assets/css/bg2015071005.png)
+<img :src="$withBase('/assets/css/bg2015071005.png')" alt="demo" />
 
 它可能有4个值。
 
@@ -95,7 +95,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 
 默认情况下，项目都排在一条线（又称"轴线"）上。`flex-wrap`属性定义，如果一条轴线排不下，如何换行。
 
-![示例](/notes/assets/css/bg2015071006.png)
+<img :src="$withBase('/assets/css/bg2015071006.png')" alt="demo" />
 
 ```css
 .box{
@@ -107,15 +107,15 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 
 （1）`nowrap（默认）`：不换行。
 
-![示例](/notes/assets/css/bg2015071007.png)
+<img :src="$withBase('/assets/css/bg2015071007.png')" alt="demo" />
 
 （2）`wrap`：换行，第一行在上方。
 
-![示例](/notes/assets/css/bg2015071008.jpg)
+<img :src="$withBase('/assets/css/bg2015071008.png')" alt="demo" />
 
 （3）`wrap-reverse`：换行，第一行在下方。
 
-![示例](/notes/assets/css/bg2015071009.jpg)
+<img :src="$withBase('/assets/css/bg2015071009.jpg')" alt="demo" />
 
 3.3 flex-flow
 ---
@@ -139,7 +139,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 }
 ```
 
-![示例](/notes/assets/css/bg2015071010.png)
+<img :src="$withBase('/assets/css/bg2015071010.png')" alt="demo" />
 
 它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。
 
@@ -164,7 +164,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 }
 ```
 
-![示例](/notes/assets/css/bg2015071011.png)
+<img :src="$withBase('/assets/css/bg2015071011.png')" alt="demo" />
 
 它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。
 
@@ -189,7 +189,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 }
 ```
 
-![示例](/notes/assets/css/bg2015071012.png)
+<img :src="$withBase('/assets/css/bg2015071012.png')" alt="demo" />
 
 该属性可能取6个值。
 
@@ -231,7 +231,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
   order: `<integer>`;
 }
 
-![示例](/notes/assets/css/bg2015071013.png)
+<img :src="$withBase('/assets/css/bg2015071013.png')" alt="demo" />
 
 4.2 flex-grow属性
 ---
@@ -244,7 +244,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 }
 ```
 
-![示例](/notes/assets/css/bg2015071014.png)
+<img :src="$withBase('/assets/css/bg2015071014.png')" alt="demo" />
 
 如果所有项目的`flex-grow`属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的`flex-grow`属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
 
@@ -259,7 +259,7 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 }
 ```
 
-![示例](/notes/assets/css/bg2015071015.jpg)
+<img :src="$withBase('/assets/css/bg2015071015.jpg')" alt="demo" />
 
 如果所有项目的`flex-shrink`属性都为1，当空间不足时，都将等比例缩小。如果一个项目的`flex-shrink`属性为0，其他项目都为1，则空间不足时，前者不缩小。
 
@@ -304,6 +304,6 @@ Webkit 内核的浏览器，必须加上`-webkit`前缀。
 }
 ```
 
-![示例](/notes/assets/css/bg2015071016.png)
+<img :src="$withBase('/assets/css/bg2015071016.png')" alt="demo" />
 
 该属性可能取6个值，除了`auto`，其他都与`align-items`属性完全一致。

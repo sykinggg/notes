@@ -1,6 +1,6 @@
 # js 异步历史
 
-![demo](/notes/assets/mozillaJs/1624843428(1).png)
+<img :src="$withBase('/assets/mozillaJs/1624843428(1).jpg')" alt="demo" />
 
 如果一个函数无法立即返回 value，而是经过一段不可预测的行为时间之后（副作用），才能得到 value
 

@@ -64,7 +64,7 @@ p {
 }
 ```
 
-![结果描述](/notes/assets/css/1616568208(1).jpg)
+<img :src="$withBase('/assets/css/1616568208(1).jpg')" alt="demo" />
 
 ## Example 2
 
@@ -147,7 +147,7 @@ p {
 }
 ```
 
-![结果](/notes/assets/css/1616568574.jpg)
+<img :src="$withBase('/assets/css/1616568574.jpg')" alt="demo" />
 
 ## Example 5
 

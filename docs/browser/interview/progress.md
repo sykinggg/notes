@@ -61,4 +61,4 @@ client.send()
 
 ## 浏览器兼容性
 
-![demo](/notes/assets/browser/1631583052792.jpg)
+<img :src="$withBase('/assets/browser/1631583052792.jpg')" alt="demo" />

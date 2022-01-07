@@ -35,7 +35,7 @@ JavaScript语言的设计者意识到，这时主线程完全可以不管IO设�
 
 下图就是主线程和任务队列的示意图。
 
-![demo](/notes/assets/js/bg2014100801.jpg)
+<img :src="$withBase('/assets/js/bg2014100801.jpg')" alt="demo" />
 
 只要主线程空了，就会去读取"任务队列"，这就是JavaScript的运行机制。这个过程会不断重复。
 
@@ -55,7 +55,7 @@ JavaScript语言的设计者意识到，这时主线程完全可以不管IO设�
 
 主线程从"任务队列"中读取事件，这个过程是循环不断的，所以整个的这种运行机制又称为Event Loop（事件循环）。
 
-![demo](/notes/assets/js/bg2014100802.png)
+<img :src="$withBase('/assets/js/bg2014100802.png')" alt="demo" />
 
 上图中，主线程运行的时候，产生堆（heap）和栈（stack），栈中的代码调用各种外部API，它们在"任务队列"中加入各种事件（click，load，done）。只要栈中的代码执行完毕，主线程就会去读取"任务队列"，依次执行那些事件所对应的回调函数。
 
@@ -128,7 +128,7 @@ HTML5标准规定了setTimeout()的第二个参数的最小值（最短间隔）
 
 Node.js也是单线程的Event Loop，但是它的运行机制不同于浏览器环境。
 
-![demo](/notes/assets/js/bg2014100803.png)
+<img :src="$withBase('/assets/js/bg2014100803.png')" alt="demo" />
 
 根据上图，Node.js的运行机制如下。
 

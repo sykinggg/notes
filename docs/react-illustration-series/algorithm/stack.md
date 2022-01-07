@@ -198,13 +198,13 @@ export default function App() {
    - `reconciler`之前, 由于`const MyContext = React.createContext(0);`已经创建了`MyContext`对象, 所以其初始值是`0`.
    - `reconciler`过程中, 每当遇到`Context.Provider`类型的节点, 则会执行`pushProvider`.
 
-![](/notes/assets/react-illustration-series/context-beginwork.png)
+<img :src="$withBase('/assets/react-illustration-series/context-beginwork.png')" alt="demo" />
 
-2. `completeWork`阶段: 出栈
+1. `completeWork`阶段: 出栈
    - `reconciler`过程中, 每当遇到`Context.Provider`类型的节点, 则会执行`popProvider`.
    - `reconciler`之后, `valueStack`和`valueCursor`以及`MyContext`都恢复到了初始状态.
 
-![](/notes/assets/react-illustration-series/context-completework.png)
+<img :src="$withBase('/assets/react-illustration-series/context-completework.png')" alt="demo" />
 
 注意:
 

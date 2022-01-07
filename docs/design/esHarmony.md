@@ -206,7 +206,7 @@ const d = require(`./${c}`);
 
 大家可能知道上述语法的差异性，接下来通过理论知识重点讲解一下两者产生差异的主要原因。在[前端知识点扫盲（一）/ 编译器原理](https://juejin.cn/post/6987549240436195364)中重点讲解了整个编译器的执行阶段，如下图所示：
 
-![demo](/notes/assets/design/ee672b39fdae42a1a9318947be3bc39d_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/design/ee672b39fdae42a1a9318947be3bc39d_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ES Module 是采用[静态](https://link.juejin.cn/?target=https%3A%2F%2Fexploringjs.com%2Fes6%2Fch_modules.html%23static-module-structure)的加载方式，也就是模块中导入导出的依赖关系可以在代码编译时就确定下来。如上图所示，代码在编译的过程中可以做的事情包含词法和语法分析、类型检查以及代码优化等等。因此采用 ES Module 进行代码设计时可以在编译时通过 ESLint 快速定位出模块的词法语法错误以及类型信息等。ES Module 中会产生一些错误的加载方式，是因为这些加载方式含有逻辑和变量的运行时判断，只有在代码的运行时阶段才能确定导入导出的依赖关系，这明显和 ES Module 的加载机制不相符。
 
@@ -306,7 +306,7 @@ console.log(a);
 
 > 温馨提示：下述理论部分以及图片内容均出自于 2018 年的文章 [ES modules: A cartoon deep-dive](https://link.juejin.cn/?target=https%3A%2F%2Fhacks.mozilla.org%2F2018%2F03%2Fes-modules-a-cartoon-deep-dive%2F)，如果想要了解更多原理信息可以查看 TC39 的 [16.2 Modules](https://link.juejin.cn/?target=https%3A%2F%2Ftc39.es%2Fecma262%2F%23sec-modules)。
 
-![demo](/notes/assets/design/f81e90e1874547b093d9a00b749f271f_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/design/f81e90e1874547b093d9a00b749f271f_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 事实上， ES Module 的加载过程主要分为如下三个阶段：​
 
@@ -318,11 +318,11 @@ console.log(a);
 
 > 温馨提示：import 的上述三个阶段其实在 import() 中体现的更加直观（尽管 import 已经被多数浏览器支持，但是我们在真正开发和运行的过程中仍然会使用编译后的代码运行，而不是采用浏览器 script 标签的远程地址的动态异步加载方式），而 import() 事实上如果要实现懒加载优化（例如 Vue 里的路由懒加载，更多的是在浏览器的宿主环境而不是 Node.js 环境，这里不展开更多编译后实现方式的细节问题），大概率要完整经历上述三个阶段的异步加载过程，具体再次查看 [tc39 动态提案](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposal-dynamic-import%23proposed-solution)
 
-![demo](/notes/assets/design/da0d7178b8544e119bf8b5e7af520e72_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/design/da0d7178b8544e119bf8b5e7af520e72_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ES Module 模块加载的三个阶段分别需要在编译时和运行时进行（可能有的同学会像我一样好奇实例化阶段到底是在编译时还是运行时进行，根据 [tc39 动态加载提案](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposal-dynamic-import)里的描述可以得出你想要的答案：The existing syntactic forms for importing modules are static declarations. They accept a string literal as the module specifier, and introduce bindings into the local scope via a pre-runtime "linking" process.），而 CommonJS 规范中的模块是在运行时同步顺序执行，模块在加载的过程中不会被中断，具体如下图所示：
 
-![demo](/notes/assets/design/ddfb51ee6b5d41cc933158796f76d6d4_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/design/ddfb51ee6b5d41cc933158796f76d6d4_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 上图中 main.js 在运行加载 counter.js 时，会先等待 counter.js 运行完成后才能继续运行代码，因此在 CommonJS 中模块的加载是阻塞式的。CommonJS 采用同步阻塞式加载模块是因为它只需要从本地的文件系统中加载文件，耗费的性能和时间很少，而 ES Module 在浏览器（注意这里说的是浏览器）中运行的时候需要下载文件然后才能进行实例化和运行，如果这个过程是同步进行，那么会影响页面的加载性能。
 
@@ -366,15 +366,15 @@ setTimeout(() => {
 
 可以发现打印的结果信息和 ES Module 的结果不一样，这里的执行结果为 1。产生上述差异的根本原因是实例化的方式不同，如下图所示：
 
-![demo](/notes/assets/design/28b968cb9ce24e51a99896919ae7af21_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/design/28b968cb9ce24e51a99896919ae7af21_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在 ES Module 的导出中 Module Record 会实时跟踪（wire up 在这里理解为链接或者引用的意思）和绑定每一个导出变量对应的内存地址（从上图可以发现值还没有被填充，而 function 则可以在链接阶段进行初始化），导入同样对应的是导出所对应的同一个内存地址，因此对导入变量进行处理其实处理的是同一个引用地址的数据，如下图所示：
 ​
-![demo](/notes/assets/design/9c77a8a446c244c79941166cdb9e2d7d_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/design/9c77a8a446c244c79941166cdb9e2d7d_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 CommonJS 规范在导出时事实上导出的是值拷贝，如下图所示：​
 
-![demo](/notes/assets/design/708109828ff24a36ba034e8458e81a4d_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/design/708109828ff24a36ba034e8458e81a4d_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在上述代码执行的过程中先对变量 a 进行值拷贝，因此尽管设置了定时器，变量 a 被引入后打印的信息仍然是 1。需要注意的是这种拷贝是浅拷贝，如下所示：
 
@@ -682,7 +682,7 @@ a();
 
 你会发现 this 的上下文环境是有信息的，可能是当前模块的信息，具体没有深究：​
 
-![demo](/notes/assets/design/bacb79df619b43058c365bf2e51b8590_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/design/bacb79df619b43058c365bf2e51b8590_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 > 温馨提示：Node.js 的调试还能在浏览器进行？可以查看一下 [Node.js 调试](https://link.juejin.cn/?target=https%3A%2F%2Fnodejs.org%2Fzh-cn%2Fdocs%2Fguides%2Fdebugging-getting-started%2F)，当然你也可以使用 VS Code 进行调试，需要进行一些额外的 launch 配置，当然如果你觉得 Node.js 自带的浏览器调试方式太难受了，也可以想想办法，如何通过 IP 端口在浏览器中进行调试，并且可以做到代码变动监听调试。
 

@@ -2,7 +2,7 @@
 
 ## 概述
 
-![demo](/notes/assets/react/23d877cf3a5b417ba6162f0c259b1c45_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/23d877cf3a5b417ba6162f0c259b1c45_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## render
 ---
@@ -79,7 +79,7 @@ class Index extends React.Component{
 
 **效果**
 
-![demo](/notes/assets/react/1842abaa8cb840108f6a5c90cb349aac_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/1842abaa8cb840108f6a5c90cb349aac_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 可以看到，`children`实际在`container` 之外挂载的，但是已经被`createPortal`渲染到`container`中。
 
@@ -116,7 +116,7 @@ class Index extends React.Component{
 
 **效果**
 
-![demo](/notes/assets/react/29b6f884f2c147ee9a20400ad7477e77_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/29b6f884f2c147ee9a20400ad7477e77_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 渲染次数一次。
 
@@ -137,7 +137,7 @@ handerClick=()=>{
 
 **效果**
 
-![demo](/notes/assets/react/4b799b2b8f514ae183382d5ed875d0e9_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/4b799b2b8f514ae183382d5ed875d0e9_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 渲染次数三次。
 
@@ -202,7 +202,7 @@ class Index extends React.Component{
 
 **结果**
 
-![demo](/notes/assets/react/f7eba600db1c44cb956e380cb922226d_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/f7eba600db1c44cb956e380cb922226d_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 打印 0 3 4 1 ，相信不难理解为什么这么打印了。
 
@@ -247,7 +247,7 @@ class Index extends React.Component{
 
 **效果：**
 
-![demo](/notes/assets/react/f9acc582f69e461caf0887f49d710a35_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/f9acc582f69e461caf0887f49d710a35_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 完全可以将外层容器用`ref`来标记，获取捕获原生的`dom`节点。
 
@@ -291,4 +291,4 @@ class Index extends React.Component{
 
 **效果**
 
-![demo](/notes/assets/react/15ebcd1a23e64561ae6346d4be7e958a_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/15ebcd1a23e64561ae6346d4be7e958a_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />

@@ -22,7 +22,7 @@
 
 位置可以理解为**相邻字符之间的位置**
 
-![](/notes/assets/html/af9a298b3c554c5ca601168e0aa8743d_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/html/af9a298b3c554c5ca601168e0aa8743d_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 可以和**空字符串**进行类比, 字符的首尾、间隙都可以用空字符串进行连接。
 
@@ -30,7 +30,7 @@
 'hello' === '' + 'h' + '' + 'e' + '' + 'l' + '' +  'l' + '' + 'o' + '' // true
 ```
 
-![](/notes/assets/html/dc3ebf95c0414d518e7161c6662ec74c_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/html/dc3ebf95c0414d518e7161c6662ec74c_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 正则中常用来表示位置的符号主要有：
 
@@ -74,7 +74,7 @@ console.log(string.replace(/$/, '😄')) // hello😄
 
 > 画图理解
 
-![](/notes/assets/html/3dc8d7a9f58e4411a3572adf001eacb8_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/html/3dc8d7a9f58e4411a3572adf001eacb8_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### \B
 
@@ -96,7 +96,7 @@ console.log(string.replace(/$/, '😄')) // hello😄
 
 > 画图解释
 
-![](/notes/assets/html/4cbb2554160a4daa80f56dbf8de72670_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/html/4cbb2554160a4daa80f56dbf8de72670_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### (?=p)
 
@@ -110,7 +110,7 @@ console.log(string.replace(/$/, '😄')) // hello😄
 
 > 画图理解
 
-![](/notes/assets/html/7b696a6662ad4d4fa706a5ee9cc62f49_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/html/7b696a6662ad4d4fa706a5ee9cc62f49_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### (?!p)
 
@@ -135,7 +135,7 @@ x❤️x❤️x❤️_❤️l❤️o❤️v❤️e❤️_❤️s❤️t❤️u�
 
 > 画图解释
 
-![](/notes/assets/html/b023a883682243a6ab1710a5d87ecd21_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/html/b023a883682243a6ab1710a5d87ecd21_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### (?<!p)
 

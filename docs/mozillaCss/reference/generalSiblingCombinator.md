@@ -23,14 +23,14 @@ p ~ span {
 ```html
 <span>This is not red.</span>
 <p>Here is a paragraph.</p>
-<code>Here is some code.</code>
+<div>Here is some code.</div>
 <span>And here is a span.</span>
 ```
 
 # 结果
 
-![demo](/notes/assets/mozillaCss/1617679081(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617679081(1).jpg')" alt="demo" />
 
 # 浏览器兼容性
 
-![demo](/notes/assets/mozillaCss/1617679124(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617679124(1).jpg')" alt="demo" />

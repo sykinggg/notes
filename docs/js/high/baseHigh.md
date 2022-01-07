@@ -24,7 +24,7 @@ JavaScript 语言中内置了一些高阶函数，比如 Array.prototype.map，A
 
 来个简单的例子方便理解，现在有一个数组 `[1, 2, 3, 4]`，想要生成一个新数组，其每个元素皆是之前数组的两倍，那么有下面两种使用高阶和不使用高阶函数的方式来实现。
 
-<font size=1>**不使用高阶函数**</font>
+<div size=1>**不使用高阶函数**</div>
 
 ```javascript
 const arr1 = [1, 2, 3, 4];
@@ -39,7 +39,7 @@ console.log( arr1 );
 // [1, 2, 3, 4]
 ```
 
-<font size=1>**使用高阶函数**</font>
+<div size=1>**使用高阶函数**</div>
 
 ```javascript
 const arr1 = [1, 2, 3, 4];
@@ -57,7 +57,7 @@ console.log( arr1 );
 
 来个例子介绍下，现在有一个数组 `[1, 2, 1, 2, 3, 5, 4, 5, 3, 4, 4, 4, 4]`，想要生成一个新数组，这个数组要求没有重复的内容，即为去重。
 
-<font size=1>**不使用高阶函数**</font>
+<div size=1>**不使用高阶函数**</div>
 
 ```javascript
 const arr1 = [1, 2, 1, 2, 3, 5, 4, 5, 3, 4, 4, 4, 4];
@@ -74,7 +74,7 @@ console.log( arr1 );
 // [1, 2, 1, 2, 3, 5, 4, 5, 3, 4, 4, 4, 4]
 ```
 
-<font size=1>**使用高阶函数**</font>
+<div size=1>**使用高阶函数**</div>
 
 ```javascript
 const arr1 = [1, 2, 1, 2, 3, 5, 4, 5, 3, 4, 4, 4, 4];
@@ -98,7 +98,7 @@ console.log( arr1 );
 
 来个简单的例子介绍下，现在有一个数组 `[0, 1, 2, 3, 4]`，需要计算数组元素的和，需求比较简单，来看下代码实现。
 
-<font size=1>**不使用高阶函数**</font>
+<div size=1>**不使用高阶函数**</div>
 
 ```javascript
 const arr = [0, 1, 2, 3, 4];
@@ -113,9 +113,9 @@ console.log( arr );
 // [0, 1, 2, 3, 4]
 ```
 
-<font size=1>**使用高阶函数**</font>
+<div size=1>**使用高阶函数**</div>
 
-<font size=0.5>**无 initialValue 值**</font>
+<div size=0.5>**无 initialValue 值**</div>
 
 ```javascript
 const arr = [0, 1, 2, 3, 4];
@@ -138,7 +138,7 @@ console.log( arr );
 | third call  | 3           | 3            | 3            | [0, 1, 2, 3, 4]   | 6            |
 | fourth call | 6           | 4            | 4            | [0, 1, 2, 3, 4]   | 10           |
 
-<font size=0.5>**有 initialValue 值**</font>
+<div size=0.5>**有 initialValue 值**</div>
 
 再来看下有 initialValue 的情况，假设 initialValue 值为 10，看下代码。
 

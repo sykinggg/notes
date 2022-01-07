@@ -1,4 +1,4 @@
-![图片demo](/notes/assets/reactIloveDeveplo/2019-06-01-032355.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032355.png')" alt="demo" />
 
 **React.createElement**
 ---
@@ -27,19 +27,19 @@ export function createElement(type, config, children) {}
 
 然后是对于 `config` 的一些处理：
 
-![config示例](/notes/assets/reactIloveDeveplo/2019-06-01-032356.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032356.png')" alt="ReactElement示例">
 
 首先把第二个参数之后的参数取出来，然后判断长度是否大于一。大于一的话就代表有多个 `children`，这时候 `props.children` 会是一个数组，否则的话只是一个对象。**因此需要注意在对 `props.children` 进行遍历的时候要注意它是否是数组**，当然你也可以利用 `React.Children` 中的 API，下文中也会对 `React.Children` 中的 API 进行讲解。
 
 最后就是返回了一个 `ReactElement` 对象
 
-![ReactElement示例](/notes/assets/reactIloveDeveplo/2019-06-01-032359.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032359.png')" alt="ReactElement示例">
 
 内部代码很简单，**核心**就是通过 `$$typeof` 来帮助识别这是一个 `ReactElement`，后面可以看到很多这样类似的类型。另外需要注意一点的是：通过 JSX 写的 `<APP />` 代表着 `ReactElement`，APP 代表着 React Component。
 
 以下是这一小节的流程图内容：
 
-![执行流程图](/notes/assets/reactIloveDeveplo/2019-06-01-032401.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032401.png')" alt="执行流程图">
 
 **ReactBaseClasses**
 ---
@@ -50,7 +50,7 @@ export function createElement(type, config, children) {}
 
 该文件包含两个基本组件，分别为 `Component` 及 `PureComponent`，先来阅读 `Component` 这部分的代码。
 
-![demo](/notes/assets/reactIloveDeveplo/2019-06-01-032402.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032402.png')" alt="demo" />
 
 构造函数 `Component` 中需要注意的两点分别是 `refs` 和 `updater`，前者会在下文中专门介绍，后者是组件中相当重要的一个属性，可以发现 `setState` 和 `forceUpdate` 都是调用了 `updater` 中的方法，但是 `updater` 是 react-dom 中的内容，会在之后的文章中学习到这部分的内容。
 
@@ -58,7 +58,7 @@ export function createElement(type, config, children) {}
 
 接下来来阅读 `PureComponent` 中的代码，其实这部分的代码基本与 `Component` 一致
 
-![示例demo](/notes/assets/reactIloveDeveplo/2019-06-01-032404.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032404.png')" alt="demo" />
 
 `PureComponent` 继承自 `Component`，继承方法使用了很典型的寄生组合式。
 
@@ -75,7 +75,7 @@ refs 其实有好几种方式可以创建：
 
 定位到 **ReactCreateRef.js** 文件
 
-![demo](/notes/assets/reactIloveDeveplo/2019-06-01-032405.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032405.png')" alt="demo" />
 
 内部实现很简单，如果想使用 `ref`，只需要取出其中的 `current` 对象即可。
 
@@ -85,7 +85,7 @@ refs 其实有好几种方式可以创建：
 
 具体代码见 **forwardRef.js** 文件，同样内部代码还是很简单
 
-![代码实现](/notes/assets/reactIloveDeveplo/2019-06-01-032407.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032407.png')" alt="demo" />
 
 这部分代码最重要的就是可以在参数中获得 `ref` 了，因此如果想在函数组件中使用 `ref` 的话就可以把代码写成这样：
 
@@ -133,17 +133,17 @@ React.Children.map(this.props.children, c => [[c, c]])
 
 接下里进入正题，来看看 `mapChildren` 内部到底是如何实现的。
 
-![代码实现](/notes/assets/reactIloveDeveplo/2019-06-01-032408.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032408.png')" alt="demo" />
 
 这段代码有意思的部分是引入了对象重用池的概念，分别对应 `getPooledTraverseContext` 和 `releaseTraverseContext` 中的代码。当然这个概念的用处其实很简单，就是维护一个大小固定的对象重用池，每次从这个池子里取一个对象去赋值，用完了就将对象上的属性置空然后丢回池子。维护这个池子的用意就是提高性能，毕竟频繁创建销毁一个有很多属性的对象会消耗性能。
 
 接下来来学习 `traverseAllChildrenImpl` 中的代码，这部分的代码需要分为两块来讲
 
-![代码描述](/notes/assets/reactIloveDeveplo/2019-06-01-032411.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032411.png')" alt="demo" />
 
 这部分的代码相对来说简单点，主体就是在判断 `children` 的类型是什么。如果是可以渲染的节点的话，就直接调用 `callback`，另外你还可以发现在判断的过程中，代码中有使用到 `$$typeof` 去判断的流程。这里的 `callback` 指的是 `mapSingleChildIntoContext` 函数，这部分的内容会在下文中说到。
 
-![代码描述](/notes/assets/reactIloveDeveplo/2019-06-01-032412.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032412.png')" alt="demo" />
 
 这部分的代码首先会判断 `children` 是否为数组。如果为数组的话，就遍历数组并把其中的每个元素都递归调用 `traverseAllChildrenImpl`，也就是说必须是单个可渲染节点才可以执行上半部分代码中的 `callback`。
 
@@ -151,7 +151,7 @@ React.Children.map(this.props.children, c => [[c, c]])
 
 讲完了 `traverseAllChildrenImpl` 函数，最后再来阅读下 `mapSingleChildIntoContext` 函数中的实现。
 
-![代码示例](/notes/assets/reactIloveDeveplo/2019-06-01-032414.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032414.png')" alt="demo" />
 
 `bookKeeping` 就是从对象池子里取出来的东西，然后调用 `func` 并且传入节点（此时这个节点肯定是单个节点），此时的 `func` 代表着 `React.mapChildren` 中的第二个参数。
 
@@ -159,5 +159,4 @@ React.Children.map(this.props.children, c => [[c, c]])
 
 至此，`mapChildren` 函数相关的内容已经解析完毕，还不怎么清楚的同学可以通过以下的流程图再复习一遍。
 
-![流程图](/notes/assets/reactIloveDeveplo/2019-06-01-032416.png)
-
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-01-032416.png')" alt="demo" />

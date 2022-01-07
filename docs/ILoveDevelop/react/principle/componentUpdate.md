@@ -61,7 +61,7 @@ React 的组件更新过程简而言之就是在持续调用函数的一个过�
 
 fiber 内部其实存储了很多上下文信息，可以把它认为是改进版的虚拟 DOM，它同样也对应了组件实例及 DOM 元素。同时 fiber 也会组成 fiber tree，但是它的结构不再是一个树形，而是一个链表的结构。
 
-![demo](/notes/assets/reactIloveDeveplo/16c14ea212e58566.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/16c14ea212e58566.png')" alt="demo" />
 
 > 以下是 `fiber` 中的一些重要属性：
 

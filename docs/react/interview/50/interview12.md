@@ -7,13 +7,13 @@
 
 使用React的开发者都知道，一个React App本质就是一棵React组件树，每个React组件相当于这棵树上的一个节点，除了App的根节点，其他每个节点都存在一条父组件链。
 
-![示例](/notes/assets/react/1457831-ca45b0f51cf449ca.webp)
+<img :src="$withBase('/assets/react/1457831-ca45b0f51cf449ca.webp')" alt="demo" />
 
 例如上图，`<Child />`的父组件链是`<SubNode />` -- `<Node />` -- `<App />`，`<SubNode />`的父组件链是`<Node />` -- `<App />`，`<Node />`的父组件链只有一个组件节点，就是`<App />`。
 
 这些以树状连接的组件节点，实际上也组成了一棵`Context`树，每个节点的`Context`，来自父组件链上所有组件节点通过`getChildContext()`所提供的`Context`对象组合而成的对象。
 
-![示例](/notes/assets/react/1457831-16cf66bdd55511b1.webp)
+<img :src="$withBase('/assets/react/1457831-16cf66bdd55511b1.webp')" alt="demo" />
 
 有了解JS作用域链概念的开发者应该都知道，JS的代码块在执行期间，会创建一个相应的作用域链，这个作用域链记录着运行时JS代码块执行期间所能访问的活动对象，包括变量和函数，JS程序通过作用域链访问到代码块内部或者外部的变量和函数。
 
@@ -23,11 +23,11 @@
 
 React App的组件是树状结构，一层一层延伸，父子组件是一对多的线性依赖。随意的使用`Context`其实会破坏这种依赖关系，导致组件之间一些不必要的额外依赖，降低组件的复用性，进而可能会影响到App的可维护性。
 
-![示例](/notes/assets/react/1457831-731a1ebbe244b0fe.webp)
+<img :src="$withBase('/assets/react/1457831-731a1ebbe244b0fe.webp')" alt="demo" />
 
 通过上图可以看到，原本线性依赖的组件树，由于子组件使用了父组件的`Context`，导致`<Child />`组件对`<Node />`和`<App />`都产生了依赖关系。一旦脱离了这两个组件，`<Child />`的可用性就无法保障了，减低了`<Child />`的复用性。
 
-![示例](/notes/assets/react/1457831-89e9fca854376012.webp)
+<img :src="$withBase('/assets/react/1457831-89e9fca854376012.webp')" alt="demo" />
 
 **通过`Context`暴露数据或者API不是一种优雅的实践方案**，尽管react-redux是这么干的。因此需要一种机制，或者说约束，去降低不必要的影响。
 

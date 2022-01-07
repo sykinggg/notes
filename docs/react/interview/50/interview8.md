@@ -44,7 +44,7 @@ class MouseTracker extends React.Component {
 
 现在的问题是：如何在另一个组件中复用这个行为？换个说法，若另一个组件需要知道鼠标位置，能否封装这一行为，以便轻松地与其他组件共享它？？
 
-由于组件是 React 中最基础的代码复用单元，现在尝试重构一部分代码使其能够在 `<Mouse>` 组件中封装需要共享的行为。
+由于组件是 React 中最基础的代码复用单元，现在尝试重构一部分代码使其能够在 ```<Mouse>``` 组件中封装需要共享的行为。
 
 ```jsx
 // <Mouse> 组件封装了需要的行为...
@@ -85,11 +85,11 @@ class MouseTracker extends React.Component {
 }
 ```
 
-现在 `<Mouse>` 组件封装了所有关于监听 mousemove 事件和存储鼠标 (x, y) 位置的行为，但其仍不是真正的可复用。
+现在 ```<Mouse>``` 组件封装了所有关于监听 mousemove 事件和存储鼠标 (x, y) 位置的行为，但其仍不是真正的可复用。
 
-举个例子，假设有一个 `<Cat>` 组件，它可以呈现一张在屏幕上追逐鼠标的猫的图片。或许会使用 `<Cat mouse={{ x, y }}` prop 来告诉组件鼠标的坐标以让它知道图片应该在屏幕哪个位置。
+举个例子，假设有一个 ```<Cat>``` 组件，它可以呈现一张在屏幕上追逐鼠标的猫的图片。或许会使用 ```<Cat mouse={{ x, y }}``` prop 来告诉组件鼠标的坐标以让它知道图片应该在屏幕哪个位置。
 
-首先, 或许会像这样，尝试在 `<Mouse>` 内部的渲染方法渲染 `<Cat>` 组件：:
+首先, 或许会像这样，尝试在 ```<Mouse>``` 内部的渲染方法渲染 ```<Cat>``` 组件：:
 
 ```jsx
 class Cat extends React.Component {
@@ -142,9 +142,9 @@ class MouseTracker extends React.Component {
 }
 ```
 
-这种方法适用于的特定用例，但还没有达到以可复用的方式真正封装行为的目标。现在，每当想要鼠标位置用于不同的用例时，必须创建一个新的组件（本质上是另一个 `<MouseWithCat>` ），它专门为该用例呈现一些东西.
+这种方法适用于的特定用例，但还没有达到以可复用的方式真正封装行为的目标。现在，每当想要鼠标位置用于不同的用例时，必须创建一个新的组件（本质上是另一个 ```<MouseWithCat>``` ），它专门为该用例呈现一些东西.
 
-这也是 render prop 的来历：相比于直接将 `<Cat>` 写死在 `<Mouse>` 组件中，并且有效地更改渲染的结果，可以为 `<Mouse>` 提供一个函数 prop 来动态的确定要渲染什么 —— 一个 `render prop`。
+这也是 render prop 的来历：相比于直接将 ```<Cat>``` 写死在 ```<Mouse>``` 组件中，并且有效地更改渲染的结果，可以为 ```<Mouse>``` 提供一个函数 prop 来动态的确定要渲染什么 —— 一个 `render prop`。
 
 ```jsx
 class Cat extends React.Component {
@@ -198,13 +198,13 @@ class MouseTracker extends React.Component {
 }
 ```
 
-现在，提供了一个 `render` 方法 让 `<Mouse>` 能够动态决定什么需要渲染，而不是克隆 `<Mouse>` 组件然后硬编码来解决特定的用例。
+现在，提供了一个 `render` 方法 让 ```<Mouse>``` 能够动态决定什么需要渲染，而不是克隆 ```<Mouse>``` 组件然后硬编码来解决特定的用例。
 
 更具体地说，**render prop 是一个用于告知组件需要渲染什么内容的函数 prop**。
 
-这项技术使共享行为非常容易。要获得这个行为，只要渲染一个带有 `render prop` 的 `<Mouse>` 组件就能够告诉它当前鼠标坐标 (x, y) 要渲染什么。
+这项技术使共享行为非常容易。要获得这个行为，只要渲染一个带有 `render prop` 的 ```<Mouse>``` 组件就能够告诉它当前鼠标坐标 (x, y) 要渲染什么。
 
-关于 render prop 一个有趣的事情是可以使用带有 render prop 的常规组件来实现大多数[高阶组件 (HOC)]()。 例如，如果更喜欢使用 `withMouse` HOC而不是 `<Mouse>` 组件，可以使用带有 render prop 的常规 `<Mouse>` 轻松创建一个：
+关于 render prop 一个有趣的事情是可以使用带有 render prop 的常规组件来实现大多数[高阶组件 (HOC)]()。 例如，如果更喜欢使用 `withMouse` HOC而不是 ```<Mouse>``` 组件，可以使用带有 render prop 的常规 ```<Mouse>``` 轻松创建一个：
 
 ```jsx
 // 如果出于某种原因真的想要 HOC，那么可以轻松实现
@@ -258,7 +258,7 @@ Mouse.propTypes = {
 
 如果在 `render` 方法里创建函数，那么使用 `render prop` 会抵消使用 `React.PureComponent` 带来的优势。因为浅比较 `props` 的时候总会得到 false，并且在这种情况下每一个 `render` 对于 `render prop` 将会生成一个新的值。
 
-例如，继续之前使用的 `<Mouse>` 组件，如果 `Mouse` 继承自 `React.PureComponent` 而不是 `React.Component`，的例子看起来就像这样：
+例如，继续之前使用的 ```<Mouse>``` 组件，如果 `Mouse` 继承自 `React.PureComponent` 而不是 `React.Component`，的例子看起来就像这样：
 
 ```jsx
 class Mouse extends React.PureComponent {
@@ -284,7 +284,7 @@ class MouseTracker extends React.Component {
 }
 ```
 
-在这样例子中，每次 `<MouseTracker>` 渲染，它会生成一个新的函数作为 `<Mouse render>` 的 prop，因而在同时也抵消了继承自 `React.PureComponent` 的 `<Mouse>` 组件的效果！
+在这样例子中，每次 ```<MouseTracker>``` 渲染，它会生成一个新的函数作为 ```<Mouse render>``` 的 prop，因而在同时也抵消了继承自 `React.PureComponent` 的 `<Mouse>` 组件的效果！
 
 为了绕过这一问题，有时可以定义一个 prop 作为实例方法，类似这样：
 
@@ -307,4 +307,4 @@ class MouseTracker extends React.Component {
 }
 ```
 
-如果无法静态定义 `prop`（例如，因为需要关闭组件的 `props` 和/或 `state`），则 `<Mouse>` 应该继承自 `React.Component`。
+如果无法静态定义 `prop`（例如，因为需要关闭组件的 `props` 和/或 `state`），则 ```<Mouse>``` 应该继承自 `React.Component`。

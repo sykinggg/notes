@@ -40,7 +40,7 @@ const ref = React.createRef();
 
 1. 通过调用 `React.createRef` 创建了一个 `React ref` 并将其赋值给 `ref` 变量。
 
-2. 通过指定 `ref` 为 JSX 属性，将其向下传递给 `<FancyButton ref={ref}>`。
+2. 通过指定 `ref` 为 JSX 属性，将其向下传递给 ```<FancyButton ref={ref}>```。
 
 3. React 传递 `ref` 给 `forwardRef` 内函数 `(props, ref) => ...`，作为其第二个参数。
 

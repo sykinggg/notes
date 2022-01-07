@@ -8,7 +8,7 @@
 
 个人理解，单页面应用是使用一个html下，一次性加载js, css等资源，所有页面都在一个容器页面下，页面切换实质是组件的切换。
 
-![demo](/notes/assets/react/8a08f0155b494fd7bb3bdcb12104c060_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/8a08f0155b494fd7bb3bdcb12104c060_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 2 react-router初探，揭露路由原理面纱
 
@@ -71,7 +71,7 @@ const index = () => {
 
 **效果如下**
 
-![demo](/notes/assets/react/3eac570169a4480598001f601ef374d5_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/3eac570169a4480598001f601ef374d5_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 # 二 单页面实现核心原理
 ---
@@ -336,7 +336,7 @@ const replaceHashPath = (path) => {
 
 **用一幅图来描述了一下`history`库整体流程。**
 
-![demo](/notes/assets/react/ac7ed7a701714650b55c9193db2220ea_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/ac7ed7a701714650b55c9193db2220ea_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 # 四 核心api
 ---
@@ -626,5 +626,5 @@ function Redirect({ computedMatch, to, push = false }) {
 
 **用一幅图来表示各个路由组件之间的关系。**
 
-![demo](/notes/assets/react/e5de251f8dc649e3ae1b1fcf382330ee_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/e5de251f8dc649e3ae1b1fcf382330ee_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 

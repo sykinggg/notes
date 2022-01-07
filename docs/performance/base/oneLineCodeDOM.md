@@ -2,61 +2,61 @@
 
 ### Check if an element is a descendant of another
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isDescendant = (child, parent) => parent.contains(child);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const isDescendant = (child: Node, parent: Node): boolean => parent.contains(child);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Check if an element is focused
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const hasFocus = (ele) => ele === document.activeElement;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const hasFocus = (ele: Node): boolean => ele === document.activeElement;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Check if the touch events are supported
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const touchSupported = () => 'ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const touchSupported = (): boolean => (
@@ -64,111 +64,111 @@ const touchSupported = (): boolean => (
 );
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Check if user scrolls to the bottom of the page
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isAtBottom = () => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const isAtBottom = (): boolean => document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Detect Internet Explorer browser
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isIE = !!document.documentMode;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const isIE = !!(document as any).documentMode;
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Detect macOS browser
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const isMacBrowser = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const isMacBrowser: boolean = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Get all siblings of an element
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const siblings = (ele) => [].slice.call(ele.parentNode.children).filter((child) => child !== ele);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const siblings = (ele: Node): Node[] => (ele.parentNode ? [].slice.call(ele.parentNode.children).filter((child) => child !== ele) : []);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Get the position of an element relative to the document
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const getPosition = (ele) => ((r = ele.getBoundingClientRect()), { left: r.left + window.scrollX, top: r.top + window.scrollY });
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 > Example
 
@@ -178,23 +178,23 @@ getPosition(document.body); // { left: 0, top: 0 }
 
 ### Get the selected text
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const getSelectedText = () => window.getSelection().toString();
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Go back to the previous page
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 history.back();
@@ -203,15 +203,15 @@ history.back();
 history.go(-1);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Hide an element
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // Pick the method that is suitable for your use case
@@ -224,9 +224,9 @@ const hide = (ele) => (ele.style.visibility = 'hidden');
 const hide = (ele) => (ele.hidden = true);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const hide = (ele: HTMLElement): string => (ele.style.display = 'none');
@@ -238,15 +238,15 @@ const hide = (ele: HTMLElement): string => (ele.style.visibility = 'hidden');
 const hide = (ele: HTMLElement): boolean => (ele.hidden = true);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Insert an element after other one
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const insertAfter = (ele, anotherEle) => anotherEle.parentNode.insertBefore(ele, anotherEle.nextSibling);
@@ -255,9 +255,9 @@ const insertAfter = (ele, anotherEle) => anotherEle.parentNode.insertBefore(ele,
 const insertAfter = (ele, anotherEle) => anotherEle.insertAdjacentElement('afterend', ele);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const insertAfter = (ele: Element, anotherEle: Element): Element | null => (anotherEle.parentNode ? anotherEle.parentNode.insertBefore(ele, anotherEle.nextSibling) : null);
@@ -266,81 +266,81 @@ const insertAfter = (ele: Element, anotherEle: Element): Element | null => (anot
 const insertAfter = (ele: Element, anotherEle: Element): Element | null => anotherEle.insertAdjacentElement('afterend', ele);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Insert given HTML after an element
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const insertHtmlAfter = (html, ele) => ele.insertAdjacentHTML('afterend', html);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const insertHtmlAfter = (html: string, ele: Element): void => ele.insertAdjacentHTML('afterend', html);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Insert given HTML before an element
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const insertHtmlBefore = (html, ele) => ele.insertAdjacentHTML('beforebegin', html);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const insertHtmlBefore = (html: string, ele: Element): void => ele.insertAdjacentHTML('beforebegin', html);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Redirect to another page
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const goTo = (url) => (location.href = url);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const goTo = (url: string): string => (location.href = url);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Reload the current page
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const reload = () => location.reload();
@@ -349,9 +349,9 @@ const reload = () => location.reload();
 const reload = () => (location.href = location.href);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const reload = (): void => location.reload();
@@ -360,117 +360,117 @@ const reload = (): void => location.reload();
 const reload = (): string => (location.href = location.href);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Replace an element
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const replace = (ele, newEle) => ele.parentNode.replaceChild(newEle, ele);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const replace = (ele: Element, newEle: Element): Element | null => (ele.parentNode ? ele.parentNode.replaceChild(newEle, ele) : null);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Scroll to top of the page
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const goToTop = () => window.scrollTo(0, 0);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const goToTop = (): void => window.scrollTo(0, 0);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Serialize form data
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const serialize = (formEle) => Array.from(new FormData(formEle)).reduce((p, [k, v]) => Object.assign({}, p, { [k]: p[k] ? (Array.isArray(p[k]) ? p[k] : [p[k]]).concat(v) : v }), {});
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Show an element
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const show = (ele) => (ele.style.display = '');
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const show = (ele: HTMLElement): string => (ele.style.display = '');
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Strip HTML from a given text
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const stripHtml = (html) => new DOMParser().parseFromString(html, 'text/html').body.textContent || '';
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const stripHtml = (html: string): string => new DOMParser().parseFromString(html, 'text/html').body.textContent || '';
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Toggle an element
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 const toggle = (ele) => (ele.style.display = ele.style.display === 'none' ? 'block' : 'none');
@@ -479,9 +479,9 @@ const toggle = (ele) => (ele.style.display = ele.style.display === 'none' ? 'blo
 const toggle = (ele) => (ele.hidden = !ele.hidden);
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="ts">
+<div title="ts">
 
 ```ts
 const toggle = (ele: HTMLElement): string => (ele.style.display = ele.style.display === 'none' ? 'block' : 'none');
@@ -490,6 +490,6 @@ const toggle = (ele: HTMLElement): string => (ele.style.display = ele.style.disp
 const toggle = (ele: HTMLElement): boolean => (ele.hidden = !ele.hidden);
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>

@@ -30,5 +30,4 @@ span {
 
 > 效果
 
-![demo](/notes/assets/mozillaCss/1617672836(1).jpg)
-
+<img :src="$withBase('/assets/mozillaCss/1617672836(1).jpg')" alt="demo" />

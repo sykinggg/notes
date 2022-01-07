@@ -3,13 +3,13 @@
 
 场景一：
 
-![demo](/notes/assets/react/81a080864616489cba0372f49d5730ad_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/81a080864616489cba0372f49d5730ad_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 如上图所示，当在数万级别的数据中，选择一条，点击**查看**，跳转到当前数据的详情页，当点击按钮**返回**返回来，或者是浏览器前进后退等其他操作，返回到列表页的时候。要记录当前列表的位置。也就是要还原点击查看**查看**前的页面。但是当点击tab菜单按钮的时候，要清除页面信息。
 
 场景二：
 
-![demo](/notes/assets/react/d23019cf79d347a4b3f3e02352f1c971_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/d23019cf79d347a4b3f3e02352f1c971_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 如上图所示，当编辑内容的时候，一些数据可能从其他页面获得，所以要求，无论切换路由，切换页面，当前页面的编辑信息均不能被置空，只有点击**确定** ，**重置**，表单才内容置空。
 
@@ -40,7 +40,7 @@
 
 为什么的项目要提到`react-fiber`呢，这里先说一下，`react-fiber`， `React Fiber` 是从 v16 版本开始对 `Stack Reconciler` 进行的重写，是 v16 版本的核心算法实现。`react`在初始化构建过程中，会产生一个由`child`指向子`fiber`,`sibling`指向兄弟`fiber`,`return`指向父`fiber`三个指针构建的`fiber`树结构，里面保存着`dom`信息，`update`信息，`props`信息等，核心思想就是，在切换页面的时候,组件销毁，但是作为渲染调度的`react fiber`保存`keepalive`状态。只要`fiber`存活，就能获取到`dom`元素，数据层`state`等信息。
 
-![demo](/notes/assets/react/7e28dff7b51a4c8ea54631be0e796904_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/7e28dff7b51a4c8ea54631be0e796904_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 2 基于 react-router-dom 和 react 16.8
 
@@ -68,11 +68,11 @@
 
 ### 工作流程图
 
-![demo](/notes/assets/react/d8984d3899644b86bf9ecb3f4e5324e1_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/d8984d3899644b86bf9ecb3f4e5324e1_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 工作原理图
 
-![demo](/notes/assets/react/2d85d06f66fe4c009c6e9c45b75e045f_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/2d85d06f66fe4c009c6e9c45b75e045f_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 设计的优势
 
@@ -160,7 +160,7 @@ import {renderRoutes} from "react-router-config"
 
 **效果**
 
-![demo](/notes/assets/react/d29a133700134541b8bc0586e8951ab4_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/d29a133700134541b8bc0586e8951ab4_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 2 其他功能
 
@@ -218,11 +218,11 @@ cacheDispatch({ type:'reset',payload:['cacheId1'，'cacheId2'] })
 
 第一个需求：
 
-![demo](/notes/assets/react/8f4cfd3824314a36b71c26f76e7549d4_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/8f4cfd3824314a36b71c26f76e7549d4_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 第二个需求:
 
-![demo](/notes/assets/react/fabcfb104f6443d991db06b764369bf9_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/fabcfb104f6443d991db06b764369bf9_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 # 六 打包阶段 + 发布npm阶段
 
@@ -230,11 +230,11 @@ cacheDispatch({ type:'reset',payload:['cacheId1'，'cacheId2'] })
 
 接下来就是 `rollup` 打包阶段，`rollup`打包阶段。项目结构是这样的。
 
-![demo](/notes/assets/react/153608040d3d4fc7b520fd65c6fa3aa1_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/153608040d3d4fc7b520fd65c6fa3aa1_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 `rollup.config.js`是整个`rollup`的配置文件，然后通过 `rollup` 打包后的文件存在 `lib`文件夹下。
 
-![demo](/notes/assets/react/1d705258f2654d9188516f6d15a1233c_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/1d705258f2654d9188516f6d15a1233c_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 `rollup.config.js` 内容如下
 

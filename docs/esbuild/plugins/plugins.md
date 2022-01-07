@@ -24,8 +24,8 @@ esbuild 插件是一个具有`名称`和`设置`功能的对象。它们以数�
 
 这是一个简单的插件示例，允许您在构建时导入当前环境变量：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 let envPlugin = {
@@ -56,8 +56,8 @@ require('esbuild').build({
 }).catch(() => process.exit(1))
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -119,8 +119,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 你会像这样使用它：
 
@@ -153,8 +153,8 @@ console.log(`PATH is ${PATH}`)
 
 使用 `onResolve` 添加的回调将在 esbuild 构建的每个模块中的每个导入路径上运行。回调可以自定义 esbuild 如何进行路径解析。例如，它可以拦截导入路径并将它们重定向到其他地方。它还可以将路径标记为外部路径。下面是一个例子：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 let exampleOnResolvePlugin = {
@@ -183,8 +183,8 @@ require('esbuild').build({
 }).catch(() => process.exit(1))
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -233,8 +233,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 回调可以在不提供路径的情况下返回，以将路径解析的责任传递给下一个回调。对于给定的导入路径，来自所有插件的所有 `onResolve` 回调将按照它们注册的顺序运行，直到有人负责路径解析。如果没有回调返回路径，esbuild 将运行其默认路径解析逻辑。
 
@@ -244,8 +244,8 @@ func main() {
 
 `onResolve` API 旨在在 `setup` 函数中调用，并注册在某些情况下要触发的回调。它需要几个选项：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 interface OnResolveOptions {
@@ -254,8 +254,8 @@ interface OnResolveOptions {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 type OnResolveOptions struct {
@@ -264,8 +264,8 @@ type OnResolveOptions struct {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 * `filter`
 
@@ -279,8 +279,8 @@ type OnResolveOptions struct {
 
 当eSbuild调用`onresolve`注册的回调时，它将提供这些参数，其中包含有关导入路径的信息：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 interface OnResolveArgs {
@@ -302,8 +302,8 @@ type ResolveKind =
   | 'url-token'
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 type OnResolveArgs struct {
@@ -326,8 +326,8 @@ const (
 )
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 * `path`
 
@@ -357,8 +357,8 @@ const (
 
 这是可以通过`onresolve`添加的回调来提供自定义路径分辨率的对象。如果您想从回调返回而不提供路径，只需返回默认值（在JavaScript和`OnResolveresult {}`中拒绝）。以下是可以返回的可选属性：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 interface OnResolveResult {
@@ -389,8 +389,8 @@ interface Location {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 type OnResolveResult struct {
@@ -421,8 +421,8 @@ type Location struct {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 * `path`
 
@@ -466,8 +466,8 @@ type Location struct {
 
 使用`onload`添加的回调将为尚未标记为外部的唯一路径/命名空间对运行。它的工作是返回模块的内容并告诉esbuild如何解释它。这是一个示例插件，它将`.txt`文件转换为单词数组：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 let exampleOnLoadPlugin = {
@@ -494,8 +494,8 @@ require('esbuild').build({
 }).catch(() => process.exit(1))
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -544,8 +544,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 回调可以在不提供模块内容的情况下返回。在这种情况下，加载模块的责任将传递到下一个注册的回调。对于给定的模块，所有插件的所有`onload`回调将按其注册的顺序运行，直到一个负责加载模块。如果没有回调返回模块的内容，则eSbuild将运行其默认模块加载逻辑。
 
@@ -555,8 +555,8 @@ func main() {
 
 `onload` API在设置功能中被`调用`，并在某些情况下注册要触发的回调。需要一些选择：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 interface OnLoadOptions {
@@ -565,8 +565,8 @@ interface OnLoadOptions {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 type OnLoadOptions struct {
@@ -575,8 +575,8 @@ type OnLoadOptions struct {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 * `filter`
 
@@ -590,8 +590,8 @@ type OnLoadOptions struct {
 
 当eSBuild调用`onload`注册的回调时，它将提供这些参数，其中包含有关要加载的模块的信息：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 interface OnLoadArgs {
@@ -601,8 +601,8 @@ interface OnLoadArgs {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 type OnLoadArgs struct {
@@ -612,8 +612,8 @@ type OnLoadArgs struct {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 * `path`
 
@@ -631,8 +631,8 @@ type OnLoadArgs struct {
 
 这是可以使用`onload`添加的回调来返回的对象来提供模块的内容。如果您想从回调返回而不提供任何内容，则只需返回默认值（在JavaScript和`OnloadResult {}`中拒绝）。以下是可以返回的可选属性：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 interface OnLoadResult {
@@ -663,8 +663,8 @@ interface Location {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 type OnLoadResult struct {
@@ -694,8 +694,8 @@ type Location struct {
   LineText  string
 }
 ```
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 * `contents`
 
@@ -810,8 +810,8 @@ node_modules/pkg/file/index.css
 
 注册开始回调以在新构建开始时收到通知。这会触发所有构建，而不仅仅是初始构建，因此它对于[增量构建](./transform/#incremental)、[监视模式](./transform/#watch)和[服务 API](./transform/#serve) 尤其有用。以下是添加开始回调的方法：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 let examplePlugin = {
@@ -824,8 +824,8 @@ let examplePlugin = {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -848,8 +848,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 您不应该使用 start 回调进行初始化，因为它可以多次运行。如果你想初始化一些东西，只需将你的插件初始化代码直接放在 `setup` 函数中。
 
@@ -861,8 +861,8 @@ func main() {
 
 注册结束回调以在新构建结束时收到通知。这会触发所有构建，而不仅仅是初始构建，因此它对于[增量构建](./transform/#incremental)、[监视模式](./transform/#watch)和[服务 API](./transform/#serve) 尤其有用。添加结束回调的方法如下：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 let examplePlugin = {
@@ -875,8 +875,8 @@ let examplePlugin = {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -898,8 +898,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 所有结束回调都是串行运行的，并且每个回调都可以访问最终构建结果。它可以在返回之前修改构建结果，并且可以通过返回一个 promise 来延迟构建的结束。如果您希望能够检查构建图，您应该在[初始选项](./plugins/#build-options)上启用[元文件](./transform/#metafile)设置，构建图将作为构建结果对象的`元文件`属性返回。
 
@@ -907,8 +907,8 @@ func main() {
 
 插件可以从设置方法中访问初始`构建`选项。这使您可以检查构建的配置方式以及在构建开始之前修改构建选项。下面是一个例子：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 let examplePlugin = {
@@ -922,8 +922,8 @@ let examplePlugin = {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -949,8 +949,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 请注意，在构建开始后对构建选项的修改不会影响构建。特别是，如果插件在第一次构建开始后改变构建选项对象，[增量重建](./transform/#incremental)、[观察模式](./transform/#watch)和[服务模式](./transform/#serve)不会更新它们的构建选项。
 
@@ -971,8 +971,8 @@ console.log(zip([1, 2], ['a', 'b']))
 
 这可以通过以下插件来完成。请注意，对于实际使用，下载应该被缓存，但为了简洁起见，本示例中省略了缓存：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 let httpPlugin = {
@@ -1037,8 +1037,8 @@ require('esbuild').build({
 }).catch(() => process.exit(1))
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -1121,8 +1121,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 该插件首先使用解析器将 `http://` 和 `https://` URL 移动到 `http-url` 命名空间。设置命名空间会告诉 esbuild 不要将这些路径视为文件系统路径。然后，`http-url` 命名空间的加载器下载模块并将内容返回给 esbuild。从那里，`http-url` 命名空间中模块内的导入路径的另一个解析器获取相对路径，并通过针对导入模块的 URL 解析它们将它们转换为完整的 URL。然后反馈到加载器，允许下载的模块递归下载其他模块。
 
@@ -1148,8 +1148,8 @@ export default (imports) =>
 
 然后该存根模块使用 esbuild 的内置[二进制](./content/#binary)加载器将 WebAssembly 文件本身作为 `wasm-binary` 命名空间中的另一个模块导入。这意味着导入 `.wasm` 文件实际上会生成两个虚拟模块。这是插件的代码：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 let wasmPlugin = {
@@ -1215,8 +1215,8 @@ require('esbuild').build({
 }).catch(() => process.exit(1))
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -1312,8 +1312,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 该插件分多个步骤工作。首先，解析回调捕获普通模块中的 `.wasm` 路径并将它们移动到 `wasm-stub` 命名空间。然后，`wasm-stub` 命名空间的加载回调生成一个 JavaScript 存根模块，该模块导出加载器函数并导入 `.wasm` 路径。这将再次调用解析回调，这次将路径移动到 `wasm-binary` 命名空间。然后 `wasm-binary` 命名空间的第二个加载回调导致使用`二进制`加载器加载 WebAssembly 文件，它告诉 esbuild 将文件本身嵌入到包中。
 

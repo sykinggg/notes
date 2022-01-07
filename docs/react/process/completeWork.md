@@ -203,4 +203,4 @@ commitRoot(root);
 
 <!-- <img :src="$withBase('/img/completeWork.png')" alt="completeWork流程图"> -->
 
-![completeWork流程图](/notes/assets/react/completeWork.png)
+<img :src="$withBase('/assets/react/completeWork.png')" alt="completeWork流程图">

@@ -38,4 +38,4 @@ span#identified {
 <span>Here's another.</span>
 ```
 
-![demo](/notes/assets/mozillaCss/1617673434(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617673434(1).jpg')" alt="demo" />

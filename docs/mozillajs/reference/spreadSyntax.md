@@ -223,4 +223,4 @@ var array = [...obj]; // TypeError: obj is not iterable
 
 ## 浏览器兼容性
 
-![demo](/notes/assets/mozillaJs/1626773067165.jpg)
+<img :src="$withBase('/assets/mozillaJs/1626773067165.jpg')" alt="demo" />

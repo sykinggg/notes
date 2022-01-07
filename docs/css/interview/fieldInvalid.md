@@ -42,7 +42,7 @@
 </style>
 ```
 
-![](/notes/assets/css/875d485529a8485a9e4e727c2e8ddda4_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/css/875d485529a8485a9e4e727c2e8ddda4_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 如图所示这个效果就是我们想要的底部弹出效果，这个时候，另一个需求来了，我们需要父级可以相对于垂直居中，这个时候我们使用了`absolute`结合`transform`实现了垂直居中，但当我们再点击按钮，弹窗的位置不对了。
 
@@ -59,7 +59,7 @@
 }
 ```
 
-![](/notes/assets/css/1a2af30721df4f29b210d5a284066894_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/css/1a2af30721df4f29b210d5a284066894_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 探究
 
@@ -95,15 +95,15 @@
 
 [关于transform的有](https://www.w3.org/TR/css-transforms-1/#transform-box)：
 
-![](/notes/assets/css/63632154744141ebbeeffd42d01231a9_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/css/63632154744141ebbeeffd42d01231a9_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 [关于filter的有](https://drafts.fxtf.org/filter-effects/#FilterProperty)：
 
-![](/notes/assets/css/22ae7a8612594818a17609f1859671f9_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/css/22ae7a8612594818a17609f1859671f9_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 [关于perspective的有](https://www.w3.org/TR/css-transforms-2/#perspective)：
 
-![](/notes/assets/css/9f2463459caf4cd383861eebc3cf1903_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/css/9f2463459caf4cd383861eebc3cf1903_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ::: tip 注意
 意思就是：

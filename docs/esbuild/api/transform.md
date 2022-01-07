@@ -4,17 +4,14 @@
 
 转换 API 调用对单个字符串进行操作，而无需访问文件系统。这使其非常适合在没有文件系统的环境（例如浏览器）中使用或作为其他工具链的一部分使用。下面是一个简单的转换：
 
-<CodeGroup>
-<CodeGroupItem title="cli" active>
+> cli
 
 ```bash
 echo 'let x: number = 1' | esbuild --loader=ts
 let x = 1;
 ```
 
-</CodeGroupItem>
-
-<CodeGroupItem title="js">
+> js
 
 ```js
 require('esbuild').transformSync('let x: number = 1', {
@@ -28,9 +25,7 @@ require('esbuild').transformSync('let x: number = 1', {
 }
 ```
 
-</CodeGroupItem>
-
-<CodeGroupItem title="go">
+> go
 
 ```go
 package main
@@ -47,9 +42,6 @@ func main() {
   }
 }
 ```
-
-</CodeGroupItem>
-</CodeGroup>
  
 
 如果未提供输入文件且不存在 --bundle 标志，则命令行界面将使用此 API 调用。在这种情况下，输入字符串来自标准输入，输出字符串进入标准输出。转换 API 可以采用以下选项：
@@ -85,8 +77,8 @@ func main() {
 
 构建 API 调用对文件系统中的一个或多个文件进行操作。这允许文件相互引用并捆绑在一起。下面是一个简单的构建
 
-<CodeGroup>
-<CodeGroupItem title="cli" active>
+<div>
+<div title="cli" active>
 
 ```bash
 echo 'let x: number = 1' > in.ts
@@ -95,8 +87,8 @@ cat out.js
 let x = 1;
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 require('fs').writeFileSync('in.ts', 'let x: number = 1')
@@ -111,8 +103,8 @@ require('fs').readFileSync('out.js', 'utf8')
 'let x = 1;\n'
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 package main
@@ -136,8 +128,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果提供了至少一个输入文件或存在 --bundle 标志，则命令行界面将使用此 API 调用。请注意，默认情况下 esbuild 不捆绑。您必须显式传递 --bundle 标志以启用捆绑。如果未提供输入文件，则从标准输入读取单个输入文件。构建 API 可以采用以下选项：
 
@@ -205,16 +197,16 @@ func main() {
 
 捆绑文件意味着将任何导入的依赖项内联到文件本身中。此过程是递归的，因此依赖项（等等）的依赖项也将被内联。默认情况下，esbuild 不会捆绑输入文件。必须像这样显式启用捆绑：
 
-<CodeGroup>
-<CodeGroupItem title="cli" active>
+<div>
+<div title="cli" active>
 
 ```s
 esbuild in.js --bundle
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 
@@ -226,9 +218,9 @@ require('esbuild').buildSync({
 { errors: [], warnings: [] }
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="go">
+<div title="go">
 
 ```go
 
@@ -249,8 +241,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 请注意，捆绑与文件串联不同。在启用捆绑的情况下传递 esbuild 多个输入文件将创建多个单独的捆绑包，而不是将输入文件连接在一起。要将一组文件与 esbuild 连接在一起，请将它们全部导入到一个单一的入口点文件中，并将该文件与 esbuild 捆绑在一起。
 
@@ -274,9 +266,9 @@ require(`pkg/${foo}`);
 
 此功能提供了一种用常量表达式替换全局标识符的方法。它可以是一种在构建之间更改某些代码行为而不更改代码本身的方法：
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="cli">
+<div title="cli">
 
 ```sh
 
@@ -286,9 +278,9 @@ echo 'DEBUG && require("hooks")' | esbuild --define:DEBUG=false
 false;
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 
@@ -311,9 +303,9 @@ require('esbuild').transformSync(js, {
 }
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="go">
+<div title="go">
 
 ```go
 
@@ -343,17 +335,17 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 替换表达式必须是 JSON 对象（空值、布尔值、数字、字符串、数组或对象）或单个标识符。数组和对象以外的替换表达式是内联替换的，这意味着它们可以参与常量折叠。数组和对象替换表达式存储在变量中，然后使用标识符引用而不是内联替换，这避免了替换值的重复副本，但意味着值不参与常量折叠。
 
 如果您想用字符串文字替换某些内容，请记住传递给 esbuild 的替换值本身必须包含引号。省略引号意味着替换值是一个标识符：
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="cli">
+<div title="cli">
 
 ```sh
 
@@ -361,9 +353,9 @@ echo 'id, str' | esbuild --define:id=text --define:str=\"text\"
 text, "text";
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 // js
@@ -387,9 +379,9 @@ require('esbuild').transformSync(js, {
 }
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="go">
+<div title="go">
 
 ```go
 // go
@@ -420,16 +412,16 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 替换表达式必须是 JSON 对象（空值、布尔值、数字、字符串、数组或对象）或单个标识符。数组和对象以外的替换表达式是内联替换的，这意味着它们可以参与常量折叠。数组和对象替换表达式存储在变量中，然后使用标识符引用而不是内联替换，这避免了替换值的重复副本，但意味着值不参与常量折叠。
 
 如果您想用字符串文字替换某些内容，请记住传递给 esbuild 的替换值本身必须包含引号。省略引号意味着替换值是一个标识符：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -437,8 +429,8 @@ echo 'id, str' | esbuild --define:id=text --define:str=\"text\"
 text, "text";
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -461,8 +453,8 @@ require('esbuild').transformSync(js, {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -492,15 +484,15 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 替换表达式必须是 JSON 对象（空值、布尔值、数字、字符串、数组或对象）或单个标识符。数组和对象以外的替换表达式是内联替换的，这意味着它们可以参与常量折叠。数组和对象替换表达式存储在变量中，然后使用标识符引用而不是内联替换，这避免了替换值的重复副本，但意味着值不参与常量折叠。
 
 如果您想用字符串文字替换某些内容，请记住传递给 esbuild 的替换值本身必须包含引号。省略引号意味着替换值是一个标识符：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -508,8 +500,8 @@ echo 'id, str' | esbuild --define:id=text --define:str=\"text\"
 text, "text";
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -532,8 +524,8 @@ require('esbuild').transformSync(js, {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -563,15 +555,15 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 替换表达式必须是 JSON 对象（空值、布尔值、数字、字符串、数组或对象）或单个标识符。数组和对象以外的替换表达式是内联替换的，这意味着它们可以参与常量折叠。数组和对象替换表达式存储在变量中，然后使用标识符引用而不是内联替换，这避免了替换值的重复副本，但意味着值不参与常量折叠。
 
 如果您想用字符串文字替换某些内容，请记住传递给 esbuild 的替换值本身必须包含引号。省略引号意味着替换值是一个标识符：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -579,8 +571,8 @@ echo 'id, str' | esbuild --define:id=text --define:str=\"text\"
 text, "text";
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -594,8 +586,8 @@ require('esbuild').transformSync('id, str', {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -618,8 +610,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果您使用的是 CLI，请记住，不同的 shell 对如何转义双引号字符（当替换值是字符串时这是必需的）有不同的规则。使用 \" 反斜杠转义，因为它适用于 bash 和 Windows 命令提示符。在 bash 中工作的其他转义双引号的方法（例如用单引号将它们括起来）在 Windows 上不起作用，因为 Windows 命令提示符不会删除单引号. 当在 package.json 文件中使用 npm 脚本中的 CLI 时，这是相关的，人们希望它可以在所有平台上工作：
 
@@ -644,15 +636,15 @@ func main() {
 
 指定入口点的简单方法是只传递一个文件路径数组：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```bash
 esbuild home.ts settings.ts --bundle --outdir=out
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -664,8 +656,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -688,8 +680,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 这将生成两个输出文件，`out/home.js` 和 `out/settings.js`，分别对应两个入口点 `home.ts` 和 `settings.ts`。
 
@@ -707,15 +699,15 @@ func main() {
 
 此外，您还可以使用替代入口点语法为每个单独的入口点指定完全自定义的输出路径：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 esbuild out1=home.js out2=settings.js --bundle --outdir=out
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -730,8 +722,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -760,8 +752,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 这将生成两个输出文件，`out/out1.js` 和 `out/out2.j`s，分别对应两个入口点 `home.ts` 和 `settings.ts`。
 
@@ -773,8 +765,8 @@ func main() {
 
 这有多种用途。首先，它可用于从您的包中修剪不必要的代码，以便您知道永远不会执行的代码路径。例如，一个包可能包含只在 `node` 中运行的代码，但你只能在浏览器中使用该包。它还可以用于在运行时从无法捆绑的包中导入 `node` 中的代码。例如，`fsevents` 包包含一个原生扩展，`esbuild` 不支持该扩展。将某些内容标记为外部内容如下所示：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -784,8 +776,8 @@ esbuild app.js --bundle --external:fsevents --platform=node
 require("fsevents");
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -800,8 +792,8 @@ require('esbuild').buildSync({
 { errors: [], warnings: [] }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -829,8 +821,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 您还可以在外部路径中使用 `*` 通配符将匹配该模式的所有文件标记为外部。例如，您可以使用 `*.png` 删除所有 `.png` 文件或使用 `/images/*` 删除所有以 `/images`/ 开头的路径。当外部路径中存在 `*` 通配符时，该模式将应用于源代码中的原始路径，而不是解析为实际文件系统路径后的路径。这使您可以匹配不是真实文件系统路径的路径。
 
@@ -844,8 +836,8 @@ func main() {
 
 `iife` 格式代表“立即调用的函数表达式”，旨在在浏览器中运行。将代码包装在函数表达式中可确保代码中的任何变量不会意外地与全局范围内的变量发生冲突。如果您的入口点具有要在浏览器中公开为全局的导出，您可以使用全局名称设置来配置该全局的名称。 `iife` 格式是默认格式，除非您将平台设置为node。使用它看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -855,8 +847,8 @@ echo 'alert("test")' | esbuild --format=iife
 })();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -867,8 +859,8 @@ let out = require('esbuild').transformSync(js, {
 process.stdout.write(out.code)
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -890,15 +882,15 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 #### CommonJS
 
 `cjs` 格式代表“CommonJS”，旨在在 `node.js` 中运行。它假设环境包含`exports`, `require`, 和 `module`。使用 `ECMAScript` 模块语法导出的入口点将被转换为一个模块，每个导出名称的导出都有一个 `getter`。当您将 [platform](./transform/#platform)设置为`node`时，`cjs` 格式是默认格式。使用它看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -910,8 +902,8 @@ __export(exports, {
 var stdin_default = "test";
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -922,8 +914,8 @@ let out = require('esbuild').transformSync(js, {
 process.stdout.write(out.code)
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -945,15 +937,15 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 #### ESM
 
 `esm` 格式代表“ECMAScript 模块”。它假定环境支持`import`和`export`语法。 `CommonJS` 模块语法中带有导出的入口点将被转换为 `module.exports` 值的单个默认导出。使用它看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -967,8 +959,8 @@ var require_stdin = __commonJS({
 export default require_stdin();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -979,8 +971,8 @@ let out = require('esbuild').transformSync(js, {
 process.stdout.write(out.code)
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1002,8 +994,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 `esm` 格式既可以在浏览器中使用，也可以在node中使用，但是您必须将其作为模块显式加载。如果您从另一个模块`import`它，这会自动发生。否则：
 
@@ -1017,8 +1009,8 @@ func main() {
 
 此选项允许您使用来自另一个文件的导入自动替换全局变量。这可能是一个有用的工具，可以将您无法控制的代码适应新环境。例如，假设您有一个名为 `process-shim.js` 的文件，它导出名为 `process` 的变量：
 
-<CodeGroup>
-<CodeGroupItem title="process-shim.js">
+<div>
+<div title="process-shim.js">
 
 ```js
 // process-shim.js
@@ -1027,29 +1019,29 @@ export let process = {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="entry.js">
+</div>
+<div title="entry.js">
 
 ```js
 // entry.js
 console.log(process.cwd())
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 这旨在替换 `node` 的 `process.cwd()` 函数的使用，以防止调用它的包在浏览器中运行时崩溃。您可以使用注入功能将全局标识符过程的所有使用替换为对该文件的导入：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild entry.js --bundle --inject:./process-shim.js --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1061,8 +1053,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1086,8 +1078,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 结果是这样的：
 
@@ -1101,8 +1093,8 @@ console.log(process.cwd());
 
 您还可以将其与定义[功能](./transform/#define)结合起来，以便对您导入的内容更具选择性。例如：
 
-<CodeGroup>
-<CodeGroupItem title="process-shim.js">
+<div>
+<div title="process-shim.js">
 
 ```js
 // process-shim.js
@@ -1111,29 +1103,29 @@ export function dummy_process_cwd() {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="entry.js">
+</div>
+<div title="entry.js">
 
 ```js
 // entry.js
 console.log(process.cwd())
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 您可以使用定义功能将 `process.cwd` 映射到 `dummy_process_cwd`，然后使用注入功能从 `process-shim.js` 注入 `dummy_process_cwd`：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild entry.js --bundle --define:process.cwd=dummy_process_cwd --inject:./process-shim.js --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1146,8 +1138,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1174,8 +1166,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 这导致以下输出：
 
@@ -1221,16 +1213,16 @@ document.body.appendChild(node)
 
 上面的代码可以使用构建 API 调用进行[捆绑](./transform/#build-api)，如下所示：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --loader:.png=dataurl --loader:.svg=text
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1245,8 +1237,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1272,13 +1264,13 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果您将构建 API 与来自 stdin 的输入一起使用，则此选项的指定方式不同，因为 [stdin](./transform/#stdin) 没有文件扩展名。使用构建 API 为 stdin 配置加载器如下所示：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -1286,8 +1278,8 @@ echo 'let x: number = 1' | esbuild --loader=ts
 let x = 1;
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1302,8 +1294,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1329,21 +1321,21 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果您将构建 API 与来自 [stdin](./transform/#stdin) 的输入一起使用，则此选项的指定方式不同，因为 stdin 没有文件扩展名。使用构建 API 为 stdin 配置加载器如下所示：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 echo 'import pkg = require("./pkg")' | esbuild --loader=ts --bundle
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1358,8 +1350,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1385,13 +1377,13 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 [转换 API](./transform/#transform-api) 调用只需要一个加载器，因为它不涉及与文件系统的交互，因此不处理文件扩展名。为转换 API 配置加载器（在本例中为 `ts` 加载器）如下所示：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -1399,8 +1391,8 @@ echo 'let x: number = 1' | esbuild --loader=ts
 let x = 1;
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1415,8 +1407,8 @@ require('esbuild').transformSync(ts, {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1438,8 +1430,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Minify
 
@@ -1449,8 +1441,8 @@ func main() {
 
 在 esbuild 中启用压缩如下所示：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -1458,8 +1450,8 @@ echo 'fn = obj => { return obj.x }' | esbuild --minify
 fn=n=>n.x;
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1474,8 +1466,8 @@ require('esbuild').transformSync(js, {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1499,13 +1491,13 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 此选项组合执行三个独立的操作：删除空格，将语法重写为更紧凑，并将局部变量重命名为更短。通常你想要做所有这些事情，但如果需要，也可以单独启用这些选项：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -1519,8 +1511,8 @@ echo 'fn = obj => { return obj.x }' | esbuild --minify-syntax
 fn = (obj) => obj.x;
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 // js
@@ -1552,8 +1544,8 @@ require('esbuild').transformSync(js, {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -1595,13 +1587,13 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 这些相同的概念也适用于 CSS，而不仅仅是 JavaScript：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -1609,8 +1601,8 @@ echo 'div { color: yellow }' | esbuild --loader=css --minify
 div{color:#ff0}
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1626,8 +1618,8 @@ require('esbuild').transformSync(css, {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1652,8 +1644,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 esbuild 中的 JavaScript 压缩算法通常生成的输出非常接近行业标准 JavaScript 压缩工具的压缩输出大小。该[基准](https://github.com/privatenumber/minification-benchmarks/tree/cd3e5acb8d38da5f86426d44ac95974812559683#readme)测试对不同压缩器之间的输出大小进行了示例比较。虽然 esbuild 不是所有情况下的最佳 JavaScript 压缩器（并且不会尝试成为），但它努力在大多数代码的专用压缩工具大小的百分之几内生成压缩的输出，并且当然做得更快比其他工具。
 
@@ -1713,16 +1705,16 @@ let result = (0, eval)(something)
 
 此选项设置构建操作的输出目录。例如，此命令将生成一个名为的目录
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --outdir=out
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1733,8 +1725,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1756,8 +1748,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果输出目录尚不存在，则会生成输出目录，但如果已包含某些文件，则不会清除它。任何生成的文件都会以静默方式覆盖同名的现有文件。如果您希望输出目录仅包含来自当前 esbuild 运行的文件，您应该在运行 esbuild 之前自己清除输出目录。
 
@@ -1769,16 +1761,16 @@ func main() {
 
 此选项设置构建操作的输出文件名。这仅适用于有单个入口点的情况。如果有多个入口点，则必须改用 [outdir](./transform/#outdir) 选项来指定输出目录。使用 outfile 看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1789,8 +1781,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1812,8 +1804,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Platform
 
@@ -1821,16 +1813,16 @@ func main() {
 
 默认情况下，esbuild 的 bundler 被配置为生成用于浏览器的代码。如果您的捆绑代码打算在 node 中运行，您应该将平台设置为 `node`：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --platform=node
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1842,8 +1834,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1866,8 +1858,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 当平台设置为`浏览器(browser)`时（默认值）：
 
@@ -1928,16 +1920,16 @@ func main() {
 
 使用这种方法，除了 esbuild 生成的文件之外，您还为 esbuild 提供了一个名为 `serveir 的目录`，其中包含要提供的额外内容。这适用于创建一些静态 HTML 页面并希望使用 esbuild 捆绑 JavaScript 和/或 CSS 的简单情况。您可以将您的 HTML 文件放在 `servedir` 中，并将您的其他源代码放在 `servedir` 之外，然后将 `outdir` 设置在 `servedir` 内的某个位置：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild src/app.js --servedir=www --outdir=www/js --bundle
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -1953,8 +1945,8 @@ require('esbuild').serve({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -1970,8 +1962,8 @@ server, err := api.Serve(api.ServeOptions{
 server.Stop()
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 在上面的例子中，你的 `www/index.html` 页面可以像这样引用 `src/app.js` 中的编译代码：
 
@@ -1989,16 +1981,16 @@ server.Stop()
 
 使用这种方法，您只需告诉 esbuild 提供 [outdir](./transform/#outdir) 的内容，而无需为其提供任何额外的内容。这适用于更复杂的开发设置。例如，您可能希望使用 NGINX 作为反向代理，在开发过程中将不同路径路由到单独的后端服务（例如 `/static/` 到 NGINX、`/api/` 到 node、`/js/` 到 esbuild 等）。通过这种方法使用 esbuild 看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild src/app.js --outfile=out.js --bundle --serve=8000
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2014,8 +2006,8 @@ require('esbuild').serve({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -2032,8 +2024,8 @@ server, err := api.Serve(api.ServeOptions{
 server.Stop()
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 上面示例中的 API 调用将在 [http://localhost:8000/out.js](http://localhost:8000/out.js) 处提供 src/app.js 的编译内容。就像第一种方法一样，每个 HTTP 请求都会导致 esbuild 重建您的代码并为您提供最新版本，因此 `out.js` 将始终是最新的。然后，您的 HTML 文件（由另一个端口上的另一个 Web 服务器提供服务）可以像这样从您的 HTML 引用编译后的文件：
 
@@ -2049,8 +2041,8 @@ server.Stop()
 
 请注意，服务 API 是与[构建 API](./transform/#build-api) 不同的 API 调用。这是因为启动一个长时间运行的 Web 服务器是不同的，足以保证不同的参数和返回值。服务 API 调用的第一个参数是带有服务特定选项的选项对象：
 
-<CodeGroup>
-<CodeGroupItem title="ts">
+<div>
+<div title="ts">
 
 ```ts
 interface ServeOptions {
@@ -2069,8 +2061,8 @@ interface ServeOnRequestArgs {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 type ServeOptions struct {
@@ -2089,8 +2081,8 @@ type ServeOnRequestArgs struct {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 * port
 
@@ -2116,8 +2108,8 @@ type ServeOnRequestArgs struct {
 
 #### Return values
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 
@@ -2129,8 +2121,8 @@ interface ServeResult {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -2143,8 +2135,8 @@ type ServeResult struct {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 * port
 
@@ -2237,16 +2229,16 @@ esbuild.serve({
 
 启用源映射生成将在任何生成的 .js 文件旁边生成一个 `.js.map` 文件，并在指向 `.js.map` 文件的 `.js` 文件底部添加一个特殊的 `//# sourceMappingURL=` 注释：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.ts --sourcemap --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2257,8 +2249,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -2281,23 +2273,23 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果输入文件本身包含一个特殊的 `//# sourceMappingURL=` 注释，esbuild 将自动尝试解析链接的源映射。如果成功，生成的源映射中的映射将一直映射回输入源映射中引用的原始源代码。
 
 如果你想从生成的 `.js` 文件中省略特殊的 `//# sourceMappingURL=` 注释，但你仍然想生成 `.js.map` 文件，你应该将源映射模式设置为`外部`：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.ts --sourcemap=external --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2308,8 +2300,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -2333,21 +2325,21 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果要将整个源映射插入 `.js` 文件而不是生成单独的 `.js.map` 文件，则应将源映射模式设置为`内联`：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.ts --sourcemap=inline --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2358,8 +2350,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -2382,23 +2374,23 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 请记住，源映射通常非常大，因为它们包含您所有的原始源代码，因此您通常不希望发布包含`内联`源映射的代码。要从源映射中删除源代码（仅保留文件名和行/列映射），请使用[源内容](./transform/#sources-content)选项。
 
 如果你想同时拥有`inline`和`external`的效果，你应该将source map mode设置为`both`：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.ts --sourcemap=both --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2409,8 +2401,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -2433,8 +2425,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 #### Using source maps
 
@@ -2468,17 +2460,17 @@ node --enable-source-maps app.js
 
 启用代码拆分时，还必须使用[outir](./transform/#outdir)的设置配置输出目录：
 
-<CodeGroup>
+<div>
 
-<CodeGroupItem title="cli">
+<div title="cli">
 
 ```sh
 esbuild home.ts about.ts --bundle --splitting --outdir=out --format=esm
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="js">
+<div title="js">
 
 ```js
 
@@ -2491,9 +2483,9 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
+</div>
 
-<CodeGroupItem title="go">
+<div title="go">
 
 ```go
 
@@ -2518,9 +2510,9 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
+</div>
 
-</CodeGroup>
+</div>
 
 ### Target
 
@@ -2530,16 +2522,16 @@ func main() {
 
 以下是一个使用esbuild中的所有可用目标环境名称的示例。请注意，您不需要指定所有这些;您只需指定项目所关心的目标环境的子集。如果您想要的（例如`Node12.19.0`而不是`Node12`），您也可以更精确地了解版本号
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --target=es2020,chrome58,firefox57,safari11,edge16,node12
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2557,8 +2549,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -2587,8 +2579,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 您可以参考[JavaScript Loader](https://esbuild.github.io/content-types/#javascript)，了解有关哪些语法功能的详细信息，其中包含语言版本。请记住，虽然`ES2020`等JavaScript语言版本在年份中确定，但这是规范批准的一年。它与年份无关，所有主要浏览器都实施该规范，这些规范通常会发生在早年或更晚于该年。
 
@@ -2600,16 +2592,16 @@ func main() {
 
 在构建API上启用监视模式告诉eSBuild侦听文件系统的更改，并在可以使构建无效的文件更改时重建。使用它看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --outfile=out.js --bundle --watch
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2624,8 +2616,8 @@ require('esbuild').build({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -2641,13 +2633,13 @@ result := api.Build(api.BuildOptions{
 result.Stop()
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果您使用的是JavaScript或Go API，则可以选择在增量构建完成时提供调用的回调。一旦构建完成，这可以用来做某事（例如，在浏览器中重新加载您的应用程序）：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 // js
@@ -2668,8 +2660,8 @@ require('esbuild').build({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -2693,8 +2685,8 @@ result := api.Build(api.BuildOptions{
 result.Stop()
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 使用轮询而不是OS特定文件系统API实现eSBuild中的监视模式以进行可移植性。投票系统旨在使用相对较少的CPU与一个传统的投票系统一次扫描整个目录树。文件系统仍然是定期扫描的，但每个扫描只检查文件的随机子集，这意味着在更改之后将在更改之后不久会拾取文件的更改，但不一定立即才能拾取文件。
 
@@ -2708,8 +2700,8 @@ result.Stop()
 
 构建API调用可以直接写入文件系统，也可以返回将作为内存缓冲区中写入的文件。默认情况下，CLI和JavaScript API写入文件系统和GO API。要使用内存缓冲区：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 
@@ -2725,8 +2717,8 @@ for (let out of result.outputFiles) {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -2754,8 +2746,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ## 高级选项
 
@@ -2765,16 +2757,16 @@ func main() {
 
 启用此设置允许输出文件覆盖输入文件。它默认情况下未启用，因为这样做意味着覆盖源代码，如果未选中您的代码，则会导致数据丢失。但是，通过避免对临时目录的需求来说，支持这使得某些工作流程更容易。因此，您可以在要故意覆盖源代码时启用此项：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --outdir=. --allow-overwrite
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2785,8 +2777,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -2808,8 +2800,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Asset names
 
@@ -2817,16 +2809,16 @@ func main() {
 
 此选项控制[加载器](./transform/#loader)设置为[文件](https://esbuild.github.io/content-types/#external-file)时生成的附加输出文件的文件名。它使用带有占位符的模板配置输出路径，该占位符将被替换为在生成输出路径时由特定于文件的值替换。例如，指定资产的`assets/ [name] - [hash]`将所有资产放入输出目录中的名为`assets`的子目录中，并包括文件名中资产的内容散列。这样看起来如此：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --asset-names=assets/[name]-[hash] --loader:.png=file --bundle --outdir=out
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2839,8 +2831,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -2866,8 +2858,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 有三个占位符可以在assets路径模板中使用：
 
@@ -2893,16 +2885,16 @@ assets路径模板不需要包含文件扩展名。在模板替换后，资产�
 
 使用此功能可在生成的JavaScript和CSS文件的开头插入任意字符串。这通常用于插入评论：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --banner:js=//comment --banner:css=/*comment*/
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2916,8 +2908,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -2941,8 +2933,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 这类似于在[最后](./transform/#footer)插入的页脚而不是开始。
 
@@ -2956,8 +2948,8 @@ func main() {
 
 如果您希望在不使用转义序列的情况下打印原始字符，并且确保浏览器将代码解释为UTF-8，则可以通过设置Charset来禁用字符逃避：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -2967,8 +2959,8 @@ echo 'let π = Math.PI' | esbuild --charset=utf8
 let π = Math.PI;
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -2989,8 +2981,8 @@ require('esbuild').transformSync(js, {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -3019,8 +3011,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 一些警告：
 
@@ -3036,16 +3028,16 @@ func main() {
 
 此选项控制启用[代码拆分](./transform/#splitting)时自动生成的共享代码块的文件名。它使用带有占位符的模板配置输出路径，当生成输出路径时，这些占位符将替换为特定于块的值。例如，指定 `chunks/[name]-[hash]` 的块名称模板会将所有生成的块放入输出目录中名为 chunks 的子目录中，并在文件名中包含块的内容哈希。这样做看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --chunk-names=chunks/[name]-[hash] --bundle --outdir=out --splitting --format=esm
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3059,8 +3051,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3085,8 +3077,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 有两个占位符可用于块路径模板：
 
@@ -3110,20 +3102,20 @@ func main() {
 
 此选项启用或禁用 esbuild 写入终端中 stderr 文件描述符的错误和警告消息中的颜色。默认情况下，如果 stderr 是 TTY 会话，则自动启用颜色，否则自动禁用。 esbuild 中的彩色输出如下所示：
 
-![demo](/notes/assets/design/1629696207477.jpg)
+<img :src="$withBase('/assets/cli/1629696207477.jpg')" alt="demo" />
 
 可以通过将 color 设置为 `true` 来强制启用彩色输出。如果您自己将 esbuild 的 stderr 输出通过管道传输到 TTY，这将非常有用：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 echo 'typeof x == "null"' | esbuild --color=true 2> stderr.txt
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3133,8 +3125,8 @@ require('esbuild').transformSync(js, {
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3156,8 +3148,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 也可以将彩色输出设置为 `false` 以禁用颜色。
 
@@ -3167,16 +3159,16 @@ func main() {
 
 此功能控制如何解释 `package.json` 中的`导出字段`。可以使用条件设置添加自定义条件。您可以根据需要指定任意数量的这些，这些的含义完全取决于包作者。 Node 目前只认可推荐使用的`开发`和`生产`自定义条件。以下是添加自定义条件 `custom1` 和 `custom2` 的示例：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild src/app.js --bundle --conditions=custom1,custom2
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3187,8 +3179,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3210,8 +3202,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 #### How conditions work
 
@@ -3270,16 +3262,16 @@ if (importPath === './foo') {
 
 此选项控制对应于每个输入条目点文件的输出文件的文件名。它使用带有占位符的模板配置输出路径，该占位符将被替换为在生成输出路径时由特定于文件的值替换。例如，指定`[dir]/[name]-[hash]`的条目名称模板包括文件名中的输出文件的哈希，并将文件放入输出目录中，可能会在子目录下（请参阅有关[`[ Dir]`下面）。这样看起来如此：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild src/main-app/app.js --entry-names=[dir]/[name]-[hash] --outbase=src --bundle --outdir=out
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3292,8 +3284,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -3318,8 +3310,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 有三个占位符可以在进入路径模板中使用：
 
@@ -3349,16 +3341,16 @@ func main() {
 
 使用此选项可在生成的JavaScript和CSS文件的末尾插入任意字符串。这通常用于插入评论：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --footer:js=//comment --footer:css=/*comment*/
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3372,8 +3364,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3397,8 +3389,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 这类似于[横幅](./transform/#banner)，该横幅在开始而不是结束时插入。
 
@@ -3408,16 +3400,16 @@ func main() {
 
 此选项仅在[格式](./transform/#format)设置为`IIFE`时事项（代表立即调用的函数表达式）。它设置全局变量的名称，用于从入口点存储导出：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 echo 'module.exports = "test"' | esbuild --format=iife --global-name=xyz
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3428,8 +3420,8 @@ require('esbuild').transformSync(js, {
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3452,8 +3444,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 使用`iife`格式指定全局名称将生成查看类似的代码：
 
@@ -3469,16 +3461,16 @@ var xyz = (() => {
 
 全局名称也可以是复合属性表达式，在这种情况下，eSbuild将生成具有该属性的全局变量。不覆盖冲突的现有全局变量。这可以用于实现“命名方式”，其中多个独立脚本将导出添加到同一全局对象上。例如：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 echo 'module.exports = "test"' | esbuild --format=iife --global-name='example.versions["1.0"]'
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3489,8 +3481,8 @@ require('esbuild').transformSync(js, {
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3513,8 +3505,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 上面使用的复合全局名称生成如下所示的代码：
 
@@ -3542,8 +3534,8 @@ example.versions["1.0"] = (() => {
 
 以下是如何进行增量构建：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 
@@ -3567,8 +3559,8 @@ async function example() {
 example()
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3598,8 +3590,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### JSX
 
@@ -3607,8 +3599,8 @@ func main() {
 
 此选项告诉eSBuild如何处理JSX语法。您可以将eSBuild转换为JS（默认值）或保留输出中的JSX语法。保留JSX语法：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -3616,8 +3608,8 @@ echo '<div/>' | esbuild --jsx=preserve --loader=jsx
 <div />;
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3632,8 +3624,8 @@ require('esbuild').transformSync('<div/>', {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3654,8 +3646,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 请注意，如果保留JSX语法，则输出文件不再有效JavaScript代码。当您希望在捆绑后通过另一个工具在eSBuild的输出文件中将JSX语法转换为eSbuild的输出文件中的JSX语法，通常是与一个eSBuild实现不同的JSX-to-JS转换。
 
@@ -3677,8 +3669,8 @@ React.createElement("div", null, "Example text");
 
 您可以通过更改JSX工厂来调用除`React.createLement`之外的内容。例如，要调用函数`h`（而不是由其他库使用，例如 [Preact](https://preactjs.com/)）：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -3686,8 +3678,8 @@ echo '<div/>' | esbuild --jsx-factory=h --loader=jsx
 /* @__PURE__ */ h("div", null);
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 // js
@@ -3703,8 +3695,8 @@ require('esbuild').transformSync('<div/>', {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -3726,8 +3718,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 或者，如果您使用的是类型签字，只需通过将此添加到`TSConfig.JSON`文件和eSbuild即可自动将其拾取而无法配置：
 
@@ -3757,8 +3749,8 @@ React.createElement(React.Fragment, null, "Stuff");
 
 您可以通过更改JSX片段，使用除`React.fragment`之外的组件。例如，要使用组件`Fragment`（由其他库使用，例如[ Preact](https://preactjs.com/)）：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -3766,8 +3758,8 @@ echo '<>x</>' | esbuild --jsx-fragment=Fragment --loader=jsx
 /* @__PURE__ */ React.createElement(Fragment, null, "x");
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3782,8 +3774,8 @@ require('esbuild').transformSync('<>x</>', {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -3805,8 +3797,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 或者，如果您使用的是类型签字，只需通过将此添加到`tsconfig.json`文件和eSbuild即可自动将其拾取而无法配置：
 
@@ -3836,16 +3828,16 @@ let {fn = function() {}} = {};
 
 但是，[压缩](./transform/#minify)重命名符号以降低代码大小和捆绑有时需要重命名符号以避免冲突。这对这些案例中的许多情况进行了`名称`属性的值。这通常很好，因为`名称`属性通常仅用于调试。但是，某些框架依赖于`名称`属性进行注册和绑定目的。如果是这种情况，您可以启用此选项即使在压缩代码中也可以保留原始`名称`值：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --minify --keep-names
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3857,8 +3849,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3882,8 +3874,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Legal comments
 
@@ -3913,16 +3905,16 @@ func main() {
 
 默认行为是`EOF`当[捆绑](./transform/#bundle)包启用并否则`内联`。设置法律评论模式如下所示：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --legal-comments=eof
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -3932,8 +3924,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -3954,8 +3946,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 请注意，“语句级别”表示注释必须在允许多个语句的上下文中出现，例如在顶级范围或语句块中。因此表达中的评论不被视为许可评论。
 
@@ -3991,8 +3983,8 @@ func main() {
 
 可以设置日志级别：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```cli
 // cli
@@ -4000,8 +3992,8 @@ func main() {
 echo 'typeof x == "null"' | esbuild --log-level=error
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4011,8 +4003,8 @@ require('esbuild').transformSync(js, {
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4034,8 +4026,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Log limit
 
@@ -4045,16 +4037,16 @@ func main() {
 
 日志限制可以更改为另一个值，也可以通过将其设置为零完全禁用。这将显示所有日志消息：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --log-limit=0
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4065,8 +4057,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4087,8 +4079,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Main fields
 
@@ -4112,16 +4104,16 @@ func main() {
 
 默认主字段取决于当前平台[设置](./transform/#platform)，并且基本上是`浏览器`，`模块`，`main`和主要的`main`，node `module`。这些默认值应该是与现有包生态系统最广泛兼容。但如果您愿意，您可以根据这样自定义它们：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --main-fields=module,main
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4133,8 +4125,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4157,8 +4149,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 对于包作者：如果要创建使用`浏览器`字段的包与`模块`字段结合使用浏览器字段以填写完整CommonJS-VS-ESM和浏览器-VS-Node兼容性矩阵中的所有四个条目，则要使用展开的`浏览器`字段的形式，即地图而不是仅限字符串：
 
@@ -4179,16 +4171,16 @@ func main() {
 
 此选项告诉ESBuild以JSON格式生成有关构建的一些元数据。以下示例将元数据放在名为`meta.json`的文件中：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --metafile=meta.json --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4202,8 +4194,8 @@ require('fs').writeFileSync('meta.json',
   JSON.stringify(result.metafile))
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4230,8 +4222,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 然后可以通过其他工具分析此数据。例如，[Bundle Buddy](https://www.bundle-buddy.com/esbuild)可以消耗eSBuild的元数据格式，并在捆绑包中生成模块的Treemap可视化以及每个人占用多少空间。
 
@@ -4273,16 +4265,16 @@ interface Metadata {
 
 node的模块分辨率算法支持一个名为[node_path](https://nodejs.org/api/modules.html#modules_loading_from_the_global_folders)的环境变量，其中包含在解析导入路径时使用的全局目录列表。除了所有父目录中的`node_modules`目录之外，还搜索这些路径。您可以使用带有CLI的环境变量并使用JS和GO API的阵列将此目录列表传递给eSBuild列表：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 NODE_PATH=someDir esbuild app.js --bundle --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4294,8 +4286,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4319,8 +4311,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果您使用的是CLI并希望使用`Node_Path`传递多个目录，则必须将它们分开`:`UNIX和`;`在Windows上。这是node本身使用的格式相同的格式。
 
@@ -4330,16 +4322,16 @@ func main() {
 
 此选项允许您自定义 esbuild 生成的文件的文件扩展名，而不是 `.js` 或 `.css`。特别是`.mjs` 和`.cjs` 文件扩展名在node 中有特殊含义（它们分别表示ESM 和CommonJS 格式的文件）。如果您使用 esbuild 生成多个文件并且必须使用 [outdir](./transform/#outdir) 选项而不是 [outfile](./transform/#outfile) 选项，则此选项很有用。你可以这样使用它：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --outdir=dist --out-extension:.js=.mjs
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4351,8 +4343,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -4379,8 +4371,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Outbase
 
@@ -4388,16 +4380,16 @@ func main() {
 
 如果您的构建在单独的目录中包含多个入口点，则目录结构将复制到相对于 outbase 目录的[输出目录](./transform/#outdir)中。例如，如果有两个入口点 `src/pages/home/index.ts` 和 `src/pages/about/index.ts` 并且 outbase 目录是 `src`，则输出目录将包含 `pages/home/index.js` 和 `pages/about/index.js`。以下是如何使用它：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild src/pages/home/index.ts src/pages/about/index.ts --bundle --outdir=out --outbase=src
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4412,8 +4404,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 // go
@@ -4440,8 +4432,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果未指定 outbase 目录，则默认为所有输入入口点路径中[最低的公共祖先](https://en.wikipedia.org/wiki/Lowest_common_ancestor)目录。这是上面示例中的 `src/pages`，这意味着默认情况下输出目录将包含 `home/index.js` 和 `about/index.js`。
 
@@ -4451,16 +4443,16 @@ func main() {
 
 此设置反映了节点中的 [--preserve-symlinks](https://nodejs.org/api/cli.html#cli_preserve_symlinks) 设置。如果您使用该设置（或 Webpack 中类似的 [resolve.symlinks](https://webpack.js.org/configuration/resolve/#resolvesymlinks) 设置），您可能也需要在 esbuild 中启用此设置。它可以像这样启用：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --preserve-symlinks --outfile=out.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4472,8 +4464,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4496,8 +4488,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 启用此设置会导致 esbuild 通过原始文件路径（即没有跟随符号链接的路径）而不是真实文件路径（即跟随符号链接之后的路径）来确定文件标识。这对于某些目录结构是有益的。请记住，这意味着如果有多个符号链接指向一个文件，它可能会被赋予多个身份，这可能导致它在生成的输出文件中多次出现。
 
@@ -4509,16 +4501,16 @@ func main() {
 
 这与外部文件加载器结合使用很有用。默认情况下，加载器使用`默认`导出将导入文件的名称导出为字符串。公共路径选项允许您在此加载程序加载的每个文件的导出字符串之前添加基本路径：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --loader:.png=file --public-path=https://www.example.com/v1 --outdir=out
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4531,8 +4523,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4559,8 +4551,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Pure
 
@@ -4580,8 +4572,8 @@ let button = /* @__PURE__ */ React.createElement(Button, null);
 
 值得一提的是，注解的作用只扩展到调用本身，而不扩展到参数。仍然保留有副作用的参数：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
@@ -4592,8 +4584,8 @@ echo 'console.log("foo:", foo())' | esbuild --pure:console.log --minify
 foo();
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4617,8 +4609,8 @@ require('esbuild').transformSync(js, {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4649,8 +4641,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Resolve extensions
 
@@ -4658,16 +4650,16 @@ func main() {
 
 [node 使用的解析算法](https://nodejs.org/api/modules.html#modules_file_modules)支持隐式文件扩展名。您可以 `require('./file')` ，它会按顺序检查 `./file`、.`/file.js`、`./file.json` 和 `./file.node`。包括 esbuild 在内的现代打包器也将此概念扩展到其他文件类型。可以使用解析扩展名设置自定义 esbuild 中隐式文件扩展名的完整顺序，默认为 `.tsx`,`.ts`,`.jsx`,`.js`,`.css`,`.json`：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --resolve-extensions=.ts,.js
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4679,8 +4671,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4703,8 +4695,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Source Root
 
@@ -4714,16 +4706,16 @@ func main() {
 
 您可以像这样配置 `sourceRoot`：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --sourcemap --source-root=https://raw.githubusercontent.com/some/repo/v1.2.3/
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4734,8 +4726,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4757,8 +4749,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Sourcefile
 
@@ -4766,16 +4758,16 @@ func main() {
 
 当使用没有文件名的输入时，此选项设置文件名。使用转换 API 和使用带有标准输入的构建 API 时会发生这种情况。配置的文件名反映在错误消息和源映射中。如果未配置，则文件名默认为 `<stdin>`。它可以这样配置：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 cat app.js | esbuild --sourcefile=example.js --sourcemap
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4788,8 +4780,8 @@ require('esbuild').transformSync(js, {
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4817,8 +4809,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Sources Content
 
@@ -4840,16 +4832,16 @@ func main() {
 
 但是，在某些情况下不需要它。例如，如果您只是在生产中使用源映射来生成包含原始文件名的堆栈跟踪，则不需要原始源代码，因为不涉及调试器。在这种情况下，可能需要省略 `sourcesContent` 字段以使源映射更小：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild --bundle app.js --sourcemap --sources-content=false
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4862,8 +4854,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4886,8 +4878,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Stdin
 
@@ -4899,16 +4891,16 @@ func main() {
 
 以下是如何使用此功能：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 echo 'export * from "./another-file"' | esbuild --bundle --sourcefile=imaginary-file.js --loader=ts --format=cjs
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -4926,8 +4918,8 @@ let result = require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -4955,8 +4947,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Tree shaking
 
@@ -4989,8 +4981,8 @@ one();
 
 如果我们将函数拆分成一个单独的库文件并使用 `import` 语句导入它们，这甚至可以工作：
 
-<CodeGroup>
-<CodeGroupItem title="lib.js">
+<div>
+<div title="lib.js">
 
 ```js
 // lib.js
@@ -5002,8 +4994,8 @@ export function two() {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="input.js">
+</div>
+<div title="input.js">
 
 ```js
 // input.js
@@ -5011,8 +5003,8 @@ import * as lib from './lib.js'
 lib.one()
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 如果您将此文件与 `esbuild --bundle input.js --outfile=output.js` 捆绑在一起，未使用的函数和未使用的导入仍将被自动丢弃，留下以下输出：
 
@@ -5040,16 +5032,16 @@ one();
 
 这就是为什么 esbuild 包含一种忽略摇树注释的方法。只有在遇到包被破坏的问题时，才应该启用此功能，因为必需的代码意外地从包中删除：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.js --bundle --tree-shaking=ignore-annotations
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -5061,8 +5053,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -5084,8 +5076,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 启用这意味着 esbuild 将不再尊重 `/* @__PURE__ */` 注释或 `sideEffects` 字段。然而，它仍然会对未使用的导入进行自动树摇动，因为这不依赖于开发人员的注释。理想情况下，此标志只是一种临时解决方法。您应该将这些问题报告给软件包的维护者以修复它们，因为它们表明软件包存在问题，并且也可能会绊倒其他人。
 
@@ -5095,16 +5087,16 @@ func main() {
 
 通常，[构建 API](./transform/#build-api) 会自动发现 `tsconfig.json` 文件并在构建过程中读取它们的内容。但是，您也可以配置自定义 `tsconfig.json` 文件来代替使用。如果您需要使用不同的设置对同一代码进行多次构建，这会很有用：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 esbuild app.ts --bundle --tsconfig=custom-tsconfig.json
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -5116,8 +5108,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -5140,8 +5132,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Tsconfig raw
 
@@ -5149,16 +5141,16 @@ func main() {
 
 此选项可用于将您的 `tsconfig.json` 文件传递​​给不访问文件系统的[transform API](./transform/#transform-api)。使用它看起来像这样：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 
 echo 'class Foo { foo }' | esbuild --loader=ts --tsconfig-raw='{"compilerOptions":{"useDefineForClassFields":true}}'
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="js">
+</div>
+<div title="js">
 
 ```js
 
@@ -5173,8 +5165,8 @@ require('esbuild').transformSync(ts, {
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -5201,8 +5193,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### Working directory
 
@@ -5210,8 +5202,8 @@ func main() {
 
 此 API 选项允许您指定用于构建的工作目录。它通常默认为您用来调用 esbuild 的 API 的进程的[当前工作目录](https://en.wikipedia.org/wiki/Working_directory)。 esbuild 将工作目录用于一些不同的事情，包括将作为 API 选项给出的相对路径解析为绝对路径，以及将绝对路径漂亮地打印为日志消息中的相对路径。以下是覆盖它的方法：
 
-<CodeGroup>
-<CodeGroupItem title="js">
+<div>
+<div title="js">
 
 ```js
 
@@ -5222,8 +5214,8 @@ require('esbuild').buildSync({
 })
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="go">
+</div>
+<div title="go">
 
 ```go
 
@@ -5251,8 +5243,8 @@ func main() {
 }
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ## JS-specific details
 

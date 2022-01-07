@@ -2,7 +2,7 @@
 
 在前文([React 应用的宏观包结构](./macro-structure.md))中, 介绍了`react`核心包之间的依赖和调用关系, 并绘制出了概览图. 在概览图中, 可以看到有两个大的循环, 它们分别位于`scheduler`和`react-reconciler`包中:
 
-![](/notes/assets/react-illustration-series/workloop.png)
+<img :src="$withBase('/assets/react-illustration-series/workloop.png')" alt="demo" />
 
 本文将这两个循环分别表述为`任务调度循环`和`fiber构造循环`. 接下来从宏观角度阐述这两大循环的作用, 以及它们之间的区别和联系. 更深入的源码分析分别在`scheduler 调度机制`和`fiber 树构造`章节中详细解读.
 

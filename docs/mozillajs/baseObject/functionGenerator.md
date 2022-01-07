@@ -183,4 +183,4 @@ arr = [...gen];                        // ["a", "b", "c", "d", "e"]
 
 ## 浏览器兼容性
 
-![demo](/notes/assets/mozillaJs/1624584571(1).jpg)
+<img :src="$withBase('/assets/mozillaJs/1624584571(1).jpg')" alt="demo" />

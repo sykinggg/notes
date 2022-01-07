@@ -102,7 +102,7 @@ function UnmountTest() {
 
 > useEffect是异步的，useLayoutEffect是同步的
 
-![图片地址](/notes/assets/react/fra5f7sqje.png)
+<img :src="$withBase('/assets/react/fra5f7sqje.png')" alt="图片地址">
 
 从左到右表示时间线，红色的是异步的，红色框内是同步的，从上到下执行。`useEffect`是异步的，所谓的异步就是利用`requestIdleCallback`，在浏览器空闲时间执行传入的callback。大部分情况下，用哪一个都是一样的，如果副作用执行比较长，比如大量计算，如果是`useLayoutEffect`就会造成渲染阻塞。这只是一个case，可以看一下这个神奇的定时器：
 
@@ -154,13 +154,13 @@ function LYE() {
 
 `useLayoutEffect`是同步的，所以整个流程完全符合的预期，一切在掌控之中。基于两点： `useEffect`里面的interval延迟太小并没有清除计时结果、`useEffect`把interval延迟调到大于16后有概率解决。从这两点出发，梳理一下`useEffect`执行时机：
 
-![示例](/notes/assets/react/7k651uh5a8.png)
+<img :src="$withBase('/assets/react/7k651uh5a8.png')" alt="demo" />
 
 这种情况是没有清除定时器结果的，注意中间那块：interval1 =》 render =》 clean useEffect1。 clean useEffect1之前又跑了一次interval1，interval1触发render，展示的是当前计时结果。前面的stop操作，`setRunning(false)`和`setLapse(0)`的确是跑了，但是interval1又设置了当前计时结果，所以`setLapse(0)`就是白搞了。
 
 > 把interval延迟调大
 
-![示例](/notes/assets/react/a9em7va745.png)
+<img :src="$withBase('/assets/react/a9em7va745.png')" alt="demo" />
 
 这种情况是正常的，显然全部都在预期之内。经过多次测试，延迟临界点是16ms。
 
@@ -173,7 +173,7 @@ function LYE() {
 
 [官方地址](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
 
-![官方doc](/notes/assets/react/13562167-ec54900541447ab4.webp)
+<img :src="$withBase('/assets/react/13562167-ec54900541447ab4.webp')" alt="官方doc">
 
 ## redux-react-hook 中的使用
 
@@ -198,7 +198,7 @@ useIsomorphicLayoutEffect(() => {
 
 ## 模拟场景简化
 
-![例子1](/notes/assets/react/13562167-61010d74f29dd4a9.webp)
+<img :src="$withBase('/assets/react/13562167-61010d74f29dd4a9.webp')" alt="demo" />
 
 有一个数据store（对redux的store），一个组件App，组件中使用了useA和useB两个自定义hook（这对应两次调用redux-react-hook的useMappedState）。
 
@@ -300,9 +300,9 @@ function dispatch() {
 
 但是使用effect的话，实际执行过程是这样的：
 
-![使用effect的代码执行流程](/notes/assets/react/13562167-52766170dd7fef31.webp)
+<img :src="$withBase('/assets/react/13562167-52766170dd7fef31.webp')" alt="使用effect的代码执行流程">
 
-![控制台](/notes/assets/react/13562167-779a90e1da23a64c.webp)
+<img :src="$withBase('/assets/react/13562167-779a90e1da23a64c.webp')" alt="控制台">
 
 > **结论**
 
@@ -332,9 +332,9 @@ function dispatch() {
 ...
 ```
 
-![useLayoutEffect执行流程](/notes/assets/react/13562167-473a86d749566c57.webp)
+<img :src="$withBase('/assets/react/13562167-473a86d749566c57.webp')" alt="useLayoutEffect执行流程">
 
-![控制台](/notes/assets/react/13562167-6cf5978cafaf980b.webp)
+<img :src="$withBase('/assets/react/13562167-6cf5978cafaf980b.webp')" alt="控制台">
 
 可以看见关键点是，layoutEffect队列在组件树render结束后，会立刻同步执行（个人感觉是的），所以在第一次App render结束后，old和new就相同了，在执行B订阅时候，就会根据条件，不再触发App render了。
 

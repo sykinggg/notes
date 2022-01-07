@@ -12,7 +12,7 @@
 
 点击之后，球体下落
 
-![](/notes/assets/jsInterview/90ad6381653d4aeba8b1b1e05623a85c_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/jsInterview/90ad6381653d4aeba8b1b1e05623a85c_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ```js
 const ballEl = document.querySelector(".ball");
@@ -41,9 +41,9 @@ ballEl.addEventListener("click", function () {
 
 难点就在于，暂停阶段，消息滚动的时间并不是确定的，需要计算。 这个时候，纯CSS3的动画，难度就有些高了，采用 `Web Animations API`，天然的和JS亲和，那就简单多了。
 
-![](/notes/assets/jsInterview/8f0addecfad048479782a1f106c138fb_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/jsInterview/8f0addecfad048479782a1f106c138fb_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
-![](/notes/assets/jsInterview/4aff2fc88cb14f21885f8de873f225df_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/jsInterview/4aff2fc88cb14f21885f8de873f225df_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 代码也就简单的分为三段：滑入，暂停，滑出。
 
@@ -140,7 +140,7 @@ new Animation(ky1).play();
 new Animation(ky2).play();
 ```
 
-![](/notes/assets/jsInterview/f018f688b12142c8adcaea337cb2f02a_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/jsInterview/f018f688b12142c8adcaea337cb2f02a_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 [Animation](https://developer.mozilla.org/zh-CN/docs/Web/API/Animation)
 
@@ -158,7 +158,7 @@ const ani1 = new Animation(kyEffect);
 ani1.play();
 ```
 
-![](/notes/assets/jsInterview/5fe1d9aee70144c7a99eb3e5c17e9de5_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/jsInterview/5fe1d9aee70144c7a99eb3e5c17e9de5_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 **常用的方法**
 
@@ -323,7 +323,7 @@ box1ItemEl.getAnimations()
 
 如果不行， 加个垫片 [web-animations-js](https://github.com/web-animations/web-animations-js)。
 
-![](/notes/assets/jsInterview/ca54398c1e6544e3bef61bcbe39cd236_tplv-k3u1fbpfcp-watermark.webp)
+<img :src="$withBase('/assets/jsInterview/ca54398c1e6544e3bef61bcbe39cd236_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
 
 ## 总结
 

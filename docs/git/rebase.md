@@ -6,11 +6,11 @@
 
 当在本地仓库中提交了多次，在把本地提交push到公共仓库中之前，为了让提交记录更简洁明了，希望把如下分支B、C、D三个提交记录合并为一个完整的提交，然后再push到公共仓库。
 
-![示例](/notes/assets/git/2147642-42195cacced56729.webp)
+<img :src="$withBase('/assets/git/2147642-42195cacced56729.webp')" alt="demo" />
 
 现在在测试分支上添加了四次提交，的目标是把最后三个提交合并为一个提交：
 
-![示例](/notes/assets/git/2147642-ce849c4eab3d803b.webp)
+<img :src="$withBase('/assets/git/2147642-ce849c4eab3d803b.webp')" alt="demo" />
 
 这里使用命令:
 
@@ -34,7 +34,7 @@ git rebase -i HEAD~3
 
 然后会看到如下界面:
 
-![demo](/notes/assets/git/2147642-03d48aa767efb307.webp)
+<img :src="$withBase('/assets/git/2147642-03d48aa767efb307.webp')" alt="demo" />
 
 上面未被注释的部分列出的是本次rebase操作包含的所有提交，下面注释部分是git为提供的命令说明。每一个`commit id` 前面的`pick`表示指令类型，`git` 为提供了以下几个命令:
 
@@ -73,21 +73,21 @@ git rebase -i HEAD~3
 
 根据的需求，将commit内容编辑如下:
 
-![demo](/notes/assets/git/2147642-a651234e62ed20a5.webp)
+<img :src="$withBase('/assets/git/2147642-a651234e62ed20a5.webp')" alt="demo" />
 
 然后是注释修改界面:
 
-![demo](/notes/assets/git/2147642-44bbd784dcadfb31.webp)
+<img :src="$withBase('/assets/git/2147642-44bbd784dcadfb31.webp')" alt="demo" />
 
 编辑完保存即可完成commit的合并了：
 
-![demo](/notes/assets/git/2147642-334e0a5c47a24f87.webp)
+<img :src="$withBase('/assets/git/2147642-334e0a5c47a24f87.webp')" alt="demo" />
 
 ## 2.将某一段commit粘贴到另一个分支上
 
 当项目中存在多个分支，有时候需要将某一个分支中的一段提交同时应用到其他分支中，就像下图：
 
-![demo](/notes/assets/git/2147642-0de010746cb78401.webp)
+<img :src="$withBase('/assets/git/2147642-0de010746cb78401.webp')" alt="demo" />
 
 希望将`develop`分支中的C~E部分复制到`master`分支中，这时就可以通过`rebase`命令来实现（如果只是复制某一两个提交到其他分支，建议使用更简单的命令:`git cherry-pick`）。
 
@@ -95,11 +95,11 @@ git rebase -i HEAD~3
 
 **master分支:**
 
-![demo](/notes/assets/git/2147642-c41f60d26b00cdfc.webp)
+<img :src="$withBase('/assets/git/2147642-c41f60d26b00cdfc.webp')" alt="demo" />
 
 **develop分支:**
 
-![demo](/notes/assets/git/2147642-8519a024c88129c5.webp)
+<img :src="$withBase('/assets/git/2147642-8519a024c88129c5.webp')" alt="demo" />
 
 使用命令的形式为:
 
@@ -119,15 +119,15 @@ git rebase 90bc0045b 5de0da9f2 --onto master
 
 运行完成后查看当前分支的日志:
 
-![demo](/notes/assets/git/2147642-de397671caac1966.webp)
+<img :src="$withBase('/assets/git/2147642-de397671caac1966.webp')" alt="demo" />
 
 可以看到，C~E部分的提交内容已经复制到了G的后面了，大功告成？NO！看一下当前分支的状态:
 
-![demo](/notes/assets/git/2147642-cfd21fdb1e4038bc.webp)
+<img :src="$withBase('/assets/git/2147642-cfd21fdb1e4038bc.webp')" alt="demo" />
 
 当前HEAD处于游离状态，实际上，此时所有分支的状态应该是这样:
 
-![](/notes/assets/git/2147642-a3bbfea6d760f64a.webp)
+<img :src="$withBase('/assets/git/2147642-a3bbfea6d760f64a.webp')" alt="demo" />
 
 所以，虽然此时HEAD所指向的内容正是所需要的，但是master分支是没有任何变化的，git只是将C~E部分的提交内容复制一份粘贴到了master所指向的提交后面，需要做的就是将master所指向的提交id设置为当前HEAD所指向的提交id就可以了，即:
 
@@ -136,5 +136,4 @@ git checkout master
 git reset --hard  0c72e64
 ```
 
-![](/notes/assets/git/2147642-003361cb0305c094.webp)
-
+<img :src="$withBase('/assets/git/2147642-003361cb0305c094.webp')" alt="demo" />

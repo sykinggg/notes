@@ -10,7 +10,7 @@
 
 <!-- <img :src="$withBase('/img/git1.png')" alt="流程1"> -->
 
-![流程1](/notes/assets/react/git1.png)
+<img :src="$withBase('/assets/react/git1.png')" alt="流程1">
 
 为了修复这个bug，需要首先将之前的代码提交。
 
@@ -24,13 +24,13 @@
 
 <!-- <img :src="$withBase('/img/git2.png')" alt="流程2"> -->
 
-![流程2](/notes/assets/react/git2.png)
+<img :src="$withBase('/assets/react/git2.png')" alt="流程2">
 
 bug修复上线后通过`git rebase`命令和`开发分支`连接上。`开发分支`基于`修复bug的版本`继续开发。
 
 <!-- <img :src="$withBase('/img/git3.png')" alt="流程3"> -->
 
-![流程3](/notes/assets/react/git3.png)
+<img :src="$withBase('/assets/react/git3.png')" alt="流程3">
 
 在`React`中，通过`ReactDOM.createBlockingRoot`和`ReactDOM.createRoot`创建的应用会采用`并发`的方式`更新状态`。
 

@@ -105,27 +105,27 @@ parseFloat((0.1+0.2).toFixed(10)) === 0.3//true
 -   然后把取出的整数部分按顺序排列起来，先取的整数作为二进制小数的高位有效位，后取的整数作为低位有效位。
 
 <p style='font-size: 20px;color: red;font-weight: bold;'>十进制0.1</p>
-<p>0.1 * 2 = <span style="color:red">0</span>.2，整数部分是<span style="color:red">0</span><p>
-<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span><p>
-<p>0.4 * 2 = <span style="color:red">0</span>.8，整数部分是<span style="color:red">0</span><p>
-<p>0.8 * 2 = <span style="color:red">1</span>.6，整数部分是<span style="color:red">1</span><p>
-<p>0.6 * 2 = <span style="color:red">1</span>.2，整数部分是<span style="color:red">1</span><p>
-<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span><p>
+<p>0.1 * 2 = <span style="color:red">0</span>.2，整数部分是<span style="color:red">0</span></p>
+<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span></p>
+<p>0.4 * 2 = <span style="color:red">0</span>.8，整数部分是<span style="color:red">0</span></p>
+<p>0.8 * 2 = <span style="color:red">1</span>.6，整数部分是<span style="color:red">1</span></p>
+<p>0.6 * 2 = <span style="color:red">1</span>.2，整数部分是<span style="color:red">1</span></p>
+<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span></p>
 ...
 <p style='font-size: 20px;color: red;font-weight: bold;'>十进制0.1→二进制0.000110011→二进制科学记数法：1.10011 * 2<sup>-4</sup></p>
 
 从上面的计算过程，可以发现，整数部分从0.4那里开始循环，得到的值永远都是一个小数，结果是一个无限循环的数。因此，只能取一个近似数来表示。（这样的话，就会存在精度丢失了）
 
 <p style='font-size: 20px;color: red;font-weight: bold;'>十进制0.2</p>
-<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span><p>
-<p>0.4 * 2 = <span style="color:red">0</span>.8，整数部分是<span style="color:red">0</span><p>
-<p>0.8 * 2 = <span style="color:red">1</span>.6，整数部分是<span style="color:red">1</span><p>
-<p>0.6 * 2 = <span style="color:red">1</span>.2，整数部分是<span style="color:red">1</span><p>
-<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span><p>
-<p>0.4 * 2 = <span style="color:red">0</span>.8，整数部分是<span style="color:red">0</span><p>
-<p>0.8 * 2 = <span style="color:red">1</span>.6，整数部分是<span style="color:red">1</span><p>
-<p>0.6 * 2 = <span style="color:red">1</span>.2，整数部分是<span style="color:red">1</span><p>
-<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span><p>
+<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span></p>
+<p>0.4 * 2 = <span style="color:red">0</span>.8，整数部分是<span style="color:red">0</span></p>
+<p>0.8 * 2 = <span style="color:red">1</span>.6，整数部分是<span style="color:red">1</span></p>
+<p>0.6 * 2 = <span style="color:red">1</span>.2，整数部分是<span style="color:red">1</span></p>
+<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span></p>
+<p>0.4 * 2 = <span style="color:red">0</span>.8，整数部分是<span style="color:red">0</span></p>
+<p>0.8 * 2 = <span style="color:red">1</span>.6，整数部分是<span style="color:red">1</span></p>
+<p>0.6 * 2 = <span style="color:red">1</span>.2，整数部分是<span style="color:red">1</span></p>
+<p>0.2 * 2 = <span style="color:red">0</span>.4，整数部分是<span style="color:red">0</span></p>
 ...
 <p style='font-size: 20px;color: red;font-weight: bold;'>十进制0.2→二进制0.001100110→二进制科学记数法：1.10011 * 2<sup>-3</sup></p>
 

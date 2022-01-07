@@ -37,8 +37,8 @@ li:first-of-type + li {
 
 # 结果
 
-![demo](/notes/assets/mozillaCss/1617678864(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617678864(1).jpg')" alt="demo" />
 
 # 浏览器兼容性
 
-![demo](/notes/assets/mozillaCss/1617678910(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617678910(1).jpg')" alt="demo" />

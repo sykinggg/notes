@@ -13,7 +13,7 @@
 
 以上功能源码都集中在[ReactFiberWorkLoop.js](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)中. 现在将这些功能(从输入到输出)串联起来, 用下图表示:
 
-![](/notes/assets/react-illustration-series/reactfiberworkloop.png)
+<img :src="$withBase('/assets/react-illustration-series/reactfiberworkloop.png')" alt="demo" />
 
 图中的`1,2,3,4`步骤可以反映`react-reconciler`包`从输入到输出`的运作流程,这是一个固定流程, 每一次更新都会运行.
 

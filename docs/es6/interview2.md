@@ -16,7 +16,7 @@
 
 最开始，对于模块区分的概念，可能是从文件的区分开始的，在一个简易的项目中，编程的习惯是通过一个 `HTML` 文件加上若干个 `JavaScript` 文件来区分不同的模块，就像这样：
 
-![demo](/notes/assets/es6/16a3628664b76721.png)
+<img :src="$withBase('/assets/es6/16a3628664b76721.png')" alt="demo" />
 
 可以通过这样一个简单的项目来说明，来看看每个文件里面的内容：
 
@@ -56,7 +56,7 @@ var footer = '这是一条底部信息' //footer.js
 
 它们都绑定在全局的 `window` / `Global`(`node` 环境下的全局变量) 对象上，尝试去打印验证一下：
 
-![demo](/notes/assets/es6/16a362fa976d51a9.png)
+<img :src="$withBase('/assets/es6/16a362fa976d51a9.png')" alt="demo" />
 
 这简直就是一场噩梦，你可能没有意识到这会导致什么严重的结果，试着在 `footer.js` 中对 `header` 变量进行赋值操作，让在末尾加上这样一行代码：
 
@@ -66,7 +66,7 @@ header = 'nothing'
 
 打印后你就会发现，`window.header` 的已经被更改了:
 
-![demo](/notes/assets/es6/16a363ca9cce48ec.png)
+<img :src="$withBase('/assets/es6/16a363ca9cce48ec.png')" alt="demo" />
 
 Okay，现在知道，仅仅通过不同的文件，无法做到将这些变量分开，因为它们都被绑在了同一个 `window` 变量上。
 
@@ -86,7 +86,7 @@ mainWarraper()
 
 为了确保定义在函数 `mainWarraper` 的内容会被执行，所以必须在这里执行 `mainWarraper()` 本身，现在在 `window` 里面找不到 `main_message` 和 `main_error` 了，因为它们被隐藏在了 `mainWarraper` 中，但是 `mainWarraper` 仍旧污染了的 `window`：
 
-![demo](/notes/assets/es6/16a364231a2d6dc6.png)
+<img :src="$withBase('/assets/es6/16a364231a2d6dc6.png')" alt="demo" />
 
 这个方案还不够完美，怎么改进呢？
 
@@ -118,7 +118,7 @@ CommonJS 在 [Wikipedia](https://en.wikipedia.org/wiki/CommonJS) 中是这样描
 
 通过上面这些描述，相信你已经知道 `CommonJS` 是诞生于怎样的背景，但是这里所说的 `CommonJS` 是一套通用的规范，与之对应的有非常多不同的实现：
 
-![demo](/notes/assets/es6/16a3b3beb0c6d07a.png)
+<img :src="$withBase('/assets/es6/16a3b3beb0c6d07a.png')" alt="demo" />
 
 ### Node.js Modules
 

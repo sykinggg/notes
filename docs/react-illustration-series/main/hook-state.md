@@ -178,7 +178,7 @@ export default function App() {
 
 初次渲染时`count = 0`, 这时`hook`对象的内存状态如下:
 
-![](/notes/assets/react-illustration-series/initial-state.png)
+<img :src="$withBase('/assets/react-illustration-series/initial-state.png')" alt="demo" />
 
 点击`button`, 通过`dispatch`函数进行更新, `dispatch`实际就是[dispatchAction](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberHooks.old.js#L1645-L1753):
 
@@ -252,7 +252,7 @@ function updateState<S>(
 
 在执行`updateReducer`之前, `hook`相关的内存结构如下:
 
-![](/notes/assets/react-illustration-series/before-basequeue-combine.png)
+<img :src="$withBase('/assets/react-illustration-series/before-basequeue-combine.png')" alt="demo" />
 
 ```js
 function updateReducer<S, I, A>(
@@ -363,7 +363,7 @@ function updateReducer<S, I, A>(
 1. 调用`updateWorkInProgressHook`获取`workInProgressHook`对象
 2. 链表拼接: 将 `hook.queue.pending` 拼接到 `current.baseQueue`
 
-   ![](/notes/assets/react-illustration-series/after-basequeue-combine.png)
+   <img :src="$withBase('/assets/react-illustration-series/after-basequeue-combine.png')" alt="demo" />
 
 3. 状态计算
 
@@ -371,7 +371,7 @@ function updateReducer<S, I, A>(
    2. `update`优先级足够: 状态合并
    3. 更新属性
 
-      ![](/notes/assets/react-illustration-series/state-compute.png)
+      <img :src="$withBase('/assets/react-illustration-series/state-compute.png')" alt="demo" />
 
 ### 性能优化
 
@@ -427,13 +427,13 @@ function dispatchAction<S, A>(
 
 在执行`updateReducer`之前, `hook.memoizedState`有如下结构(其中`update3, update4`是低优先级):
 
-![](/notes/assets/react-illustration-series/async-update-before-combine.png)
+<img :src="$withBase('/assets/react-illustration-series/async-update-before-combine.png')" alt="demo" />
 
 链表拼接:
 
 - 和同步更新时一致, 直接把`queue.pending`拼接到`current.baseQueue`
 
-![](/notes/assets/react-illustration-series/async-update-after-combine.png)
+<img :src="$withBase('/assets/react-illustration-series/async-update-after-combine.png')" alt="demo" />
 
 状态计算:
 
@@ -442,7 +442,7 @@ function dispatchAction<S, A>(
 - 从第一个低优先级`update3`开始, 随后的所有`update`都会被添加到`baseQueue`, 由于`update2`已经是高优先级, 会设置`update2.lane=NoLane`将优先级升级到最高(红色表示).
 - 而`baseState`代表第一个低优先级`update3`之前的`state`, 在本例中, `baseState=1`
 
-![](/notes/assets/react-illustration-series/async-update-state-compute.png)
+<img :src="$withBase('/assets/react-illustration-series/async-update-state-compute.png')" alt="demo" />
 
 `function`节点被处理完后, 高优先级的`update`, 会率先被使用(`memoizedState=2`). 一段时间后, 低优先级`update3, update4`符合渲染, 这种情况下再次执行`updateReducer`重复之前的步骤.
 
@@ -450,13 +450,13 @@ function dispatchAction<S, A>(
 
 - 由于`queue.pending = null`, 故拼接前后没有实质变化
 
-![](/notes/assets/react-illustration-series/async-final-combine.png)
+<img :src="$withBase('/assets/react-illustration-series/async-final-combine.png')" alt="demo" />
 
 状态计算:
 
 - 现在所有`update.lane`都符合`渲染优先级`, 所以最后的内存结构与同步更新一致(`memoizedState=4,baseState=4`).
 
-![](/notes/assets/react-illustration-series/async-final-compute.png)
+<img :src="$withBase('/assets/react-illustration-series/async-final-compute.png')" alt="demo" />
 
 > 结论: 尽管`update`链表的优先级不同, 中间的`render`可能有多次, 但最终的更新结果等于`update`链表`按顺序合并`.
 

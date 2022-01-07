@@ -101,7 +101,7 @@ function App() {
 对应的`Fiber树`结构：
 <!-- <img :src="$withBase('/img/fiber.png')" alt="Fiber架构"> -->
 
-![Fiber架构](/notes/assets/react/fiber.png)
+<img :src="$withBase('/assets/react/fiber.png')" alt="Fiber架构">
 
 > 这里需要提一下，为什么父级指针叫做`return`而不是`parent`或者`father`呢？因为作为一个工作单元，`return`指节点执行完`completeWork`（本章后面会介绍）后会返回的下一个节点。子`Fiber节点`及其兄弟节点完成工作后会返回其父级节点，所以用`return`指代父级节点。
 

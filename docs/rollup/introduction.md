@@ -22,32 +22,32 @@ npm install --global rollup
 
 这些命令假定应用程序的入口点名为 main.js，并且您希望所有导入都编译到一个名为 bundle.js 的文件中。
 
-<CodeGroup>
-<CodeGroupItem title="对于浏览器">
+<div>
+<div title="对于浏览器">
 
 ```sh
 # compile to a <script> containing a self-executing function ('iife')
 rollup main.js --file bundle.js --format iife
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="对于 Node.js：">
+</div>
+<div title="对于 Node.js：">
 
 ```sh
 # compile to a CommonJS module ('cjs')
 rollup main.js --file bundle.js --format cjs
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="对于浏览器和 Node.js：">
+</div>
+<div title="对于浏览器和 Node.js：">
 
 ```sh
 # UMD format requires a bundle name
 rollup main.js --file bundle.js --format umd --name "myBundle"
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ### 产生原因
 
@@ -983,8 +983,8 @@ export default something;
 
 ES模块导出的是活的绑定，而不是值，所以值可以在最初导入后按照[这个演示](https://rollupjs.org/repl/?shareable=JTdCJTIybW9kdWxlcyUyMiUzQSU1QiU3QiUyMm5hbWUlMjIlM0ElMjJtYWluLmpzJTIyJTJDJTIyY29kZSUyMiUzQSUyMmltcG9ydCUyMCU3QiUyMGNvdW50JTJDJTIwaW5jcmVtZW50JTIwJTdEJTIwZnJvbSUyMCcuJTJGaW5jcmVtZW50ZXIuanMnJTNCJTVDbiU1Q25jb25zb2xlLmxvZyhjb3VudCklM0IlNUNuaW5jcmVtZW50KCklM0IlNUNuY29uc29sZS5sb2coY291bnQpJTNCJTIyJTdEJTJDJTdCJTIybmFtZSUyMiUzQSUyMmluY3JlbWVudGVyLmpzJTIyJTJDJTIyY29kZSUyMiUzQSUyMmV4cG9ydCUyMGxldCUyMGNvdW50JTIwJTNEJTIwMCUzQiU1Q24lNUNuZXhwb3J0JTIwZnVuY3Rpb24lMjBpbmNyZW1lbnQoKSUyMCU3QiU1Q24lNUN0Y291bnQlMjAlMkIlM0QlMjAxJTNCJTVDbiU3RCUyMiU3RCU1RCUyQyUyMm9wdGlvbnMlMjIlM0ElN0IlMjJmb3JtYXQlMjIlM0ElMjJjanMlMjIlMkMlMjJnbG9iYWxzJTIyJTNBJTdCJTdEJTJDJTIybW9kdWxlSWQlMjIlM0ElMjIlMjIlMkMlMjJuYW1lJTIyJTNBJTIybXlCdW5kbGUlMjIlN0QlMkMlMjJleGFtcGxlJTIyJTNBbnVsbCU3RA==)进行更改。
 
-<CodeGroup>
-<CodeGroupItem title="incrementer.js">
+<div>
+<div title="incrementer.js">
 
 ```js
 // incrementer.js
@@ -995,8 +995,8 @@ export function increment() {
 }
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="main.js">
+</div>
+<div title="main.js">
 
 ```js
 // main.js
@@ -1009,8 +1009,8 @@ console.log(count); // 1
 count += 1; // Error — only incrementer.js can change this
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 ## Tutorial
 
@@ -1411,15 +1411,15 @@ exports.default = foo;
 
 例如，使用`-f es`进行本机模块：
 
-<CodeGroup>
-<CodeGroupItem title="cli">
+<div>
+<div title="cli">
 
 ```sh
 rollup src/main.js src/main2.js -f es -d dist
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="html">
+</div>
+<div title="html">
 
 ```html
 <!DOCTYPE html>
@@ -1429,8 +1429,8 @@ rollup src/main.js src/main2.js -f es -d dist
 </script>
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+</div>
+</div>
 
 对于SystemJS，用`-f system`。
 
@@ -1689,7 +1689,7 @@ resolveDynamicImport(path3)->unresolved->resolveld
 resolveld(path2)->external->buildEnd
 ``` -->
 
-![demo](/notes/assets/rollup/1630648412252.jpg)
+<img :src="$withBase('/assets/rollup/1630648412252.jpg')" alt="demo" />
 
 此外，在观察模式下，[watchChange](https://rollupjs.org/guide/en/#watchchange)钩子可以在任何时候被触发，以通知新的运行将在当前运行产生其输出后被触发。另外，当watcher关闭时，[closeWatcher](https://rollupjs.org/guide/en/#closewatcher)钩将被触发。
 

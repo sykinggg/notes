@@ -66,7 +66,7 @@ p {
 
 ## 浏览器支持
 
-![示例](/notes/assets/css/1616469359(1).jpg)
+<img :src="$withBase('/assets/css/1616469359(1).jpg')" alt="demo" />
 
 > **拓展问题**：
 > **fr**：剩余空间分配数
@@ -95,7 +95,7 @@ img{
 
 `CSS Grid` 关键 的地方是 `grid-gap` 只在需要的时候才会被应用。
 
-![示例](/notes/assets/css/1591002715973015.jpg)
+<img :src="$withBase('/assets/css/1591002715973015.jpg')" alt="demo" />
 
 > 没有CSS网格，就不可能拥有这种灵活性
 
@@ -133,7 +133,7 @@ img{
 
 > 假设以下组件堆叠在一起，每个组件都有底边距。
 
-![示例](/notes/assets/css/1591002732984697.jpg)
+<img :src="$withBase('/assets/css/1591002732984697.jpg')" alt="demo" />
 
 注意最后一个元素有一个空白，这是不正确的，因为边距只能在元素之间。
 
@@ -161,5 +161,5 @@ img{
 
 * 万一设计中有不止一列，它将无法正常工作。参见下图。
 
-![示例](/notes/assets/css/1591002770894622.jpg)
+<img :src="$withBase('/assets/css/1591002770894622.jpg')" alt="demo" />
 

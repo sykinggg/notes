@@ -42,7 +42,7 @@
 
 <!-- <img :src="$withBase('/img/update-process.png')" alt="优先级如何决定更新的顺序"> -->
 
-![优先级如何决定更新的顺序](/notes/assets/react/update-process.png)
+<img :src="$withBase('/assets/react/update-process.png')" alt="优先级如何决定更新的顺序">
 
 在这个例子中，有两个`Update`。将“关闭黑夜模式”产生的`Update`称为`u1`，输入字母“I”产生的`Update`称为`u2`。
 

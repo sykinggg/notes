@@ -15,25 +15,25 @@
 ```js
 const Nav = () => {
   return (
-    <nav className="c_navbar">
+    <div className="c_navbar">
       { some jsx magic here }
-    </nav>
+    </div>
   )
 }
 
 const Nav = () => {
- return <nav className="c_navbar">
+ return <div className="c_navbar">
     { some jsx magic here }
-  </nav>
+  </div>
 }
 ```
 错误的写法：
 ```js
 const Nav = () => {
   return
-    <nav className="c_navbar">
+    <div className="c_navbar">
       { some jsx magic here }
-    </nav>
+    </div>
 }
 ```
 

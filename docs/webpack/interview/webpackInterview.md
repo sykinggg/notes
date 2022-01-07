@@ -241,7 +241,7 @@ module:{
 
 编译后，刷新 `index.html` ，查看刚刚的样式 `loader` 已经起作用；
 
-![demo](/notes/assets/webpack/16f8ccdeb77f673c.jpg)
+<img :src="$withBase('/assets/webpack/16f8ccdeb77f673c.jpg')" alt="demo" />
 
 ## 3、Plugin 配置
 
@@ -306,7 +306,7 @@ $ npm run dev
 
 启动结果如下所示，可以通过 `http://localhost:8080/` 访问的 `index.html` 的demo
 
-![demo](/notes/assets/webpack/16f8ccdec2f9318d.jpg)
+<img :src="$withBase('/assets/webpack/16f8ccdec2f9318d.jpg')" alt="demo" />
 
 ### （2）实时预览
 
@@ -383,7 +383,7 @@ $ npm link
 
 成功结果如下：
 
-![demo](/notes/assets/webpack/16f8ccdeb2b4fa5e.jpg)
+<img :src="$withBase('/assets/webpack/16f8ccdeb2b4fa5e.jpg')" alt="demo" />
 
 然后在项目根目录执行以下命令，将注册到全局的本地 `Npm` 模块链接到项目的 `node_modules` 下：
 
@@ -393,7 +393,7 @@ $ npm link custom-loader
 
 成功结果如下，并且在 `node_modules` 目录下能查找到对应的 `loader`；
 
-![demo](/notes/assets/webpack/16f8ccdebc0fc0bb.jpg)
+<img :src="$withBase('/assets/webpack/16f8ccdebc0fc0bb.jpg')" alt="demo" />
 
 ## 3、Webpack 中配置编写的 loader
 
@@ -516,7 +516,7 @@ rules:[
 
 ## 2、ExtractTextPlugin 编译以下错误：
 
-![demo](/notes/assets/webpack/16f8ccdec2ef858f.jpg)
+<img :src="$withBase('/assets/webpack/16f8ccdec2ef858f.jpg')" alt="demo" />
 
 **原因：**
 
@@ -532,7 +532,7 @@ $ npm i -D extract-text-webpack-plugin@next
 
 ## 3、修复第2个坑之后，ExtractTextPlugin 编译继续报以下错误：
 
-![demo](/notes/assets/webpack/16f8ccdeb8188d88.jpg)
+<img :src="$withBase('/assets/webpack/16f8ccdeb8188d88.jpg')" alt="demo" />
 
 **原因：**
 
@@ -553,7 +553,7 @@ plugins:[
 
 ## 4、添加 HappyPack 后，编译 CSS 文件时报以下错误：
 
-![demo](/notes/assets/webpack/16f8ccdf66204a16.jpg)
+<img :src="$withBase('/assets/webpack/16f8ccdf66204a16.jpg')" alt="demo" />
 
 **原因：**
 

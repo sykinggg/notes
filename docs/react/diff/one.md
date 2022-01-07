@@ -18,7 +18,7 @@
 
 <!-- <img :src="$withBase('/img/diff.png')" alt="diff"> -->
 
-![diff](/notes/assets/react/diff.png)
+<img :src="$withBase('/assets/react/diff.png')" alt="diff">
 
 让看看第二步**判断DOM节点是否可以复用**是如何实现的。
 

@@ -136,7 +136,7 @@ HTML 时：
 </div>
 ```
 
-![示例](/notes/notes/assets/css/1616564455(1).jpg)
+<img :src="$withBase('/assets/css/1616564455(1).jpg')" alt="demo" />
 
 # :where() 例外规则
 

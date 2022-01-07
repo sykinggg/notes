@@ -8,7 +8,7 @@
 <input /> <input type="submit" />
 ```
 
-![示例](/notes/assets/css/2012-04-24_162919.png)
+<img :src="$withBase('/assets/css/2012-04-24_162919.png')" alt="demo" />
 
 使用CSS更改非`inline-block`水平元素为`inline-block`水平，也会有该问题：
 
@@ -28,7 +28,7 @@
 </div>
 ```
 
-![示例](/notes/assets/css/2012-04-24_163352.png)
+<img :src="$withBase('/assets/css/2012-04-24_163352.png')" alt="demo" />
 
 [inline-block元素间间距demo](http://www.zhangxinxu.com/study/201204/inline-block-space-example.html)
 
@@ -71,7 +71,7 @@
 }
 ```
 
-![示例](/notes/assets/css/2012-04-24_205406.png)
+<img :src="$withBase('/assets/css/2012-04-24_205406.png')" alt="demo" />
 
 例如，对于12像素大小的上下文，Arial字体的`margin`负值为`-3`像素，Tahoma和Verdana就是`-4`像素，而Geneva为`-6`像素。
 
@@ -103,7 +103,7 @@
 
 [无闭合标签去除inline-block元素间距demo](http://www.zhangxinxu.com/study/201204/inline-block-space-skip-close-tag.html)
 
-![示例](/notes/assets/css/2012-04-24_211852.png)
+<img :src="$withBase('/assets/css/2012-04-24_211852.png')" alt="demo" />
 
 # 五、使用font-size:0
 

@@ -43,7 +43,7 @@
 
 在调用入口函数之前,`reactElement(<App/>)`和 DOM 对象`div#root`之间没有关联, 用图片表示如下:
 
-![](/notes/assets/react-illustration-series/process-before.png)
+<img :src="$withBase('/assets/react-illustration-series/process-before.png')" alt="demo" />
 
 ### 创建全局对象 {#create-global-obj}
 
@@ -65,7 +65,7 @@
 
 这一过程是从`react-dom`包发起, 内部调用了`react-reconciler`包, 核心流程图如下(其中红色标注了 3 个对象的创建时机).
 
-![](/notes/assets/react-illustration-series/function-call.png)
+<img :src="$withBase('/assets/react-illustration-series/function-call.png')" alt="demo" />
 
 下面逐一解释这 3 个对象的创建过程.
 
@@ -307,15 +307,15 @@ export function createHostRootFiber(tag: RootTag): Fiber {
 
 1. legacy
 
-![](/notes/assets/react-illustration-series/process-legacy.png)
+<img :src="$withBase('/assets/react-illustration-series/process-legacy.png')" alt="demo" />
 
-2. concurrent
+1. concurrent
 
-![](/notes/assets/react-illustration-series/process-concurrent.png)
+<img :src="$withBase('/assets/react-illustration-series/process-concurrent.png')" alt="demo" />
 
-3. blocking
+1. blocking
 
-![](/notes/assets/react-illustration-series/process-blocking.png)
+<img :src="$withBase('/assets/react-illustration-series/process-blocking.png')" alt="demo" />
 
 注意:
 

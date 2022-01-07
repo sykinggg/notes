@@ -49,13 +49,13 @@ get_cache_size('s');//sessionStorage当前大小
 str.length
 ```
 
-![demo](/notes/assets/browser/1618191151(1).jpg)
+<img :src="$withBase('/assets/browser/1618191151(1).jpg')" alt="demo" />
 
-![demo](/notes/assets/browser/1618191246(1).jpg)
+<img :src="$withBase('/assets/browser/1618191246(1).jpg')" alt="demo" />
 
 内容大小相差过大原因是字符串存储并非按字符串进行存储因此如果直接统计字符串大小则会表现失真
 
-2. 第二种
+1. 第二种
 
 **encodeURIComponent()**
 
@@ -96,9 +96,9 @@ console.log(encodeURIComponent(set4)); // ABC%20abc%20123 (the space gets encode
 
 该函数的工作原理是这样的：通过找到形式为 %xx 和 %uxxxx 的字符序列（x 表示十六进制的数字），用 Unicode 字符 \u00xx 和 \uxxxx 替换这样的字符序列进行解码。
 
-![demo](/notes/assets/browser/1618192263(1).jpg)
+<img :src="$withBase('/assets/browser/1618192263(1).jpg')" alt="demo" />
 
-![demo](/notes/assets/browser/1618192308(1).jpg)
+<img :src="$withBase('/assets/browser/1618192308(1).jpg')" alt="demo" />
 
 ## 结论
 

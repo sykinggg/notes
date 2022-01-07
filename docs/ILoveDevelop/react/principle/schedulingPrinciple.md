@@ -8,13 +8,13 @@ js 单线程
 
 > JS 和渲染引擎是一个互斥关系。如果 JS 在执行代码，那么渲染引擎工作就会被停止。假如有一个很复杂的复合组件需要重新渲染，那么调用栈可能会很长
 
-![示例](/notes/assets/reactIloveDeveplo/2019-06-04-155141.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-04-155141.png')" alt="总结流程图">
 
 调用栈过长，再加上如果中间进行了复杂的操作，就可能导致长时间阻塞渲染引擎带来不好的用户体验，调度就是来解决这个问题的。
 
 React 会根据任务的优先级去分配各自的 `expirationTime`，在过期时间到来之前先去处理更高优先级的任务，并且高优先级的任务还可以打断低优先级的任务（因此会造成某些生命周期函数多次被执行），从而实现在不影响用户体验的情况下去分段计算更新（也就是时间分片）。
 
-![概念图](/notes/assets/reactIloveDeveplo/2019-06-04-155143.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-04-155143.png')" alt="总结流程图">
 
 # 实现调度
 ---
@@ -31,7 +31,7 @@ React 实现调度主要靠两块内容：
 
 那么这个时间是如何计算出来的呢？
 
-![示例](/notes/assets/reactIloveDeveplo/2019-06-04-155144.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-04-155144.png')" alt="示例">
 
 当前时间指的是 `performance.now()`，这个 API 会返回一个精确到毫秒级别的时间戳（当然也并不是高精度的），另外浏览器也并不是所有都兼容 `performance API` 的。如果使用 `Date.now()` 的话那么精度会更差，但是为了方便起见，这里统一把当前时间认为是 `performance.now()`。
 
@@ -66,13 +66,13 @@ var IDLE_PRIORITY = maxSigned31BitInt;
 
 说完了 `expriationTime`，接下来的主题就是实现 `requestIdleCallback` 了，首先来了解下该函数的作用
 
-![示例](/notes/assets/reactIloveDeveplo/2019-06-04-155145.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-04-155145.png')" alt="示例">
 
 该函数的回调方法会在浏览器的空闲时期依次调用， 可以让在事件循环中执行一些任务，并且不会对像动画和用户交互这样延迟敏感的事件产生影响。
 
 在上图中也可以发现，该回调方法是在渲染以后才执行的。那么介绍完了函数的作用，接下来就来说说它的兼容性吧。
 
-![兼容性](/notes/assets/reactIloveDeveplo/2019-06-04-155146.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-04-155146.png')" alt="兼容性">
 
 这个函数的兼容性并不是很好，并且它还有一个致命的缺陷：
 
@@ -104,7 +104,7 @@ rAFTimeoutID = setTimeout(function() {
 
 使用 `requestAnimationFrame` 只完成了多次执行这一步操作，接下来需要实现如何知道当前浏览器是否空闲呢？
 
-![示例](/notes/assets/reactIloveDeveplo/2019-06-04-155147.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-04-155147.png')" alt="示例">
 
 大家都知道在一帧当中，浏览器可能会响应用户的交互事件、执行 JS、进行渲染的一系列计算绘制。假设当前的浏览器支持 1 秒 60 帧，那么也就是说一帧的时间为 16.6 毫秒。如果以上这些操作超过了 16.6 毫秒，那么就会导致渲染没有完成并出现掉帧的情况，继而影响用户体验；如果以上这些操作没有耗时 16.6 毫秒的话，那么就认为当下存在空闲时间让可以去执行任务。
 
@@ -135,7 +135,7 @@ if (
 
 那么最后一步操作就是如何在渲染以后才去执行任务。这里就需要用到事件循环的知识了
 
-![流程](/notes/assets/reactIloveDeveplo/2019-06-04-155148.png)
+<img :src="$withBase('/assets/reactIloveDeveplo/2019-06-04-155148.png')" alt="流程">
 
 但是生成一个宏任务有很多种方式并且各自也有优先级，那么为了最快地执行任务，肯定得选择优先级高的方式。在这里选择了 `MessageChannel` 来完成这个任务，不选择 `setImmediate` 的原因是因为兼容性太差。
 

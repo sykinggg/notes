@@ -162,7 +162,7 @@ _([1, 2, 3]);
 
 4. 总结，`_([1, 2, 3])` 返回一个对象，为 `{_wrapped: [1, 2, 3]}`，该对象的原型指向 `_.prototype`
 
-![](/notes/assets/designFrame/15fbda0fcc455412_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/15fbda0fcc455412_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 然后问题来了，我们是将方法挂载到 `_` 函数对象上，并没有挂到函数的原型上呐，所以返回了的实例，其实是无法调用 `_` 函数对象上的方法的！
 

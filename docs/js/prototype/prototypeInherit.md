@@ -271,7 +271,7 @@ console.log(instance.__proto__.__proto__.run()); // undefined is runing
 
 > Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()
 
-<font size=1>**1. Object.prototype.toString.call()**</font>
+<div size=1>**1. Object.prototype.toString.call()**</div>
 
 每一个继承 Object 的对象都有 `toString` 方法，如果 `toString` 方法没有重写的话，会返回 `[Object type]`，其中 type 为对象的类型。但当除了 Object 类型的对象外，其他类型直接使用 `toString` 方法时，会直接返回都是内容的字符串，所以需要使用call或者apply方法来改变toString方法的执行上下文。
 
@@ -297,7 +297,7 @@ Object.prototype.toString.call({}) // "[object Object]"
 
 `Object.prototype.toString.call()` 常用于判断浏览器内置对象时。
 
-<font size=1>**2. instanceof**</font>
+<div size=1>**2. instanceof**</div>
 
 `instanceof`  的内部机制是通过判断对象的原型链中是不是能找到类型的 `prototype`。
 
@@ -313,7 +313,7 @@ Object.prototype.toString.call({}) // "[object Object]"
 []  instanceof Object; // true
 ```
 
-<font size=1>**3. Array.isArray()**</font>
+<div size=1>**3. Array.isArray()**</div>
 
 * 功能：用来判断对象是否为数组
 

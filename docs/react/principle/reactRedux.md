@@ -14,7 +14,7 @@
 
 6.  `connect` 怎么样将 `props`，和 `redux`的 `state` 合并的?
 
-![demo](/notes/assets/react/8089f33462be4c5c9bad97b66dc8a3fa_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/8089f33462be4c5c9bad97b66dc8a3fa_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 # 一 Provider 创建Subscription，context保存上下文
 
@@ -935,7 +935,7 @@ function subscribeUpdates(
 
 到这里明白了，**react-redux 通过 subscription 进行层层订阅。对于一层层的组件结构，整体模型图如下：**
 
-![demo](/notes/assets/react/bd432743cd93439ba901b36126a0b6b0_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/bd432743cd93439ba901b36126a0b6b0_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 学习 `checkForUpdates`
 
@@ -980,7 +980,7 @@ function subscribeUpdates(
 
 **对于层层订阅的结构，整个更新模型图如下：**
 
-![demo](/notes/assets/react/481a9a687369421fbdb2665fc3af44d0_tplv-k3u1fbpfcp-watermark.image)
+<img :src="$withBase('/assets/react/481a9a687369421fbdb2665fc3af44d0_tplv-k3u1fbpfcp-watermark.image')" alt="demo" />
 
 ## 总结
 ---

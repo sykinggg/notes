@@ -240,7 +240,7 @@ export function dispatchEvent(
 
 当原生事件触发之后, 首先会进入到`dispatchEvent`这个回调函数. 而`dispatchEvent`函数是`react`事件体系中最关键的函数, 其调用链路较长, 核心步骤如图所示:
 
-![](/notes/assets/react-illustration-series/dispatch-event.png)
+<img :src="$withBase('/assets/react-illustration-series/dispatch-event.png')" alt="demo" />
 
 重点关注其中 3 个核心环节:
 

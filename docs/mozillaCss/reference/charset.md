@@ -46,4 +46,4 @@
 
 ## 浏览器兼容性
 
-![demo](/notes/assets/mozillaCss/1617783332(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617783332(1).jpg')" alt="demo" />

@@ -8,7 +8,7 @@
 2. 双向链表: 每个节点有两个连接, 一个指向前一个节点(第一个节点指向空值), 而另一个指向下一个节点(最后一个节点指向空值).
 3. 循环链表: 在单向链表的基础上, 首节点和末节点被连接在一起.
 
-![](/notes/assets/react-illustration-series/summary.png)
+<img :src="$withBase('/assets/react-illustration-series/summary.png')" alt="demo" />
 
 ## 基本使用
 
@@ -84,7 +84,7 @@ function LinkedList() {
    - `fiber.firstEffect`: 指向副作用链表中的第一个 fiber 节点.
    - `fiber.lastEffect`: 指向副作用链表中的最后一个 fiber 节点.
 
-![](/notes/assets/react-illustration-series/effects.png)
+<img :src="$withBase('/assets/react-illustration-series/effects.png')" alt="demo" />
 
    注意: 此处只表示出链表的结构示意图, 在`fiber 树构造`章节中会对上图的结构进行详细解读.
 
@@ -92,7 +92,7 @@ function LinkedList() {
 
    - `fiber.updateQueue.pending`: 存储`state`更新的队列(链式队列), `class`类型节点的`state`改动之后, 都会创建一个`update`对象添加到这个队列中. 由于此队列是一个环形队列, 为了方便添加新元素和快速拿到队首元素, 所以`pending`指针指向了队列中最后一个元素.
 
-   ![](/notes/assets/react-illustration-series/updatequeue.1.png)
+   <img :src="$withBase('/assets/react-illustration-series/updatequeue.1.png')" alt="demo" />
 
    注意: 此处只表示出链表的结构示意图, 在`状态组件(class 与 function)`章节中会对上图的结构进行详细解读.
 
@@ -102,7 +102,7 @@ function LinkedList() {
 
 此外`hook.queue.pending`也构成了一个链表, 将`hook`链表与`hook.queue.pending`链表同时表示在图中, 得到的结构如下:
 
-![](/notes/assets/react-illustration-series/fiber-hook.1.png)
+<img :src="$withBase('/assets/react-illustration-series/fiber-hook.1.png')" alt="demo" />
 
 注意: 此处只表示出链表的结构示意图, 在`hook 原理`章节中会对上图的结构进行详细解读.
 
@@ -135,7 +135,7 @@ function LinkedList() {
 
      由于`fiber.updateQueue.shared.pending`是一个环形链表, 所以`fiber.updateQueue.shared.pending`永远指向末尾元素(保证快速添加新元素)
 
-     ![](/notes/assets/react-illustration-series/fiber.updatequeue.png)
+     <img :src="$withBase('/assets/react-illustration-series/fiber.updatequeue.png')" alt="demo" />
 
    - 在`fiber`树构建阶段(或`reconciler`阶段), 会把`fiber.updateQueue.shared.pending`合并到`fiber.updateQueue.firstBaseUpdate`队列上([源码地址](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactUpdateQueue.old.js#L394-L572)).
 
@@ -170,9 +170,9 @@ function LinkedList() {
      }
      ```
 
-     ![](/notes/assets/react-illustration-series/fiber.updatequeue-merge-before.png)
+     <img :src="$withBase('/assets/react-illustration-series/fiber.updatequeue-merge-before.png')" alt="demo" />
 
-     ![](/notes/assets/react-illustration-series/fiber.updatequeue-merge-after.png)
+     <img :src="$withBase('/assets/react-illustration-series/fiber.updatequeue-merge-after.png')" alt="demo" />
 
 2. `function`组件中
    - 在`function`组件中使用`Hook`对象(`useState`), 并改变`Hook`对象的值(内部会调用`dispatchAction`), 此时也会创建`update(hook)`对象并添加到`hook.queue.pending`链式队列([源码地址](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberHooks.old.js#L1645-L1682)).
@@ -219,9 +219,9 @@ function LinkedList() {
           }
         ```
 
-        ![](/notes/assets/react-illustration-series/hook.baseQueue-merge-before.png)
+        <img :src="$withBase('/assets/react-illustration-series/hook.baseQueue-merge-before.png')" alt="demo" />
 
-        ![](/notes/assets/react-illustration-series/hook.baseQueue-merge-after.png)
+        <img :src="$withBase('/assets/react-illustration-series/hook.baseQueue-merge-after.png')" alt="demo" />
 
 ## 总结
 

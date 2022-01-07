@@ -698,7 +698,7 @@ npm install vue-router -S
 
 ### 第二步在main.js中使用Vue Router组件
 
-![demo](/notes/assets/vue/1734d65dc240568e.jpg)
+<img :src="$withBase('/assets/vue/1734d65dc240568e.jpg')" alt="demo" />
 
 ### 第三步配置路由
 
@@ -706,29 +706,29 @@ npm install vue-router -S
 
 > 路由组件可以是直接定义，也可以是导入已经定义好的组件。这里导入已经定义好的组件。如下
 
-![demo](/notes/assets/vue/1734d65dc2668cc8.jpg)
+<img :src="$withBase('/assets/vue/1734d65dc2668cc8.jpg')" alt="demo" />
 
 * 定义路由（路由对象数组）
 
 > 定义路由对象数组。对象的`path`是自定义的路径（即使用这个路径可以找到对应的组件），`component`是指该路由对应的组件。如下：
 
-![demo](/notes/assets/vue/1734d65dc3da62ed.jpg)
+<img :src="$withBase('/assets/vue/1734d65dc3da62ed.jpg')" alt="demo" />
 
 * 实例化Vue Router对象
 
 > 调用Vue Router的构造方法创建一个Vue Router的实例对象，将上一步定义的路由对象数组作为参数对象的值传入。如下
 
-![demo](/notes/assets/vue/1734d65dc48e8bf4.jpg)
+<img :src="$withBase('/assets/vue/1734d65dc48e8bf4.jpg')" alt="demo" />
 
 * 挂载根实例
 
-![demo](/notes/assets/vue/1734d65dcb5f42d7.jpg)
+<img :src="$withBase('/assets/vue/1734d65dcb5f42d7.jpg')" alt="demo" />
 
 ### 第四步在App.vue中使用路由
 
 在`App.vue`中使用标签来显示路由对应的组件，使用标签指定当点击时显示的对应的组件，`to`属性就是指定组件对应的路由。如下：
 
-![demo](/notes/assets/vue/1734d65dc512c1e6.jpg)
+<img :src="$withBase('/assets/vue/1734d65dc512c1e6.jpg')" alt="demo" />
 
 ## 怎么定义vue-router的动态路由？怎么获取传过来的动态参数？
 

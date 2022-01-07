@@ -70,4 +70,4 @@ h3 { font-family: sans-serif }
 
 # 浏览器兼容性
 
-![demo](/notes/assets/mozillaCss/1617674781(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617674781(1).jpg')" alt="demo" />

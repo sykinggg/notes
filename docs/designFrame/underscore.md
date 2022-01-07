@@ -36,7 +36,7 @@ var _ = function(obj) {
 
 * 它的原型`_(obj).__proto__`是`_.prototype`;
 
-![](/notes/assets/designFrame/16c712bf513b82ba_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16c712bf513b82ba_tplv-t2oaga2asx-watermark.awebp')" alt="demo" />
 
 > 继续分析官方的`_.chain`例子。这个例子拆开，写成三步。
 
@@ -169,7 +169,7 @@ _.mixin(_);
 
 所以`_.chain(obj)`和`_(obj).chain()`效果一样，都能实现链式调用。
 
-![](/notes/assets/designFrame/16c712eea71c266b_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16c712eea71c266b_tplv-t2oaga2asx-watermark.awebp')" alt="captureMessage 断点调试图">
 
 ### _.mixin 挂载自定义方法
 
@@ -237,7 +237,7 @@ console.log(prototypeMethods); // ["after", "all", "allKeys", "any", "assign", .
 
 `underscore.js` 原型关系图
 
-![](/notes/assets/designFrame/16c713001e067ee4_tplv-t2oaga2asx-watermark.awebp)
+<img :src="$withBase('/assets/designFrame/16c713001e067ee4_tplv-t2oaga2asx-watermark.awebp')" alt="captureMessage 断点调试图">
 
 ## 整体架构概览
 

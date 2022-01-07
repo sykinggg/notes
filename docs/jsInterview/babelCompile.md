@@ -4,7 +4,7 @@
 
 > Babel 是一个源到源的转换编译器（Transpiler），它的主要作用是将 JavaScript 的高版本语法（例如 ES6）转换成低版本语法（例如 ES5），从而可以适配浏览器的兼容性。
 
-![demo](/notes/assets/jsInterview/c88916e811d348938f248080125a09b0_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/c88916e811d348938f248080125a09b0_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 从上图可知，Babel 的编译过程主要可以分为三个阶段：
 
@@ -16,7 +16,7 @@
 
 具体的流程如下所示：
 
-![demo](/notes/assets/jsInterview/deploy.awebp)
+<img :src="$withBase('/assets/jsInterview/deploy.awebp')" alt="demo" />
 
 举个栗子，如果要将 TypeScript 语法转换成 ES5 语法：
 
@@ -173,7 +173,7 @@ console.log('code: ', code);
 
 如果你想了解上述输入源对应的 AST 数据或者尝试自己编译，可以使用工具 [AST Explorer](https://link.juejin.cn/?target=https%3A%2F%2Fastexplorer.net%2F) （也可以使用 Babel 官网自带的 [Try It Out](https://link.juejin.cn/?target=https%3A%2F%2Fbabeljs.io%2Frepl) ），具体如下所示：
 
-![demo](/notes/assets/jsInterview/d20e49a8926d406bba93a6b0769572e6_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/jsInterview/d20e49a8926d406bba93a6b0769572e6_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 > 温馨提示：上述第三个框是以插件的 API 形式进行调用，如果想了解 Babel 的插件开发，可以查看 [Babel 插件手册 / 编写你的第一个 Babel 插件](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fjamiebuilds%2Fbabel-handbook%2Fblob%2Fmaster%2Ftranslations%2Fzh-Hans%2Fplugin-handbook.md%23toc-writing-your-first-babel-plugin)。
 

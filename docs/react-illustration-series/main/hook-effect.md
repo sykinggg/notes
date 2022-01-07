@@ -136,7 +136,7 @@ export type Effect = {|
 
 `renderWithHooks`执行完成后, 我们可以画出`fiber`,`hook`,`effect`三者的引用关系:
 
-![](/notes/assets/react-illustration-series/renderwithhooks-create.png)
+<img :src="$withBase('/assets/react-illustration-series/renderwithhooks-create.png')" alt="demo" />
 
 现在`workInProgress.flags`被打上了标记, 最后会在`fiber树渲染`阶段的`commitRoot`函数中处理. (这期间的所有过程可以回顾前文`fiber树构造/fiber树渲染`系列, 此处不再赘述)
 
@@ -377,7 +377,7 @@ function commitHookEffectListMount(tag: number, finishedWork: Fiber) {
 如下图:
 其中第一个`effect`拥有`Layout`标记, 所以有`effect.destroy(); effect.destroy = effect.create()`
 
-![](/notes/assets/react-illustration-series/hook-commit-layout.png)
+<img :src="$withBase('/assets/react-illustration-series/hook-commit-layout.png')" alt="demo" />
 
 ### flushPassiveEffects
 
@@ -444,7 +444,7 @@ function flushPassiveEffectsImpl() {
 如下图:
 其中拥有`Passive`标记的`effect`, 都会执行`effect.destroy(); effect.destroy = effect.create()`
 
-![](/notes/assets/react-illustration-series/hook-flushpassive.png)
+<img :src="$withBase('/assets/react-illustration-series/hook-flushpassive.png')" alt="demo" />
 
 ## 更新 Hook
 
@@ -498,7 +498,7 @@ function updateEffectImpl(fiberFlags, hookFlags, create, deps): void {
 - 图中第 1,2 个`hook`其`deps`没变, 故`effect.tag`中不会包含`HookHasEffect`.
 - 图中第 3 个`hook`其`deps`改变, 故`effect.tag`中继续含有`HookHasEffect`.
 
-![](/notes/assets/react-illustration-series/renderwithhooks-update.png)
+<img :src="$withBase('/assets/react-illustration-series/renderwithhooks-update.png')" alt="demo" />
 
 ### 处理 Effect 回调
 

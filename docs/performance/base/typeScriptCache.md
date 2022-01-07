@@ -4,7 +4,7 @@
 
 「cacheables」正如它名字一样，是用来做内存缓存使用，其代码仅仅 200 行左右（不含注释），官方的介绍如下： 
 
-![](/notes/assets/performance/base/1635900613645.jpg)
+<img :src="$withBase('/assets/performance/base/1635900613645.jpg')" alt="demo" />
 
 > 一个简单的内存缓存，支持不同的缓存策略，使用 TypeScript 编写优雅的语法。
 
@@ -117,7 +117,7 @@ start();
 
 可以通过下图加深理解： 
 
-![](/notes/assets/performance/base/ed5d7485cc054c6b9d725ff697d572a7_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/ed5d7485cc054c6b9d725ff697d572a7_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ## 三、源码分析
 
@@ -156,7 +156,7 @@ export class Cacheables {
 
 这样就很直观清楚 `cacheables` 实例的作用和支持的方法，其 `UML` 类图如下：
 
-![](/notes/assets/performance/base/8345d7bf3de44f829ddb16267c5b5c5c_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/8345d7bf3de44f829ddb16267c5b5c5c_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在第 ① 步实例化时，`Cacheables` 内部构造函数会将入参保存起来，接口定义如下：
 
@@ -243,7 +243,7 @@ async #cacheable<T>(
 
 `this.#cacheable`私有方法接收的参数与 `cacheable`方法一样，返回的是 `cacheable.touch`方法调用的结果。 如果 `key` 的缓存对象不存在，则通过 `Cacheable`类创建一个，其 UML 类图如下： 
 
-![](/notes/assets/performance/base/5ee7668263274d1088f2868dcb95dc85_tplv-k3u1fbpfcp-watermark)
+<img :src="$withBase('/assets/performance/base/5ee7668263274d1088f2868dcb95dc85_tplv-k3u1fbpfcp-watermark')" alt="demo" />
 
 ### 3. 处理缓存策略
 

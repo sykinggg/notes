@@ -28,7 +28,7 @@ jobs:
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: dist
+          FOLDER: docs/.vuepress/dist
   login-gittee:
     needs: [build-and-deploy]
     runs-on: ubuntu-latest

@@ -36,11 +36,11 @@ export default {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/640.webp)
+<img :src="$withBase('/assets/performance/vue/640.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/640(1).webp)
+<img :src="$withBase('/assets/performance/vue/640(1).webp')" alt="demo" />
 
 对比这两张图我们可以看到优化前执行 `script` 的时间要多于优化后的，而我们知道 JS 引擎是单线程的运行机制，`JS 线程`会阻塞 `UI 线程`，所以当脚本执行时间过长，就会阻塞渲染，导致页面卡顿。而优化后的 `script` 执行时间短，所以它的性能更好。
 
@@ -117,11 +117,11 @@ export default {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/641.webp)
+<img :src="$withBase('/assets/performance/vue/641.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/642.webp)
+<img :src="$withBase('/assets/performance/vue/642.webp')" alt="demo" />
 
 对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
 
@@ -193,11 +193,11 @@ export default {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/643.webp)
+<img :src="$withBase('/assets/performance/vue/643.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/644.webp)
+<img :src="$withBase('/assets/performance/vue/644.webp')" alt="demo" />
 
 对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
 
@@ -247,11 +247,11 @@ export default {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/645.webp)
+<img :src="$withBase('/assets/performance/vue/645.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/646.webp)
+<img :src="$withBase('/assets/performance/vue/646.webp')" alt="demo" />
 
 对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
 
@@ -361,13 +361,13 @@ function render() {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/647.webp)
-![demo](/notes/assets/performance/vue/647.1.webp)
+<img :src="$withBase('/assets/performance/vue/647.webp')" alt="demo" />
+<img :src="$withBase('/assets/performance/vue/647.1.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/648.webp)
-![demo](/notes/assets/performance/vue/648.1.webp)
+<img :src="$withBase('/assets/performance/vue/648.webp')" alt="demo" />
+<img :src="$withBase('/assets/performance/vue/648.1.webp')" alt="demo" />
 
 对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
 
@@ -429,11 +429,11 @@ export default {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/649.webp)
+<img :src="$withBase('/assets/performance/vue/649.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/650.webp)
+<img :src="$withBase('/assets/performance/vue/650.webp')" alt="demo" />
 
 对比这两张图我们可以发现，优化前当我们从 Simple Page 切到 Heavy Page 的时候，在一次 Render 接近结尾的时候，页面渲染的仍然是 Simple Page，会给人一种页面卡顿的感觉。而优化后当我们从 Simple Page 切到 Heavy Page 的时候，在一次 `Render` 靠前的位置页面就已经渲染了 Heavy Page 了，并且 Heavy Page 是渐进式渲染出来的。
 
@@ -513,11 +513,11 @@ fetchItems ({ commit }, { items, splitCount }) {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/651.webp)
+<img :src="$withBase('/assets/performance/vue/651.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/652.webp)
+<img :src="$withBase('/assets/performance/vue/652.webp')" alt="demo" />
 
 对比这两张图我们可以发现，优化前总的 `script` 执行时间要比优化后的还要少一些，但是从实际的观感上看，优化前点击提交按钮，页面会卡死 1.2 秒左右，在优化后，页面不会完全卡死，但仍然会有渲染卡顿的感觉。
 
@@ -572,11 +572,11 @@ function optimizeItem (item) {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/653.webp)
+<img :src="$withBase('/assets/performance/vue/653.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/654.webp)
+<img :src="$withBase('/assets/performance/vue/654.webp')" alt="demo" />
 
 对比这两张图我们可以看到优化后执行 `script` 的时间要明显少于优化前的，因此性能体验更好。
 
@@ -637,11 +637,11 @@ export default {
 
 * 优化前：
 
-![demo](/notes/assets/performance/vue/655.webp)
+<img :src="$withBase('/assets/performance/vue/655.webp')" alt="demo" />
 
 * 优化后：
 
-![demo](/notes/assets/performance/vue/656.webp)
+<img :src="$withBase('/assets/performance/vue/656.webp')" alt="demo" />
 
 对比这两张图我们发现，在非优化的情况下，10000 条数据在滚动情况下 fps 只有个位数，在非滚动情况下也就十几，原因是非优化场景下渲染的 DOM 太多，渲染本身的压力很大。优化后，即使 10000 条数据，在滚动情况下的 fps 也能有 30 多，在非滚动情况下可以达到 60 满帧。
 

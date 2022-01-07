@@ -58,8 +58,8 @@ li li {
 
 # 结果
 
-![demo](/notes/assets/mozillaCss/1617679542.jpg)
+<img :src="$withBase('/assets/mozillaCss/1617679542.jpg')" alt="demo" />
 
 # 浏览器兼容性
 
-![demo](/notes/assets/mozillaCss/1617679594(1).jpg)
+<img :src="$withBase('/assets/mozillaCss/1617679594(1).jpg')" alt="demo" />

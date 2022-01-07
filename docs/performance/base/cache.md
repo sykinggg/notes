@@ -6,7 +6,7 @@
 
 DNS域名查找先在客户端进行`递归查询`，如图
 
-![](/notes/assets/performance/base/4b5d1b4cc92047b78ba93ebe4662e268_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/4b5d1b4cc92047b78ba93ebe4662e268_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 在任何一步找到就会结束查找流程，而整个过程客户端只发出一次查询请求
 
@@ -18,7 +18,7 @@ DNS域名查找先在客户端进行`递归查询`，如图
 因为借助任播技术，可以在全球设立这些IP的镜像站点，所以访问的不是唯一的那台主机
 ```
 
-![](/notes/assets/performance/base/b56c61d000a1432da72e58910b9e1518_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/b56c61d000a1432da72e58910b9e1518_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 很明显，整个过程会发出多次查询请求
 
@@ -28,7 +28,7 @@ DNS域名查找先在客户端进行`递归查询`，如图
 
 就是将http请求获取的页面资源存储在本地，之后再加载直接从缓存中获取而不用请求服务器，从而响应更快。先看图：
 
-![](/notes/assets/performance/base/8f52c3b4505144098cf98ffa11096379_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/8f52c3b4505144098cf98ffa11096379_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 ### 强缓存
 
@@ -116,7 +116,7 @@ if-modified-since: Fri, 27 Oct 2021 08:35:57 GMT
 
 服务器再把这两个字段的时间对比，如果是一样的，就说明文件没有被更新过，就返回状态码304和空响应体给浏览器，浏览器直接拿过期了的资源继续使用即可；如果对比不一样说明资源有更新，就返回状态码200和新的资源，如图
 
-![](/notes/assets/performance/base/570f039c27024ef7a3333779247bebfb_tplv-k3u1fbpfcp-watermark.awebp)
+<img :src="$withBase('/assets/performance/base/570f039c27024ef7a3333779247bebfb_tplv-k3u1fbpfcp-watermark.awebp')" alt="demo" />
 
 所以说`Last-Modified`/`If-Modified-Since`它俩是成对的，是为了对比文件修改时间
 
