@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress 2.0.0-beta.32">
     <title>一些不能按预期工作的代码 | 你好， VuePress ！</title><meta name="description" content="这是我的第一个 VuePress 站点">
-    <link rel="modulepreload" href="/notes/assets/app.b17a0fcc.js"><link rel="modulepreload" href="/notes/assets/thing-that-dont-work.html.a60fe3fd.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/thing-that-dont-work.html.b728d883.js">
+    <link rel="modulepreload" href="/notes/assets/app.32e15244.js"><link rel="modulepreload" href="/notes/assets/thing-that-dont-work.html.8a9671d2.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/thing-that-dont-work.html.f6102b4d.js">
     <link rel="stylesheet" href="/notes/assets/style.969bf946.css">
   </head>
   <body>
@@ -41,6 +41,6 @@ a<span class="token punctuation">.</span><span class="token function">increment<
   <span class="token keyword">return</span> MyClass<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>这里有两个问题：</p><p>首先，建议改变的行为与 ECMAScript 规范不一致。在这方面没有任何异议 -- TypeScript 必须与 JavaScript 具有相同的运行时行为。</p><p>其次，这个运行时类的特点非常令人惊讶。它为每个实例的每个方法创建一个闭包，而不是为每个方法创建一个闭包，这在初始化时，内存、以及垃圾回收上的性能都非常糟糕。</p><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><nav class="page-nav"><p class="inner"><span class="prev"><a href="/notes/ts/faqs/jsx-and-react.html" class="" aria-label="JSX 和 React"><!--[--><!--]--> JSX 和 React <!--[--><!--]--></a></span><span class="next"><a href="/notes/ts/faqs/commandline-behavior.html" class="" aria-label="命令行的行为"><!--[--><!--]--> 命令行的行为 <!--[--><!--]--></a></span></p></nav><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.b17a0fcc.js" defer></script>
+    <script type="module" src="/notes/assets/app.32e15244.js" defer></script>
   </body>
 </html>
