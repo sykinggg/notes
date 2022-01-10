@@ -239,6 +239,7 @@ module.exports = {
     {
       text: '零散记录',
       children: [
+        '/css/interview/frame.md',
         '/css/interview/knowledgePoints.md',
         '/css/interview/fieldInvalid.md',
         { text: 'css基础面试', link: '/css/interview/baseCss.md' },
