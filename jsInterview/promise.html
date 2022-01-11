@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress 2.0.0-beta.32">
     <title>Promise 面试题总结 | 笔记!</title><meta name="description" content="君子藏器于身 待时而动 天下有道则见 无道则隐">
-    <link rel="modulepreload" href="/notes/assets/app.27c025c0.js"><link rel="modulepreload" href="/notes/assets/promise.html.671d5988.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/promise.html.18a63a08.js">
+    <link rel="modulepreload" href="/notes/assets/app.2f6bbef8.js"><link rel="modulepreload" href="/notes/assets/promise.html.607ae1fd.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/promise.html.5752c769.js">
     <link rel="stylesheet" href="/notes/assets/style.969bf946.css">
   </head>
   <body>
@@ -164,6 +164,6 @@ nextTick
 then
 setImmediate
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><blockquote><p><strong>解释</strong>：<code>process.nextTick</code> 和 <code>promise.then</code> 都属于 <code>microtask</code>，而 <code>setImmediate</code> 属于 <code>macrotask</code>，在事件循环的 <code>check</code> 阶段执行。事件循环的每个阶段（<code>macrotask</code>）之间都会执行 <code>microtask</code>，事件循环的开始会先执行一次 <code>microtask</code>。</p></blockquote><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><nav class="page-nav"><p class="inner"><span class="prev"><a href="/notes/jsInterview/spa.html" class="" aria-label="说说对 SPA 单页面的理解，它的优缺点分别是什么？"><!--[--><!--]--> 说说对 SPA 单页面的理解，它的优缺点分别是什么？ <!--[--><!--]--></a></span><span class="next"><a href="/notes/jsInterview/executionMechanism.html" class="" aria-label="JavaScript 执行机制"><!--[--><!--]--> JavaScript 执行机制 <!--[--><!--]--></a></span></p></nav><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.27c025c0.js" defer></script>
+    <script type="module" src="/notes/assets/app.2f6bbef8.js" defer></script>
   </body>
 </html>
