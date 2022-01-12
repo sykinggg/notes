@@ -1689,7 +1689,7 @@ resolveDynamicImport(path3)->unresolved->resolveld
 resolveld(path2)->external->buildEnd
 ``` -->
 
-<img :src="$withBase('/assets/rollup/1630648412252.jpg')" alt="demo" />
+<img :src="$withBase('/assets/rollup/introduction/1630648412252.jpg')" alt="demo" />
 
 此外，在观察模式下，[watchChange](https://rollupjs.org/guide/en/#watchchange)钩子可以在任何时候被触发，以通知新的运行将在当前运行产生其输出后被触发。另外，当watcher关闭时，[closeWatcher](https://rollupjs.org/guide/en/#closewatcher)钩将被触发。
 

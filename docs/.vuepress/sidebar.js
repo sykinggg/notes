@@ -239,6 +239,7 @@ module.exports = {
     {
       text: '零散记录',
       children: [
+        '/css/interview/tools.md',
         '/css/interview/frame.md',
         '/css/interview/knowledgePoints.md',
         '/css/interview/fieldInvalid.md',
@@ -504,6 +505,7 @@ module.exports = {
     }
   ],
   '/rollup/': [
+    '/rollup/base.md',
     '/rollup/introduction.md',
   ],
   '/git/': [

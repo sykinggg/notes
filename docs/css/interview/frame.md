@@ -493,3 +493,5 @@ github地址：[github.com/windicss/windicss](https://github.com/windicss/windic
 
 官网地址：[windicss.org/](https://windicss.org/)
 
+<img :src="$withBase('/assets/css/frame/b4caf21e421e4ff8af09428decc80936_tplv-k3u1fbpfcp-watermark.webp')" alt="demo" />
+
