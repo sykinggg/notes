@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress 2.0.0-beta.32">
     <title>update | 笔记!</title><meta name="description" content="君子藏器于身 待时而动 天下有道则见 无道则隐">
-    <link rel="modulepreload" href="/notes/assets/app.2f6bbef8.js"><link rel="modulepreload" href="/notes/assets/update.html.0b89a929.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/update.html.eeb85d3a.js">
+    <link rel="modulepreload" href="/notes/assets/app.b1cf3273.js"><link rel="modulepreload" href="/notes/assets/update.html.119e6841.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/update.html.f03405d3.js">
     <link rel="stylesheet" href="/notes/assets/style.969bf946.css">
   </head>
   <body>
@@ -356,6 +356,6 @@ vm<span class="token punctuation">.</span>$el <span class="token operator">=</sp
   node<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>其实就是调用原生 DOM 的 API 进行 DOM 操作，看到这里，很多同学恍然大悟，原来 Vue 是这样动态创建的 DOM。</p><p>在 <code>createElm</code> 过程中，如果 <code>vnode</code> 节点不包含 <code>tag</code>，则它有可能是一个注释或者纯文本节点，可以直接插入到父元素中。在这个例子中，最内层就是一个文本 <code>vnode</code>，它的 <code>text</code> 值取的就是之前的 <code>this.message</code> 的值 <code>Hello Vue!</code>。</p><p>再回到 <code>patch</code> 方法，首次渲染调用了 <code>createElm</code> 方法，这里传入的 <code>parentElm</code> 是 <code>oldVnode.elm</code> 的父元素，在的例子是 id 为 <code>#app</code> div 的父元素，也就是 Body；实际上整个过程就是递归创建了一个完整的 DOM 树并插入到 Body 上。</p><p>最后，根据之前递归 <code>createElm</code> 生成的 <code>vnode</code> 插入顺序队列，执行相关的 <code>insert</code> 钩子函数，这部分内容之后会详细介绍。</p><h2 id="总结" tabindex="-1"><a class="header-anchor" href="#总结" aria-hidden="true">#</a> 总结</h2><p>那么至此从主线上把模板和数据如何渲染成最终的 DOM 的过程分析完毕了，可以通过下图更直观地看到从初始化 Vue 到最终渲染的整个过程。</p><img src="/notes/assets/vue/new-vue.png" alt="demo"><p>这里只是分析了最简单和最基础的场景，在实际项目中，是把页面拆成很多组件的，Vue 另一个核心思想就是组件化。那么下一章就来分析 Vue 的组件化过程。</p><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.2f6bbef8.js" defer></script>
+    <script type="module" src="/notes/assets/app.b1cf3273.js" defer></script>
   </body>
 </html>

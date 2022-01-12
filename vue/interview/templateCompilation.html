@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="generator" content="VuePress 2.0.0-beta.32">
     <title>笔记!</title><meta name="description" content="君子藏器于身 待时而动 天下有道则见 无道则隐">
-    <link rel="modulepreload" href="/notes/assets/app.2f6bbef8.js"><link rel="modulepreload" href="/notes/assets/templateCompilation.html.9ce64dc4.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/templateCompilation.html.ab98ce7f.js">
+    <link rel="modulepreload" href="/notes/assets/app.b1cf3273.js"><link rel="modulepreload" href="/notes/assets/templateCompilation.html.a6c3b8f7.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/templateCompilation.html.15111b31.js">
     <link rel="stylesheet" href="/notes/assets/style.969bf946.css">
   </head>
   <body>
@@ -621,6 +621,6 @@ context<span class="token punctuation">.</span><span class="token function">help
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>从上述代码可以看到，遍历 <code>hoists</code> 数组，调用 <code>genNode(exp, context)</code>。<code>genNode()</code> 根据不同的 <code>type</code> 执行不同的函数。</p><div class="language-javascript ext-js line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">const</span> _hoisted_1 <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">&quot;test&quot;</span> <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br></div></div><p>这一行代码中的 <code>const _hoisted_1 =</code> 由 <code>genHoists()</code> 生成，<code>{ name: &quot;test&quot; }</code> 由 <code>genObjectExpression()</code> 生成。 同理，剩下的两行代码生成过程也是如此，只是最终调用的函数不同。</p><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.2f6bbef8.js" defer></script>
+    <script type="module" src="/notes/assets/app.b1cf3273.js" defer></script>
   </body>
 </html>
