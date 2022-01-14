@@ -1,5 +1,14 @@
 module.exports = [
   {
+    text: '技术',
+    children: [
+      {
+        text: '技术前瞻',
+        link: '/technology/base.md',
+      }
+    ]
+  },
+  {
     text: 'js',
     children: [
       {

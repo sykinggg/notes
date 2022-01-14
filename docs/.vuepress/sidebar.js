@@ -355,6 +355,7 @@ module.exports = {
     {
       text: '基础http',
       children: [
+        '/http/interview/nestAxios.md',
         { text: '第一套http综合基础面试题', link: '/http/interview/baseInterview.md' },
         { text: 'Fetch API 教程', link: '/http/interview/fetch.md' },
         { text: '跨域资源共享 CORS 详解', link: '/http/interview/cors.md' }
@@ -463,6 +464,7 @@ module.exports = {
     {
       text: '第一期：基础概念笔记',
       children: [
+        '/reactInterview/inelegantHook.md',
         '/reactInterview/interview1.md',
         '/reactInterview/interview2.md',
         '/reactInterview/interview3.md',
@@ -1065,5 +1067,9 @@ module.exports = {
   '/cli/': [
     '/cli/base.md',
     '/cli/customCli.md',
-  ]
+  ],
+  '/technology/': [
+    '/technology/base.md',
+    '/technology/summarize.md',
+  ],
 }
