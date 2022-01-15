@@ -2,7 +2,7 @@
 
 ## 目录
 
-- [前端资源整理](#前端资源整理)
+<!-- - [前端资源整理](#前端资源整理)
   - [目录](#目录)
   - [好玩项目](#好玩项目)
     - [黑科技](#黑科技)
@@ -494,4 +494,4 @@
 
 ### 字节开源
 
-- [semi-design](www.github.com/DouyinFE/semi-design) - 抖音企业级应用 UI 解决方案 Semi Design，由字节跳动抖音前端与 UED 团队设计、开发并维护，是一款包含设计语言、React 组件、主题等开箱即用的中后台解决方案，可用于快速搭建美观的 React 应用。
+- [semi-design](www.github.com/DouyinFE/semi-design) - 抖音企业级应用 UI 解决方案 Semi Design，由字节跳动抖音前端与 UED 团队设计、开发并维护，是一款包含设计语言、React 组件、主题等开箱即用的中后台解决方案，可用于快速搭建美观的 React 应用。 -->
