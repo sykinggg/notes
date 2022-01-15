@@ -9,3 +9,6 @@ example/
 yarn.lock
 .dist
 .dist/
+dist
+dist/
+yarn-error.log
