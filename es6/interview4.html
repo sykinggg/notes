@@ -23,7 +23,7 @@
 			}
     </script>
     <title>module、export、import分别有什么作用？ | 笔记!</title><meta name="description" content="君子藏器于身 待时而动 天下有道则见 无道则隐">
-    <link rel="modulepreload" href="/notes/assets/app.845f91e5.js"><link rel="modulepreload" href="/notes/assets/interview4.html.0fa896ba.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/interview4.html.61aa7143.js">
+    <link rel="modulepreload" href="/notes/assets/app.78b6d3a3.js"><link rel="modulepreload" href="/notes/assets/interview4.html.f1982671.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/interview4.html.1347e9ee.js">
     <link rel="stylesheet" href="/notes/assets/style.625aafec.css">
   </head>
   <body>
@@ -227,6 +227,6 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 <span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><code>foo</code> 变量被标记为没有使用，在最后压缩时这段会被删除。</p><p>需要说明的是，即使在 引入模块时使用了 <code>es6</code> ，但是引入的那个模块却是使用 <code>commonjs</code> 进行输出，这也无法使用<code>tree-shaking</code>。</p><p>而第三方库大多是遵循 <code>commonjs</code> 规范的，这也造成了引入第三方库无法减少不必要的引入。</p><p>所以对于未来来说第三方库要同时发布 <code>commonjs</code> 格式和 <code>es6</code> 格式的模块。<code>es6</code> 模块的入口由 <code>package.json</code> 的字段 <code>module</code> 指定。而 <code>commonjs</code> 则还是在 <code>main</code> 字段指定。</p><p><strong>这里解释了问题6</strong></p><blockquote><p>听说 <code>es6</code> 还有 <code>tree-shaking</code> 功能，怎么才能使用这个功能？</p></blockquote><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.845f91e5.js" defer></script>
+    <script type="module" src="/notes/assets/app.78b6d3a3.js" defer></script>
   </body>
 </html>
