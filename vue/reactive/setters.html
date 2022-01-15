@@ -23,7 +23,7 @@
 			}
     </script>
     <title>派发更新 | 笔记!</title><meta name="description" content="君子藏器于身 待时而动 天下有道则见 无道则隐">
-    <link rel="modulepreload" href="/notes/assets/app.3aebe68d.js"><link rel="modulepreload" href="/notes/assets/setters.html.a9934fa4.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/setters.html.0630c992.js">
+    <link rel="modulepreload" href="/notes/assets/app.845f91e5.js"><link rel="modulepreload" href="/notes/assets/setters.html.c931f38d.js"><link rel="modulepreload" href="/notes/assets/plugin-vue_export-helper.21dcd24c.js"><link rel="modulepreload" href="/notes/assets/setters.html.9d402477.js">
     <link rel="stylesheet" href="/notes/assets/style.625aafec.css">
   </head>
   <body>
@@ -284,6 +284,6 @@
   vm<span class="token punctuation">.</span><span class="token function">_update</span><span class="token punctuation">(</span>vm<span class="token punctuation">.</span><span class="token function">_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> hydrating<span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>所以这就是当去修改组件相关的响应式数据的时候，会触发组件重新渲染的原因，接着就会重新执行 <code>patch</code> 的过程，但它和首次渲染有所不同，之后会花一小节去详细介绍。</p><h2 id="总结" tabindex="-1"><a class="header-anchor" href="#总结" aria-hidden="true">#</a> 总结</h2><p>通过这一节的分析，对 Vue 数据修改派发更新的过程也有了认识，实际上就是当数据发生变化的时候，触发 setter 逻辑，把在依赖过程中订阅的的所有观察者，也就是 <code>watcher</code>，都触发它们的 <code>update</code> 过程，这个过程又利用了队列做了进一步优化，在 <code>nextTick</code> 后执行所有 <code>watcher</code> 的 <code>run</code>，最后执行它们的回调函数。<code>nextTick</code> 是 Vue 一个比较核心的实现了，下一节来重点分析它的实现。</p><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: dean@57blocks.com">DeanSui</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/notes/assets/app.3aebe68d.js" defer></script>
+    <script type="module" src="/notes/assets/app.845f91e5.js" defer></script>
   </body>
 </html>
