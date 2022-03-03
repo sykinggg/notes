@@ -20,5 +20,18 @@ module.exports = {
     process.env.DOCS_BUNDLER ??
     // use vite by default
     '@vuepress/vite',
-    // '@vuepress/webpack'
+  // '@vuepress/webpack'
+  bundlerConfig: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue'],
+          '@vueuse/core': ['@vueuse/core'],
+          '@vue/devtools-api': ['@vue/devtools-api'],
+          'vue-router': ['vue-router'],
+          nprogress: ['nprogress'],
+        }
+      }
+    }
+  }
 }

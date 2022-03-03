@@ -348,6 +348,7 @@ module.exports = {
         '/browser/interview/progress.md',
         '/browser/interview/redrawReflow.md',
         '/browser/interview/bigDataRender.md',
+        '/browser/interview/webComLink.md',
       ]
     }
   ],
