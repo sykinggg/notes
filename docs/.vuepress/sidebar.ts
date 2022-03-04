@@ -1,7 +1,12 @@
-module.exports = {
+
+   
+import type { SidebarConfig } from '@vuepress/theme-default'
+
+export const sidebar: SidebarConfig = {
   '/jsInterview/': [
     {
       text: '第 1 期：基础面试题',
+      collapsible: true,
       children: [
         '/jsInterview/webAnimations.md',
         '/jsInterview/44Questions.md',
