@@ -8,6 +8,7 @@ export const sidebar: SidebarConfig = {
       text: '第 1 期：基础面试题',
       collapsible: true,
       children: [
+        '/jsInterview/promiseAll.md',
         '/jsInterview/webAnimations.md',
         '/jsInterview/44Questions.md',
         '/jsInterview/jsHandwriting.md',
@@ -524,6 +525,9 @@ export const sidebar: SidebarConfig = {
         { text: 'git rebase', link: '/git/rebase.md' },
       ]
     }
+  ],
+  '/npm/': [
+    '/npm/commonlyUsed.md',
   ],
   '/umi/': [
     {

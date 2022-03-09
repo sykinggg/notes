@@ -99,6 +99,10 @@ export const navbar: NavbarConfig = [
         text: 'cli',
         link: '/cli/base.md',
       },
+      {
+        text: 'npm',
+        link: '/npm/commonlyUsed.md',
+      },
     ]
   },
   {

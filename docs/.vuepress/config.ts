@@ -181,18 +181,18 @@ export default defineUserConfig<DefaultThemeOptions>({
     //         theme: 'dark-plus',
     //     },
     // ],
-  ],
-  bundlerConfig: {
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vue: ['vue'],
-          '@vueuse/core': ['@vueuse/core'],
-          '@vue/devtools-api': ['@vue/devtools-api'],
-          'vue-router': ['vue-router'],
-          nprogress: ['nprogress'],
-        }
-      }
-    }
-  }
+  ]
+  // bundlerConfig: {
+  //   rollupOptions: {
+  //     output: {
+  //       manualChunks: {
+  //         vue: ['vue'],
+  //         '@vueuse/core': ['@vueuse/core'],
+  //         '@vue/devtools-api': ['@vue/devtools-api'],
+  //         'vue-router': ['vue-router'],
+  //         nprogress: ['nprogress'],
+  //       }
+  //     }
+  //   }
+  // }
 })
