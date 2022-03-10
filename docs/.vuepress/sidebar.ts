@@ -362,6 +362,7 @@ export const sidebar: SidebarConfig = {
     {
       text: '基础http',
       children: [
+        '/http/interview/crossDomainCookie.md',
         '/http/interview/nestAxios.md',
         { text: '第一套http综合基础面试题', link: '/http/interview/baseInterview.md' },
         { text: 'Fetch API 教程', link: '/http/interview/fetch.md' },
