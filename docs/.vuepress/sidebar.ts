@@ -65,48 +65,68 @@ export const sidebar: SidebarConfig = {
       ]
     }
   ],
-  '/es6/': [
+  '/jsNews/': [
     {
-      text: '第 1 期：概述',
+      text: 'js 版本',
       children: [
-        '/es6/interview1.md',
-        '/es6/interview2.md',
-        '/es6/interview3.md',
+        '/jsNews/es6News.md',
+        '/jsNews/es7News.md',
+        '/jsNews/es8News.md',
+        '/jsNews/es9News.md',
+        '/jsNews/es10News.md',
+      ]
+    },
+    {
+      text: 'js 版本 衍生',
+      children: [
+        '/jsNews/es6Interview1.md',
+        '/jsNews/es6Interview2.md',
+        '/jsNews/es6Interview3.md',
       ]
     }
   ],
-  '/es7/': [
-    {
-      text: '第 1 期：概述',
-      children: [
-        '/es7/interview1.md',
-      ]
-    }
-  ],
-  '/es8/': [
-    {
-      text: '第 1 期：概述',
-      children: [
-        '/es8/interview1.md',
-      ]
-    }
-  ],
-  '/es9/': [
-    {
-      text: '第 1 期：概述',
-      children: [
-        '/es9/interview1.md',
-      ]
-    }
-  ],
-  '/es10/': [
-    {
-      text: '第 1 期：概述',
-      children: [
-        '/es10/interview1.md',
-      ]
-    }
-  ],
+  // '/es6/': [
+  //   {
+  //     text: '第 1 期：概述',
+  //     children: [
+  //       '/es6/interview1.md',
+  //       '/es6/interview2.md',
+  //       '/es6/interview3.md',
+  //     ]
+  //   }
+  // ],
+  // '/es7/': [
+  //   {
+  //     text: '第 1 期：概述',
+  //     children: [
+  //       '/es7/interview1.md',
+  //     ]
+  //   }
+  // ],
+  // '/es8/': [
+  //   {
+  //     text: '第 1 期：概述',
+  //     children: [
+  //       '/es8/interview1.md',
+  //     ]
+  //   }
+  // ],
+  // '/es9/': [
+  //   {
+  //     text: '第 1 期：概述',
+  //     children: [
+  //       '/es9/interview1.md',
+  //     ]
+  //   }
+  // ],
+  // '/es10/': [
+  //   {
+  //     text: '第 1 期：概述',
+  //     children: [
+  //       '/es10/interview1.md',
+  //     ]
+  //   }
+  // ],
   '/mozillajs/': [
     {
       text: '第 1 期：基本对象',
@@ -274,6 +294,7 @@ export const sidebar: SidebarConfig = {
     {
       text: '零散记录',
       children: [
+        '/html/interview/baseInterview.md',
         '/html/interview/regular.md',
         { text: '第1天使用link和@import有什么区别？', link: '/html/interview/linkImport.md' },
         { text: '第2天html的元素？', link: '/html/interview/htmlElement.md' },
