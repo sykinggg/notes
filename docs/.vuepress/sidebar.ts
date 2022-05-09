@@ -497,6 +497,7 @@ export const sidebar: SidebarConfig = {
         '/reactInterview/interview1.md',
         '/reactInterview/interview2.md',
         '/reactInterview/interview3.md',
+        '/reactInterview/interview4.md',
       ]
     }
   ],
