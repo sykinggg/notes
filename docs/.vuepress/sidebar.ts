@@ -74,7 +74,7 @@ export const sidebar: SidebarConfig = {
         '/jsNews/es8News.md',
         '/jsNews/es9News.md',
         '/jsNews/es10News.md',
-        '/jsNews/es11News.md'
+        // '/jsNews/es11News.md',
       ]
     },
     {
