@@ -286,24 +286,24 @@ export const navbar: NavbarConfig = [
       }
     ]
   },
-  {
-    text: '算法&设计',
-    children: [
-      {
-        text: '第 1 期：基础面试题',
-        link: '/algorithm/interview/baseInterview.md',
-        // children: [
-        //     { text: '第一套综合基础面试题', link: '/algorithm/interview/baseInterview.md' }
-        // ]
-      },
-      {
-        text: '设计模式',
-        link: '/design/overview.md'
-      },
-      {
-        text: '设计应用',
-        link: '/designFrame/jquery.md'
-      }
-    ]
-  }
+  // {
+  //   text: '算法&设计',
+  //   children: [
+  //     {
+  //       text: '第 1 期：基础面试题',
+  //       link: '/algorithm/interview/baseInterview.md',
+  //       // children: [
+  //       //     { text: '第一套综合基础面试题', link: '/algorithm/interview/baseInterview.md' }
+  //       // ]
+  //     },
+  //     {
+  //       text: '设计模式',
+  //       link: '/design/overview.md'
+  //     },
+  //     {
+  //       text: '设计应用',
+  //       link: '/designFrame/jquery.md'
+  //     }
+  //   ]
+  // }
 ]
