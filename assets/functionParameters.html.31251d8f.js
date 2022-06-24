@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-0fb55052","path":"/ts/tips/functionParameters.html","title":"\u51FD\u6570\u53C2\u6570","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1656086373000,"contributors":[{"name":"suiyi","email":"suiyi19920228@qq.com","commits":1}]},"filePathRelative":"ts/tips/functionParameters.md"}');export{t as data};
