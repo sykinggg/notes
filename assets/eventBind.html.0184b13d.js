@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-8bb3dca0","path":"/ILoveDevelop/react/features/eventBind.html","title":"\u4E8B\u4EF6\u7ED1\u5B9A","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1656085977000,"contributors":[{"name":"suiyi","email":"suiyi19920228@qq.com","commits":1}]},"filePathRelative":"ILoveDevelop/react/features/eventBind.md"}');export{e as data};

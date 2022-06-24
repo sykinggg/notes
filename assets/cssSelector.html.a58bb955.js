@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-ee4662ac","path":"/css/interview/cssSelector.html","title":"CSS \u9009\u62E9\u7B26","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1656085977000,"contributors":[{"name":"suiyi","email":"suiyi19920228@qq.com","commits":1}]},"filePathRelative":"css/interview/cssSelector.md"}');export{e as data};
