@@ -1,15 +1,15 @@
 import type { NavbarConfig } from '@vuepress/theme-default';
 
 export const navbar: NavbarConfig = [
-  {
-    text: '技术',
-    children: [
-      {
-        text: '技术前瞻',
-        link: '/technology/base.md',
-      }
-    ]
-  },
+  // {
+  //   text: '技术',
+  //   children: [
+  //     {
+  //       text: '技术前瞻',
+  //       link: '/technology/base.md',
+  //     }
+  //   ]
+  // },
   // {
   //   text: 'js',
   //   children: [
