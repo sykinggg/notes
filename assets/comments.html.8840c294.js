@@ -1,0 +1,1 @@
+import{_ as t,o as a,c,b as e,e as o}from"./app.013e756e.js";const r={},s=e("h1",{id:"\u8BC4\u8BBA",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#\u8BC4\u8BBA","aria-hidden":"true"},"#"),o(" \u8BC4\u8BBA")],-1),n=[s];function _(d,i){return a(),c("div",null,n)}var l=t(r,[["render",_],["__file","comments.html.vue"]]);export{l as default};

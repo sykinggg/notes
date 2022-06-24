@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-2e3fbaea","path":"/ts/tips/statefulFunctions.html","title":"\u72B6\u6001\u51FD\u6570","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[],"git":{"updatedTime":1656085977000,"contributors":[{"name":"suiyi","email":"suiyi19920228@qq.com","commits":1}]},"filePathRelative":"ts/tips/statefulFunctions.md"}');export{t as data};

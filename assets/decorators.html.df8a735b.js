@@ -1,1 +1,0 @@
-import{_ as r,o,c as a,b as e,e as t}from"./app.f5bc1a61.js";const c={},s=e("h1",{id:"decorators",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#decorators","aria-hidden":"true"},"#"),t(" Decorators")],-1),d=[s];function _(n,i){return o(),a("div",null,d)}var l=r(c,[["render",_],["__file","decorators.html.vue"]]);export{l as default};
