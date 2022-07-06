@@ -28,48 +28,48 @@ export const navbar: NavbarConfig = [
       { text: 'JSX', link: '/ts/jsx/support' },
       { text: 'TypeScript 项目', link: '/ts/project/inDepthTs.md' },
       { text: 'js 新概念', link: '/jsNews/es6News.md' },
-      { text: 'es6', link: '/es6/interview1.md' },
-      { text: 'es7', link: '/es7/interview1.md' },
-      { text: 'es8', link: '/es8/interview1.md' },
-      { text: 'es9', link: '/es9/interview1.md' },
-      { text: 'es10', link: '/es10/interview1.md' },
+      // { text: 'es6', link: '/es6/interview1.md' },
+      // { text: 'es7', link: '/es7/interview1.md' },
+      // { text: 'es8', link: '/es8/interview1.md' },
+      // { text: 'es9', link: '/es9/interview1.md' },
+      // { text: 'es10', link: '/es10/interview1.md' },
     ]
   },
-  // {
-  //   text: 'css',
-  //   children: [
-  //     {
-  //       text: '第 1 期：CSS API',
-  //       link: '/mozillaCss/reference/universalSelectors.md'
-  //     },
-  //     {
-  //       text: '零散记录',
-  //       link: '/css/interview/baseCss.md',
-  //     }
-  //   ]
-  // },
-  // {
-  //   text: 'html',
-  //   children: [
-  //     {
-  //       text: '零散记录',
-  //       link: '/html/interview/linkImport.md',
-  //     }
-  //   ]
-  // },
-  // {
-  //   text: '端',
-  //   children: [
-  //     {
-  //       text: '基础浏览器',
-  //       link: '/browser/interview/baseInterview.md',
-  //     },
-  //     {
-  //       text: '基础http',
-  //       link: '/http/interview/baseInterview.md',
-  //     }
-  //   ]
-  // },
+  {
+    text: 'css',
+    children: [
+      {
+        text: '第 1 期：CSS API',
+        link: '/mozillaCss/reference/universalSelectors.md'
+      },
+      {
+        text: '零散记录',
+        link: '/css/interview/baseCss.md',
+      }
+    ]
+  },
+  {
+    text: 'html',
+    children: [
+      {
+        text: '零散记录',
+        link: '/html/interview/linkImport.md',
+      }
+    ]
+  },
+  {
+    text: '端',
+    children: [
+      {
+        text: '基础浏览器',
+        link: '/browser/interview/baseInterview.md',
+      },
+      {
+        text: '基础http',
+        link: '/http/interview/baseInterview.md',
+      }
+    ]
+  },
   // {
   //   text: '工具',
   //   children: [
