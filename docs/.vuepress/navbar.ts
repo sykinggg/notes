@@ -10,31 +10,31 @@ export const navbar: NavbarConfig = [
       }
     ]
   },
-  // {
-  //   text: 'js',
-  //   children: [
-  //     {
-  //       text: 'mozilla：基本对象',
-  //       link: '/mozillajs/baseObject/symbol.md',
-  //     },
-  //     {
-  //       text: '基础面试题',
-  //       link: '/jsInterview/baseInterview.md',
-  //     },
-  //     {
-  //       text: 'js 概念',
-  //       link: '/js/stack/executionStack.md',
-  //     },
-  //     { text: 'JSX', link: '/ts/jsx/support' },
-  //     { text: 'TypeScript 项目', link: '/ts/project/inDepthTs.md' },
-  //     { text: 'js 新概念', link: '/jsNews/es6News.md' },
-  //     // { text: 'es6', link: '/es6/interview1.md' },
-  //     // { text: 'es7', link: '/es7/interview1.md' },
-  //     // { text: 'es8', link: '/es8/interview1.md' },
-  //     // { text: 'es9', link: '/es9/interview1.md' },
-  //     // { text: 'es10', link: '/es10/interview1.md' },
-  //   ]
-  // },
+  {
+    text: 'js',
+    children: [
+      {
+        text: 'mozilla：基本对象',
+        link: '/mozillajs/baseObject/symbol.md',
+      },
+      {
+        text: '基础面试题',
+        link: '/jsInterview/baseInterview.md',
+      },
+      {
+        text: 'js 概念',
+        link: '/js/stack/executionStack.md',
+      },
+      { text: 'JSX', link: '/ts/jsx/support' },
+      { text: 'TypeScript 项目', link: '/ts/project/inDepthTs.md' },
+      { text: 'js 新概念', link: '/jsNews/es6News.md' },
+      // { text: 'es6', link: '/es6/interview1.md' },
+      // { text: 'es7', link: '/es7/interview1.md' },
+      // { text: 'es8', link: '/es8/interview1.md' },
+      // { text: 'es9', link: '/es9/interview1.md' },
+      // { text: 'es10', link: '/es10/interview1.md' },
+    ]
+  },
   // {
   //   text: 'css',
   //   children: [
