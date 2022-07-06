@@ -106,56 +106,56 @@ export const navbar: NavbarConfig = [
       },
     ]
   },
-  // {
-  //   text: 'react',
-  //   children: [
-  //     {
-  //       text: 'react 源码阅读 代码视角',
-  //       link: '/ILoveDevelop/react/principle/base.md',
-  //       // children: [
-  //       //     { text: '概念', link: '/ILoveDevelop/react/principle/base.md' },
-  //       //     { text: '基础', link: '/ILoveDevelop/react/basic/reactApi.md' },
-  //       //     { text: '创建更新', link: '/ILoveDevelop/react/createUpdate/reactDomRender.md' },
-  //       //     { text: '任务调度', link: '/ILoveDevelop/react/taskScheduling/globalVariable.md' },
-  //       //     { text: 'commit 阶段', link: '/ILoveDevelop/react/commit/commitRoot.md' },
-  //       //     { text: '功能', link: '/ILoveDevelop/react/features/context.md' },
-  //       //     { text: 'Hooks', link: '/ILoveDevelop/react/hooks/start.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: 'react 源码阅读 思想视角',
-  //       link: '/react/preparation/idea.md',
-  //       // children: [
-  //       //     { text: '第 1 期：React理念', link: '/react/preparation/idea.md' },
-  //       //     { text: '第 2 期：前置知识', link: '/react/preparation/file.md' },
-  //       //     { text: '第 3 期：render阶段', link: '/react/process/reconciler.md' },
-  //       //     { text: '第 4 期：commit阶段', link: '/react/renderer/prepare.md' },
-  //       //     { text: '第 5 期：Diff算法', link: '/react/diff/prepare.md' },
-  //       //     { text: '第 6 期：状态更新', link: '/react/state/prepare.md' },
-  //       //     { text: '第 7 期：Hooks', link: '/react/hooks/prepare.md' },
-  //       //     { text: '第 8 期：Concurrent Mode', link: '/react/concurrent/prepare.md' },
-  //       //     { text: '第 9 期：基础概念', link: '/react/principle/basePrinciple.md' },
-  //       //     { text: '第 10 期：基础面试题', link: '/react/interview/50/interview1.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '图解React源码',
-  //       link: '/react-illustration-series/main/macro-structure.md'
-  //     },
-  //     {
-  //       text: 'umi',
-  //       link: '/umi/interview/pluginDva.md',
-  //       // children: [
-  //       //     { text: '@umijs/plugin-dva', link: '/umi/interview/pluginDva.md' },
-  //       //     { text: '@umijs/plugin-qiankun', link: '/umi/interview/pluginQiankun.md' }
-  //       // ]
-  //     },
-  //     {
-  //       text: '整理',
-  //       link: '/reactInterview/interview1.md'
-  //     }
-  //   ]
-  // },
+  {
+    text: 'react',
+    children: [
+      {
+        text: 'react 源码阅读 代码视角',
+        link: '/ILoveDevelop/react/principle/base.md',
+        // children: [
+        //     { text: '概念', link: '/ILoveDevelop/react/principle/base.md' },
+        //     { text: '基础', link: '/ILoveDevelop/react/basic/reactApi.md' },
+        //     { text: '创建更新', link: '/ILoveDevelop/react/createUpdate/reactDomRender.md' },
+        //     { text: '任务调度', link: '/ILoveDevelop/react/taskScheduling/globalVariable.md' },
+        //     { text: 'commit 阶段', link: '/ILoveDevelop/react/commit/commitRoot.md' },
+        //     { text: '功能', link: '/ILoveDevelop/react/features/context.md' },
+        //     { text: 'Hooks', link: '/ILoveDevelop/react/hooks/start.md' },
+        // ]
+      },
+      {
+        text: 'react 源码阅读 思想视角',
+        link: '/react/preparation/idea.md',
+        // children: [
+        //     { text: '第 1 期：React理念', link: '/react/preparation/idea.md' },
+        //     { text: '第 2 期：前置知识', link: '/react/preparation/file.md' },
+        //     { text: '第 3 期：render阶段', link: '/react/process/reconciler.md' },
+        //     { text: '第 4 期：commit阶段', link: '/react/renderer/prepare.md' },
+        //     { text: '第 5 期：Diff算法', link: '/react/diff/prepare.md' },
+        //     { text: '第 6 期：状态更新', link: '/react/state/prepare.md' },
+        //     { text: '第 7 期：Hooks', link: '/react/hooks/prepare.md' },
+        //     { text: '第 8 期：Concurrent Mode', link: '/react/concurrent/prepare.md' },
+        //     { text: '第 9 期：基础概念', link: '/react/principle/basePrinciple.md' },
+        //     { text: '第 10 期：基础面试题', link: '/react/interview/50/interview1.md' },
+        // ]
+      },
+      {
+        text: '图解React源码',
+        link: '/react-illustration-series/main/macro-structure.md'
+      },
+      {
+        text: 'umi',
+        link: '/umi/interview/pluginDva.md',
+        // children: [
+        //     { text: '@umijs/plugin-dva', link: '/umi/interview/pluginDva.md' },
+        //     { text: '@umijs/plugin-qiankun', link: '/umi/interview/pluginQiankun.md' }
+        // ]
+      },
+      {
+        text: '整理',
+        link: '/reactInterview/interview1.md'
+      }
+    ]
+  },
   // {
   //   text: 'vue',
   //   children: [
