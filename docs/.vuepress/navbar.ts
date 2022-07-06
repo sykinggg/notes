@@ -156,119 +156,119 @@ export const navbar: NavbarConfig = [
       }
     ]
   },
-  // {
-  //   text: 'vue',
-  //   children: [
-  //     {
-  //       text: '第 1 期：源码解读-准备工作',
-  //       link: '/vue/prepare/flow.md',
-  //       // children: [
-  //       //     { text: 'flow', link: '/vue/prepare/flow.md' },
-  //       //     { text: '源码目录', link: '/vue/prepare/directory.md' },
-  //       //     { text: '源码构建', link: '/vue/prepare/build.md' },
-  //       //     { text: '入口', link: '/vue/prepare/entrance.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '第2期：源码解读-数据驱动',
-  //       link: '/vue/data-driven/_index.md',
-  //       // children: [
-  //       //     { text: '概述', link: '/vue/data-driven/index.md' },
-  //       //     { text: 'newVue', link: '/vue/data-driven/new-vue.md' },
-  //       //     { text: '挂载实现', link: '/vue/data-driven/mounted.md' },
-  //       //     { text: 'render', link: '/vue/data-driven/render.md' },
-  //       //     { text: 'VirtualDOM', link: '/vue/data-driven/virtual-dom.md' },
-  //       //     { text: 'createElement', link: '/vue/data-driven/create-element.md' },
-  //       //     { text: 'update', link: '/vue/data-driven/update.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '第3期：源码解读-组件化',
-  //       link: '/vue/components/create-component.md',
-  //       // children: [
-  //       //     { text: 'createComponent', link: '/vue/components/create-component.md' },
-  //       //     { text: 'patch', link: '/vue/components/patch.md' },
-  //       //     { text: '合并配置', link: '/vue/components/merge-option.md' },
-  //       //     { text: '生命周期', link: '/vue/components/lifecycle.md' },
-  //       //     { text: '组件注册', link: '/vue/components/component-register.md' },
-  //       //     { text: '异步组件', link: '/vue/components/async-component.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '第4期：源码解读-深入响应式原理',
-  //       link: '/vue/reactive/reactive-object.md',
-  //       // children: [
-  //       //     { text: '响应式对象', link: '/vue/reactive/reactive-object.md' },
-  //       //     { text: '依赖收集', link: '/vue/reactive/getters.md' },
-  //       //     { text: '派发更新', link: '/vue/reactive/setters.md' },
-  //       //     { text: 'nextTick', link: '/vue/reactive/next-tick.md' },
-  //       //     { text: '检测变化的注意事项', link: '/vue/reactive/questions.md' },
-  //       //     { text: '计算属性VS侦听属性', link: '/vue/reactive/computed-watcher.md' },
-  //       //     { text: '组件更新', link: '/vue/reactive/component-update.md' },
-  //       //     { text: 'Props(v2.6.11)', link: '/vue/reactive/props.md' },
-  //       //     { text: '原理图', link: '/vue/reactive/summary.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '第5期：源码解读-编译',
-  //       link: '/vue/compile/entrance.md',
-  //       // children: [
-  //       //     { text: '编译入口', link: '/vue/compile/entrance.md' },
-  //       //     { text: 'parse', link: '/vue/compile/parse.md' },
-  //       //     { text: 'optimize', link: '/vue/compile/optimize.md' },
-  //       //     { text: 'codegen', link: '/vue/compile/codegen.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '第6期：源码解读-扩展',
-  //       link: '/vue/extend/event.md',
-  //       // children: [
-  //       //     { text: 'event', link: '/vue/extend/event.md' },
-  //       //     { text: 'v-model', link: '/vue/extend/v-model.md' },
-  //       //     { text: 'slot', link: '/vue/extend/slot.md' },
-  //       //     { text: 'keep-alive', link: '/vue/extend/keep-alive.md' },
-  //       //     { text: 'transition', link: '/vue/extend/tansition.md' },
-  //       //     { text: 'transition-group', link: '/vue/extend/tansition-group.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '第7期：源码解读-VueRouter',
-  //       link: '/vue/vue-router/install.md',
-  //       // children: [
-  //       //     { text: '路由注册', link: '/vue/vue-router/install.md' },
-  //       //     { text: 'VueRouter对象', link: '/vue/vue-router/router.md' },
-  //       //     { text: 'matcher', link: '/vue/vue-router/matcher.md' },
-  //       //     { text: '路径切换', link: '/vue/vue-router/transition-to.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '第8期：源码解读-Vuex',
-  //       link: '/vue/vuex/idex.md',
-  //       // children: [
-  //       //     { text: '概述', link: '/vue/vuex/idex.md' },
-  //       //     { text: 'Vuex初始化', link: '/vue/vuex/init.md' },
-  //       //     { text: 'API', link: '/vue/vuex/api.md' },
-  //       //     { text: '插件', link: '/vue/vuex/plugin.md' },
-  //       // ]
-  //     },
-  //     {
-  //       text: '第9期：基础面试题',
-  //       link: '/vue/interview/baseInterview.md',
-  //       // children: [
-  //       //     { text: '整理1', link: '/vue/interview/baseInterview.md' },
-  //       //     { text: '整理2', link: '/vue/interview/baseInterviewSecond.md' },
-  //       //     { text: '知识体系', link: '/vue/interview/knowledgeSystem.md' },
-  //       //     { text: '响应式详解', link: '/vue/interview/detailedResponsiveness.md' },
-  //       //     { text: '组件间通信', link: '/vue/interview/componentCommunication.md' },
-  //       //     { text: '事件绑定', link: '/vue/interview/eventBinding.md' },
-  //       //     { text: 'slot插槽', link: '/vue/interview/slot.md' },
-  //       //     { text: '模板编译', link: '/vue/interview/templateCompilation.md' },
-  //       //     { text: 'diff算法', link: '/vue/interview/diff.md' },
-  //       //     { text: 'key作用', link: '/vue/interview/key.md' },
-  //       // ]
-  //     }
-  //   ]
-  // },
+  {
+    text: 'vue',
+    children: [
+      {
+        text: '第 1 期：源码解读-准备工作',
+        link: '/vue/prepare/flow.md',
+        // children: [
+        //     { text: 'flow', link: '/vue/prepare/flow.md' },
+        //     { text: '源码目录', link: '/vue/prepare/directory.md' },
+        //     { text: '源码构建', link: '/vue/prepare/build.md' },
+        //     { text: '入口', link: '/vue/prepare/entrance.md' },
+        // ]
+      },
+      {
+        text: '第2期：源码解读-数据驱动',
+        link: '/vue/data-driven/_index.md',
+        // children: [
+        //     { text: '概述', link: '/vue/data-driven/index.md' },
+        //     { text: 'newVue', link: '/vue/data-driven/new-vue.md' },
+        //     { text: '挂载实现', link: '/vue/data-driven/mounted.md' },
+        //     { text: 'render', link: '/vue/data-driven/render.md' },
+        //     { text: 'VirtualDOM', link: '/vue/data-driven/virtual-dom.md' },
+        //     { text: 'createElement', link: '/vue/data-driven/create-element.md' },
+        //     { text: 'update', link: '/vue/data-driven/update.md' },
+        // ]
+      },
+      {
+        text: '第3期：源码解读-组件化',
+        link: '/vue/components/create-component.md',
+        // children: [
+        //     { text: 'createComponent', link: '/vue/components/create-component.md' },
+        //     { text: 'patch', link: '/vue/components/patch.md' },
+        //     { text: '合并配置', link: '/vue/components/merge-option.md' },
+        //     { text: '生命周期', link: '/vue/components/lifecycle.md' },
+        //     { text: '组件注册', link: '/vue/components/component-register.md' },
+        //     { text: '异步组件', link: '/vue/components/async-component.md' },
+        // ]
+      },
+      {
+        text: '第4期：源码解读-深入响应式原理',
+        link: '/vue/reactive/reactive-object.md',
+        // children: [
+        //     { text: '响应式对象', link: '/vue/reactive/reactive-object.md' },
+        //     { text: '依赖收集', link: '/vue/reactive/getters.md' },
+        //     { text: '派发更新', link: '/vue/reactive/setters.md' },
+        //     { text: 'nextTick', link: '/vue/reactive/next-tick.md' },
+        //     { text: '检测变化的注意事项', link: '/vue/reactive/questions.md' },
+        //     { text: '计算属性VS侦听属性', link: '/vue/reactive/computed-watcher.md' },
+        //     { text: '组件更新', link: '/vue/reactive/component-update.md' },
+        //     { text: 'Props(v2.6.11)', link: '/vue/reactive/props.md' },
+        //     { text: '原理图', link: '/vue/reactive/summary.md' },
+        // ]
+      },
+      {
+        text: '第5期：源码解读-编译',
+        link: '/vue/compile/entrance.md',
+        // children: [
+        //     { text: '编译入口', link: '/vue/compile/entrance.md' },
+        //     { text: 'parse', link: '/vue/compile/parse.md' },
+        //     { text: 'optimize', link: '/vue/compile/optimize.md' },
+        //     { text: 'codegen', link: '/vue/compile/codegen.md' },
+        // ]
+      },
+      {
+        text: '第6期：源码解读-扩展',
+        link: '/vue/extend/event.md',
+        // children: [
+        //     { text: 'event', link: '/vue/extend/event.md' },
+        //     { text: 'v-model', link: '/vue/extend/v-model.md' },
+        //     { text: 'slot', link: '/vue/extend/slot.md' },
+        //     { text: 'keep-alive', link: '/vue/extend/keep-alive.md' },
+        //     { text: 'transition', link: '/vue/extend/tansition.md' },
+        //     { text: 'transition-group', link: '/vue/extend/tansition-group.md' },
+        // ]
+      },
+      {
+        text: '第7期：源码解读-VueRouter',
+        link: '/vue/vue-router/install.md',
+        // children: [
+        //     { text: '路由注册', link: '/vue/vue-router/install.md' },
+        //     { text: 'VueRouter对象', link: '/vue/vue-router/router.md' },
+        //     { text: 'matcher', link: '/vue/vue-router/matcher.md' },
+        //     { text: '路径切换', link: '/vue/vue-router/transition-to.md' },
+        // ]
+      },
+      {
+        text: '第8期：源码解读-Vuex',
+        link: '/vue/vuex/idex.md',
+        // children: [
+        //     { text: '概述', link: '/vue/vuex/idex.md' },
+        //     { text: 'Vuex初始化', link: '/vue/vuex/init.md' },
+        //     { text: 'API', link: '/vue/vuex/api.md' },
+        //     { text: '插件', link: '/vue/vuex/plugin.md' },
+        // ]
+      },
+      {
+        text: '第9期：基础面试题',
+        link: '/vue/interview/baseInterview.md',
+        // children: [
+        //     { text: '整理1', link: '/vue/interview/baseInterview.md' },
+        //     { text: '整理2', link: '/vue/interview/baseInterviewSecond.md' },
+        //     { text: '知识体系', link: '/vue/interview/knowledgeSystem.md' },
+        //     { text: '响应式详解', link: '/vue/interview/detailedResponsiveness.md' },
+        //     { text: '组件间通信', link: '/vue/interview/componentCommunication.md' },
+        //     { text: '事件绑定', link: '/vue/interview/eventBinding.md' },
+        //     { text: 'slot插槽', link: '/vue/interview/slot.md' },
+        //     { text: '模板编译', link: '/vue/interview/templateCompilation.md' },
+        //     { text: 'diff算法', link: '/vue/interview/diff.md' },
+        //     { text: 'key作用', link: '/vue/interview/key.md' },
+        // ]
+      }
+    ]
+  },
   // {
   //   text: '性能优化',
   //   children: [
