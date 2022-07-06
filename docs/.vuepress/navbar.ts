@@ -70,42 +70,42 @@ export const navbar: NavbarConfig = [
       }
     ]
   },
-  // {
-  //   text: '工具',
-  //   children: [
-  //     {
-  //       text: 'webpack',
-  //       link: '/webpack/interview/webpackInterview.md',
-  //     },
-  //     {
-  //       text: 'esbuild',
-  //       link: '/esbuild/description.md'
-  //     },
-  //     {
-  //       text: 'rollup',
-  //       link: '/rollup/introduction.md'
-  //     },
-  //     {
-  //       text: 'git',
-  //       link: '/git/indx.md',
-  //       // children: [
-  //       //     { text: 'git基础面试', link: '/git/index.md' }
-  //       // ]
-  //     },
-  //     {
-  //       text: 'nginx',
-  //       link: '/nginx/base.md',
-  //     },
-  //     {
-  //       text: 'cli',
-  //       link: '/cli/base.md',
-  //     },
-  //     {
-  //       text: 'npm',
-  //       link: '/npm/commonlyUsed.md',
-  //     },
-  //   ]
-  // },
+  {
+    text: '工具',
+    children: [
+      {
+        text: 'webpack',
+        link: '/webpack/interview/webpackInterview.md',
+      },
+      {
+        text: 'esbuild',
+        link: '/esbuild/description.md'
+      },
+      {
+        text: 'rollup',
+        link: '/rollup/introduction.md'
+      },
+      {
+        text: 'git',
+        link: '/git/indx.md',
+        // children: [
+        //     { text: 'git基础面试', link: '/git/index.md' }
+        // ]
+      },
+      {
+        text: 'nginx',
+        link: '/nginx/base.md',
+      },
+      {
+        text: 'cli',
+        link: '/cli/base.md',
+      },
+      {
+        text: 'npm',
+        link: '/npm/commonlyUsed.md',
+      },
+    ]
+  },
   // {
   //   text: 'react',
   //   children: [
