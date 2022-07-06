@@ -269,23 +269,23 @@ export const navbar: NavbarConfig = [
       }
     ]
   },
-  // {
-  //   text: '性能优化',
-  //   children: [
-  //     {
-  //       text: 'vue-性能优化',
-  //       link: '/performance/vue/vue2Base.md',
-  //     },
-  //     {
-  //       text: 'react-性能优化',
-  //       link: '/performance/react/reactBase.md',
-  //     },
-  //     {
-  //       text: '组件设计',
-  //       link: '/performance/base/drag1.md',
-  //     }
-  //   ]
-  // },
+  {
+    text: '性能优化',
+    children: [
+      {
+        text: 'vue-性能优化',
+        link: '/performance/vue/vue2Base.md',
+      },
+      {
+        text: 'react-性能优化',
+        link: '/performance/react/reactBase.md',
+      },
+      {
+        text: '组件设计',
+        link: '/performance/base/drag1.md',
+      }
+    ]
+  },
   // {
   //   text: '算法&设计',
   //   children: [
