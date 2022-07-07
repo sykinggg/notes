@@ -18,7 +18,7 @@ export const navbar: NavbarConfig = [
         link: '/mozillajs/baseObject/symbol.md',
       },
       {
-        text: '基础面试题',
+        text: '基础面试',
         link: '/jsInterview/baseInterview.md',
       },
       {

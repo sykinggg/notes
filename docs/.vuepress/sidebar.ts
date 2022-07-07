@@ -5,7 +5,7 @@ import type { SidebarConfig } from '@vuepress/theme-default'
 export const sidebar: SidebarConfig = {
   '/jsInterview/': [
     {
-      text: '第 1 期：基础面试题',
+      text: '第 1 期：基础面试知识点',
       collapsible: true,
       children: [
         '/jsInterview/promiseAll.md',
@@ -62,6 +62,16 @@ export const sidebar: SidebarConfig = {
         '/jsInterview/interview50/interview28.md',
         '/jsInterview/interview50/interview29.md',
         '/jsInterview/interview50/interview30.md',
+      ]
+    },
+    {
+      text: '第 2 期：基础面试题',
+      children: [
+        '/jsInterview/jsInterciewQuestion/1.md',
+        '/jsInterview/jsInterciewQuestion/2.md',
+        '/jsInterview/jsInterciewQuestion/3.md',
+        '/jsInterview/jsInterciewQuestion/4.md',
+        '/jsInterview/jsInterciewQuestion/5.md',
       ]
     }
   ],
