@@ -1,0 +1,1 @@
+const e={key:"v-72a7785c",path:"/jsInterview/jsInterciewQuestion/5.html",title:"\u7B2C5\u9898\uFF1A\u8BF4\u8BF4\u4F60\u5BF9 new.target \u7684\u7406\u89E3",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1657178703e3,contributors:[{name:"DeanSui",email:"dean@57blocks.com",commits:1}]},filePathRelative:"jsInterview/jsInterciewQuestion/5.md"};export{e as data};
