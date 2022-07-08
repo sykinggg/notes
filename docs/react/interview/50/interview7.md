@@ -156,7 +156,7 @@ function Page(props) {
 }
 ```
 
-在这些场景下需要将子组件和直接关联的父组件解耦。如果子组件需要在渲染前和父组件进行一些交流，可以进一步使用 [render props](/react/interview/interview8.md)
+在这些场景下需要将子组件和直接关联的父组件解耦。如果子组件需要在渲染前和父组件进行一些交流，可以进一步使用 [render props](/react/interview/interview8)
 
 **context 的 适用范围以及特性**
 ---

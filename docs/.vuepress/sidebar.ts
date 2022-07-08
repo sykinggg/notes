@@ -1,12 +1,14 @@
+import { sidebar } from "vuepress-theme-hope";
 
-   
-import type { SidebarConfig } from '@vuepress/theme-default'
-
-export const sidebar: SidebarConfig = {
+export default sidebar({
+  '/technology/': [
+    '/technology/base.md',
+    '/technology/summarize.md',
+  ],
   '/jsInterview/': [
     {
       text: '第 1 期：基础面试知识点',
-      collapsible: true,
+      collapsable: true,
       children: [
         '/jsInterview/promiseAll.md',
         '/jsInterview/webAnimations.md',
@@ -66,6 +68,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第 2 期：基础面试题',
+      collapsable: true,
       children: [
         '/jsInterview/jsInterciewQuestion/1.md',
         '/jsInterview/jsInterciewQuestion/2.md',
@@ -78,17 +81,19 @@ export const sidebar: SidebarConfig = {
   '/jsNews/': [
     {
       text: 'js 版本',
+      collapsable: true,
       children: [
         '/jsNews/es6News.md',
         '/jsNews/es7News.md',
         '/jsNews/es8News.md',
         '/jsNews/es9News.md',
         '/jsNews/es10News.md',
-        // '/jsNews/es11News.md',
+        '/jsNews/es11News.md',
       ]
     },
     {
       text: 'js 版本 衍生',
+      collapsable: true,
       children: [
         '/jsNews/es6Interview1.md',
         '/jsNews/es6Interview2.md',
@@ -141,6 +146,7 @@ export const sidebar: SidebarConfig = {
   '/mozillajs/': [
     {
       text: '第 1 期：基本对象',
+      collapsable: true,
       children: [
         '/mozillajs/baseObject/intersectionObserver.md',
         '/mozillajs/baseObject/fileReader.md',
@@ -165,6 +171,7 @@ export const sidebar: SidebarConfig = {
   '/mozillaCss/': [
     {
       text: '第 1 期：CSS API',
+      collapsable: true,
       children: [
         '/mozillaCss/reference/universalSelectors.md',
         '/mozillaCss/reference/typeSelectors.md',
@@ -185,6 +192,7 @@ export const sidebar: SidebarConfig = {
   '/js/': [
     {
       text: '第 1 期：调用堆栈',
+      collapsable: true,
       children: [
         '/js/stack/executionStack.md',
         '/js/stack/variableObject.md',
@@ -196,6 +204,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第 2 期：作用域闭包',
+      collapsable: true,
       children: [
         '/js/scope/scopeChain.md',
         '/js/scope/understandingClosures.md',
@@ -204,6 +213,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第 3 期：this 全面解析',
+      collapsable: true,
       children: [
         { text: '【进阶3-1期】JavaScript深入之史上最全--5种this绑定全面解析', link: '/js/this/thisBind.md' },
         { text: '【进阶3-2期】JavaScript深入之重新认识箭头函数的this', link: '/js/this/arrowFunctionThis.md' },
@@ -214,6 +224,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第 4 期：深浅拷贝原理',
+      collapsable: true,
       children: [
         { text: '【进阶4-1期】详细解析赋值、浅拷贝和深拷贝的区别', link: '/js/clone/cloneIntroduction.md' },
         { text: '【进阶4-2期】Object.assign 原理及其实现', link: '/js/clone/objectAssign.md' },
@@ -223,6 +234,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第 5 期：原型Prototype',
+      collapsable: true,
       children: [
         { text: '【进阶5-1期】重新认识构造函数、原型和原型链', link: '/js/prototype/baseProyotype.md' },
         { text: '【进阶5-2期】图解原型链及其继承优缺点', link: '/js/prototype/prototypeInherit.md' },
@@ -231,6 +243,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第 6 期：高阶函数',
+      collapsable: true,
       children: [
         { text: '【进阶6-1期】JavaScript 高阶函数浅析', link: '/js/high/baseHigh.md' },
         { text: '【进阶6-2期】深入高阶函数应用之柯里化', link: '/js/high/currying.md' },
@@ -239,6 +252,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第 7 期：防抖节流',
+      collapsable: true,
       children: [
         { text: '【进阶7-1期】深入浅出节流函数 throttle', link: '/js/antiShakeThrottling/throttle.md' },
         { text: '【进阶7-2期】深入浅出防抖函数 debounce', link: '/js/antiShakeThrottling/debounce.md' },
@@ -249,12 +263,14 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第 8 期：框架用到的js API',
+      collapsable: true,
       children: [
         { text: '【进阶8-1期】Object.is（）', link: '/js/interview/interview1.md' }
       ]
     },
     {
       text: 'js知识碎片',
+      collapsable: true,
       children: [
         { text: 'js 兼容性', link: '/js/interview/jsCompatible.md' },
         { text: 'event loop', link: '/js/interview/eventLoop.md' },
@@ -265,6 +281,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'js零碎题目',
+      collapsable: true,
       children: [
         { text: '用递归算法实现，数组长度为5且元素的随机数在2-32间不重复的值', link: '/js/scattered/interview50/interview1.md' },
         { text: '写一个方法去掉字符串中的空格', link: '/js/scattered/interview50/interview2.md' },
@@ -275,6 +292,7 @@ export const sidebar: SidebarConfig = {
   '/css/': [
     {
       text: '零散记录',
+      collapsable: true,
       children: [
         '/css/interview/tools.md',
         '/css/interview/frame.md',
@@ -304,6 +322,7 @@ export const sidebar: SidebarConfig = {
   '/html/': [
     {
       text: '零散记录',
+      collapsable: true,
       children: [
         '/html/interview/baseInterview.md',
         '/html/interview/regular.md',
@@ -378,6 +397,7 @@ export const sidebar: SidebarConfig = {
   '/browser/': [
     {
       text: '基础浏览器',
+      collapsable: true,
       children: [
         { text: '第一套浏览器综合基础面试题', link: '/browser/interview/baseInterview.md' },
         { text: 'Quirks模式是什么？它和Standards模式有什么区别?', link: '/browser/interview/quirksStandards.md' },
@@ -393,6 +413,7 @@ export const sidebar: SidebarConfig = {
   '/http/': [
     {
       text: '基础http',
+      collapsable: true,
       children: [
         '/http/interview/crossDomainCookie.md',
         '/http/interview/nestAxios.md',
@@ -405,6 +426,7 @@ export const sidebar: SidebarConfig = {
   '/ILoveDevelop/': [
     {
       text: '概念',
+      collapsable: true,
       children: [
         { text: '基础', link: '/ILoveDevelop/react/principle/base.md' },
         { text: '流程', link: '/ILoveDevelop/react/principle/renderProcess.md' },
@@ -415,6 +437,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '基础',
+      collapsable: true,
       children: [
         { text: 'reactapi', link: '/ILoveDevelop/react/basic/reactApi.md' },
         { text: 'ReactElementapi', link: '/ILoveDevelop/react/basic/reactElement.md' },
@@ -424,6 +447,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '创建更新',
+      collapsable: true,
       children: [
         { text: 'ReactDOM.render', link: '/ILoveDevelop/react/createUpdate/reactDomRender.md' },
         { text: 'setState&forceUpdate', link: '/ILoveDevelop/react/createUpdate/setStateForceUpdate.md' },
@@ -432,6 +456,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '任务调度',
+      collapsable: true,
       children: [
         { text: '全局变量', link: '/ILoveDevelop/react/taskScheduling/globalVariable.md' },
         { text: 'scheduleWork', link: '/ILoveDevelop/react/taskScheduling/scheduleWork.md' },
@@ -463,6 +488,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'commit 阶段',
+      collapsable: true,
       children: [
         { text: 'commitRoot', link: '/ILoveDevelop/react/commit/commitRoot.md' },
         { text: 'invokeGuardedCallback', link: '/ILoveDevelop/react/commit/invokeGuardedCallback.md' },
@@ -476,6 +502,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '功能',
+      collapsable: true,
       children: [
         { text: 'context', link: '/ILoveDevelop/react/features/context.md' },
         { text: 'hydrate', link: '/ILoveDevelop/react/features/hydrate.md' },
@@ -491,6 +518,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'Hooks',
+      collapsable: true,
       children: [
         { text: '基础', link: '/ILoveDevelop/react/hooks/start.md' },
         { text: 'useState', link: '/ILoveDevelop/react/hooks/useState.md' },
@@ -503,6 +531,7 @@ export const sidebar: SidebarConfig = {
   '/reactInterview/': [
     {
       text: '第一期：基础概念笔记',
+      collapsable: true,
       children: [
         '/reactInterview/inelegantHook.md',
         '/reactInterview/interview1.md',
@@ -515,6 +544,7 @@ export const sidebar: SidebarConfig = {
   '/webpack/': [
     {
       text: '第1期：基础概念笔记',
+      collapsable: true,
       children: [
         { text: '整理1', link: '/webpack/interview/webpackInterview.md' },
         { text: '基本概念', link: '/webpack/interview/baseInterview.md' },
@@ -530,18 +560,21 @@ export const sidebar: SidebarConfig = {
     '/esbuild/description.md',
     {
       text: 'API',
+      collapsable: true,
       children: [
         '/esbuild/api/transform.md',
       ]
     },
     {
       text: 'contentTypes',
+      collapsable: true,
       children: [
         '/esbuild/contentTypes/content.md',
       ]
     },
     {
       text: 'plugins',
+      collapsable: true,
       children: [
         '/esbuild/plugins/plugins.md',
       ]
@@ -554,6 +587,7 @@ export const sidebar: SidebarConfig = {
   '/git/': [
     {
       text: 'git 基础整理',
+      collapsable: true,
       children: [
         { text: 'git基础面试', link: '/git/indx.md' },
         { text: 'git rebase', link: '/git/rebase.md' },
@@ -566,6 +600,7 @@ export const sidebar: SidebarConfig = {
   '/umi/': [
     {
       text: 'umi 整理',
+      collapsable: true,
       children: [
         { text: '@umijs/plugin-dva', link: '/umi/interview/pluginDva.md' },
         { text: '@umijs/plugin-qiankun', link: '/umi/interview/pluginQiankun.md' },
@@ -575,6 +610,7 @@ export const sidebar: SidebarConfig = {
   '/vue/': [
     {
       text: '第 1 期：源码解读-准备工作',
+      collapsable: true,
       children: [
         { text: 'flow', link: '/vue/prepare/flow.md' },
         { text: '源码目录', link: '/vue/prepare/directory.md' },
@@ -584,6 +620,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第2期：源码解读-数据驱动',
+      collapsable: true,
       children: [
         { text: '概述', link: '/vue/data-driven/new-vue.md' },
         { text: 'newVue', link: '/vue/data-driven/new-vue.md' },
@@ -596,6 +633,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第3期：源码解读-组件化',
+      collapsable: true,
       children: [
         { text: '概述', link: '/vue/components/outline.md' },
         { text: 'createComponent', link: '/vue/components/create-component.md' },
@@ -608,6 +646,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第4期：源码解读-深入响应式原理',
+      collapsable: true,
       children: [
         { text: '概述', link: '/vue/reactive/outline.md' },
         { text: '响应式对象', link: '/vue/reactive/reactive-object.md' },
@@ -623,6 +662,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第5期：源码解读-编译',
+      collapsable: true,
       children: [
         { text: '概述', link: '/vue/compile/outline.md' },
         { text: '编译入口', link: '/vue/compile/entrance.md' },
@@ -633,6 +673,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第6期：源码解读-扩展',
+      collapsable: true,
       children: [
         { text: '概述', link: '/vue/extend/outline.md' },
         { text: 'event', link: '/vue/extend/event.md' },
@@ -645,6 +686,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第7期：源码解读-VueRouter',
+      collapsable: true,
       children: [
         { text: '概述', link: '/vue/vue-router/outline.md' },
         { text: '路由注册', link: '/vue/vue-router/install.md' },
@@ -655,6 +697,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第8期：源码解读-Vuex',
+      collapsable: true,
       children: [
         { text: '概述', link: '/vue/vuex/idex.md' },
         { text: 'Vuex初始化', link: '/vue/vuex/init.md' },
@@ -664,6 +707,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第9期：基础面试题',
+      collapsable: true,
       children: [
         { text: '整理1', link: '/vue/interview/baseInterview.md' },
         { text: '整理2', link: '/vue/interview/baseInterviewSecond.md' },
@@ -681,6 +725,7 @@ export const sidebar: SidebarConfig = {
   '/react/': [
     {
       text: '第 1 期：React理念',
+      collapsable: true,
       children: [
         { text: 'React理念', link: '/react/preparation/idea.md' },
         { text: '老的React架构', link: '/react/preparation/oldConstructure.md' },
@@ -693,6 +738,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第2期：前置知识',
+      collapsable: true,
       children: [
         { text: '源码的文件结构', link: '/react/preparation/file.md' },
         { text: '调试源码', link: '/react/preparation/source.md' },
@@ -701,6 +747,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第3期：render阶段',
+      collapsable: true,
       children: [
         { text: '流程概览', link: '/react/process/reconciler.md' },
         { text: 'beginWork', link: '/react/process/beginWork.md' },
@@ -709,6 +756,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第4期：commit阶段',
+      collapsable: true,
       children: [
         { text: '流程概览', link: '/react/renderer/prepare.md' },
         { text: 'beforemutation阶段', link: '/react/renderer/beforeMutation.md' },
@@ -718,6 +766,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第5期：Diff算法',
+      collapsable: true,
       children: [
         { text: '概览', link: '/react/diff/prepare.md' },
         { text: '单节点Diff', link: '/react/diff/one.md' },
@@ -726,6 +775,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第6期：状态更新',
+      collapsable: true,
       children: [
         { text: '流程概览', link: '/react/state/prepare.md' },
         { text: '心智模型', link: '/react/state/mental.md' },
@@ -737,6 +787,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第7期：Hooks',
+      collapsable: true,
       children: [
         { text: 'Hooks理念', link: '/react/hooks/prepare.md' },
         { text: '极简Hooks实现', link: '/react/hooks/create.md' },
@@ -749,6 +800,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第8期：ConcurrentMode',
+      collapsable: true,
       children: [
         { text: '概览', link: '/react/concurrent/prepare.md' },
         { text: 'Scheduler的原理与实现', link: '/react/concurrent/scheduler.md' },
@@ -759,6 +811,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第9期：基础概念',
+      collapsable: true,
       children: [
         { text: '概述', link: '/react/principle/basePrinciple.md' },
         { text: '组件类-api', link: '/react/principle/componentApi.md' },
@@ -776,6 +829,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '第10期：基础面试题',
+      collapsable: true,
       children: [
         { text: '什么时候使用状态管理器?', link: '/react/interview/50/interview1.md' },
         { text: 'render函数中return如果没有使用()会有什么问题?', link: '/react/interview/50/interview2.md' },
@@ -839,6 +893,7 @@ export const sidebar: SidebarConfig = {
   '/algorithm/': [
     {
       text: '第 1 期：基础面试题',
+      collapsable: true,
       children: [
         { text: '第一套综合基础面试题', link: '/algorithm/interview/baseInterview.md' }
       ]
@@ -878,6 +933,7 @@ export const sidebar: SidebarConfig = {
   '/designFrame/': [
     {
       text: '库设计模式',
+      collapsable: true,
       children: [
         '/designFrame/jquery.md',
         '/designFrame/underscore.md',
@@ -892,6 +948,7 @@ export const sidebar: SidebarConfig = {
   '/ts/': [
     {
       text: 'TypeScript 项目',
+      collapsable: true,
       children: [
         '/ts/project/unknownAny.md',
         '/ts/project/inDepthTs.md',
@@ -904,6 +961,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'TypeScript 类型系统',
+      collapsable: true,
       children: [
         '/ts/typings/overview',
         '/ts/typings/migrating',
@@ -933,6 +991,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'JSX',
+      collapsable: true,
       children: [
         '/ts/jsx/support',
         '/ts/jsx/reactJSX',
@@ -941,6 +1000,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'TypeScript 错误提示',
+      collapsable: true,
       children: [
         '/ts/error/interpreting',
         '/ts/error/common'
@@ -948,6 +1008,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'TIPs',
+      collapsable: true,
       children: [
         '/ts/tips/stringBasedEmuns',
         '/ts/tips/nominalTyping',
@@ -974,6 +1035,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'TypeScript 编译原理',
+      collapsable: true,
       children: [
         '/ts/compiler/overview',
         '/ts/compiler/program',
@@ -987,6 +1049,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'TypeScript FAQs',
+      collapsable: true,
       children: [
         '/ts/faqs/common-bug-not-bugs',
         '/ts/faqs/common-feature-request',
@@ -1005,6 +1068,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '版本差异',
+      collapsable: true,
       children: [
         '/ts/new/typescript-3.9',
         '/ts/new/typescript-3.8',
@@ -1015,6 +1079,7 @@ export const sidebar: SidebarConfig = {
   '/performance/': [
     {
       text: 'vue',
+      collapsable: true,
       children: [
         '/performance/vue/vue2Base.md',
         '/performance/vue/vue2Table.md',
@@ -1023,6 +1088,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: 'react',
+      collapsable: true,
       children: [
         '/performance/react/reactBase.md',
         '/performance/react/reactTypescript.md',
@@ -1030,6 +1096,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '基础优化',
+      collapsable: true,
       children: [
         '/performance/base/drag1.md',
         '/performance/base/cache.md',
@@ -1052,6 +1119,7 @@ export const sidebar: SidebarConfig = {
   '/nginx/': [
     {
       text: '基础',
+      collapsable: true,
       children: [
         '/nginx/base.md',
         '/nginx/nginxComprehensiveScene.md',
@@ -1061,6 +1129,7 @@ export const sidebar: SidebarConfig = {
   '/react-illustration-series/': [
     {
       text: '基础概念',
+      collapsable: true,
       children: [
         '/react-illustration-series/main/macro-structure.md',
         '/react-illustration-series/main/workloop.md',
@@ -1069,6 +1138,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '运行核心',
+      collapsable: true,
       children: [
         '/react-illustration-series/main/reconciler-workflow.md',
         '/react-illustration-series/main/bootstrap.md',
@@ -1082,6 +1152,7 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '数据管理',
+      collapsable: true,
       children: [
         '/react-illustration-series/main/state-effects.md',
         '/react-illustration-series/main/hook-summary.md',
@@ -1092,12 +1163,14 @@ export const sidebar: SidebarConfig = {
     },
     {
       text: '交互',
+      collapsable: true,
       children: [
         '/react-illustration-series/main/synthetic-event.md',
       ],
     },
     {
       text: '高频算法',
+      collapsable: true,
       children: [
         '/react-illustration-series/algorithm/bitfiled.md',
         '/react-illustration-series/algorithm/heapsort.md',
@@ -1112,8 +1185,4 @@ export const sidebar: SidebarConfig = {
     '/cli/base.md',
     '/cli/customCli.md',
   ],
-  '/technology/': [
-    '/technology/base.md',
-    '/technology/summarize.md',
-  ],
-}
+});

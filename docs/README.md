@@ -1,37 +1,105 @@
 ---
 home: true
-lang: zh-CN
-heroText: 笔记!
+icon: home
+title: 项目主页
 heroImage: /logo.svg
-
-# action:
-#   - text: 数据结构 💡
+heroText: 笔记
+tagline: 君子藏器于身 待时而动 天下有道则见 无道则隐
+# actions:
+#   - text: 使用指南 💡
+#     link: /guide/
 #     type: primary
 
-#   - text: ES6
+#   - text: 博客主页 🏠
+#     link: /
 
 features:
   - title: 复合面试题
+    icon: markdown
     details: 面试题的一部分汇总
     link: /algorithm/interview/baseInterview/
+
   - title: mozilla-js
+    icon: slides
     details: mozilla js 文档
     link: /mozillajs/baseObject/symbol/
+
   - title: mozilla-css
+    icon: layout
     details: mozilla css 文档
     link: /mozillaCss/reference/universalSelectors/
+
   - title: js 概念
+    icon: comment
     details: js 基础概念
     link: /js/stack/executionStack/
+
   - title: css
+    icon: info
     details: css 面试题
     link: /css/interview/baseCss/
+
   - title: html
+    icon: blog
     details: html 面试题
     link: /html/interview/linkImport/
+
   - title: 浏览器 面试题
+    icon: palette
     details: 浏览器 面试题
     link: /browser/interview/baseInterview/
+
+  # - title: 深色模式
+  #   icon: contrast
+  #   details: 可以自由切换浅色模式与深色模式
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/interface/darkmode.html
+
+  # - title: 完整的无障碍支持
+  #   icon: support
+  #   details: 为你的网站带来完整的无障碍支持
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/interface/accessibility.html
+
+  # - title: 文章加密
+  #   icon: lock
+  #   details: 你可以为你的特定页面或特定目录进行加密，以便陌生人不能随意访问它们
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/encrypt.html
+
+  # - title: 复制按钮
+  #   icon: copy
+  #   details: 一键复制代码块中的代码
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/copy-code.html
+
+  # - title: 图片预览
+  #   icon: pic
+  #   details: 像相册一样允许你浏览、缩放并分享你的页面图片
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/photo-swipe.html
+
+  # - title: SEO 增强
+  #   icon: config
+  #   details: 将最终生成的网页针对搜索引擎进行优化。
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/advanced/seo.html
+
+  # - title: Sitemap
+  #   icon: sitemap
+  #   details: 自动为你的网站生成 Sitemap
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/advanced/sitemap.html
+
+  # - title: Feed 支持
+  #   icon: rss
+  #   details: 生成你的 Feed，并通知你的用户订阅它
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/advanced/feed.html
+
+  # - title: PWA 支持
+  #   icon: mobile
+  #   details: 让你的网站更像一个 APP
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/advanced/pwa.html
+
+  # - title: 更多新特性
+  #   icon: more
+  #   details: 包括图标支持、全屏按钮、返回顶部按钮等
+  #   link: https://vuepress-theme-hope.github.io/v2/zh/guide/feature/
+copyright: false
+footer: MIT Licensed | Copyright © 2019-present Mr.Hope
 ---
 
 * 复合面试题

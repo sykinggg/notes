@@ -105,7 +105,7 @@ fiberRootNode.current = rootFiber;
 
 本文介绍了`Fiber树`的构建与替换过程，这个过程伴随着`DOM`的更新。
 
-那么在构建过程中每个`Fiber节点`具体是如何创建的呢？会在`架构篇`的[render阶段](react/process/reconciler.md)讲解。
+那么在构建过程中每个`Fiber节点`具体是如何创建的呢？会在`架构篇`的[render阶段](react/process/reconciler)讲解。
 
 ## 参考资料
 
