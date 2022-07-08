@@ -2,7 +2,7 @@
 
 ## 概览
 
-通过前文[宏观包结构](./macro-structure.md)和[两大工作循环](./workloop.md)中的介绍, 对`react-reconciler`包有一定了解.
+通过前文[宏观包结构](./macro-structure)和[两大工作循环](./workloop)中的介绍, 对`react-reconciler`包有一定了解.
 
 此处先归纳一下`react-reconciler`包的主要作用, 将主要功能分为 4 个方面:
 

@@ -1140,7 +1140,7 @@ module.exports = function xhrAdapter(config) {
 }
 ```
 
-而实际上现在 `fetch` 支持的很好了，阿里开源的 [umi-request](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fumijs%2Fumi-request%2Fblob%2Fmaster%2FREADME_zh-CN.md) 请求库，就是用`fetch`封装的，而不是用`XMLHttpRequest`。 文章末尾，大概讲述下 `umi-request` 和 `axios` 的区别。
+而实际上现在 `fetch` 支持的很好了，阿里开源的 [umi-request](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fumijs%2Fumi-request%2Fblob%2Fmaster%2FREADME_zh-CN) 请求库，就是用`fetch`封装的，而不是用`XMLHttpRequest`。 文章末尾，大概讲述下 `umi-request` 和 `axios` 的区别。
 
 `http`
 
@@ -1416,7 +1416,7 @@ CancelToken.prototype.throwIfRequested = function throwIfRequested() {
 
 ### umi-request 阿里开源的请求库
 
-[umi-request github 仓库](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fumijs%2Fumi-request%2Fblob%2Fmaster%2FREADME_zh-CN.md)
+[umi-request github 仓库](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fumijs%2Fumi-request%2Fblob%2Fmaster%2FREADME_zh-CN)
 
 `umi-request` 与 `fetch`, `axios` 异同。
 

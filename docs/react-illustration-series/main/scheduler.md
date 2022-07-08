@@ -4,9 +4,9 @@
 
 在深入分析之前, 建议回顾一下往期与`scheduler`相关的文章(这 3 篇文章不长, 共 10 分钟能浏览完):
 
-- [React 工作循环](./workloop.md): 从宏观的角度介绍 React 体系中两个重要的循环, 其中`任务调度循环`就是本文的主角.
-- [reconciler 运作流程](./reconciler-workflow.md): 从宏观的角度介绍了`react-reconciler`包的核心作用, 并把`reconciler`分为了 4 个阶段. 其中第 2 个阶段`注册调度任务`串联了`scheduler`包和`react-reconciler`包, 其实就是`任务调度循环`中的一个任务(`task`).
-- [React 中的优先级管理](./priority.md): 介绍了 React 体系中的 3 中优先级的管理, 列出了源码中`react-reconciler`与`scheduler`包中关于优先级的转换思路. 其中`SchedulerPriority`控制`任务调度循环`中循环的顺序.
+- [React 工作循环](./workloop): 从宏观的角度介绍 React 体系中两个重要的循环, 其中`任务调度循环`就是本文的主角.
+- [reconciler 运作流程](./reconciler-workflow): 从宏观的角度介绍了`react-reconciler`包的核心作用, 并把`reconciler`分为了 4 个阶段. 其中第 2 个阶段`注册调度任务`串联了`scheduler`包和`react-reconciler`包, 其实就是`任务调度循环`中的一个任务(`task`).
+- [React 中的优先级管理](./priority): 介绍了 React 体系中的 3 中优先级的管理, 列出了源码中`react-reconciler`与`scheduler`包中关于优先级的转换思路. 其中`SchedulerPriority`控制`任务调度循环`中循环的顺序.
 
 了解上述基础知识之后, 再谈`scheduler`原理, 其实就是在大的框架下去添加实现细节, 相对较为容易. 下面就正式进入主题.
 
@@ -197,7 +197,7 @@ var timerQueue = [];
 
 注意:
 
-- `taskQueue`是一个小顶堆数组, 关于堆排序的详细解释, 可以查看[React 算法之堆排序](../algorithm/heapsort.md).
+- `taskQueue`是一个小顶堆数组, 关于堆排序的详细解释, 可以查看[React 算法之堆排序](../algorithm/heapsort).
 - 源码中除了`taskQueue`队列之外还有一个`timerQueue`队列. 这个队列是预留给延时任务使用的, 在 react@17.0.2 版本里面, 从源码中的引用来看, 算一个保留功能, 没有用到.
 
 #### 创建任务
@@ -299,7 +299,7 @@ function flushWork(hasTimeRemaining, initialTime) {
 }
 ```
 
-`flushWork`中调用了`workLoop`. 队列消费的主要逻辑是在`workLoop`函数中, 这就是[React 工作循环](./workloop.md)一文中提到的`任务调度循环`.
+`flushWork`中调用了`workLoop`. 队列消费的主要逻辑是在`workLoop`函数中, 这就是[React 工作循环](./workloop)一文中提到的`任务调度循环`.
 
 ```js
 // 省略部分无关代码
@@ -368,7 +368,7 @@ function workLoop(hasTimeRemaining, initialTime) {
 
 通过上文的分析, 已经覆盖了`scheduler`包中的核心原理. 现在再次回到`react-reconciler`包中, 在调度过程中的关键路径中, 我们还需要理解一些细节.
 
-在[reconciler 运作流程](./reconciler-workflow.md)中总结的 4 个阶段中, `注册调度任务`属于第 2 个阶段, 核心逻辑位于`ensureRootIsScheduled`函数中.
+在[reconciler 运作流程](./reconciler-workflow)中总结的 4 个阶段中, `注册调度任务`属于第 2 个阶段, 核心逻辑位于`ensureRootIsScheduled`函数中.
 现在我们已经理解了`调度原理`, 再次分析`ensureRootIsScheduled`([源码地址](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L674-L736)):
 
 ```js
@@ -402,7 +402,7 @@ function ensureRootIsScheduled(root: FiberRoot, currentTime: number) {
 
 正常情况下, `ensureRootIsScheduled`函数会与`scheduler`包通信, 最后注册一个`task`并等待回调.
 
-1. 在`task`注册完成之后, 会设置`fiberRoot`对象上的属性(`fiberRoot`是 react 运行时中的重要全局对象, 可参考[React 应用的启动过程](./bootstrap.md#创建全局对象)), 代表现在已经处于调度进行中
+1. 在`task`注册完成之后, 会设置`fiberRoot`对象上的属性(`fiberRoot`是 react 运行时中的重要全局对象, 可参考[React 应用的启动过程](./bootstrap#创建全局对象)), 代表现在已经处于调度进行中
 2. 再次进入`ensureRootIsScheduled`时(比如连续 2 次`setState`, 第 2 次`setState`同样会触发`reconciler运作流程`中的调度阶段), 如果发现处于调度中, 则需要一些节流和防抖措施, 进而保证调度性能.
    1. 节流(判断条件: `existingCallbackPriority === newCallbackPriority`, 新旧更新的优先级相同, 如连续多次执行`setState`), 则无需注册新`task`(继续沿用上一个优先级相同的`task`), 直接退出调用.
    2. 防抖(判断条件: `existingCallbackPriority !== newCallbackPriority`, 新旧更新的优先级不同), 则取消旧`task`, 重新注册新`task`.

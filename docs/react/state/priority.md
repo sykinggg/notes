@@ -1,4 +1,4 @@
-通过[更新的心智模型](/react/state/mental.md)，了解到`更新`具有`优先级`。
+通过[更新的心智模型](/react/state/mental)，了解到`更新`具有`优先级`。
 
 那么什么是`优先级`？`优先级`以什么为依据？如何通过`优先级`决定哪个状态应该先被更新？
 
@@ -6,7 +6,7 @@
 
 ## 什么是优先级
 
-在[React理念一节](/react/preparation/idea.md#理解-响应自然)聊到`React`将人机交互研究的结果整合到真实的`UI`中。具体到`React`运行上这是什么意思呢？
+在[React理念一节](/react/preparation/idea#理解-响应自然)聊到`React`将人机交互研究的结果整合到真实的`UI`中。具体到`React`运行上这是什么意思呢？
 
 `状态更新`由`用户交互`产生，用户心里对`交互`执行顺序有个预期。`React`根据`人机交互研究的结果`中用户对`交互`的预期顺序为`交互`产生的`状态更新`赋予不同优先级。
 
@@ -22,13 +22,13 @@
 
 ## 如何调度优先级
 
-在[新的React结构一节](/react/preparation/newConstructure.md)讲到，`React`通过`Scheduler`调度任务。
+在[新的React结构一节](/react/preparation/newConstructure)讲到，`React`通过`Scheduler`调度任务。
 
 具体到代码，每当需要调度任务时，`React`会调用`Scheduler`提供的方法`runWithPriority`。
 
 该方法接收一个`优先级`常量与一个`回调函数`作为参数。`回调函数`会以`优先级`高低为顺序排列在一个`定时器`中并在合适的时间触发。
 
-对于更新来讲，传递的`回调函数`一般为[状态更新流程概览一节](/react/state/prepare.md#render阶段的开始)讲到的`render阶段的入口函数`。
+对于更新来讲，传递的`回调函数`一般为[状态更新流程概览一节](/react/state/prepare#render阶段的开始)讲到的`render阶段的入口函数`。
 
 > 你可以在[==unstable_runWithPriority== 这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/scheduler/src/Scheduler.js#L217)看到`runWithPriority`方法的定义。在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/scheduler/src/SchedulerPriorities.js)看到`Scheduler`对优先级常量的定义。
 
@@ -146,7 +146,7 @@ fiber.updateQueue = {
 
 ### 如何保证`Update`不丢失
 
-在[上一节例子](/react/state/update.md#例子)中讲到，在`render阶段`，`shared.pending`的环被剪开并连接在`updateQueue.lastBaseUpdate`后面。
+在[上一节例子](/react/state/update#例子)中讲到，在`render阶段`，`shared.pending`的环被剪开并连接在`updateQueue.lastBaseUpdate`后面。
 
 实际上`shared.pending`会被同时连接在`workInProgress updateQueue.lastBaseUpdate`与`current updateQueue.lastBaseUpdate`后面。
 

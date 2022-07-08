@@ -1,8 +1,8 @@
 # fiber 树构造(对比更新)
 
-在前文[fiber 树构造(初次创建)](./fibertree-create.md)一文的介绍中, 演示了`fiber树构造循环`中逐步构造`fiber树`的过程. 由于是初次创建, 所以在构造过程中, 所有节点都是新建, 并没有复用旧节点.
+在前文[fiber 树构造(初次创建)](./fibertree-create)一文的介绍中, 演示了`fiber树构造循环`中逐步构造`fiber树`的过程. 由于是初次创建, 所以在构造过程中, 所有节点都是新建, 并没有复用旧节点.
 
-本节讨论`对比更新`这种情况(在`Legacy`模式下进行分析). 在阅读本节之前, 最好对[fiber 树构造(初次创建)](./fibertree-create.md)有一些了解, 其中有很多相似逻辑不再重复叙述, 本节重点突出`对比更新`与`初次创建`的不同之处.
+本节讨论`对比更新`这种情况(在`Legacy`模式下进行分析). 在阅读本节之前, 最好对[fiber 树构造(初次创建)](./fibertree-create)有一些了解, 其中有很多相似逻辑不再重复叙述, 本节重点突出`对比更新`与`初次创建`的不同之处.
 
 本节示例代码如下([codesandbox 地址](https://codesandbox.io/s/angry-williams-l1mze?file=/src/App.js)):
 
@@ -53,7 +53,7 @@ export default App;
 
 ## 更新入口
 
-前文[reconciler 运作流程](./reconciler-workflow.md#输入)中总结的 4 个阶段(从输入到输出), 其中承接输入的函数只有`scheduleUpdateOnFiber`([源码地址](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L517-L619)).在`react-reconciler`对外暴露的 api 函数中, 只要涉及到需要改变 fiber 的操作(无论是`首次渲染`或`对比更新`), 最后都会间接调用`scheduleUpdateOnFiber`, `scheduleUpdateOnFiber`函数是输入链路中的`必经之路`.
+前文[reconciler 运作流程](./reconciler-workflow#输入)中总结的 4 个阶段(从输入到输出), 其中承接输入的函数只有`scheduleUpdateOnFiber`([源码地址](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L517-L619)).在`react-reconciler`对外暴露的 api 函数中, 只要涉及到需要改变 fiber 的操作(无论是`首次渲染`或`对比更新`), 最后都会间接调用`scheduleUpdateOnFiber`, `scheduleUpdateOnFiber`函数是输入链路中的`必经之路`.
 
 ### 3 种更新方式
 
@@ -75,7 +75,7 @@ Component.prototype.setState = function(partialState, callback) {
 };
 ```
 
-在[fiber 树构造(初次创建)](./fibertree-create.md)中的`beginWork`阶段, class 类型的组件初始化完成之后, `this.updater`对象如下([源码链接](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberClassComponent.old.js#L193-L225)):
+在[fiber 树构造(初次创建)](./fibertree-create)中的`beginWork`阶段, class 类型的组件初始化完成之后, `this.updater`对象如下([源码链接](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberClassComponent.old.js#L193-L225)):
 
 ```js
 const classComponentUpdater = {
@@ -151,9 +151,9 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-对于重复`render`, 在[React 应用的启动过程](./bootstrap.md)中已有说明, 调用路径包含`updateContainer-->scheduleUpdateOnFiber`
+对于重复`render`, 在[React 应用的启动过程](./bootstrap)中已有说明, 调用路径包含`updateContainer-->scheduleUpdateOnFiber`
 
-> 故无论从哪个入口进行更新, 最终都会进入`scheduleUpdateOnFiber`, 再次证明`scheduleUpdateOnFiber`是`输入`阶段的必经函数(参考[reconciler 运作流程](./reconciler-workflow.md)).
+> 故无论从哪个入口进行更新, 最终都会进入`scheduleUpdateOnFiber`, 再次证明`scheduleUpdateOnFiber`是`输入`阶段的必经函数(参考[reconciler 运作流程](./reconciler-workflow)).
 
 ## 构造阶段
 
@@ -230,7 +230,7 @@ function markUpdateLaneFromFiberToRoot(
 
 <img :src="$withBase('/assets/react-illustration-series/markupdatelane.png')" alt="demo" />
 
-1. `对比更新`没有直接调用`performSyncWorkOnRoot`, 而是通过调度中心来处理, 由于本示例是在`Legacy`模式下进行, 最后会同步执行`performSyncWorkOnRoot`.(详细原理可以参考[React 调度原理(scheduler)](./scheduler.md)). 所以其调用链路`performSyncWorkOnRoot--->renderRootSync--->workLoopSync`与`初次构造`中的一致.
+1. `对比更新`没有直接调用`performSyncWorkOnRoot`, 而是通过调度中心来处理, 由于本示例是在`Legacy`模式下进行, 最后会同步执行`performSyncWorkOnRoot`.(详细原理可以参考[React 调度原理(scheduler)](./scheduler)). 所以其调用链路`performSyncWorkOnRoot--->renderRootSync--->workLoopSync`与`初次构造`中的一致.
 
 在[renderRootSync](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1490-L1553)中:
 
@@ -259,7 +259,7 @@ function renderRootSync(root: FiberRoot, lanes: Lanes) {
 }
 ```
 
-进入循环构造(`workLoopSync`)前, 会刷新栈帧(调用`prepareFreshStack`)(参考[fiber 树构造(基础准备)](./fibertree-prepare.md#栈帧管理)中`栈帧管理`).
+进入循环构造(`workLoopSync`)前, 会刷新栈帧(调用`prepareFreshStack`)(参考[fiber 树构造(基础准备)](./fibertree-prepare#栈帧管理)中`栈帧管理`).
 
 此时的内存结构如下:
 
@@ -272,7 +272,7 @@ function renderRootSync(root: FiberRoot, lanes: Lanes) {
 
 ### 循环构造
 
-回顾一下[fiber 树构造(初次创建)](./fibertree-create.md)中的介绍. 整个`fiber树构造`是一个深度优先遍历(可参考[React 算法之深度优先遍历](../algorithm/dfs.md)), 其中有 2 个重要的变量`workInProgress`和`current`(可参考[fiber 树构造(基础准备)](./fibertree-prepare.md#双缓冲技术)中介绍的`双缓冲技术`):
+回顾一下[fiber 树构造(初次创建)](./fibertree-create)中的介绍. 整个`fiber树构造`是一个深度优先遍历(可参考[React 算法之深度优先遍历](../algorithm/dfs)), 其中有 2 个重要的变量`workInProgress`和`current`(可参考[fiber 树构造(基础准备)](./fibertree-prepare#双缓冲技术)中介绍的`双缓冲技术`):
 
 - `workInProgress`和`current`都视为指针
 - `workInProgress`指向当前正在构造的`fiber`节点
@@ -383,7 +383,7 @@ function beginWork(
 
 与`初次创建`不同, 在`对比更新`过程中, 如果是`老节点`, 那么`current !== null`, 需要进行对比, 然后决定是否复用老节点及其子树(即`bailout`逻辑).
 
-1. `!includesSomeLane(renderLanes, updateLanes)`这个判断分支, 包含了`渲染优先级`和`update优先级`的比较(详情可以回顾[fiber 树构造(基础准备)](./fibertree-prepare.md#优先级)中`优先级`相关解读), 如果当前节点无需更新, 则会进入`bailout`逻辑.
+1. `!includesSomeLane(renderLanes, updateLanes)`这个判断分支, 包含了`渲染优先级`和`update优先级`的比较(详情可以回顾[fiber 树构造(基础准备)](./fibertree-prepare#优先级)中`优先级`相关解读), 如果当前节点无需更新, 则会进入`bailout`逻辑.
 2. 最后会调用`bailoutOnAlreadyFinishedWork`:
    - 如果同时满足`!includesSomeLane(renderLanes, workInProgress.childLanes)`, 表明该 fiber 节点及其子树都无需更新, 可直接进入回溯阶段(`completeUnitofWork`)
    - 如果不满足`!includesSomeLane(renderLanes, workInProgress.childLanes)`, 意味着子节点需要更新, `clone`并返回子节点.
@@ -421,7 +421,7 @@ function bailoutOnAlreadyFinishedWork(
    - `初次创建`时`fiber`节点没有比较对象, 所以在向下生成子节点的时候没有任何多余的逻辑, 只管创建就行.
    - `对比更新`时需要把`ReactElement`对象与`旧fiber`对象进行比较, 来判断是否需要复用`旧fiber`对象.
 
-注: 本节的重点是`fiber树构造`, 在`对比更新`过程中`reconcileChildren()函数`实现的`diff`算法十分重要, 但是它只是处于算法层面, 对于`diff`算法的实现,在[React 算法之调和算法](../algorithm/diff.md)中单独分析.
+注: 本节的重点是`fiber树构造`, 在`对比更新`过程中`reconcileChildren()函数`实现的`diff`算法十分重要, 但是它只是处于算法层面, 对于`diff`算法的实现,在[React 算法之调和算法](../algorithm/diff)中单独分析.
 
 本节只需要先了解调和函数目的:
 
@@ -601,7 +601,7 @@ updateHostText = function(
 - 执行前: `workInProgress`指向`fiber(div)`节点, 且`current = workInProgress.alternate`有值
 - 执行过程:
   - 在`updateHostComponent()`函数中, 调用`reconcilerChildren()`生成下级子节点.
-  - 需要注意的是, 下级子节点是一个可迭代数组, 会把`fiber.child.sbling`一起构造出来, 同时根据需要设置`fiber.flags`. 在本例中, 下级节点有被删除的情况, 被删除的节点会被添加到父节点的副作用队列中(具体实现方式请参考[React 算法之调和算法](../algorithm/diff.md)).
+  - 需要注意的是, 下级子节点是一个可迭代数组, 会把`fiber.child.sbling`一起构造出来, 同时根据需要设置`fiber.flags`. 在本例中, 下级节点有被删除的情况, 被删除的节点会被添加到父节点的副作用队列中(具体实现方式请参考[React 算法之调和算法](../algorithm/diff)).
 - 执行后: 返回下级节点`fiber(p)`, 移动`workInProgress`指向子节点`fiber(p)`
 
 <img :src="$withBase('/assets/react-illustration-series/unitofwork5(1).png')" alt="demo" />
@@ -677,7 +677,7 @@ updateHostText = function(
 
 <img :src="$withBase('/assets/react-illustration-series/fibertree-beforecommit(1).png')" alt="demo" />
 
-无论是`初次构造`或者是`对比更新`, 当`fiber树构造`完成之后, 余下的逻辑几乎一致, 在[fiber 树渲染](./fibertree-commit.md)中继续讨论.
+无论是`初次构造`或者是`对比更新`, 当`fiber树构造`完成之后, 余下的逻辑几乎一致, 在[fiber 树渲染](./fibertree-commit)中继续讨论.
 
 ## 总结
 

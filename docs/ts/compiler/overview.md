@@ -87,4 +87,4 @@ TypeScript 编译器中还有一些其他文件，为接下来介绍的很多关
 
 `system.ts`，TypeScript 编译器与操作系统的所有交互均通过 `System` 接口进行。接口及其实现（`WScript` 和 `Node`） 均定义在 `system.ts` 中。你可以将其视为*操作环境（OE, Operating Environment）*。
 
-现在对主要文件有一个整体了解了，继续介绍程序（[`Program`](./program.md)）的概念
+现在对主要文件有一个整体了解了，继续介绍程序（[`Program`](./program)）的概念

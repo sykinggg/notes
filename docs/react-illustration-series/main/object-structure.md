@@ -9,7 +9,7 @@
 
 ## react 包
 
-在[React 应用的宏观包结构](./macro-structure.md)中介绍过, 此包定义 react 组件(`ReactElement`)的必要函数, 提供一些操作`ReactElement`对象的 api.
+在[React 应用的宏观包结构](./macro-structure)中介绍过, 此包定义 react 组件(`ReactElement`)的必要函数, 提供一些操作`ReactElement`对象的 api.
 
 所以这个包的核心需要理解`ReactElement`对象, 假设有如下入口函数:
 
@@ -168,7 +168,7 @@ class App_Content extends react_default.a.Component {
 
 ## `react-reconciler` 包
 
-在[宏观结构](./macro-structure.md)中介绍过, `react-reconciler`包是`react`应用的中枢, 连接渲染器(`react-dom`)和调度中心(`scheduler`), 同时自身也负责 fiber 树的构造.
+在[宏观结构](./macro-structure)中介绍过, `react-reconciler`包是`react`应用的中枢, 连接渲染器(`react-dom`)和调度中心(`scheduler`), 同时自身也负责 fiber 树的构造.
 
 对于此包的深入分析, 放在`fiber 树构建`, `reconciler 工作空间`等章节中.
 
@@ -265,7 +265,7 @@ export type Fiber = {|
 
 注意:
 
-- 这里的`fiber`树只是为了和上文中的`ReactElement`树对照, 所以只用观察红色虚线框内的节点. 根节点`HostRootFiber`在[react 应用的启动模式章节中](./bootstrap.md)详细解读.
+- 这里的`fiber`树只是为了和上文中的`ReactElement`树对照, 所以只用观察红色虚线框内的节点. 根节点`HostRootFiber`在[react 应用的启动模式章节中](./bootstrap)详细解读.
 - 其中`<App/>`,`<Content/>`为`ClassComponent`类型的`fiber`节点, 其余节点都是普通`HostComponent`类型节点.
 - `<Content/>`的子节点在`ReactElement`树中是`React.Fragment`, 但是在`fiber`树中`React.Fragment`并没有与之对应的`fiber`节点(`reconciler`阶段对此类型节点做了单独处理, 所以`ReactElement`节点和`fiber`节点不是一对一匹配).
 
@@ -389,7 +389,7 @@ type UpdateQueue<S, A> = {|
 
 ## scheduler 包
 
-如[宏观结构](./macro-structure.md)中所介绍, `scheduler`包负责调度, 在内部维护一个任务队列([taskQueue](https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/Scheduler.js#L63)). 这个队列是一个最小堆数组(详见[React 算法之堆排序](../algorithm/heapsort.md)), 其中存储了 task 对象.
+如[宏观结构](./macro-structure)中所介绍, `scheduler`包负责调度, 在内部维护一个任务队列([taskQueue](https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/Scheduler.js#L63)). 这个队列是一个最小堆数组(详见[React 算法之堆排序](../algorithm/heapsort)), 其中存储了 task 对象.
 
 ### Task 对象
 

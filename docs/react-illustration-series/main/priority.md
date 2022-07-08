@@ -9,7 +9,7 @@
 
 演讲中所展示的`可中断渲染`,`时间切片(time slicing)`,`异步渲染(suspense)`等特性, 在源码中得以实现都依赖于`优先级管理`.
 
-在`React@17.0.2`源码中, 一共有`2套优先级体系`和`1套转换体系`, 在深入分析之前, 再次回顾一下([reconciler 运作流程](./reconciler-workflow.md)):
+在`React@17.0.2`源码中, 一共有`2套优先级体系`和`1套转换体系`, 在深入分析之前, 再次回顾一下([reconciler 运作流程](./reconciler-workflow)):
 
 <img :src="$withBase('/assets/react-illustration-series/reactfiberworkloop.png')" alt="demo" />
 
@@ -27,7 +27,7 @@
 
 > 英文单词`lane`翻译成中文表示"车道, 航道"的意思, 所以很多文章都将`Lanes`模型称为`车道模型`
 
-`Lane`模型的源码在[ReactFiberLane.js](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberLane.js), 源码中大量使用了位运算(有关位运算的讲解, 可以参考[React 算法之位运算](../algorithm/bitfiled.md)).
+`Lane`模型的源码在[ReactFiberLane.js](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberLane.js), 源码中大量使用了位运算(有关位运算的讲解, 可以参考[React 算法之位运算](../algorithm/bitfiled)).
 
 首先引入作者对`Lane`的解释([相应的 pr](https://github.com/facebook/react/pull/18796)), 这里简单概括如下:
 
@@ -101,7 +101,7 @@
 
 分析车道模型的源码([`ReactFiberLane.js`](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberLane.js)中), 可以得到如下结论:
 
-1. 可以使用的比特位一共有 31 位(为什么? 可以参考[React 算法之位运算](../algorithm/bitfiled.md)中的说明).
+1. 可以使用的比特位一共有 31 位(为什么? 可以参考[React 算法之位运算](../algorithm/bitfiled)中的说明).
 2. 共定义了[18 种车道(`Lane/Lanes`)变量](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberLane.js#L74-L103), 每一个变量占有 1 个或多个比特位, 分别定义为`Lane`和`Lanes`类型.
 3. 每一种车道(`Lane/Lanes`)都有对应的优先级, 所以源码中定义了 18 种优先级([LanePriority](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberLane.js#L12-L30)).
 4. 占有低位比特位的`Lane`变量对应的优先级越高
@@ -248,10 +248,10 @@ export function lanePriorityToSchedulerPriority(
 
 ## 优先级使用
 
-通过[reconciler 运作流程](./reconciler-workflow.md)中的归纳, `reconciler`从输入到输出一共经历了 4 个阶段, 在每个阶段中都会涉及到与`优先级`相关的处理. 正是通过`优先级`的灵活运用, `React`实现了`可中断渲染`,`时间切片(time slicing)`,`异步渲染(suspense)`等特性.
+通过[reconciler 运作流程](./reconciler-workflow)中的归纳, `reconciler`从输入到输出一共经历了 4 个阶段, 在每个阶段中都会涉及到与`优先级`相关的处理. 正是通过`优先级`的灵活运用, `React`实现了`可中断渲染`,`时间切片(time slicing)`,`异步渲染(suspense)`等特性.
 
 在理解了优先级的基本思路之后, 接下来就正式进入 react 源码分析中的硬核部分(`scheduler 调度原理`和`fiber树构造`)
 
 ## 总结
 
-本文介绍了 react 源码中有关优先级的部分, 并梳理了 3 种优先级之间的区别和联系. 它们贯穿了[reconciler 运作流程](./reconciler-workflow.md)中的 4 个阶段, 在 react 源码中所占用的代码量比较高, 理解它们的设计思路, 为接下来分析`调度原理`和`fiber构造`打下基础.
+本文介绍了 react 源码中有关优先级的部分, 并梳理了 3 种优先级之间的区别和联系. 它们贯穿了[reconciler 运作流程](./reconciler-workflow)中的 4 个阶段, 在 react 源码中所占用的代码量比较高, 理解它们的设计思路, 为接下来分析`调度原理`和`fiber构造`打下基础.

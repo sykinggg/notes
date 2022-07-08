@@ -66,7 +66,7 @@ function legacyRenderSubtreeIntoContainer(
 
 创建`ReactRoot`的时候会调用`DOMRenderer.createContainer`创建`FiberRoot`，在后期调度更新的过程中这个节点非常重要
 
-[数据结构](/ILoveDevelop/react/basic/reactFiber.md)
+[数据结构](/ILoveDevelop/react/basic/reactFiber)
 
 ```javascript
 function legacyCreateRootFromDOMContainer(
@@ -117,7 +117,7 @@ ReactRoot.prototype.render = function(
 
 其中`DOMRenderer`是`react-reconciler/src/ReactFiberReconciler`，他的`updateContainer`如下在这里计算了一个时间，这个时间叫做`expirationTime`，顾名思义就是这次更新的 **超时时间**。
 
-[超时时间](/ILoveDevelop/react/createUpdate/expirationTime.md)
+[超时时间](/ILoveDevelop/react/createUpdate/expirationTime)
 
 然后调用了`updateContainerAtExpirationTime`，在这个方法里调用了`scheduleRootUpdate`就非常重要了
 
@@ -165,7 +165,7 @@ export function updateContainerAtExpirationTime(
 
 首先要生成一个`update`，不管是`setState`还是`ReactDOM.render`造成的 React 更新，都会生成一个叫`update`的对象，并且会赋值给`Fiber.updateQueue`
 
-[关于 update](/ILoveDevelop/react/basic/reactFiber.md)
+[关于 update](/ILoveDevelop/react/basic/reactFiber)
 
 然后就是调用`scheduleWork`。注意到这里之前`setState`和`ReactDOM.render`是不一样，但进入`schedulerWork`之后，就是任务调度的事情了，跟之前是怎么调用的没有任何关系
 

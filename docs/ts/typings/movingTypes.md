@@ -74,7 +74,7 @@ bar = 'Hello World'; // ok
 bar = 'anything else'; // Error
 ```
 
-在这个例子里，`bar` 有字面量类型 `Hello World`，在[字面量类型](./literals.md)章节已经深入讨论。
+在这个例子里，`bar` 有字面量类型 `Hello World`，在[字面量类型](./literals)章节已经深入讨论。
 
 ## 捕获键的名称
 

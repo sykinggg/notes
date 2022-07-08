@@ -380,7 +380,7 @@ function throttle(fn, ms) {
 }
 ```
 
-注：原文自定义实现的节流函数有问题，节流函数的详细实现和解析可以查看，[【进阶7-1期】深入浅出节流函数 throttle](/js/antiShakeThrottling/throttle.md)
+注：原文自定义实现的节流函数有问题，节流函数的详细实现和解析可以查看，[【进阶7-1期】深入浅出节流函数 throttle](/js/antiShakeThrottling/throttle)
 
 的实现如下：
 

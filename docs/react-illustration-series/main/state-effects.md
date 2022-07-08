@@ -46,7 +46,7 @@ export type Fiber = {|
 3. `fiber.firstEffect`: 单向链表, 指向第一个副作用 `fiber` 节点.
 4. `fiber.lastEffect`: 单向链表, 指向最后一个副作用 `fiber` 节点.
 
-通过前文`fiber树构造`我们知道, 单个`fiber`节点的副作用队列最后都会上移到根节点上. 所以在`commitRoot`阶段中, `react`提供了 3 种处理副作用的方式(详见[fiber 树渲染](./fibertree-commit.md#渲染)).
+通过前文`fiber树构造`我们知道, 单个`fiber`节点的副作用队列最后都会上移到根节点上. 所以在`commitRoot`阶段中, `react`提供了 3 种处理副作用的方式(详见[fiber 树渲染](./fibertree-commit#渲染)).
 
 另外, `副作用`的设计可以理解为对`状态`功能不足的补充.
 
@@ -161,7 +161,7 @@ function App() {
 
 这里有 2 个细节:
 
-1. `useEffect(function(){}, [])`中的函数是[异步执行](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L2290-L2295), 因为它经过了调度中心(具体实现可以回顾[调度原理](./scheduler.md)).
+1. `useEffect(function(){}, [])`中的函数是[异步执行](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L2290-L2295), 因为它经过了调度中心(具体实现可以回顾[调度原理](./scheduler)).
 2. `useLayoutEffect`和`Class组件`中的`componentDidMount,componentDidUpdate`从调用时机上来讲是等价的, 因为他们都在`commitRoot->commitLayoutEffects`函数中被调用.
    - 误区: 虽然官网文档推荐尽可能使用标准的 `useEffect` 以避免阻塞视觉更新 , 所以很多开发者使用`useEffect`来代替`componentDidMount,componentDidUpdate`是不准确的, 如果完全类比, `useLayoutEffect`比`useEffect`更符合`componentDidMount,componentDidUpdate`的定义.
 

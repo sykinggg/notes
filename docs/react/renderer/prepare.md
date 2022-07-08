@@ -1,4 +1,4 @@
-上一章[最后一节](/react/process/completeWork.md#流程结尾)介绍了，`commitRoot`方法是`commit阶段`工作的起点。`fiberRootNode`会作为传参。
+上一章[最后一节](/react/process/completeWork#流程结尾)介绍了，`commitRoot`方法是`commit阶段`工作的起点。`fiberRootNode`会作为传参。
 
 ```js
 commitRoot(root);

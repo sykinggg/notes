@@ -107,7 +107,7 @@ const hook: Hook = {
 > 你可以在[这里](https://github.com/acdlite/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberHooks.new.js#L546)看到创建`hook`的逻辑
 
 
-其中除`memoizedState`以外字段的意义与上一章介绍的[updateQueue](/react/state/update.md#updatequeue)类似。
+其中除`memoizedState`以外字段的意义与上一章介绍的[updateQueue](/react/state/update#updatequeue)类似。
 
 ## memoizedState
 

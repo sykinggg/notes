@@ -8,7 +8,7 @@
 
 > `Cannot find name ga`, `Cannot find name $`, `Cannot find module jquery`
 
-你可能在使用第三方的库（如：google analytics），但是你并没有 `declare` 的声明。在没有声明它们之前，TypeScript 试图避免错误和使用变量。因此在使用一些额外的库时，你需要明确的声明使用的任何变量（[如何修复它](../typings/ambient.md)）。
+你可能在使用第三方的库（如：google analytics），但是你并没有 `declare` 的声明。在没有声明它们之前，TypeScript 试图避免错误和使用变量。因此在使用一些额外的库时，你需要明确的声明使用的任何变量（[如何修复它](../typings/ambient)）。
 
 ## TS2307
 
@@ -16,7 +16,7 @@
 
 > `Cannot find module 'underscore'`
 
-你可能把第三方的库作为模块（[移步模块](../project/modules.md)）来使用，并且没有一个与之对应的环境声明文件（[更多声明文件信息](../typings/ambient.md)）。
+你可能把第三方的库作为模块（[移步模块](../project/modules)）来使用，并且没有一个与之对应的环境声明文件（[更多声明文件信息](../typings/ambient)）。
 
 ## TS1148
 
@@ -24,7 +24,7 @@
 
 > `Cannot compile modules unless the '--module' flag provided`
 
-请查看[模块](../project/modules.md)章节
+请查看[模块](../project/modules)章节
 
 ## 捕获不能有类型注解的简短变量
 

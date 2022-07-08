@@ -221,7 +221,7 @@ let reversedNums = numArr.reverse();
 reversedNums = ['1', '2']; // Error
 ```
 
-当稍后在 [环境声明](./ambient.md) 章节中提及 `lib.d.ts` 时，会讨论更多关于 `Array<T>` 的信息。
+当稍后在 [环境声明](./ambient) 章节中提及 `lib.d.ts` 时，会讨论更多关于 `Array<T>` 的信息。
 
 ## 联合类型
 

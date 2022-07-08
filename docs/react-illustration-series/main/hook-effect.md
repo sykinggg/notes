@@ -1,6 +1,6 @@
 # Hook 原理(副作用 Hook)
 
-本节建立在前文[Hook 原理(概览)](./hook-summary.md)和[Hook 原理(状态 Hook)](./hook-state.md)的基础之上, 重点讨论`useEffect, useLayoutEffect`等标准的`副作用Hook`.
+本节建立在前文[Hook 原理(概览)](./hook-summary)和[Hook 原理(状态 Hook)](./hook-state)的基础之上, 重点讨论`useEffect, useLayoutEffect`等标准的`副作用Hook`.
 
 ## 创建 Hook
 
@@ -158,7 +158,7 @@ export type Effect = {|
 
 ## 处理 Effect 回调
 
-完成`fiber树构造`后, 逻辑会进入`渲染`阶段. 通过[fiber 树渲染](./fibertree-commit.md)中的介绍, 在`commitRootImpl`函数中, 整个渲染过程被 3 个函数分布实现:
+完成`fiber树构造`后, 逻辑会进入`渲染`阶段. 通过[fiber 树渲染](./fibertree-commit)中的介绍, 在`commitRootImpl`函数中, 整个渲染过程被 3 个函数分布实现:
 
 1. [commitBeforeMutationEffects](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L2256-L2300)
 2. [commitMutationEffects](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L2302-L2383)
@@ -191,7 +191,7 @@ function commitBeforeMutationEffects() {
 }
 ```
 
-注意: 由于`flushPassiveEffects`被包裹在`scheduleCallback`回调中, 由`调度中心`来处理, 且参数是`NormalSchedulerPriority`, 故这是一个异步回调(具体原理可以回顾[React 调度原理(scheduler)](./scheduler.md)).
+注意: 由于`flushPassiveEffects`被包裹在`scheduleCallback`回调中, 由`调度中心`来处理, 且参数是`NormalSchedulerPriority`, 故这是一个异步回调(具体原理可以回顾[React 调度原理(scheduler)](./scheduler)).
 
 由于`scheduleCallback(NormalSchedulerPriority,callback)`是异步的, `flushPassiveEffects`并不会立即执行. 此处先跳过`flushPassiveEffects`的分析, 继续跟进`commitRoot`.
 

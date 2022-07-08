@@ -1,6 +1,6 @@
 # Hook 原理(概览)
 
-在前文[状态与副作用](./state-effects.md)中, 总结了`class组件, function组件`中通过`api`去改变`fiber节点`的`状态`和`副作用`. 其中对于`function组件`来讲, 其内部则需要依靠`Hook`来实现.
+在前文[状态与副作用](./state-effects)中, 总结了`class组件, function组件`中通过`api`去改变`fiber节点`的`状态`和`副作用`. 其中对于`function组件`来讲, 其内部则需要依靠`Hook`来实现.
 
 官方文档上专门用了一个版块来介绍[Hook](https://zh-hans.reactjs.org/docs/hooks-intro.html), 这里摘抄了几个比较关心的问题(其他`FAQ`请移步官网):
 
@@ -22,7 +22,7 @@
 
 ## Hook 与 Fiber
 
-通过官网文档的讲解, 能快速掌握`Hook`的使用. 再结合前文[状态与副作用](./state-effects.md)的介绍, 我们知道使用`Hook`最终也是为了控制`fiber节点`的`状态`和`副作用`. 从`fiber`视角, 状态和副作用相关的属性如下(这里不再解释单个属性的意义, 可以回顾[状态与副作用](./state-effects.md)):
+通过官网文档的讲解, 能快速掌握`Hook`的使用. 再结合前文[状态与副作用](./state-effects)的介绍, 我们知道使用`Hook`最终也是为了控制`fiber节点`的`状态`和`副作用`. 从`fiber`视角, 状态和副作用相关的属性如下(这里不再解释单个属性的意义, 可以回顾[状态与副作用](./state-effects)):
 
 ```js
 export type Fiber = {|
@@ -110,7 +110,7 @@ export type HookType =
 
 官网上已经将其分为了 2 个类别, 状态`Hook`(`State Hook`), 和副作用`Hook`(`Effect Hook`).
 
-这里我们可以结合前文[状态与副作用](./state-effects.md), 从`fiber`的视角去理解`状态Hook`与`副作用Hook`的区别.
+这里我们可以结合前文[状态与副作用](./state-effects), 从`fiber`的视角去理解`状态Hook`与`副作用Hook`的区别.
 
 ### 状态 Hook
 
@@ -118,7 +118,7 @@ export type HookType =
 
 广义上讲, 只要能实现数据持久化`且没有副作用`的`Hook`, 均可以视为`状态Hook`, 所以还包括`useContext, useRef, useCallback, useMemo`等. 这类`Hook`内部没有使用`useState/useReduer`, 但是它们也能实现多次`render`时, 保持其初始值不变(即数据持久化)且没有任何`副作用`.
 
-得益于[双缓冲技术(double buffering)](./fibertree-prepare.md#双缓冲技术), 在多次`render`时, 以`fiber`为载体, 保证复用同一个`Hook`对象, 进而实现数据持久化. 具体实现细节, 在`Hook原理(状态)`章节中讨论.
+得益于[双缓冲技术(double buffering)](./fibertree-prepare#双缓冲技术), 在多次`render`时, 以`fiber`为载体, 保证复用同一个`Hook`对象, 进而实现数据持久化. 具体实现细节, 在`Hook原理(状态)`章节中讨论.
 
 ### 副作用 Hook
 
@@ -267,7 +267,7 @@ const RE_RENDER_LIMIT = 25;
 1. `currentlyRenderingFiber`: 当前正在构造的 fiber, 等同于 workInProgress
 2. `currentHook 与 workInProgressHook`: 分别指向`current.memoizedState`和`workInProgress.memoizedState`
 
-注: 有关`current`和`workInProgress`的区别, 请回顾[双缓冲技术(double buffering)](./fibertree-prepare.md#双缓冲技术)
+注: 有关`current`和`workInProgress`的区别, 请回顾[双缓冲技术(double buffering)](./fibertree-prepare#双缓冲技术)
 
 ### renderWithHooks 函数
 

@@ -186,9 +186,9 @@ function resetStack() {
 
 他们最终都要调用`performWork`
 
-[关于scheduleCallbackWithExpirationTime的看](/ILoveDevelop/react/taskScheduling/reactScheduler.md)
+[关于scheduleCallbackWithExpirationTime的看](/ILoveDevelop/react/taskScheduling/reactScheduler)
 
-[performWork阶段](/ILoveDevelop/react/taskScheduling/performWork.md)
+[performWork阶段](/ILoveDevelop/react/taskScheduling/performWork)
 
 ```javascript
 function requestWork(root: FiberRoot, expirationTime: ExpirationTime) {

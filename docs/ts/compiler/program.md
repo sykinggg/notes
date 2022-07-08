@@ -1,6 +1,6 @@
 # 程序
 
-程序定义在 `program.ts` 中。[编译上下文](../project/compilationContext.md)在 TypeScript 编译器中被视为一个 `Program`，它包含 `SourceFile` 和编译选项
+程序定义在 `program.ts` 中。[编译上下文](../project/compilationContext)在 TypeScript 编译器中被视为一个 `Program`，它包含 `SourceFile` 和编译选项
 
 ## `CompilerHost` 的使用
 

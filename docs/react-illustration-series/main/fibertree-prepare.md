@@ -2,19 +2,19 @@
 
 在 React 运行时中, `fiber树构造`位于`react-reconciler`包.
 
-在正式解读`fiber树构造`之前, 再次回顾一下[reconciler 运作流程](./reconciler-workflow.md)的 4 个阶段:
+在正式解读`fiber树构造`之前, 再次回顾一下[reconciler 运作流程](./reconciler-workflow)的 4 个阶段:
 
 <img :src="$withBase('/assets/react-illustration-series/reactfiberworkloop.png')" alt="demo" />
 
-1. 输入阶段: 衔接`react-dom`包, 承接`fiber更新`请求(可以参考[React 应用的启动过程](./bootstrap.md)).
-2. 注册调度任务: 与调度中心(`scheduler`包)交互, 注册调度任务`task`, 等待任务回调(可以参考[React 调度原理(scheduler)](./scheduler.md)).
+1. 输入阶段: 衔接`react-dom`包, 承接`fiber更新`请求(可以参考[React 应用的启动过程](./bootstrap)).
+2. 注册调度任务: 与调度中心(`scheduler`包)交互, 注册调度任务`task`, 等待任务回调(可以参考[React 调度原理(scheduler)](./scheduler)).
 3. 执行任务回调: 在内存中构造出`fiber树`和`DOM`对象, 也是**fiber 树构造的重点内容**.
 4. 输出: 与渲染器(`react-dom`)交互, 渲染`DOM`节点.
 
 `fiber树构造`处于上述第 3 个阶段, 可以通过不同的视角来理解`fiber树构造`在`React`运行时中所处的位置:
 
 - 从`scheduler`调度中心的角度来看, 它是任务队列`taskQueue`中的一个具体的任务回调(`task.callback`).
-- 从[React 工作循环](./workloop.md)的角度来看, 它属于`fiber树构造循环`.
+- 从[React 工作循环](./workloop)的角度来看, 它属于`fiber树构造循环`.
 
 由于`fiber 树构造`源码量比较大, 本系列根据`React`运行的`内存状态`, 分为 2 种情况来说明:
 
@@ -25,7 +25,7 @@
 
 ## ReactElement, Fiber, DOM 三者的关系
 
-在[React 应用中的高频对象](./object-structure.md)一文中, 已经介绍了`ReactElement`和`Fiber`对象的数据结构. 这里我们梳理出`ReactElement, Fiber, DOM`这 3 种对象的关系
+在[React 应用中的高频对象](./object-structure)一文中, 已经介绍了`ReactElement`和`Fiber`对象的数据结构. 这里我们梳理出`ReactElement, Fiber, DOM`这 3 种对象的关系
 
 1. [ReactElement 对象](https://github.com/facebook/react/blob/v17.0.2/packages/react/src/ReactElement.js#L126-L146)(type 定义在[shared 包中](https://github.com/facebook/react/blob/v17.0.2/packages/shared/ReactElementType.js#L15))
 
@@ -53,7 +53,7 @@
 
 ## 全局变量
 
-从[React 工作循环](./workloop.md)的角度来看, 整个构造过程被包裹在`fiber树构造循环`中(对应源码位于[ReactFiberWorkLoop.js](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)).
+从[React 工作循环](./workloop)的角度来看, 整个构造过程被包裹在`fiber树构造循环`中(对应源码位于[ReactFiberWorkLoop.js](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js)).
 
 在`React`运行时, `ReactFiberWorkLoop.js`闭包中的`全局变量`会随着`fiber树构造循环`的进行而变化, 现在查看其中重要的全局变量([源码链接](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L247-L367)):
 
@@ -103,7 +103,7 @@ let currentEventPendingLanes: Lanes = NoLanes;
 
 ### 执行上下文
 
-在全局变量中有`executionContext`, 代表`渲染期间`的`执行栈`(或叫做`执行上下文`), 它也是一个二进制表示的变量, 通过位运算进行操作(参考[React 算法之位运算](../algorithm/bitfiled.md)). 在源码中一共定义了 8 种执行执行栈:
+在全局变量中有`executionContext`, 代表`渲染期间`的`执行栈`(或叫做`执行上下文`), 它也是一个二进制表示的变量, 通过位运算进行操作(参考[React 算法之位运算](../algorithm/bitfiled)). 在源码中一共定义了 8 种执行执行栈:
 
 ```js
 type ExecutionContext = number;
@@ -162,7 +162,7 @@ export function scheduleUpdateOnFiber(
 - 其一: 代表当前界面的`fiber`树(已经被展示出来, 挂载到`fiberRoot.current`上). 如果是初次构造(`初始化渲染`), 页面还没有渲染, 此时界面对应的 fiber 树为空(`fiberRoot.current = null`).
 - 其二: 正在构造的`fiber`树(即将展示出来, 挂载到`HostRootFiber.alternate`上, 正在构造的节点称为`workInProgress`). 当构造完成之后, 重新渲染页面, 最后切换`fiberRoot.current = workInProgress`, 使得`fiberRoot.current`重新指向代表当前界面的`fiber`树.
 
-此处涉及到 2 个全局对象`fiberRoot`和`HostRootFiber`, 在[React 应用的启动过程](./bootstrap.md)中有详细的说明.
+此处涉及到 2 个全局对象`fiberRoot`和`HostRootFiber`, 在[React 应用的启动过程](./bootstrap)中有详细的说明.
 
 用图来表述`double buffering`的概念如下:
 
@@ -178,13 +178,13 @@ export function scheduleUpdateOnFiber(
 
 在全局变量中有不少变量都以 Lanes 命名(如`workInProgressRootRenderLanes`,`subtreeRenderLanes`其作用见上文注释), 它们都与优先级相关.
 
-在前文[React 中的优先级管理](./priority.md)中, 我们介绍了`React`中有 3 套优先级体系, 并了解了它们之间的关联. 现在`fiber树构造`过程中, 将要深入分析车道模型`Lane`的具体应用.
+在前文[React 中的优先级管理](./priority)中, 我们介绍了`React`中有 3 套优先级体系, 并了解了它们之间的关联. 现在`fiber树构造`过程中, 将要深入分析车道模型`Lane`的具体应用.
 
 在整个`react-reconciler`包中, `Lane`的应用可以分为 3 个方面:
 
 #### `update`优先级(update.lane) {#update-lane}
 
-在[React 应用中的高频对象](./object-structure.md#Update)一文中, 介绍过`update`对象, 它是一个环形链表. 对于单个`update`对象来讲, `update.lane`代表它的优先级, 称之为`update`优先级.
+在[React 应用中的高频对象](./object-structure#Update)一文中, 介绍过`update`对象, 它是一个环形链表. 对于单个`update`对象来讲, `update.lane`代表它的优先级, 称之为`update`优先级.
 
 观察其构造函数([源码链接](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactUpdateQueue.old.js#L152-L163)),其优先级是由外界传入.
 
@@ -439,7 +439,7 @@ function performConcurrentWorkOnRoot(root) {
 
 #### `fiber`优先级(fiber.lanes)
 
-在[React 应用中的高频对象](./object-structure.md)一文中, 介绍过`fiber`对象的数据结构. 其中有 2 个属性与优先级相关:
+在[React 应用中的高频对象](./object-structure)一文中, 介绍过`fiber`对象的数据结构. 其中有 2 个属性与优先级相关:
 
 1. `fiber.lanes`: 代表本节点的优先级
 2. `fiber.childLanes`: 代表子节点的优先级
@@ -498,7 +498,7 @@ function beginWork(
 
 在`React`源码中, 每一次执行`fiber树`构造(也就是调用`performSyncWorkOnRoot`或者`performConcurrentWorkOnRoot`函数)的过程, 都需要一些全局变量来保存状态. 在上文中已经介绍最核心的全局变量.
 
-如果从单个变量来看, 它们就是一个个的全局变量. 如果将这些全局变量组合起来, 它们代表了当前`fiber树`构造的活动记录. 通过这一组全局变量, 可以还原`fiber树`构造过程(比如时间切片的实现过程(参考[React 调度原理](./scheduler.md#内核)), `fiber树`构造过程被打断之后需要还原进度, 全靠这一组全局变量). 所以每次`fiber树`构造是一个独立的过程, 需要`独立的`一组全局变量, 在`React`内部把这一个独立的过程封装为一个栈帧`stack`(简单来说就是每次构造都需要独立的空间. 对于`栈帧`的深入理解, 请读者自行参考其他资料).
+如果从单个变量来看, 它们就是一个个的全局变量. 如果将这些全局变量组合起来, 它们代表了当前`fiber树`构造的活动记录. 通过这一组全局变量, 可以还原`fiber树`构造过程(比如时间切片的实现过程(参考[React 调度原理](./scheduler#内核)), `fiber树`构造过程被打断之后需要还原进度, 全靠这一组全局变量). 所以每次`fiber树`构造是一个独立的过程, 需要`独立的`一组全局变量, 在`React`内部把这一个独立的过程封装为一个栈帧`stack`(简单来说就是每次构造都需要独立的空间. 对于`栈帧`的深入理解, 请读者自行参考其他资料).
 
 所以在进行`fiber树`构造之前, 如果不需要恢复上一次构造进度, 都会刷新栈帧(源码在[prepareFreshStack 函数](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1301-L1337))
 

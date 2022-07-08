@@ -50,7 +50,7 @@ esbuild 支持所有现代 JavaScript 语法。但是，较旧的浏览器可能
 | [Top-level await](https://github.com/tc39/proposal-top-level-await) | `esnext` | `await import(x)` |
 | [任意模块命名空间标识符](https://github.com/bmeck/proposal-arbitrary-module-namespace-identifiers) | `esnext` | `export {foo as 'f o o'}` |
 
-另请参阅[已完成的ECMAScript提案列表](https://github.com/tc39/proposals/blob/master/finished-proposals.md)以及[活动的ECMAScript提案列表](https://github.com/tc39/proposals/blob/master/README.md)。请注意，在支持包含顶级等待的转换代码的同时，仅当[输出格式](https://esbuild.github.io/api/#format)设置为`ESM`时，才会支持包含顶级等待的捆绑代码。
+另请参阅[已完成的ECMAScript提案列表](https://github.com/tc39/proposals/blob/master/finished-proposals)以及[活动的ECMAScript提案列表](https://github.com/tc39/proposals/blob/master/README)。请注意，在支持包含顶级等待的转换代码的同时，仅当[输出格式](https://esbuild.github.io/api/#format)设置为`ESM`时，才会支持包含顶级等待的捆绑代码。
 
 ### JavaScript的注意事项
 

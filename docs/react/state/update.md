@@ -61,7 +61,7 @@ const update: Update<*> = {
 
 - payload：更新挂载的数据，不同类型组件挂载的数据不同。对于`ClassComponent`，`payload`为`this.setState`的第一个传参。对于`HostRoot`，`payload`为`ReactDOM.render`的第一个传参。
 
-- callback：更新的回调函数。即在[commit 阶段的 layout 子阶段一节](/react/renderer/layout.md#commitlayouteffectonfiber)中提到的`回调函数`。
+- callback：更新的回调函数。即在[commit 阶段的 layout 子阶段一节](/react/renderer/layout#commitlayouteffectonfiber)中提到的`回调函数`。
 
 - next：与其他`Update`连接形成链表。
 
@@ -71,7 +71,7 @@ const update: Update<*> = {
 
 答案是肯定的。
 
-从[双缓存机制一节](/react/process/doubleBuffer.md)知道，`Fiber节点`组成`Fiber树`，页面中最多同时存在两棵`Fiber树`：
+从[双缓存机制一节](/react/process/doubleBuffer)知道，`Fiber节点`组成`Fiber树`，页面中最多同时存在两棵`Fiber树`：
 
 - 代表当前页面状态的`current Fiber树`
 
@@ -111,7 +111,7 @@ onClick() {
 
 ## updateQueue
 
-`updateQueue`有三种类型，其中针对`HostComponent`的类型在[completeWork一节](/react/process/completeWork.md#update时)介绍过。
+`updateQueue`有三种类型，其中针对`HostComponent`的类型在[completeWork一节](/react/process/completeWork#update时)介绍过。
 
 剩下两种类型和`Update`的两种类型对应。
 

@@ -35,9 +35,9 @@ Babel 的解析过程（源码到 AST 的转换）可以使用 [@babel/parser](h
 
 * 支持解析 JSX、Flow & TypeScript
 
-* 支持解析实验性的语法提案（支持任何 [Stage 0](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposals%2Fblob%2Fmaster%2Fstage-0-proposals.md) 的 PRS）
+* 支持解析实验性的语法提案（支持任何 [Stage 0](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposals%2Fblob%2Fmaster%2Fstage-0-proposals) 的 PRS）
 
-@babel/parser 主要是基于输入的字符串流（源代码）进行解析，最后转换成[规范](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fbabel%2Fbabel%2Fblob%2Fmaster%2Fpackages%2Fbabel-parser%2Fast%2Fspec.md)（基于 [ESTree](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Festree%2Festree) 进行调整）的 AST，如下所示：
+@babel/parser 主要是基于输入的字符串流（源代码）进行解析，最后转换成[规范](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fbabel%2Fbabel%2Fblob%2Fmaster%2Fpackages%2Fbabel-parser%2Fast%2Fspec)（基于 [ESTree](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Festree%2Festree) 进行调整）的 AST，如下所示：
 
 ```ts
 import { parse } from '@babel/parser';
@@ -115,7 +115,7 @@ traverse(ast, {
 });
 ```
 
-关于 Babel 中的访问器 API，这里不再过多说明，如果想了解更多信息，可以查看 [Babel 插件手册](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fjamiebuilds%2Fbabel-handbook%2Fblob%2Fmaster%2Ftranslations%2Fzh-Hans%2Fplugin-handbook.md)。除此之外，你可能已经注意到这里的转换逻辑其实可以理解为实现一个简单的 Babel 插件，只是没有封装成 Npm 包。当然，在真正的插件开发开发中，还可以配合 [@babel/types](https://link.juejin.cn/?target=https%3A%2F%2Fbabeljs.io%2Fdocs%2Fen%2Fbabel-types) 工具包进行节点信息的判断处理。
+关于 Babel 中的访问器 API，这里不再过多说明，如果想了解更多信息，可以查看 [Babel 插件手册](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fjamiebuilds%2Fbabel-handbook%2Fblob%2Fmaster%2Ftranslations%2Fzh-Hans%2Fplugin-handbook)。除此之外，你可能已经注意到这里的转换逻辑其实可以理解为实现一个简单的 Babel 插件，只是没有封装成 Npm 包。当然，在真正的插件开发开发中，还可以配合 [@babel/types](https://link.juejin.cn/?target=https%3A%2F%2Fbabeljs.io%2Fdocs%2Fen%2Fbabel-types) 工具包进行节点信息的判断处理。
 
 > 温馨提示：这里只是简单的一个 Demo 示例，在真正转换 let、const 等变量声明的过程中，还会遇到处理暂时性死区（Temporal Dead Zone， TDZ）的情况，更多详细信息可以查看官方的插件 [babel-plugin-transform-block-scoping](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fbabel%2Fbabel%2Fblob%2Fmain%2Fpackages%2Fbabel-plugin-transform-block-scoping%2Fsrc%2Findex.js)。
 

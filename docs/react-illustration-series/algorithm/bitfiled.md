@@ -117,7 +117,7 @@ console.log(A === B); // false
 
 ### 优先级管理 lanes
 
-lanes 是`17.x`版本中开始引入的重要概念, 代替了`16.x`版本中的`expirationTime`, 作为`fiber`对象的一个属性(位于`react-reconciler`包), 主要控制 fiber 树在构造过程中的优先级(这里只介绍位运算的应用, 对于 lanes 的深入分析在[`优先级管理`](../main/priority.md)章节深入解读).
+lanes 是`17.x`版本中开始引入的重要概念, 代替了`16.x`版本中的`expirationTime`, 作为`fiber`对象的一个属性(位于`react-reconciler`包), 主要控制 fiber 树在构造过程中的优先级(这里只介绍位运算的应用, 对于 lanes 的深入分析在[`优先级管理`](../main/priority)章节深入解读).
 
 变量定义:
 

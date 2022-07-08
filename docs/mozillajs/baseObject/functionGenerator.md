@@ -1,6 +1,6 @@
 # function*
 
-`**function**` 这种声明方式(`function`关键字后跟一个星号）会定义一个**生成器函数** (generator function)，它返回一个  [Generator](/mozillajs/baseObject/generator.md)  对象。
+`**function**` 这种声明方式(`function`关键字后跟一个星号）会定义一个**生成器函数** (generator function)，它返回一个  [Generator](/mozillajs/baseObject/generator)  对象。
 
 ```js
 function* generator(i) {

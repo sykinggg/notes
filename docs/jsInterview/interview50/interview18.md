@@ -37,6 +37,6 @@
 
 * 现在网站的 JS 都会进行压缩，一些文件用了严格模式，而另一些没有。这时这些本来是严格模式的文件，被 merge 后，这个串就到了文件的中间，不仅没有指示严格模式，反而在压缩后浪费了字节。
 
-[mozilla-严格模式](/mozillajs/reference/strictMode.md)
+[mozilla-严格模式](/mozillajs/reference/strictMode)
 
 [阮一峰-严格模式](http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html)

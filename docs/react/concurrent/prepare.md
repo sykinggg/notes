@@ -1,4 +1,4 @@
-在[ReactDOM.render](/react/state/reactdom.md#react%E7%9A%84%E5%85%B6%E4%BB%96%E5%85%A5%E5%8F%A3%E5%87%BD%E6%95%B0)一节介绍了`React`当前的三种入口函数。日常开发主要使用的是`Legacy Mode`（通过`ReactDOM.render`创建）。
+在[ReactDOM.render](/react/state/reactdom#react%E7%9A%84%E5%85%B6%E4%BB%96%E5%85%A5%E5%8F%A3%E5%87%BD%E6%95%B0)一节介绍了`React`当前的三种入口函数。日常开发主要使用的是`Legacy Mode`（通过`ReactDOM.render`创建）。
 
 从[React v17.0 正式发布！](https://mp.weixin.qq.com/s/zrrqldzRbcPApga_Cp2b8A)一文可以看到，`v17.0`没有包含新特性。究其原因，`v17.0`主要的工作在于源码内部对`Concurrent Mode`的支持。所以`v17`版本也被称为“垫脚石”版本。
 
@@ -16,7 +16,7 @@
 
 ## 底层架构 —— Fiber架构
 
-从[设计理念](/react/preparation/idea.md)了解到要实现`Concurrent Mode`，最关键的一点是：实现异步可中断的更新。
+从[设计理念](/react/preparation/idea)了解到要实现`Concurrent Mode`，最关键的一点是：实现异步可中断的更新。
 
 基于这个前提，`React`花费2年时间重构完成了`Fiber`架构。
 

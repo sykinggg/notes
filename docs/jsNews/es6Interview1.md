@@ -317,7 +317,7 @@ define(["./cart", "./inventory"], function(cart, inventory) {
 
 ## SeaJS & CMD（Common Module Definition）
 
-针对 `AMD` 规范中可以优化的部分，[CMD 规范](https://github.com/cmdjs/specification/blob/master/draft/module.md) 出现了，而 [SeaJS](https://github.com/seajs/seajs) 则作为它的具体实现之一，与 `AMD` 十分相似：
+针对 `AMD` 规范中可以优化的部分，[CMD 规范](https://github.com/cmdjs/specification/blob/master/draft/module) 出现了，而 [SeaJS](https://github.com/seajs/seajs) 则作为它的具体实现之一，与 `AMD` 十分相似：
 
 ```js
 // AMD 的一个例子，当然这是一种极端的情况

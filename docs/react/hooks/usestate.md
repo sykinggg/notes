@@ -48,7 +48,7 @@ function useReducer(reducer, initialArg, init) {
 }
 ```
 
-正如上一节[dispatcher](/react/hooks/structure.md#dispatcher)所说，在不同场景下，同一个`Hook`会调用不同处理函数。
+正如上一节[dispatcher](/react/hooks/structure#dispatcher)所说，在不同场景下，同一个`Hook`会调用不同处理函数。
 
 分别讲解`mount`与`update`两个场景。
 
@@ -190,7 +190,7 @@ function App() {
 
 `updateWorkInProgressHook`方法也会区分这两种情况来获取对应`hook`。
 
-获取对应`hook`，接下来会根据`hook`中保存的`state`计算新的`state`，这个步骤同[Update一节](/react/state/update.md)一致。
+获取对应`hook`，接下来会根据`hook`中保存的`state`计算新的`state`，这个步骤同[Update一节](/react/state/update)一致。
 
 ## 调用阶段
 

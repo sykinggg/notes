@@ -18,7 +18,7 @@
 
 ## 事件绑定
 
-在前文[React 应用的启动过程](./bootstrap.md#create-global-obj)中介绍了`React`在启动时会创建全局对象, 其中在创建[fiberRoot](./bootstrap.md#create-root-impl)对象时, 调用[createRootImpl](https://github.com/facebook/react/blob/v17.0.2/packages/react-dom/src/client/ReactDOMRoot.js#L120-L169):
+在前文[React 应用的启动过程](./bootstrap#create-global-obj)中介绍了`React`在启动时会创建全局对象, 其中在创建[fiberRoot](./bootstrap#create-root-impl)对象时, 调用[createRootImpl](https://github.com/facebook/react/blob/v17.0.2/packages/react-dom/src/client/ReactDOMRoot.js#L120-L169):
 
 ```js
 function createRootImpl(

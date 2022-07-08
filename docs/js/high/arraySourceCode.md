@@ -127,7 +127,7 @@ console.log(result)
 
 最后来说说 `this`，源码中有这么一段 `callbackfn.call(T, kValue, k, O)`，其中 `T` 就是 `thisArg` 值，如果没有设置，那就是 `undefined`。
 
-根据[【进阶 3-3 期】](/js/this/callApply.md) 中对于 call 的解读，传入 undefined 时，非严格模式下指向 Window，严格模式下为 undefined。记住这时候回调函数不能用箭头函数，因为箭头函数是没有自己的 this 的。
+根据[【进阶 3-3 期】](/js/this/callApply) 中对于 call 的解读，传入 undefined 时，非严格模式下指向 Window，严格模式下为 undefined。记住这时候回调函数不能用箭头函数，因为箭头函数是没有自己的 this 的。
 
 ```javascript
 // 1、传入 thisArg 但使用箭头函数

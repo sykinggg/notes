@@ -8,7 +8,7 @@
 
 - `栈`(stack)又叫做`堆栈`, 这里特指数据结构中的`栈`(另一种`程序内存分配`中的栈, 本系列不做介绍, 读者可自行了解).
 - `堆栈`中虽带有一个`堆`字, 只是命名, 不要和`堆`混淆.
-- 常说的`堆`有 2 种指代, 一种是`数据结构`中的堆(在[React 算法之堆排序](./heapsort.md)中有介绍), 另一种是`程序内存分配`中的堆(本系列不做介绍, 读者可自行了解).
+- 常说的`堆`有 2 种指代, 一种是`数据结构`中的堆(在[React 算法之堆排序](./heapsort)中有介绍), 另一种是`程序内存分配`中的堆(本系列不做介绍, 读者可自行了解).
 
 ## 特性
 
@@ -213,7 +213,7 @@ export default function App() {
 
 ### executionContext 执行上下文
 
-`executionContext`是在`ReactFiberWorkLoop.js`中定义的一个[全局变量(相对于该闭包)](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L247-L256), 且定义成二进制变量, 通过位运算来维护其状态(在[React 算法之位运算](./bitfiled.md)一文中已有介绍).
+`executionContext`是在`ReactFiberWorkLoop.js`中定义的一个[全局变量(相对于该闭包)](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L247-L256), 且定义成二进制变量, 通过位运算来维护其状态(在[React 算法之位运算](./bitfiled)一文中已有介绍).
 
 表面上看`executionContext`和栈并没有直接关系, 但实际在改变`executionContext`的时候, 巧妙的利用了`函数调用栈`, 实现`executionContext`状态的维护.
 

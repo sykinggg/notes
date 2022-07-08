@@ -1,12 +1,12 @@
 # fiber 树渲染
 
-在正式分析`fiber树渲染`之前, 再次回顾一下[reconciler 运作流程](./reconciler-workflow.md)的 4 个阶段:
+在正式分析`fiber树渲染`之前, 再次回顾一下[reconciler 运作流程](./reconciler-workflow)的 4 个阶段:
 
 <img :src="$withBase('/assets/react-illustration-series/reactfiberworkloop.png')" alt="demo" />
 
-1. 输入阶段: 衔接`react-dom`包, 承接`fiber更新`请求(参考[React 应用的启动过程](./bootstrap.md)).
-2. 注册调度任务: 与调度中心(`scheduler`包)交互, 注册调度任务`task`, 等待任务回调(参考[React 调度原理(scheduler)](./scheduler.md)).
-3. 执行任务回调: 在内存中构造出`fiber树`和`DOM`对象(参考[fiber 树构造(初次创建)](./fibertree-create.md)和 fiber 树构造(对比更新)).
+1. 输入阶段: 衔接`react-dom`包, 承接`fiber更新`请求(参考[React 应用的启动过程](./bootstrap)).
+2. 注册调度任务: 与调度中心(`scheduler`包)交互, 注册调度任务`task`, 等待任务回调(参考[React 调度原理(scheduler)](./scheduler)).
+3. 执行任务回调: 在内存中构造出`fiber树`和`DOM`对象(参考[fiber 树构造(初次创建)](./fibertree-create)和 fiber 树构造(对比更新)).
 4. 输出: 与渲染器(`react-dom`)交互, 渲染`DOM`节点.
 
 本节分析其中的第 4 阶段(输出), `fiber树渲染`处于`reconciler 运作流程`这一流水线的最后一环, 或者说前面的步骤都是为了最后一步服务, 所以其重要性不言而喻.
@@ -47,7 +47,7 @@ function commitRoot(root) {
 }
 ```
 
-在`commitRoot`中同时使用到了`渲染优先级`和`调度优先级`, 有关优先级的讨论, 在前文已经做出了说明(参考[React 中的优先级管理](./priority.md)和[fiber 树构造(基础准备)#优先级](./fibertree-prepare.md#优先级)), 本节不再赘述. 最后的实现是通过`commitRootImpl`函数:
+在`commitRoot`中同时使用到了`渲染优先级`和`调度优先级`, 有关优先级的讨论, 在前文已经做出了说明(参考[React 中的优先级管理](./priority)和[fiber 树构造(基础准备)#优先级](./fibertree-prepare#优先级)), 本节不再赘述. 最后的实现是通过`commitRootImpl`函数:
 
 ```js
 // ... 省略部分无关代码
@@ -278,7 +278,7 @@ function commitBeforeMutationLifeCycles(
 
 `Passive`标记只会在使用了`hook`对象的`function`类型的节点上存在, 后续的执行过程在`hook原理`章节中详细说明. 此处我们需要了解在`commitRoot`的第一个阶段, 为了处理`hook`对象(如`useEffect`), 通过`scheduleCallback`单独注册了一个调度任务`task`, 等待调度中心`scheduler`处理.
 
-注意: 通过调度中心`scheduler`调度的任务`task`均是通过`MessageChannel`触发, 都是异步执行(可参考[React 调度原理(scheduler)](./scheduler.md)).
+注意: 通过调度中心`scheduler`调度的任务`task`均是通过`MessageChannel`触发, 都是异步执行(可参考[React 调度原理(scheduler)](./scheduler)).
 
 小测试:
 
@@ -358,7 +358,7 @@ function commitMutationEffects(
 2. `更新`: 函数调用栈 `commitWork` -> `commitUpdate`
 3. `删除`: 函数调用栈 `commitDeletion` -> `removeChild`
 
-最终会调用`appendChild, commitUpdate, removeChild`这些`react-dom`包中的函数. 它们是[`HostConfig`协议](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/README.md#practical-examples)([源码在 ReactDOMHostConfig.js 中](https://github.com/facebook/react/blob/v17.0.2/packages/react-dom/src/client/ReactDOMHostConfig.js))中规定的标准函数, 在渲染器`react-dom`包中进行实现. 这些函数就是直接操作 DOM, 所以执行之后, 界面也会得到更新.
+最终会调用`appendChild, commitUpdate, removeChild`这些`react-dom`包中的函数. 它们是[`HostConfig`协议](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/README#practical-examples)([源码在 ReactDOMHostConfig.js 中](https://github.com/facebook/react/blob/v17.0.2/packages/react-dom/src/client/ReactDOMHostConfig.js))中规定的标准函数, 在渲染器`react-dom`包中进行实现. 这些函数就是直接操作 DOM, 所以执行之后, 界面也会得到更新.
 
 注意: `commitMutationEffects`执行之后, 在`commitRootImpl`函数中切换当前`fiber`树(`root.current = finishedWork`),保证`fiberRoot.current`指向代表当前界面的`fiber树`.
 

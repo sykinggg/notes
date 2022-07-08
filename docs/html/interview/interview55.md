@@ -548,8 +548,8 @@
 
 ## 其他资源
 
-- 📖 [HTML5 样板文档：HTML 标签](https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/html.md)
-- 📖 [HTML5 样板文档：扩展和定制](https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/extend.md)
+- 📖 [HTML5 样板文档：HTML 标签](https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/html)
+- 📖 [HTML5 样板文档：扩展和定制](https://github.com/h5bp/html5-boilerplate/blob/master/dist/doc/extend)
 
 **[⬆ 返回顶部](#目录)**
 
@@ -564,7 +564,7 @@
 
 ## 其他格式
 
-- 📄 [PDF](https://gitprint.com/joshbuchea/HEAD/blob/master/README.md)
+- 📄 [PDF](https://gitprint.com/joshbuchea/HEAD/blob/master/README)
 
 **[⬆ 返回顶部](#目录)**
 

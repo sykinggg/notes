@@ -14,7 +14,7 @@
 
 为了修复这个bug，需要首先将之前的代码提交。
 
-在`React`中，所有通过`ReactDOM.render`创建的应用（其他创建应用的方式参考[ReactDOM.render一节](/react/state/reactdom.md#react的其他入口函数)）都是通过类似的方式`更新状态`。
+在`React`中，所有通过`ReactDOM.render`创建的应用（其他创建应用的方式参考[ReactDOM.render一节](/react/state/reactdom#react的其他入口函数)）都是通过类似的方式`更新状态`。
 
 即没有`优先级`概念，`高优更新`（红色节点）需要排在其他`更新`后面执行。
 

@@ -112,7 +112,7 @@ export function pushProvider<T>(providerFiber: Fiber, nextValue: T): void {
 
 与`pushProvider`对应的还有[popProvider](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberNewContext.old.js#L115-L126), 同样利用`栈`的特性, 把`栈`中的值弹出, 还原到`context._currentValue`中.
 
-本节重点分析`Context Api`在`fiber树构造`过程中的作用. 有关`pushProvider/popProvider`的具体实现过程(栈存储), 在[React 算法之栈操作](../algorithm/stack.md#context)中有详细图解.
+本节重点分析`Context Api`在`fiber树构造`过程中的作用. 有关`pushProvider/popProvider`的具体实现过程(栈存储), 在[React 算法之栈操作](../algorithm/stack#context)中有详细图解.
 
 ## 消费 Context
 
@@ -261,7 +261,7 @@ function updateContextProvider(
 
 核心逻辑:
 
-1. `value`没有改变, 直接进入`Bailout`(可以回顾[fiber 树构造(对比更新)](./fibertree-update.md#bailout)中对`bailout`的解释).
+1. `value`没有改变, 直接进入`Bailout`(可以回顾[fiber 树构造(对比更新)](./fibertree-update#bailout)中对`bailout`的解释).
 2. `value`改变, 调用`propagateContextChange`
 
 [propagateContextChange](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberNewContext.old.js#L182-L295):
@@ -362,7 +362,7 @@ export function propagateContextChange(
        }
      }
      ```
-   - `scheduleWorkOnParentPath`与[markUpdateLaneFromFiberToRoot](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L625-L667)的作用相似, 具体可以回顾[fiber 树构造(对比更新)](./fibertree-update.md#markUpdateLaneFromFiberToRoot)
+   - `scheduleWorkOnParentPath`与[markUpdateLaneFromFiberToRoot](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L625-L667)的作用相似, 具体可以回顾[fiber 树构造(对比更新)](./fibertree-update#markUpdateLaneFromFiberToRoot)
 
 通过以上 2 个步骤, 保证了所有消费该`context`的子节点都会被重新构造, 进而保证了状态的一致性, 实现了`context`更新.
 

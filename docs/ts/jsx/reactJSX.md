@@ -240,7 +240,7 @@ class FocusingInput extends React.Component<{ value: string; onChange: (value: s
 
 ### 类型断言
 
-如之前[提到](../typings/typeAssertion.md#as-foo-与-foo)的，可以使用 `as Foo` 语法进行类型断言。
+如之前[提到](../typings/typeAssertion#as-foo-与-foo)的，可以使用 `as Foo` 语法进行类型断言。
 
 ## 默认 Props
 

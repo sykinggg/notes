@@ -36,7 +36,7 @@ const result = uniqueArr([1, 2, 3, 4, [3, 4, [4, 6]]])
 console.log(result) // 1,2,3,4,6
 ```
 
-[flat](/mozillajs/baseObject/arrayFlat.md)
+[flat](/mozillajs/baseObject/arrayFlat)
 
 ### 解法二
 

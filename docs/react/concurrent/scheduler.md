@@ -1,4 +1,4 @@
-在[新的React架构](/react/preparation/newConstructure.md#react16架构)一节介绍了`Scheduler`，他包含两个功能：
+在[新的React架构](/react/preparation/newConstructure#react16架构)一节介绍了`Scheduler`，他包含两个功能：
 
 1. 时间切片
 
@@ -53,7 +53,7 @@ function workLoopConcurrent() {
 
 > 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L172-L187)看到动态分配任务时间
 
-这也解释了为什么[设计理念](/react/preparation/idea.md#cpu的瓶颈)一节启用`Concurrent Mode`后每个任务的执行时间大体都是多于5ms的一小段时间 —— 每个时间切片被设定为5ms，任务本身再执行一小段时间，所以整体时间是多于5ms的时间
+这也解释了为什么[设计理念](/react/preparation/idea#cpu的瓶颈)一节启用`Concurrent Mode`后每个任务的执行时间大体都是多于5ms的一小段时间 —— 每个时间切片被设定为5ms，任务本身再执行一小段时间，所以整体时间是多于5ms的时间
 
 <!-- <img :src="$withBase('/img/time-slice.png')" alt="长任务"> -->
 

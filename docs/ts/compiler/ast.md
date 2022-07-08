@@ -70,7 +70,7 @@ export const enum SyntaxKind {
     // ... 更多
 ```
 
-这是个[常量枚举](../typings/enums.md#常量枚举)，方便*内联*（例如：`ts.SyntaxKind.EndOfFileToken` 会变为 `1`），这样在使用 AST 时就不会有处理引用的额外开销。但编译时需要使用 --preserveConstEnums 编译标志，以便枚举*在运行时仍可用*。JavaScript 中你也可以根据需要使用 `ts.SyntaxKind.EndOfFileToken`。另外，可以用以下函数，将枚举成员转化为可读的字符串：
+这是个[常量枚举](../typings/enums#常量枚举)，方便*内联*（例如：`ts.SyntaxKind.EndOfFileToken` 会变为 `1`），这样在使用 AST 时就不会有处理引用的额外开销。但编译时需要使用 --preserveConstEnums 编译标志，以便枚举*在运行时仍可用*。JavaScript 中你也可以根据需要使用 `ts.SyntaxKind.EndOfFileToken`。另外，可以用以下函数，将枚举成员转化为可读的字符串：
 
 ```ts
 export function syntaxKindToName(kind: ts.SyntaxKind) {

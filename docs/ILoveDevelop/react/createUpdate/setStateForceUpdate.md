@@ -4,7 +4,7 @@
 
 `setState`和`forceUpdate`的代码可以看到，几乎是一模一样的。唯一的区别是`Update.tag`
 
-[`Update`和`UpdateQueue`的数据结构](/ILoveDevelop/react/basic/reactFiber.md)
+[`Update`和`UpdateQueue`的数据结构](/ILoveDevelop/react/basic/reactFiber)
 
 在当前节点对应的`Fiber`对象上创建了`Update`之后，进就如`scheduleWork`调度阶段。
 

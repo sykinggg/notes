@@ -8,10 +8,10 @@ category:
 
 ## 目录
 
-- [Markdown 展示](markdown.md)
+- [Markdown 展示](markdown)
 
-- [页面展示](page.md)
+- [页面展示](page)
 
-- [禁用展示](disable.md)
+- [禁用展示](disable)
 
-- [加密展示](encrypt.md)
+- [加密展示](encrypt)

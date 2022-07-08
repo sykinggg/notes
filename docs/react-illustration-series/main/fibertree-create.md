@@ -1,11 +1,11 @@
 # fiber 树构造(初次创建)
 
-本节的内容完全建立在前文[fiber 树构造(基础准备)](./fibertree-prepare.md)中介绍的基础知识之上, 其中总结了`fiber 树构造`的 2 种情况:
+本节的内容完全建立在前文[fiber 树构造(基础准备)](./fibertree-prepare)中介绍的基础知识之上, 其中总结了`fiber 树构造`的 2 种情况:
 
 1. 初次创建: 在`React`应用首次启动时, 界面还没有渲染, 此时并不会进入对比过程, 相当于直接构造一棵全新的树.
 2. 对比更新: `React`应用启动后, 界面已经渲染. 如果再次发生更新, 创建`新fiber`之前需要和`旧fiber`进行对比. 最后构造的 fiber 树有可能是全新的, 也可能是部分更新的.
 
-本节只讨论`初次创建`这种情况, 为了控制篇幅(本节直击核心源码, 不再介绍基础知识, 可参照[fiber 树构造(基础准备)](./fibertree-prepare.md))并突出`fiber 树构造`过程, 后文会在`Legacy`模式下进行分析(因为只讨论`fiber树构造`原理, `Concurrent`模式与`Legacy`没有区别).
+本节只讨论`初次创建`这种情况, 为了控制篇幅(本节直击核心源码, 不再介绍基础知识, 可参照[fiber 树构造(基础准备)](./fibertree-prepare))并突出`fiber 树构造`过程, 后文会在`Legacy`模式下进行分析(因为只讨论`fiber树构造`原理, `Concurrent`模式与`Legacy`没有区别).
 
 本节示例代码如下([codesandbox 地址](https://codesandbox.io/s/busy-jang-b26hy?file=/src/App.js)):
 
@@ -44,7 +44,7 @@ export default App;
 
 ## 启动阶段
 
-在前文[React 应用的启动过程](./bootstrap.md)中分析了 3 种启动模式的差异, 在进入`react-reconciler`包之前(调用`updateContainer`之前), 内存状态图如下:
+在前文[React 应用的启动过程](./bootstrap)中分析了 3 种启动模式的差异, 在进入`react-reconciler`包之前(调用`updateContainer`之前), 内存状态图如下:
 
 此时的内存结构如下
 
@@ -156,7 +156,7 @@ function performSyncWorkOnRoot(root) {
 }
 ```
 
-其中`getNextLanes`返回本次 render 的渲染优先级(详见[fiber 树构造(基础准备)](./fibertree-prepare.md#优先级)中`优先级`相关小节)
+其中`getNextLanes`返回本次 render 的渲染优先级(详见[fiber 树构造(基础准备)](./fibertree-prepare#优先级)中`优先级`相关小节)
 
 [renderRootSync](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1490-L1553)
 
@@ -185,7 +185,7 @@ function renderRootSync(root: FiberRoot, lanes: Lanes) {
 }
 ```
 
-在`renderRootSync`中, 在执行`fiber树构造`前(`workLoopSync`)会先刷新栈帧`prepareFreshStack`(参考[fiber 树构造(基础准备)](./fibertree-prepare.md#栈帧管理)).在这里创建了`HostRootFiber.alternate`, 重置全局变量`workInProgress`和`workInProgressRoot`等.
+在`renderRootSync`中, 在执行`fiber树构造`前(`workLoopSync`)会先刷新栈帧`prepareFreshStack`(参考[fiber 树构造(基础准备)](./fibertree-prepare#栈帧管理)).在这里创建了`HostRootFiber.alternate`, 重置全局变量`workInProgress`和`workInProgressRoot`等.
 
 <img :src="$withBase('/assets/react-illustration-series/status-freshstack.png')" alt="demo" />
 
@@ -208,7 +208,7 @@ function workLoopConcurrent() {
 }
 ```
 
-可以看到`workLoopConcurrent`相比于`Sync`, 会多一个停顿机制, 这个机制实现了`时间切片`和`可中断渲染`(参考[React 调度原理](./scheduler.md#时间切片原理))
+可以看到`workLoopConcurrent`相比于`Sync`, 会多一个停顿机制, 这个机制实现了`时间切片`和`可中断渲染`(参考[React 调度原理](./scheduler#时间切片原理))
 
 结合`performUnitOfWork函数`([源码地址](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1642-L1668))
 
@@ -229,7 +229,7 @@ function performUnitOfWork(unitOfWork: Fiber): void {
 }
 ```
 
-可以明显的看出, 整个`fiber树构造`是一个深度优先遍历(可参考[React 算法之深度优先遍历](../algorithm/dfs.md)), 其中有 2 个重要的变量`workInProgress`和`current`(可参考前文[fiber 树构造(基础准备)](./fibertree-prepare.md#双缓冲技术)中介绍的`双缓冲技术`):
+可以明显的看出, 整个`fiber树构造`是一个深度优先遍历(可参考[React 算法之深度优先遍历](../algorithm/dfs)), 其中有 2 个重要的变量`workInProgress`和`current`(可参考前文[fiber 树构造(基础准备)](./fibertree-prepare#双缓冲技术)中介绍的`双缓冲技术`):
 
 - `workInProgress`和`current`都视为指针
 - `workInProgress`指向当前正在构造的`fiber`节点

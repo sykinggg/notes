@@ -2,7 +2,7 @@
 
 事实上，任何需要被"引用"的数据都可以保存在`ref`中，`useRef`的出现将这种思想进一步发扬光大。
 
-在[Hooks数据结构一节](/react/hooks/structure.md#memoizedstate)讲到：
+在[Hooks数据结构一节](/react/hooks/structure#memoizedstate)讲到：
 
 > 对于`useRef(1)`，`memoizedState`保存`{current: 1}`
 
@@ -190,7 +190,7 @@ function commitDetachRef(current: Fiber) {
 
 接下来，在`mutation阶段`，对于`Deletion effectTag`的`fiber`（对应需要删除的`DOM节点`），需要递归他的子树，对子孙`fiber`的`ref`执行类似`commitDetachRef`的操作。
 
-在[mutation阶段一节](/react/renderer/mutation.md#commitmutationeffects)讲到
+在[mutation阶段一节](/react/renderer/mutation#commitmutationeffects)讲到
 
 > 对于`Deletion effectTag`的`fiber`，会执行`commitDeletion`。
 
@@ -215,7 +215,7 @@ function safelyDetachRef(current: Fiber) {
 
 > 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberCommitWork.old.js#L183)看到这段代码
 
-接下来进入`ref`的赋值阶段。在[Layout阶段一节](/react/renderer/layout.md#commitlayouteffects)讲到
+接下来进入`ref`的赋值阶段。在[Layout阶段一节](/react/renderer/layout#commitlayouteffects)讲到
 
 > `commitLayoutEffect`会执行`commitAttachRef`（赋值`ref`）
 

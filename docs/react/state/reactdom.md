@@ -4,7 +4,7 @@
 
 ## 创建fiber
 
-从[双缓存机制一节](/react/process/doubleBuffer.md#mount时)知道，首次执行`ReactDOM.render`会创建`fiberRootNode`和`rootFiber`。其中`fiberRootNode`是整个应用的根节点，`rootFiber`是要渲染组件所在组件树的`根节点`。
+从[双缓存机制一节](/react/process/doubleBuffer#mount时)知道，首次执行`ReactDOM.render`会创建`fiberRootNode`和`rootFiber`。其中`fiberRootNode`是整个应用的根节点，`rootFiber`是要渲染组件所在组件树的`根节点`。
 
 这一步发生在调用`ReactDOM.render`后进入的`legacyRenderSubtreeIntoContainer`方法中。
 
@@ -45,7 +45,7 @@ export function createFiberRoot(
 }
 ```
 
-根据以上代码，现在可以在[双缓存机制一节](/react/process/doubleBuffer.md#mount时)基础上补充上`rootFiber`到`fiberRootNode`的引用。
+根据以上代码，现在可以在[双缓存机制一节](/react/process/doubleBuffer#mount时)基础上补充上`rootFiber`到`fiberRootNode`的引用。
 
 <!-- <img :src="$withBase('/img/fiberroot.png')" alt="fiberRoot"> -->
 
@@ -93,7 +93,7 @@ export function updateContainer(
 
 值得注意的是其中`update.payload = {element};`
 
-这就是在[Update一节](/react/state/update.md#update的结构)介绍的，对于`HostRoot`，`payload`为`ReactDOM.render`的第一个传参。
+这就是在[Update一节](/react/state/update#update的结构)介绍的，对于`HostRoot`，`payload`为`ReactDOM.render`的第一个传参。
 
 ## 流程概览
 
@@ -179,4 +179,4 @@ commit阶段（`commitRoot`）
 
 > 你可以在[这里](https://zh-hans.reactjs.org/docs/concurrent-mode-adoption.html#why-so-many-modes)看到`React`团队解释为什么会有这么多模式
 
-虽然不同模式的`入口函数`不同，但是他们仅对`fiber.mode`变量产生影响，对在[流程概览](/react/state/reactdom.md#流程概览)中描述的流程并无影响。
+虽然不同模式的`入口函数`不同，但是他们仅对`fiber.mode`变量产生影响，对在[流程概览](/react/state/reactdom#流程概览)中描述的流程并无影响。

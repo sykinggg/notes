@@ -1,6 +1,6 @@
 # Hook 原理(状态 Hook)
 
-首先回顾一下前文[Hook 原理(概览)](./hook-summary.md), 其主要内容有:
+首先回顾一下前文[Hook 原理(概览)](./hook-summary), 其主要内容有:
 
 1. `function`类型的`fiber`节点, 它的处理函数是[updateFunctionComponent](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberBeginWork.old.js#L702-L783), 其中再通过[renderWithHooks](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberHooks.old.js#L342-L476)调用`function`.
 2. 在`function`中, 通过`Hook Api`(如: `useState, useEffect`)创建`Hook`对象.
@@ -228,15 +228,15 @@ function dispatchAction<S, A>(
 
 逻辑十分清晰:
 
-1. 创建`update`对象, 其中`update.lane`代表优先级(可回顾[fiber 树构造(基础准备)](./fibertree-prepare.md#update-lane)中的`update优先级`).
+1. 创建`update`对象, 其中`update.lane`代表优先级(可回顾[fiber 树构造(基础准备)](./fibertree-prepare#update-lane)中的`update优先级`).
 2. 将`update`对象添加到`hook.queue.pending`环形链表.
    - `环形链表`的特征: 为了方便添加新元素和快速拿到队首元素(都是`O(1)`), 所以`pending`指针指向了链表中最后一个元素.
-   - 链表的使用方式可以参考[React 算法之链表操作](../algorithm/linkedlist.md)
+   - 链表的使用方式可以参考[React 算法之链表操作](../algorithm/linkedlist)
 3. 发起调度更新: 调用`scheduleUpdateOnFiber`, 进入`reconciler 运作流程`中的输入阶段.
 
-从调用`scheduleUpdateOnFiber`开始, 进入了`react-reconciler`包, 其中的所有逻辑可回顾[reconciler 运作流程](./reconciler-workflow.md), 本节只讨论`状态Hook`相关逻辑.
+从调用`scheduleUpdateOnFiber`开始, 进入了`react-reconciler`包, 其中的所有逻辑可回顾[reconciler 运作流程](./reconciler-workflow), 本节只讨论`状态Hook`相关逻辑.
 
-注意: 本示例中虽然同时执行了 3 次 dispatch, 会请求 3 次调度, 由于调度中心的[节流优化](./scheduler.md##throttle-debounce), 最后只会执行一次渲染
+注意: 本示例中虽然同时执行了 3 次 dispatch, 会请求 3 次调度, 由于调度中心的[节流优化](./scheduler##throttle-debounce), 最后只会执行一次渲染
 
 在`fiber树构造(对比更新)`过程中, 再次调用`function`, 这时[useState](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberHooks.old.js#L1808)对应的函数是[updateState](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberHooks.old.js#L1138-L1142)
 

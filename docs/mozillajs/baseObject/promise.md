@@ -20,7 +20,7 @@
 
 > **不要和惰性求值混淆：** 有一些语言中有惰性求值和延时计算的特性，它们也被称为“promises”，例如 Scheme。JavaScript 中的 promise 代表的是已经正在发生的进程， 而且可以通过回调函数实现链式调用。 如果您想对一个表达式进行惰性求值，就考虑一下使用无参数的"箭头函数":  `f = () =>表达式` 来创建惰性求值的表达式，使用 `f()` 求值。
 
-> **注意：** 如果一个 `promise` 已经被兑现（`fulfilled`）或被拒绝（`rejected`），那么也可以说它处于已敲定（`settled`）状态。您还会听到一个经常跟 `promise` 一起使用的术语：已决议（`resolved`），它表示 `promise` 已经处于已敲定(`settled`)状态，或者为了匹配另一个 `promise` 的状态被"锁定"了。Domenic Denicola 的 [States and fates](https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates.md) 中有更多关于 promise 术语的细节可以供您参考。
+> **注意：** 如果一个 `promise` 已经被兑现（`fulfilled`）或被拒绝（`rejected`），那么也可以说它处于已敲定（`settled`）状态。您还会听到一个经常跟 `promise` 一起使用的术语：已决议（`resolved`），它表示 `promise` 已经处于已敲定(`settled`)状态，或者为了匹配另一个 `promise` 的状态被"锁定"了。Domenic Denicola 的 [States and fates](https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates) 中有更多关于 promise 术语的细节可以供您参考。
 
 ## Promise的链式调用
 

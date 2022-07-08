@@ -10,13 +10,13 @@
 
 ### render阶段的开始
 
-在[render阶段流程概览一节](/react/process/reconciler.md)讲到，
+在[render阶段流程概览一节](/react/process/reconciler)讲到，
 
 `render阶段`开始于`performSyncWorkOnRoot`或`performConcurrentWorkOnRoot`方法的调用。这取决于本次更新是同步更新还是异步更新。
 
 ### commit阶段的开始
 
-在[commit阶段流程概览一节](/react/renderer/prepare.md)讲到，
+在[commit阶段流程概览一节](/react/renderer/prepare)讲到，
 
 `commit阶段`开始于`commitRoot`方法的调用。其中`rootFiber`会作为传参。
 

@@ -4,7 +4,7 @@ warning 本章为选读章节
 
 
 
-在[beginWork一节](/react/process/beginWork.md#reconcilechildren)提到
+在[beginWork一节](/react/process/beginWork#reconcilechildren)提到
 
 > 对于`update`的组件，他会将当前组件与该组件在上次更新时对应的Fiber节点比较（也就是俗称的Diff算法），将比较的结果生成新Fiber节点。
 

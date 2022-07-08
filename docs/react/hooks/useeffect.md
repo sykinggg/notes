@@ -1,4 +1,4 @@
-在[架构篇commit阶段流程概览](/react/renderer/prepare.md)讲解了`useEffect`的工作流程。
+在[架构篇commit阶段流程概览](/react/renderer/prepare)讲解了`useEffect`的工作流程。
 
 其中谈到
 
@@ -69,7 +69,7 @@ const unmountEffects = pendingPassiveHookEffectsUnmount;
 
 向`pendingPassiveHookEffectsUnmount`数组内`push`数据的操作发生在`layout阶段` `commitLayoutEffectOnFiber`方法内部的`schedulePassiveEffects`方法中。
 
-> `commitLayoutEffectOnFiber`方法在[Layout阶段](/react/renderer/layout.md#commitlayouteffectonfiber)已经介绍
+> `commitLayoutEffectOnFiber`方法在[Layout阶段](/react/renderer/layout#commitlayouteffectonfiber)已经介绍
 
 ```js
 function schedulePassiveEffects(finishedWork: Fiber) {
