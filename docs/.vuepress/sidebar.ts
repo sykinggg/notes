@@ -82,6 +82,15 @@ export default sidebar({
         '/jsInterview/jsInterciewQuestion/10.md',
         '/jsInterview/jsInterciewQuestion/11.md',
         '/jsInterview/jsInterciewQuestion/12.md',
+        '/jsInterview/jsInterciewQuestion/13.md',
+        '/jsInterview/jsInterciewQuestion/14.md',
+        '/jsInterview/jsInterciewQuestion/15.md',
+        '/jsInterview/jsInterciewQuestion/16.md',
+        '/jsInterview/jsInterciewQuestion/17.md',
+        '/jsInterview/jsInterciewQuestion/18.md',
+        '/jsInterview/jsInterciewQuestion/19.md',
+        '/jsInterview/jsInterciewQuestion/20.md',
+        '/jsInterview/jsInterciewQuestion/21.md',
       ]
     }
   ],
