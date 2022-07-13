@@ -91,6 +91,9 @@ export default sidebar({
         '/jsInterview/jsInterciewQuestion/19.md',
         '/jsInterview/jsInterciewQuestion/20.md',
         '/jsInterview/jsInterciewQuestion/21.md',
+        '/jsInterview/jsInterciewQuestion/22.md',
+        '/jsInterview/jsInterciewQuestion/23.md',
+        '/jsInterview/jsInterciewQuestion/24.md',
       ]
     }
   ],
