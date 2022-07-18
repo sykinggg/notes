@@ -102,6 +102,10 @@ export default sidebar({
         '/jsInterview/jsInterciewQuestion/30.md',
         '/jsInterview/jsInterciewQuestion/31.md',
         '/jsInterview/jsInterciewQuestion/32.md',
+        '/jsInterview/jsInterciewQuestion/33.md',
+        '/jsInterview/jsInterciewQuestion/34.md',
+        '/jsInterview/jsInterciewQuestion/35.md',
+        '/jsInterview/jsInterciewQuestion/36.md',
       ]
     }
   ],
