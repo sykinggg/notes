@@ -27,7 +27,11 @@ export default navbar([
       },
       {
         text: '基础面试',
-        link: '/jsInterview/baseInterview.md',
+        link: '/jsInterview/useEs6.md',
+      },
+      {
+        text: '基础面试题',
+        link: '/jsInterviewQuestion/jsInterviewQuestion10/1.md',
       },
       {
         text: 'js 概念',
