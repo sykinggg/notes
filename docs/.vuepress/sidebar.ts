@@ -232,6 +232,16 @@ export default sidebar({
         '/jsInterviewQuestion/jsInterviewQuestion160/158.md',
         '/jsInterviewQuestion/jsInterviewQuestion160/159.md',
         '/jsInterviewQuestion/jsInterviewQuestion160/160.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/161.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/162.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/163.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/164.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/165.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/166.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/167.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/168.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/169.md',
+        '/jsInterviewQuestion/jsInterviewQuestion170/170.md',
       ]
     }
   ],
