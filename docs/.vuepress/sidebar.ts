@@ -262,6 +262,10 @@ export default sidebar({
         '/jsInterviewQuestion/jsInterviewQuestion190/188.md',
         '/jsInterviewQuestion/jsInterviewQuestion190/189.md',
         '/jsInterviewQuestion/jsInterviewQuestion190/190.md',
+        '/jsInterviewQuestion/jsInterviewQuestion200/191.md',
+        '/jsInterviewQuestion/jsInterviewQuestion200/192.md',
+        // '/jsInterviewQuestion/jsInterviewQuestion200/193.md',
+        // '/jsInterviewQuestion/jsInterviewQuestion200/194.md',
       ]
     }
   ],
