@@ -264,8 +264,8 @@ export default sidebar({
         '/jsInterviewQuestion/jsInterviewQuestion190/190.md',
         '/jsInterviewQuestion/jsInterviewQuestion200/191.md',
         '/jsInterviewQuestion/jsInterviewQuestion200/192.md',
-        // '/jsInterviewQuestion/jsInterviewQuestion200/193.md',
-        // '/jsInterviewQuestion/jsInterviewQuestion200/194.md',
+        '/jsInterviewQuestion/jsInterviewQuestion200/193.md',
+        '/jsInterviewQuestion/jsInterviewQuestion200/194.md',
       ]
     }
   ],
@@ -478,6 +478,33 @@ export default sidebar({
         { text: '写一个方法去掉字符串中的空格', link: '/js/scattered/interview50/interview2.md' },
         { text: 'JavaScript实现双向链表', link: '/js/scattered/interview50/interview3.md' }
       ]
+    }
+  ],
+  '/cssInterview/': [
+    {
+      text: '知识点',
+      children: [
+        '/cssInterview/cssInterview10/1.md',
+        '/cssInterview/cssInterview10/2.md',
+        '/cssInterview/cssInterview10/3.md',
+        '/cssInterview/cssInterview10/4.md',
+        '/cssInterview/cssInterview10/5.md',
+        '/cssInterview/cssInterview10/6.md',
+        '/cssInterview/cssInterview10/7.md',
+        '/cssInterview/cssInterview10/8.md',
+        '/cssInterview/cssInterview10/9.md',
+        '/cssInterview/cssInterview10/10.md',
+        '/cssInterview/cssInterview20/11.md',
+        '/cssInterview/cssInterview20/12.md',
+        '/cssInterview/cssInterview20/13.md',
+        '/cssInterview/cssInterview20/14.md',
+        '/cssInterview/cssInterview20/15.md',
+        '/cssInterview/cssInterview20/16.md',
+        '/cssInterview/cssInterview20/17.md',
+        '/cssInterview/cssInterview20/18.md',
+        '/cssInterview/cssInterview20/19.md',
+        '/cssInterview/cssInterview20/20.md',
+      ],
     }
   ],
   '/css/': [

@@ -57,6 +57,10 @@ export default navbar([
       {
         text: '零散记录',
         link: '/css/interview/baseCss.md',
+      },
+      {
+        text: '知识点',
+        link: '/cssInterview/cssInterview10/1.md'
       }
     ]
   },
